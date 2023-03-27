@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  one-chat-web:
+    container_name: one-chat-web
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production
+      - SECRET_COOKIE_PASSWORD={{PASSWORD}}

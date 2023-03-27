@@ -1,0 +1,63 @@
+{
+  "name": "@one-chat/api-sdk",
+  "version": "0.0.0",
+  "author": "forsigner",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "scripts": {
+    "gen:dev": "cogen",
+    "gen": "cross-env NODE_ENV=production cogen",
+    "build:dev": "npm run gen:dev && tsup",
+    "build": "npm run gen && tsup",
+    "watch": "tsup --watch",
+    "type-check": "tsc",
+    "test": "jest --coverage --passWithNoTests",
+    "test:watch": "jest --watch"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forsigner/fomir.git"
+  },
+  "bugs": {
+    "url": "https://github.com/forsigner/fomir/issues"
+  },
+  "homepage": "https://github.com/forsigner/fomir#readme",
+  "dependencies": {
+    "stook": "^1.13.0",
+    "stook-graphql": "^1.15.0"
+  },
+  "devDependencies": {
+    "@cogen/cli": "^0.11.5",
+    "cogen-stook-graphql": "^0.11.5",
+    "cross-env": "^7.0.3",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.2"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "treeshake": true,
+    "sourcemap": true,
+    "minify": false,
+    "clean": true,
+    "dts": true,
+    "splitting": false,
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "external": [
+      "gql-tag",
+      "stook",
+      "stook-graphql"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "@one-chat/shared",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
+  "scripts": {
+    "lint": "eslint \"**/*.ts*\""
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "eslint": "^8.36.0",
+    "eslint-config-custom": "*",
+    "react": "^18.2.0",
+    "tsconfig": "*",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "@bone-ui/iconify": "^0.31.0",
+    "@bone-ui/icons": "^0.31.0",
+    "@one-chat/easy-modal": "*",
+    "@fower/react": "^1.76.0",
+    "bone-ui": "^0.31.0",
+    "fomir": "^0.20.0",
+    "i18next": "^22.4.13",
+    "lodash": "^4.17.21",
+    "react-i18next": "^12.2.0",
+    "slate": "^0.91.4",
+    "stook": "^1.13.0",
+    "stook-graphql": "^1.15.0",
+    "stook-rest": "^1.15.0"
+  }
+}
