@@ -9,10 +9,6 @@ interface Props {
 }
 
 export default function PageHome({ stats }: Props) {
-  useEffect(() => {
-    console.log('......')
-  }, [])
-
   return <Home />
 }
 
