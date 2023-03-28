@@ -1,4 +1,5 @@
 import { withIronSessionSsr } from 'iron-session/next'
+import { useEffect } from 'react'
 import { sessionOptions } from '@common/session'
 import { Stats } from '@one-chat/api-sdk'
 import { Home } from '@one-chat/shared'
@@ -8,6 +9,10 @@ interface Props {
 }
 
 export default function PageHome({ stats }: Props) {
+  useEffect(() => {
+    console.log('......')
+  }, [])
+
   return <Home />
 }
 
