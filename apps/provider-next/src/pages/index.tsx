@@ -1,23 +1,39 @@
 import { withIronSessionSsr } from 'iron-session/next'
-import { useEffect } from 'react'
+import { Modal, ModalOverlay, ModalContent } from 'bone-ui'
+import { useState } from 'react'
 import { sessionOptions } from '@common/session'
-import { Stats } from '@one-chat/api-sdk'
 import { Home } from '@one-chat/shared'
+import { Login } from '@components/Login'
 
 interface Props {
-  stats: Stats
+  authorizationCode: string
 }
 
-export default function PageHome({ stats }: Props) {
+export default function PageHome({ authorizationCode }: Props) {
+  const [visible, setVisible] = useState(!authorizationCode)
+
+  if (!authorizationCode) {
+    return (
+      <>
+        <Home />
+        <Modal isOpen={visible} onClose={() => setVisible(false)} closeOnOverlayClick={false}>
+          <ModalOverlay />
+          <ModalContent>
+            <Login onLoginSuccess={() => setVisible(false)} />
+          </ModalContent>
+        </Modal>
+      </>
+    )
+  }
   return <Home />
 }
 
 export const getServerSideProps = withIronSessionSsr(async function ({ req, res, locale = '' }) {
-  const { payload } = req.session
-
+  const { authorizationCode = '' } = req?.session || {}
   return {
     props: {
       locale,
+      authorizationCode,
     },
   }
 }, sessionOptions)
