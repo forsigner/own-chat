@@ -13,7 +13,7 @@ class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx)
 
-    const theme = (getCookie('fower-mode', ctx) as string) || 'dark'
+    const theme = (getCookie('fower-mode', ctx) as string) || 'light'
 
     ;(initialProps as any).theme = theme
 

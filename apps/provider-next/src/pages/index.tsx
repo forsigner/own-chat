@@ -1,14 +1,14 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { apiService, Stats } from '@one-chat/api-sdk'
-import { Box } from '@fower/react'
+import { Stats } from '@one-chat/api-sdk'
+import { Home } from '@one-chat/shared'
 
 interface Props {
   stats: Stats
 }
 
 export default function PageHome({ stats }: Props) {
-  return <Box>home</Box>
+  return <Home />
 }
 
 export const getServerSideProps = withIronSessionSsr(async function ({ req, res, locale = '' }) {

@@ -23,3 +23,9 @@ declare module 'i18next' {
   //   resources: I18nNamespaces
   // }
 }
+
+declare module '*.svg' {
+  import React = require('react')
+  const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>
+  export default ReactComponent
+}

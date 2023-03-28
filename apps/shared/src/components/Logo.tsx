@@ -11,8 +11,13 @@ export const Logo = ({ showText = true }: Props) => {
     <Box toCenterY gray800--hover black spaceX1>
       <IconLogo square7 white />
       {showText && (
-        <Box text2XL black>
-          One Chat
+        <Box>
+          <Box textXL black>
+            One Chat
+          </Box>
+          <Box textXS gray600>
+            My personal chatGPT
+          </Box>
         </Box>
       )}
     </Box>
