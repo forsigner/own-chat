@@ -1,4 +1,4 @@
-import { ChatRequest, filterConfig, Message, ModelConfig, TIME_OUT_MS } from "./api-util";
+import { ChatRequest, filterConfig, Message, ModelConfig, TIME_OUT_MS } from "../../../provider-next/src/common/api-util";
 
 const makeRequestParam = (
   messages: Message[],
@@ -46,7 +46,7 @@ export async function requestChatStream(
   const controller = new AbortController();
   const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS);
   try {
-    const res = await fetch("/api/chatapi/stream", {
+    const res = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

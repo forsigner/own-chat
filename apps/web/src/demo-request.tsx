@@ -35,16 +35,8 @@ export const DemoRequest = () => {
         console.log('ereor', error)
       },
       onController(controller) {
-        // collect controller for stop/retry
-        // ControllerPool.addController(
-        //   sessionIndex,
-        //   messageIndex,
-        //   controller
-        // );
         console.log('controller', controller)
       },
-      // filterBot: !get().config.sendBotMessages,
-      // modelConfig: get().config.modelConfig,
     });
   }
 
