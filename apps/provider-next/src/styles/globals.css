@@ -1,0 +1,56 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  /* overflow: hidden; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+::placeholder {
+  color: white;
+  font-size: 0.8em;
+}
+
+.simplebar-track.simplebar-vertical {
+  width: 8px !important;
+}
+
+.fomir-date-picker {
+  border: 1px solid #ddd;
+  padding: 0px 6px;
+  height: 40px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.fomir-date-range-picker-wrapper div {
+  height: 100%;
+}
+
+.react-datepicker-popper {
+  z-index: 1000;
+}
+
+.detail-table-content {
+  width: 800px;
+  margin: 0 auto;
+  background: gainsboro;
+}
+
+.main-price {
+  font-weight: 700;
+  font-size: 38px;
+}
