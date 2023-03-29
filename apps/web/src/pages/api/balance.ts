@@ -2,6 +2,10 @@ import { NextApiResponse } from 'next';
 import { get } from 'lodash'
 import { Result } from './models';
 
+export const config = {
+  runtime: 'edge'
+}
+
 const handler = async (_: any, res: NextApiResponse<Result>) => {
   try {
     const apiKey = process.env.OPENAI_API_KEY;
@@ -12,6 +16,8 @@ const handler = async (_: any, res: NextApiResponse<Result>) => {
       },
       method: 'GET',
     });
+    res.status(200)
+    res.setHeader('Content-Type', 'application/json')
     const json = await result.json()
     const isError = get(json, 'error', '')
     if (!isError) {
@@ -40,8 +46,6 @@ const handler = async (_: any, res: NextApiResponse<Result>) => {
       */
       res.json(get(json, 'error', '') || json);
     }
-    res.status(200)
-    res.setHeader('Content-Type', 'application/json')
   } catch (err: any) {
     console.log('error:', err)
     res.status(500).send({ code: 0, message: err })

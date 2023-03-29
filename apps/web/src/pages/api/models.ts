@@ -32,6 +32,10 @@ export interface Result {
   data?: any
 }
 
+export const config = {
+  runtime: 'edge'
+}
+
 // https://platform.openai.com/docs/api-reference/models/list
 const handler = async (_: any, res: NextApiResponse<Result>) => {
   try {
@@ -43,6 +47,8 @@ const handler = async (_: any, res: NextApiResponse<Result>) => {
       },
       method: 'GET',
     });
+    res.setHeader('Content-Type', 'application/json')
+    res.status(200)
     const json = await result.json()
     const isList = get(json, 'object', '')
     if (isList === 'list') {
@@ -62,11 +68,9 @@ const handler = async (_: any, res: NextApiResponse<Result>) => {
       */
       res.json(get(json, 'error', '') || json);
     }
-    res.setHeader('Content-Type', 'application/json')
-    res.status(200)
   } catch (err: any) {
     console.log('error:', err)
-    res.status(500).send({ code: 'req err', message: err })
+    res.status(500).send({ code: 0, message: err })
   }
 };
 
