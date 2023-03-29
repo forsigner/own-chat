@@ -4,12 +4,22 @@ import { Field, Form, useForm } from 'fomir'
 import { SettingItem } from './SettingItem'
 import { Title } from './Title'
 
+interface Values {
+  apiKey: string
+  lang: string
+  maxToken: string
+  model: string
+  showTokenCount: string
+  theme: string
+}
+
 export const Settings = () => {
-  const form = useForm({
+  const form = useForm<Values>({
     layout: 'horizontal',
     watch: {
-      '*.value': (values) => {
+      '*.value': values => {
         console.log('values:', values)
+        // TODO:
       },
     },
     onSubmit(values) {
