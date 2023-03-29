@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.forsigner.one-chat",
+      "identifier": "com.forsigner.owned-chat",
       "longDescription": "",
       "macOS": {
         "entitlements": null,

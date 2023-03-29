@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import { FowerHTMLProps } from '@fower/core'
 import { Box } from '@fower/react'
 import { memo } from 'react'
-import { Log } from '@one-chat/api-sdk'
+import { Log } from '@owned-chat/api-sdk'
 
 interface LogItemProps {
   log: Log

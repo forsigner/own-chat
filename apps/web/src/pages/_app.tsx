@@ -3,8 +3,8 @@ import { ToastContainer } from 'bone-ui'
 import type { AppProps } from 'next/app'
 import Router from 'next/router'
 import { Fragment, useEffect } from 'react'
-import { EasyModalProvider } from '@one-chat/easy-modal'
-import { init } from '@one-chat/shared'
+import { EasyModalProvider } from '@owned-chat/easy-modal'
+import { init } from '@owned-chat/shared'
 import { mutate } from 'stook'
 
 interface Props extends AppProps {

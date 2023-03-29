@@ -1,9 +1,9 @@
-import { LoginSuccessPayload } from '@one-chat/api-sdk'
+import { LoginSuccessPayload } from '@owned-chat/api-sdk'
 import type { IronSessionOptions } from 'iron-session'
 
 export const sessionOptions: IronSessionOptions = {
   password: process.env.SECRET_COOKIE_PASSWORD as string,
-  cookieName: 'one-chat-session',
+  cookieName: 'owned-chat-session',
   cookieOptions: {
     // secure: process.env.NODE_ENV === 'production',
     secure: false,

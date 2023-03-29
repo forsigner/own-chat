@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { EasyModal } from '@one-chat/easy-modal'
+import { EasyModal } from '@owned-chat/easy-modal'
 import { Button, ChevronDownOutline } from 'bone-ui'
 import { useSessions } from '../../../hooks'
 import { ModalSessionList } from '../ModalSessionList'

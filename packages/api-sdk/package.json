@@ -1,5 +1,5 @@
 {
-  "name": "@one-chat/api-sdk",
+  "name": "@owned-chat/api-sdk",
   "version": "0.0.0",
   "author": "forsigner",
   "main": "dist/index.js",

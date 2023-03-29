@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Box } from '@fower/react'
-import { Hooks } from '@one-chat/api-sdk'
+import { Hooks } from '@owned-chat/api-sdk'
 import { Select } from 'bone-ui'
 import { useRouter } from 'next/router'
 

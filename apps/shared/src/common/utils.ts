@@ -1,4 +1,4 @@
-import { ExchangeType } from '@one-chat/api-sdk'
+import { ExchangeType } from '@owned-chat/api-sdk'
 import { nanoid } from 'nanoid'
 import reactFastCompare from 'react-fast-compare'
 import { FieldNode, Node } from 'fomir'

@@ -1,5 +1,5 @@
 import { Button } from 'bone-ui'
-import { EasyModal } from '@one-chat/easy-modal'
+import { EasyModal } from '@owned-chat/easy-modal'
 import { FC, PropsWithChildren } from 'react'
 import { ModalSign } from '../modules/home/ModalSign'
 import { mutateSignStatus } from '../modules/home/ModalSign/hooks/sign-status.store'

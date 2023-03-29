@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   reactStrictMode: true,
-  transpilePackages: ["@one-chat/shared"],
+  transpilePackages: ["@owned-chat/shared"],
   output: "standalone",
   experimental: {
     outputFileTracingRoot: path.join(__dirname, "../../"),

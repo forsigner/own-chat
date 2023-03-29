@@ -3,8 +3,8 @@ import type { AppProps } from 'next/app'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import { ToastContainer } from 'bone-ui'
-import { EasyModalProvider } from '@one-chat/easy-modal'
-import { init } from '@one-chat/shared'
+import { EasyModalProvider } from '@owned-chat/easy-modal'
+import { init } from '@owned-chat/shared'
 import '../styles/globals.css'
 
 init()

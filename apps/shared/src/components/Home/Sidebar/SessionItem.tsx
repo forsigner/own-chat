@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { useModal } from '@one-chat/easy-modal'
+import { useModal } from '@owned-chat/easy-modal'
 import { Button, ChatOutline, TrashOutline } from 'bone-ui'
 import { Session, useSessions } from '../../../hooks'
 import { EditSessionNameButton } from './EditSessionNameButton'

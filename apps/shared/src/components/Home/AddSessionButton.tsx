@@ -1,4 +1,4 @@
-import { useModal } from '@one-chat/easy-modal'
+import { useModal } from '@owned-chat/easy-modal'
 import { Button, PlusOutline } from 'bone-ui'
 import { useSessions } from '../../hooks'
 

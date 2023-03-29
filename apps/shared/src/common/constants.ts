@@ -1,4 +1,4 @@
-import { NotifierType } from '@one-chat/api-sdk'
+import { NotifierType } from '@owned-chat/api-sdk'
 import { MailSolid } from '@bone-ui/icons'
 import { IconDiscord } from '../icons/IconDiscord'
 import { IconTelegram } from '../icons/IconTelegram'

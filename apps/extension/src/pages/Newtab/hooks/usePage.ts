@@ -1,4 +1,4 @@
-import {} from '@one-chat/shared'
+import {} from '@owned-chat/shared'
 import { useMemo } from 'react'
 import { useStore } from 'stook'
 import { PageIds } from '../constants'

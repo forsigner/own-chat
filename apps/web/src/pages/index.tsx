@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { Stats } from '@one-chat/api-sdk'
+import { Stats } from '@owned-chat/api-sdk'
 import { Box } from '@fower/react'
 
 interface Props {

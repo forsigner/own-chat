@@ -1,4 +1,4 @@
-import { LoginSuccessPayload } from '@one-chat/api-sdk'
+import { LoginSuccessPayload } from '@owned-chat/api-sdk'
 import type { IronSessionOptions } from 'iron-session'
 
 export const sessionOptions: IronSessionOptions = {

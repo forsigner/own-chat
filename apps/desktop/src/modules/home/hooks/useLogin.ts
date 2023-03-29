@@ -1,6 +1,6 @@
 import { toast } from 'bone-ui'
-import { apiService } from '@one-chat/api-sdk'
-import { useUser, useToken } from '@one-chat/shared'
+import { apiService } from '@owned-chat/api-sdk'
+import { useUser, useToken } from '@owned-chat/shared'
 import { useRouter } from 'next/router'
 
 export function useLogin() {

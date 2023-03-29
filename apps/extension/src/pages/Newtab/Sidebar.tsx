@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from '@fower/react'
 import { ChipOutline, Divider } from 'bone-ui'
 import { useTranslation } from 'react-i18next'
-import { IconDocument, IconGitHub, IconTelegram, Logo } from '@one-chat/shared'
+import { IconDocument, IconGitHub, IconTelegram, Logo } from '@owned-chat/shared'
 import { SidebarItem } from './SidebarItem'
 import { PageIds } from './constants'
 

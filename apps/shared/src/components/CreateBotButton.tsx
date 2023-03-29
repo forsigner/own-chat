@@ -1,7 +1,7 @@
-import { Strategy } from '@one-chat/api-sdk'
+import { Strategy } from '@owned-chat/api-sdk'
 import { Button, ButtonProps } from 'bone-ui'
 import { PlusSolid } from '@bone-ui/icons'
-import { EasyModal } from '@one-chat/easy-modal'
+import { EasyModal } from '@owned-chat/easy-modal'
 import { useTranslation } from 'react-i18next'
 import { DrawerAddBot } from '../modules/strategies/DrawerAddBot'
 interface Props extends ButtonProps {
