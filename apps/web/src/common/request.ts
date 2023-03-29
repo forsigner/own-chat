@@ -1,5 +1,11 @@
 import { ChatRequest, filterConfig, Message, ModelConfig, TIME_OUT_MS } from "../../../provider-next/src/common/api-util";
 
+export interface Result {
+  code: string | number
+  message: string
+  data?: any
+}
+
 const makeRequestParam = (
   messages: Message[],
   options?: {
@@ -93,8 +99,42 @@ export async function requestChatStream(
       console.error("Stream Error");
       options?.onError(new Error("Stream Error"));
     }
-  } catch (err) {
-    console.error("NetWork Error", err);
-    options?.onError(err as Error);
+  } catch (error) {
+    console.error("NetWork Error", error);
+    options?.onError(error as Error);
+  }
+}
+
+export async function fetchBalance(): Promise<any> {
+  try {
+    return await fetch("/api/balance", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error: any) {
+    console.error("NetWork Error", error);
+    return {
+      code: 0,
+      message: error
+    }
+  }
+}
+
+export async function fetchModels(): Promise<any> {
+  try {
+    return await fetch("/api/models", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error: any) {
+    console.error("NetWork Error", error);
+    return {
+      code: 0,
+      message: error
+    }
   }
 }
