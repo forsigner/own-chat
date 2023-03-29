@@ -1,7 +1,6 @@
 import { NextRequest } from 'next/server';
 import { Result } from './models';
 import { NextApiResponse } from 'next';
-import { get } from 'lodash';
 
 export const config = {
   runtime: 'edge'
@@ -22,11 +21,10 @@ const handler = async (req: NextRequest, res: NextApiResponse<Result>) => {
     });
 
     const json = await result.json()
-    const isError = get(json, 'error', '')
-    if (!isError) {
+    if (!json?.error) {
       res.json(json)
     } else {
-      res.json(get(json, 'error', '') || json);
+      res.json(json?.error || json);
     }
   } catch (err: any) {
     console.log('completions error:', err)

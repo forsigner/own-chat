@@ -1,5 +1,4 @@
 import { NextApiResponse } from 'next';
-import { get } from 'lodash'
 import { Result } from './models';
 
 export const config = {
@@ -19,12 +18,11 @@ const handler = async (_: any, res: NextApiResponse<Result>) => {
     res.status(200)
     res.setHeader('Content-Type', 'application/json')
     const json = await result.json()
-    const isError = get(json, 'error', '')
-    if (!isError) {
+    if (!json?.error) {
       // grants
       let grants = {}
       if (json?.grants?.object === 'list') {
-        grants = get(json?.grants?.data, '[0]', {})
+        grants = json?.grants?.data[0] || {}
       }
       res.json({
         code: 1, message: 'ok', data: {
@@ -44,7 +42,7 @@ const handler = async (_: any, res: NextApiResponse<Result>) => {
        * code: 'invalid_api_key'
        * }
       */
-      res.json(get(json, 'error', '') || json);
+      res.json(json?.error || json);
     }
   } catch (err: any) {
     console.log('error:', err)

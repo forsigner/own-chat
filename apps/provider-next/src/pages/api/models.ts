@@ -1,5 +1,4 @@
 import { NextApiResponse } from 'next';
-import { get } from 'lodash'
 
 interface Permission {
   id: string
@@ -50,7 +49,7 @@ const handler = async (_: any, res: NextApiResponse<Result>) => {
     res.setHeader('Content-Type', 'application/json')
     res.status(200)
     const json = await result.json()
-    const isList = get(json, 'object', '')
+    const isList = json?.object
     if (isList === 'list') {
       const owned_by_openai = json.data.filter((model: ModelType) => {
         return model.owned_by !== 'openai-dev'
@@ -66,7 +65,7 @@ const handler = async (_: any, res: NextApiResponse<Result>) => {
        * code: 'invalid_api_key'
        * }
       */
-      res.json(get(json, 'error', '') || json);
+      res.json(json?.error || json);
     }
   } catch (err: any) {
     console.log('error:', err)

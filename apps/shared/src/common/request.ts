@@ -1,4 +1,5 @@
-import { ChatRequest, filterConfig, Message, ModelConfig, TIME_OUT_MS } from './api-util'
+import { ChatCompletionResponseMessage } from "openai"
+import { TIME_OUT_MS } from './api-util'
 
 export interface Result {
   code: string | number
@@ -6,135 +7,143 @@ export interface Result {
   data?: any
 }
 
-const makeRequestParam = (
-  messages: Message[],
-  options?: {
-    filterBot?: boolean
-    stream?: boolean
-  },
-): ChatRequest => {
-  let sendMessages = messages.map((v) => ({
-    role: v.role,
-    content: v.content,
-  }))
-
-  if (options?.filterBot) {
-    sendMessages = sendMessages.filter((m) => m.role !== 'assistant')
-  }
-
-  return {
-    model: 'gpt-3.5-turbo',
-    messages: sendMessages,
-    stream: options?.stream,
-  }
+interface ChatParams {
+  model: string
+  messages: ChatCompletionResponseMessage[],
+  presence_penalty: number,
+  stream: boolean
+  temperature: number
+  top_p: number
+  max_tokens: number
 }
 
-export async function requestChatStream(
-  messages: Message[],
-  options?: {
-    filterBot?: boolean
-    modelConfig?: ModelConfig
-    onMessage: (message: string, done: boolean) => void
-    onError: (error: Error) => void
-    onController?: (controller: AbortController) => void
-  },
+export async function fetchChatStream(
+  params: ChatParams,
+  onMessage: (message: string, done: boolean) => void,
+  onError?: (error: Error) => void,
+  onController?: (controller: AbortController) => void,
 ) {
-  const req = makeRequestParam(messages, {
-    stream: true,
-    filterBot: options?.filterBot,
-  })
-
-  // valid and assign model config
-  if (options?.modelConfig) {
-    Object.assign(req, filterConfig(options.modelConfig))
-  }
-
-  const controller = new AbortController()
-  const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS)
+  const controller = new AbortController();
+  const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS);
   try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
+    const result = await fetch("/api/chat-stream", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(req),
+      body: JSON.stringify(params),
       signal: controller.signal,
-    })
-    clearTimeout(reqTimeoutId)
+    });
 
-    let responseText = ''
+    clearTimeout(reqTimeoutId);
+
+    let responseText = "";
 
     const finish = () => {
-      options?.onMessage(responseText, true)
-      controller.abort()
-    }
+      onMessage(responseText, true);
+      controller.abort();
+    };
 
-    if (res.ok) {
-      const reader = res.body?.getReader()
-      const decoder = new TextDecoder()
+    if (result.ok) {
+      const reader = result.body?.getReader();
+      const decoder = new TextDecoder();
 
-      options?.onController?.(controller)
+      onController && onController(controller);
 
       while (true) {
         // handle time out, will stop if no response in 10 secs
-        const resTimeoutId = setTimeout(() => finish(), TIME_OUT_MS)
-        const content = await reader?.read()
-        clearTimeout(resTimeoutId)
-        const text = decoder.decode(content?.value)
-        responseText += text
-        const done = !content || content.done
-        options?.onMessage(responseText, false)
-
+        const resTimeoutId = setTimeout(() => finish(), TIME_OUT_MS);
+        const content = await reader?.read();
+        clearTimeout(resTimeoutId);
+        const text = decoder.decode(content?.value);
+        responseText += text;
+        const done = !content || content.done;
+        onMessage(responseText, false);
         if (done) {
-          break
+          break;
         }
       }
-
-      finish()
-    } else if (res.status === 401) {
-      console.error('Anauthorized')
-      responseText = 'Unauthorized access, please enter access code in settings page.'
-      finish()
+      finish();
+    } else if (result.status === 401) {
+      console.error("Anauthorized");
+      responseText = 'Unauthorized access, please enter access code in settings page.';
+      finish();
     } else {
-      console.error('Stream Error')
-      options?.onError(new Error('Stream Error'))
+      console.error("Stream Error");
+      onError && onError(new Error("Stream Error"));
     }
   } catch (error) {
-    console.error('NetWork Error', error)
-    options?.onError(error as Error)
+    console.error("NetWork Error", error);
+    onError && onError(error as Error);
   }
 }
 
 export async function fetchBalance(): Promise<any> {
   try {
-    return await fetch('/api/balance', {
-      method: 'GET',
+    return await fetch("/api/balance", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-    })
+    });
   } catch (error: any) {
-    console.error('NetWork Error', error)
+    console.error("NetWork Error", error);
     return {
       code: 0,
-      message: error,
+      message: error
     }
   }
 }
 
 export async function fetchModels(): Promise<any> {
   try {
-    return await fetch('/api/models', {
-      method: 'GET',
+    return await fetch("/api/models", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-    })
+    });
   } catch (error: any) {
-    console.error('NetWork Error', error)
+    console.error("NetWork Error", error);
     return {
       code: 0,
-      message: error,
+      message: error
+    }
+  }
+}
+
+export async function fetchCompletions(params: any): Promise<any> {
+  try {
+    return await fetch("/api/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    });
+  } catch (error: any) {
+    console.error("NetWork Error", error);
+    return {
+      code: 0,
+      message: error
+    }
+  }
+}
+
+export async function fetchChatCompletions(params: any): Promise<any> {
+  try {
+    return await fetch("/api/chat-completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    });
+  } catch (error: any) {
+    console.error("NetWork Error", error);
+    return {
+      code: 0,
+      message: error
     }
   }
 }
