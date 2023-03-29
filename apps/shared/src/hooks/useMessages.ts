@@ -1,7 +1,11 @@
 import { mutateLocalStorage, useLocalStorage } from 'stook-localstorage'
+import { useAsyncStorage } from 'stook-async-storage'
 import { ChatCompletionResponseMessageRoleEnum, ChatCompletionResponseMessage } from 'openai'
+import { getCurrentSession, useSessions } from './useSessions'
+import { useMemo } from 'react'
 
 export interface Message extends ChatCompletionResponseMessage {
+  sessionId: string
   date: string
   streaming?: boolean
 }
@@ -9,25 +13,21 @@ export interface Message extends ChatCompletionResponseMessage {
 const key = 'messages'
 
 export const useMessages = () => {
-  // const list: Message[] = [
-  //   {
-  //     content: '珠海的邮编是什么?',
-  //     date: '2023/3/27 22:31:29',
-  //     role: ChatCompletionResponseMessageRoleEnum.Assistant,
-  //   },
-  // ]
-
-  const [messages = [], setMessages] = useLocalStorage<Message[]>(key, [])
+  const { currentSession } = useSessions()
+  const { loading, data: messages = [], setData: setMessages } = useAsyncStorage<Message[]>(key, [])
 
   function initNewMessage(value: string) {
-    setMessages((messages) => {
+    const { id: sessionId } = getCurrentSession()
+    setMessages(messages => {
       messages.push({
+        sessionId,
         content: value,
         date: new Date().toLocaleDateString(),
         role: ChatCompletionResponseMessageRoleEnum.User,
       })
 
       messages.push({
+        sessionId,
         content: '',
         date: new Date().toLocaleDateString(),
         role: ChatCompletionResponseMessageRoleEnum.Assistant,
@@ -43,8 +43,14 @@ export const useMessages = () => {
     })
   }
 
+  const msg = useMemo(() => messages.filter(item => item.sessionId === currentSession.id), [
+    currentSession,
+    messages,
+  ])
+
   return {
-    messages: !messages ? [] : messages,
+    loading,
+    messages: msg,
     setMessages,
     initNewMessage,
     updateMessage,

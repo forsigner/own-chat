@@ -3,7 +3,8 @@ import { useMessages } from '../../../hooks'
 import ChatItem from './ChatItem'
 
 export const ChatList = () => {
-  const { messages = [] } = useMessages()
+  const { messages = [], loading } = useMessages()
+  if (loading) return null
 
   return (
     <Box column>

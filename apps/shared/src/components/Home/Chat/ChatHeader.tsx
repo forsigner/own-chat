@@ -1,13 +1,15 @@
 import { Box } from '@fower/react'
 import { EasyModal } from '@one-chat/easy-modal'
 import { Button, ChevronDownOutline } from 'bone-ui'
+import { useSessions } from '../../../hooks'
 import { ModalSessionList } from '../ModalSessionList'
 
 export const ChatHeader = () => {
+  const { currentSession } = useSessions()
   return (
     <Box h-72 borderBottom borderBottomGray100 p4 toCenterY columnGap-4>
       <Box textLG fontBold>
-        珠海邮编
+        {currentSession?.name}
       </Box>
       <Button
         p1
