@@ -1,6 +1,6 @@
 import { toast } from 'bone-ui'
 import { apiService } from '@own-chat/api-sdk'
-import { useUser, useToken } from '@own-chat/shared'
+import { useUser, useToken, LOGIN_SUCCESS_REDIRECT_URL } from '@own-chat/shared'
 import { useRouter } from 'next/router'
 
 export function useLogin() {
@@ -12,7 +12,7 @@ export function useLogin() {
     const payload = await apiService.loginByPersonalToken({ token })
     setToken(payload.token)
     setUser(payload.user)
-    push('/dashboard/strategies-square')
+    push(LOGIN_SUCCESS_REDIRECT_URL)
   }
   return { login }
 }

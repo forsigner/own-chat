@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { WebHome, BasicLayout } from '@own-chat/shared'
+import { WebHome, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@own-chat/shared'
 
 export default function PageHome() {
   return <WebHome />
@@ -8,10 +8,21 @@ export default function PageHome() {
 
 PageHome.Layout = BasicLayout
 
-export const getServerSideProps = withIronSessionSsr(async function({ req, res, locale = '' }) {
+export const getServerSideProps = withIronSessionSsr(async function ({ req, res, locale = '' }) {
+  const { payload } = req.session
+
+  if (!payload) {
+    return {
+      props: {
+        locale,
+      },
+    }
+  }
+
   return {
-    props: {
-      locale,
+    redirect: {
+      destination: LOGIN_SUCCESS_REDIRECT_URL,
+      permanent: false,
     },
   }
 }, sessionOptions)
