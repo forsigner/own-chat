@@ -24,6 +24,7 @@ export function useLocalStorage<S = any>(key: string, initialState?: S): [S, Dis
   useEffect(() => {
     const localValue = getLocalValue(key)
 
+    // 如果 localStorage 有值，优先使用 localStorage 的值
     if (localValue) {
       setState(localValue)
     } else {
