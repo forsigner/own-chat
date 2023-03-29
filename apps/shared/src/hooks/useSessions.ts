@@ -1,49 +1,69 @@
-import { useStore } from 'stook'
+import { useEffect, useCallback } from 'react'
+import { useAsyncStorage } from 'stook-async-storage'
+import { nanoid } from 'nanoid'
 
-type Session = {
+export type Session = {
+  id: string
   name: string
-  date: Date | string
+  date: string
   count: number
+  selected?: boolean
 }
 
+const key = 'sessions'
+
 export const useSessions = () => {
-  const [selectedIndex, selectSession] = useStore('selected_index', 0)
-  const list: Session[] = [
-    {
-      name: '珠海的邮编',
-      date: '2023/3/27 22:31:29',
-      count: 10,
-    },
-    {
-      name: '英文翻译',
-      date: '2023/3/27 22:31:29',
-      count: 10,
-    },
+  const { loading, data: sessions = [], setData: setSessions } = useAsyncStorage<Session[]>(key, [])
 
-    {
-      name: 'pdf 帮助',
-      date: '2023/3/27 22:31:29',
-      count: 10,
-    },
-  ]
-
-  const [sessions, setSession] = useStore<Session[]>('sessions', list)
-
-  function addSession() {
-    setSession([
-      ...sessions,
-      {
-        name: 'Untitle',
+  const addSession = useCallback(() => {
+    setSessions((sessions) => {
+      for (const session of sessions) {
+        session.selected = false
+      }
+      sessions.push({
+        id: nanoid(),
+        name: 'New Chat',
         date: '2023/3/27 22:31:29',
         count: 10,
-      },
-    ])
-  }
+        selected: true,
+      })
+    })
+  }, [setSessions])
+
+  const deleteSession = useCallback(
+    (id: string) => {
+      setSessions((state) => {
+        const index = state.findIndex((item) => item.id === id)
+        state.splice(index, 1)
+        state[0].selected = true
+      })
+    },
+    [setSessions],
+  )
+
+  const selectSession = useCallback(
+    (id: string) => {
+      setSessions((state) => {
+        for (const session of state) {
+          session.selected = session.id === id
+        }
+      })
+    },
+    [setSessions],
+  )
+
+  useEffect(() => {
+    if (!loading && !sessions?.length) {
+      addSession()
+    }
+  }, [sessions, addSession, loading])
 
   return {
-    selectedIndex,
-    sessions,
     selectSession,
     addSession,
+    deleteSession,
+    loading,
+    sessions,
+    setSessions,
   }
 }

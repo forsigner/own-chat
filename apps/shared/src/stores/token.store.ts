@@ -1,4 +1,4 @@
-import { useLocalStorage, getLocalStorage, mutateLocalStorage } from '../common/stook-localstorage'
+import { useLocalStorage, getLocalStorage, mutateLocalStorage } from 'stook-localstorage'
 
 const key = 'Token'
 

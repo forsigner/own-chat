@@ -1,9 +1,9 @@
 import { MoonOutline, SunOutline } from '@bone-ui/icons'
 import { Box } from '@fower/react'
-import { useMode } from '../hooks/useMode'
+import { useSendMessage } from '../hooks/useSendMessage'
 
 export const ModeToggle = () => {
-  const { mode, setMode } = useMode()
+  const { mode, setMode } = useSendMessage()
 
   function toggleMode() {
     if (mode === 'dark') {

@@ -42,9 +42,9 @@
     "react-textarea-autosize": "^8.4.1",
     "react-use": "^17.4.0",
     "rough-notation": "^0.5.1",
-    "stook-devtools": "^1.13.0",
+    "stook-devtools": "^1.14.0",
     "stook-graphql": "^1.15.0",
-    "stook-localstorage": "^1.13.0",
+    "stook-localstorage": "^1.14.0",
     "stook-rest": "^1.15.0",
     "use-debounce": "^9.0.3"
   },

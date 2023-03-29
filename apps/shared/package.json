@@ -9,7 +9,7 @@
     "lint": "eslint \"**/*.ts*\""
   },
   "devDependencies": {
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.0.31",
     "@types/react-dom": "^18.0.11",
     "eslint": "^8.36.0",
     "eslint-config-custom": "*",
@@ -26,9 +26,11 @@
     "fomir": "^0.21.0",
     "i18next": "^22.4.13",
     "lodash": "^4.17.21",
+    "nanoid": "^3.3.6",
     "react-i18next": "^12.2.0",
-    "slate": "^0.91.4",
-    "stook": "^1.13.0",
+    "stook": "^1.14.0",
+    "stook-localstorage": "^1.14.0",
+    "stook-async-storage": "*",
     "stook-graphql": "^1.15.0",
     "stook-rest": "^1.15.0"
   }

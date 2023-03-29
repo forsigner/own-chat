@@ -1,66 +1,64 @@
-import { NextApiResponse } from 'next';
-import { NextRequest } from 'next/server';
-import { createParser } from "eventsource-parser";
+import { NextApiResponse } from 'next'
+import { NextRequest } from 'next/server'
+import { createParser } from 'eventsource-parser'
 
 type ResponseData = {
   message: string
 }
 
 export const config = {
-  runtime: 'edge'
+  runtime: 'edge',
 }
 
 // # https://platform.openai.com/docs/api-reference/chat/create
 async function createStream(req: NextRequest) {
-  const encoder = new TextEncoder();
-  const decoder = new TextDecoder();
+  const encoder = new TextEncoder()
+  const decoder = new TextDecoder()
+  const apiKey = process.env.OPENAI_API_KEY
 
-  let apiKey = "xxx";
-
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+  const res = await fetch('https://api.openai.com/v1/chat/completions', {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${apiKey}`,
     },
-    method: "POST",
+    method: 'POST',
     body: req.body,
-  });
+  })
 
   const stream = new ReadableStream({
     async start(controller) {
       function onParse(event: any) {
-        if (event.type === "event") {
-          const data = event.data;
-          if (data === "[DONE]") {
-            controller.close();
-            return;
+        if (event.type === 'event') {
+          const data = event.data
+          if (data === '[DONE]') {
+            controller.close()
+            return
           }
           try {
-            const json = JSON.parse(data);
-            const text = json.choices[0].delta.content;
-            const queue = encoder.encode(text);
-            controller.enqueue(queue);
+            const json = JSON.parse(data)
+            const text = json.choices[0].delta.content
+            const queue = encoder.encode(text)
+            controller.enqueue(queue)
           } catch (e) {
-            controller.error(e);
+            controller.error(e)
           }
         }
       }
 
-      const parser = createParser(onParse);
+      const parser = createParser(onParse)
       for await (const chunk of res.body as any) {
-        parser.feed(decoder.decode(chunk));
+        parser.feed(decoder.decode(chunk))
       }
     },
-  });
-  return stream;
+  })
+  return stream
 }
-
 
 const handler = async (req: NextRequest, res: NextApiResponse<ResponseData>) => {
   try {
     if (req.method === 'POST') {
-      const stream = await createStream(req);
-      return new Response(stream);
+      const stream = await createStream(req)
+      return new Response(stream)
     } else {
       console.log('other HTTP method')
     }
@@ -68,6 +66,6 @@ const handler = async (req: NextRequest, res: NextApiResponse<ResponseData>) => 
     console.log('error:', err)
     res.status(500).send({ message: err })
   }
-};
+}
 
-export default handler;
+export default handler

@@ -27,30 +27,3 @@ h6 {
 .simplebar-track.simplebar-vertical {
   width: 8px !important;
 }
-
-.fomir-date-picker {
-  border: 1px solid #ddd;
-  padding: 0px 6px;
-  height: 40px;
-  border-radius: 6px;
-  width: 100%;
-}
-
-.fomir-date-range-picker-wrapper div {
-  height: 100%;
-}
-
-.react-datepicker-popper {
-  z-index: 1000;
-}
-
-.detail-table-content {
-  width: 800px;
-  margin: 0 auto;
-  background: gainsboro;
-}
-
-.main-price {
-  font-weight: 700;
-  font-size: 38px;
-}
