@@ -1,6 +1,5 @@
 import { Box } from '@fower/react'
 import { useTranslation } from 'react-i18next'
-import React from 'react'
 import { LoginButton } from './LoginButton'
 import { RegisterButton } from './RegisterButton'
 

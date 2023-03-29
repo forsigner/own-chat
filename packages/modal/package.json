@@ -27,7 +27,7 @@
     "react-remove-scroll": "^2.5.5"
   },
   "devDependencies": {
-    "framer-motion": "^10.9.2",
+    "framer-motion": "^10.9.4",
     "tsdx": "^0.14.1"
   }
 }

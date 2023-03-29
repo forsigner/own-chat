@@ -1,7 +1,7 @@
-import React from 'react';
-import logo from '../../assets/img/logo.svg';
-import Greetings from '../../containers/Greetings/Greetings';
-import './Popup.css';
+import React from 'react'
+import logo from '../../assets/img/logo.svg'
+import Greetings from '../../containers/Greetings/Greetings'
+import './Popup.css'
 
 const Popup = () => {
   return (
@@ -21,7 +21,7 @@ const Popup = () => {
         </a>
       </header>
     </div>
-  );
-};
+  )
+}
 
-export default Popup;
+export default Popup

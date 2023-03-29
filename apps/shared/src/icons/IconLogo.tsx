@@ -1,4 +1,3 @@
-import React from 'react'
 import { iconify } from '@bone-ui/iconify'
 
 export const IconLogo = iconify({

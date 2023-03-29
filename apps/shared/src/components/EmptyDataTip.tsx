@@ -1,4 +1,3 @@
-import React from 'react'
 import { InboxOutline } from '@bone-ui/icons'
 import { Box } from '@fower/react'
 

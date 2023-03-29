@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box as FowerBox } from '@fower/react'
 import { css } from '@fower/core'
 import { NodeProps } from 'fomir'

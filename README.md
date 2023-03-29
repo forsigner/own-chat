@@ -1,4 +1,4 @@
-# One Chat
+# owned.chat
 
 > iown.chat
 > owned.chat

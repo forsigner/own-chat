@@ -10,12 +10,12 @@ export function Home() {
   return (
     <Box toCenter column h-100vh>
       <Box column rowGap-12 mb4 toCenter fontBold text3XL w-360>
-        <Box>Login to One Chat</Box>
+        <Box>Login to Own.Chat</Box>
         <Input
           size="lg"
           placeholder="Your personal token"
           value={token}
-          onChange={(e) => setToken(e.target.value)}
+          onChange={e => setToken(e.target.value)}
         />
         <Button
           size="lg"

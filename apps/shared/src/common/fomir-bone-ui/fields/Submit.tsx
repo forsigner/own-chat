@@ -1,4 +1,3 @@
-import React from 'react'
 import { NodeProps } from 'fomir'
 import { Button } from '@bone-ui/button'
 import { FormField } from '../FormField'

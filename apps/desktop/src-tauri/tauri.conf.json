@@ -7,7 +7,7 @@
     "distDir": "../out"
   },
   "package": {
-    "productName": "One Chat",
+    "productName": "owned.chat",
     "version": "0.1.0"
   },
   "tauri": {
@@ -58,7 +58,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "One Chat",
+        "title": "Owned chat",
         "width": 800
       }
     ]

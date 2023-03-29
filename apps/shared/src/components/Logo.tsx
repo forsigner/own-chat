@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box } from '@fower/react'
 import { IconLogo } from '../icons/IconLogo'
 
@@ -13,10 +12,10 @@ export const Logo = ({ showText = true }: Props) => {
       {showText && (
         <Box>
           <Box textXL black fontBold>
-            One Chat
+            Owned.Chat
           </Box>
           <Box textXS gray600>
-            My personal chatGPT
+            Own a personal chatGPT
           </Box>
         </Box>
       )}
