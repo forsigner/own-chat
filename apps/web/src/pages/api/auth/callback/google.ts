@@ -2,7 +2,7 @@ import { withIronSessionApiRoute } from 'iron-session/next'
 import { setCookie } from 'cookies-next'
 import { sessionOptions } from '@common/session'
 import { graphqlClient } from '@common/query'
-import { LoginSuccessPayload, LOGIN_BY_GOOGLE } from '@owned-chat/api-sdk'
+import { LoginSuccessPayload, LOGIN_BY_GOOGLE } from '@own-chat/api-sdk'
 
 export default withIronSessionApiRoute(async (req, res) => {
   const { code } = req.query

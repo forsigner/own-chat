@@ -11,8 +11,8 @@
     "desktop",
     "extension",
     "web",
-    "@owned-chat/shared",
-    "@owned-chat/easy-modal",
+    "@own-chat/shared",
+    "@own-chat/easy-modal",
     "tsconfig",
     "eslint-config-custom",
     "jest-presets"

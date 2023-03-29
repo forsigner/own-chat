@@ -93,7 +93,7 @@ var options = {
       },
       {
         test: /\.(ts|tsx)$/,
-        exclude: /node_modules(?!\/@owned-chat\/(shared))/,
+        exclude: /node_modules(?!\/@own-chat\/(shared))/,
         use: [
           {
             loader: require.resolve('ts-loader'),

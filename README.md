@@ -1,4 +1,1 @@
-# owned.chat
-
-> iown.chat
-> owned.chat
+# own chat

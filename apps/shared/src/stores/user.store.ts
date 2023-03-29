@@ -1,4 +1,4 @@
-import { PlanType, User } from '@owned-chat/api-sdk'
+import { PlanType, User } from '@own-chat/api-sdk'
 import { useLocalStorage, getLocalStorage, mutateLocalStorage } from 'stook-localstorage'
 
 const key = 'User'

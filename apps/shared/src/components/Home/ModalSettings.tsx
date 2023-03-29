@@ -1,7 +1,7 @@
 import { Box } from '@fower/react'
 import { Modal, ModalOverlay, ModalContent, Button } from 'bone-ui'
 import { ModalCloseButton } from '@bone-ui/modal'
-import { useModal } from '@owned-chat/easy-modal'
+import { useModal } from '@own-chat/easy-modal'
 import { Settings } from './Settings/Settings'
 import { useLogout } from '../../hooks/useLogout'
 

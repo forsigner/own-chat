@@ -1,5 +1,5 @@
 {
-  "name": "@owned-chat/shared",
+  "name": "@own-chat/shared",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@bone-ui/iconify": "^0.31.0",
     "@bone-ui/icons": "^0.31.0",
     "@fower/react": "^1.76.0",
-    "@owned-chat/easy-modal": "*",
+    "@own-chat/easy-modal": "*",
     "bone-ui": "^0.31.0",
     "fomir": "^0.21.0",
     "i18next": "^22.4.13",

@@ -1,8 +1,8 @@
 import { withIronSessionApiRoute } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
 import { graphqlClient } from '@common/query'
-import { REGISTER_BY_EMAIL } from '@owned-chat/api-sdk'
-import { LoginSuccessPayload } from '@owned-chat/api-sdk'
+import { REGISTER_BY_EMAIL } from '@own-chat/api-sdk'
+import { LoginSuccessPayload } from '@own-chat/api-sdk'
 
 declare module 'iron-session' {
   interface IronSessionData {

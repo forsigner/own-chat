@@ -1,5 +1,5 @@
 import React from 'react'
-import { init } from '@owned-chat/shared'
+import { init } from '@own-chat/shared'
 import { Sidebar } from './Sidebar'
 import { Box } from '@fower/react'
 import { usePage } from './hooks/usePage'

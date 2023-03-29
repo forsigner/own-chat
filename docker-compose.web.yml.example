@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-  owned-chat-web:
-    container_name: owned-chat-web
+  own-chat-web:
+    container_name: own-chat-web
     build:
       context: .
       dockerfile: ./apps/web/Dockerfile

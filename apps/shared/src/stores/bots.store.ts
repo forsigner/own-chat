@@ -1,4 +1,4 @@
-import { BotStatus, Hooks } from '@owned-chat/api-sdk'
+import { BotStatus, Hooks } from '@own-chat/api-sdk'
 
 export function useOwnedBots(status = BotStatus.Running) {
   const result = Hooks.useOwnedBots(() => {

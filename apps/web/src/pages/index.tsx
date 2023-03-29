@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { WebHome, BasicLayout } from '@owned-chat/shared'
+import { WebHome, BasicLayout } from '@own-chat/shared'
 
 export default function PageHome() {
   return <WebHome />

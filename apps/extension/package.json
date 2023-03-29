@@ -10,8 +10,8 @@
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
   "dependencies": {
-    "@owned-chat/api-sdk": "*",
-    "@owned-chat/shared": "*",
+    "@own-chat/api-sdk": "*",
+    "@own-chat/shared": "*",
     "@fower/react": "^1.76.0",
     "bone-ui": "^0.31.0",
     "crypto-browserify": "^3.12.0",
