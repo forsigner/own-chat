@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, ReactNode } from 'react'
+import { FC, forwardRef, ReactNode } from 'react'
 import { Box } from '@fower/react'
 import { FowerHTMLProps } from '@fower/core'
 import { useFormContext, Node } from 'fomir'
@@ -18,8 +18,9 @@ export const FormField: FC<FormFieldProps> = forwardRef(function FormFieldComp(
   const { children, node, showLabel = true, renderLabel, ...rest } = props
   const { schema } = useFormContext()
   const { layout = 'vertical' } = schema
-  const { error, label, description, touched } = node || {}
+  const { error, label, description, touched, wrapper } = node || {}
 
+  if (!wrapper) return <>{children}</>
   return (
     <Box
       className="bone-form-field"

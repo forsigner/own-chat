@@ -1,7 +1,9 @@
 import { Box } from '@fower/react'
-import { Button, CogSolid, PlusOutline } from 'bone-ui'
+import { EasyModal } from '@one-chat/easy-modal'
+import { Button, CogSolid } from 'bone-ui'
 import { Logo } from '../../Logo'
 import { AddSessionButton } from '../AddSessionButton'
+import { ModalSettings } from '../ModalSettings'
 import { SessionList } from './SessionList'
 
 export const Sidebar = () => {
@@ -19,7 +21,10 @@ export const Sidebar = () => {
           colorScheme="white"
           variant="light"
           icon={<CogSolid square5 cursorPointer gray500 gray600--hover />}
-        ></Button>
+          onClick={() => {
+            EasyModal.show(ModalSettings)
+          }}
+        />
       </Box>
     </Box>
   )

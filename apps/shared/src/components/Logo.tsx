@@ -12,7 +12,7 @@ export const Logo = ({ showText = true }: Props) => {
       <IconLogo square7 white />
       {showText && (
         <Box>
-          <Box textXL black>
+          <Box textXL black fontBold>
             One Chat
           </Box>
           <Box textXS gray600>
