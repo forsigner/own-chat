@@ -1,4 +1,4 @@
-import { requestChatStream } from '../common/request'
+import { fetchChatStream } from '../common/request'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { useMessages } from './useMessages'
 
@@ -9,17 +9,25 @@ export function useSendMessage() {
 
     initNewMessage(value)
 
-    const payload = [
+    const messages = [
       {
         content: value,
-        date: '',
         role: ChatCompletionResponseMessageRoleEnum.User,
       },
     ]
 
     try {
-      await requestChatStream(payload, {
+      await fetchChatStream({
+        params: {
+          temperature: 1,
+          presence_penalty: 0,
+          stream: true,
+          model: 'gpt-3.5-turbo',
+          messages: messages,
+          max_tokens: 2000,
+        },
         onMessage(text, done) {
+          console.log('text:', text)
           if (!done) {
             updateMessage(text)
           }
