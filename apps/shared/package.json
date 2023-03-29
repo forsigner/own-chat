@@ -20,18 +20,20 @@
   "dependencies": {
     "@bone-ui/iconify": "^0.31.0",
     "@bone-ui/icons": "^0.31.0",
-    "@one-chat/easy-modal": "*",
     "@fower/react": "^1.76.0",
+    "@one-chat/easy-modal": "*",
     "bone-ui": "^0.31.0",
     "fomir": "^0.21.0",
     "i18next": "^22.4.13",
     "lodash": "^4.17.21",
     "nanoid": "^3.3.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-i18next": "^12.2.0",
     "stook": "^1.14.0",
-    "stook-localstorage": "^1.14.0",
     "stook-async-storage": "*",
     "stook-graphql": "^1.15.0",
+    "stook-localstorage": "^1.14.0",
     "stook-rest": "^1.15.0"
   }
 }

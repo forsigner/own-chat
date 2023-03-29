@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useMemo } from 'react'
 import { useAsyncStorage } from 'stook-async-storage'
 import { nanoid } from 'nanoid'
 
@@ -41,6 +41,16 @@ export const useSessions = () => {
     [setSessions],
   )
 
+  const updateSessionName = useCallback(
+    (id: string, name: string) => {
+      setSessions((state) => {
+        const index = state.findIndex((item) => item.id === id)
+        state[index].name = name
+      })
+    },
+    [setSessions],
+  )
+
   const selectSession = useCallback(
     (id: string) => {
       setSessions((state) => {
@@ -58,8 +68,12 @@ export const useSessions = () => {
     }
   }, [sessions, addSession, loading])
 
+  const currentSession = useMemo(() => sessions.find((item) => item.selected)!, [sessions])
+
   return {
+    currentSession,
     selectSession,
+    updateSessionName,
     addSession,
     deleteSession,
     loading,

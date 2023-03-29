@@ -1,7 +1,8 @@
 import { Box } from '@fower/react'
 import { useModal } from '@one-chat/easy-modal'
-import { Button, ChatOutline, PencilSolid, TrashOutline } from 'bone-ui'
+import { Button, ChatOutline, TrashOutline } from 'bone-ui'
 import { Session, useSessions } from '../../../hooks'
+import { EditSessionNameButton } from './EditSessionNameButton'
 
 interface Props {
   session: Session
@@ -36,18 +37,7 @@ export const SessionItem = ({ session }: Props) => {
         <Box textBase>{session.name}</Box>
       </Box>
       <Box toCenterY>
-        <Button
-          size={28}
-          colorScheme="gray400"
-          variant="ghost"
-          icon={<PencilSolid gray400 />}
-          flex={selected}
-          hidden={!selected}
-          onClick={(e) => {
-            e.stopPropagation()
-            // deleteSession(session.id)
-          }}
-        />
+        <EditSessionNameButton session={session} />
 
         <Button
           flex={selected}
