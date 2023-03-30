@@ -1,5 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next'
 import httpProxyMiddleware from 'next-http-proxy-middleware'
+import { withIronSessionApiRoute } from 'iron-session/next'
+import { sessionOptions } from '@common/session'
+import { graphqlClient } from '@common/query'
+import { ACTIVE_PROVIDER, LoginSuccessPayload, Provider, PROVIDER } from '@own-chat/api-sdk'
 
 export const config = {
   api: {
@@ -8,9 +11,17 @@ export const config = {
   },
 }
 
-export default async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
+export default withIronSessionApiRoute(async function loginRoute(req, res) {
+  const { payload } = req.session
+  const data: any = await graphqlClient.query(
+    ACTIVE_PROVIDER,
+    {},
+    { headers: { authorization: `bearer ${payload?.token}` } },
+  )
+  const provider: Provider = data.activeProvider
+
   return httpProxyMiddleware(req, res, {
-    target: 'http://localhost:4001',
+    target: provider.endpoint!,
     pathRewrite: [
       {
         patternStr: '^/api/chat-stream',
@@ -18,4 +29,4 @@ export default async function loginRoute(req: NextApiRequest, res: NextApiRespon
       },
     ],
   })
-}
+}, sessionOptions)

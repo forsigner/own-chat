@@ -33,6 +33,7 @@ export async function fetchChatStream(options: Options) {
   const { params, onMessage, onError, onController } = options
   const controller = new AbortController()
   const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS)
+
   try {
     const result = await fetch('/api/chat-stream', {
       method: 'POST',

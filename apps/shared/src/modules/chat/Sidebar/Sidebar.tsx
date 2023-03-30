@@ -4,6 +4,7 @@ import { Button, CogSolid } from 'bone-ui'
 import { SIDEBAR_WIDTH } from '../../../common'
 import { AddSessionButton } from '../AddSessionButton'
 import { ModalSettings } from '../ModalSettings'
+import { CurrentProvider } from './CurrentProvider'
 import { SessionList } from './SessionList'
 
 export const Sidebar = () => {
@@ -17,9 +18,7 @@ export const Sidebar = () => {
       borderRightGray100
       display={['none', 'flex']}
     >
-      <Box toBetween toCenterY columnGap-8 px5 pt4>
-        <AddSessionButton />
-      </Box>
+      <CurrentProvider />
 
       <Box flex-1 overflowYAuto pb6 px5>
         <SessionList />

@@ -49,6 +49,7 @@ export enum Names {
   updateSetting = "updateSetting",
   updateToken = "updateToken",
   updateUser = "updateUser",
+  activeProvider = "activeProvider",
   checkPersonalToken = "checkPersonalToken",
   checkResetPasswordToken = "checkResetPasswordToken",
   checkVerifyEmailToken = "checkVerifyEmailToken",

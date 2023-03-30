@@ -510,6 +510,9 @@ type ProvidersConnection {
 }
 
 type Query {
+  """"""
+  activeProvider: Provider!
+
   """check token"""
   checkPersonalToken(token: String!): User!
 
@@ -1027,11 +1030,20 @@ input UpdateMessageWhereInput {
 
 """更新data"""
 input UpdateProviderDataInput {
+  """"""
+  apiKey: String
+
+  """self host auth code"""
+  authorizationCode: String
+
+  """self host server endpoint"""
+  endpoint: String
+
   """该 Provider Name"""
   name: String!
 
   """"""
-  type: String!
+  type: ProviderType!
 }
 
 """更新单个"""

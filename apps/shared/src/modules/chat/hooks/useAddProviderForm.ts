@@ -1,7 +1,7 @@
 import { Node, useForm } from 'fomir'
 import { toast } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
-import { apiService, ProviderType, Refetcher } from '@own-chat/api-sdk'
+import { apiService, Provider, ProviderType, Refetcher } from '@own-chat/api-sdk'
 
 interface Values {
   name: string
@@ -12,14 +12,15 @@ interface Values {
 }
 
 export function useAddProviderForm() {
-  const { hide } = useModal()
+  const { hide, data = {} as Provider } = useModal<Provider>()
+  const isEdit = !!data
 
   const nodes: Node[] = [
     {
       label: 'Name',
       component: 'Input',
       name: 'name',
-      value: '',
+      value: data?.name || '',
       validators: {
         required: 'Name is required',
       },
@@ -29,7 +30,7 @@ export function useAddProviderForm() {
       label: 'Type',
       component: 'Select',
       name: 'type',
-      value: '',
+      value: data?.type,
       options: [
         { label: 'API Key', value: ProviderType.ApiKey },
         { label: 'Self host', value: ProviderType.SelfHost },
@@ -46,14 +47,14 @@ export function useAddProviderForm() {
       label: 'authorizationCode',
       component: 'Input',
       name: 'authorizationCode',
-      value: '',
+      value: data?.authorizationCode || '',
     },
 
     {
       label: 'endpoint',
       component: 'Input',
       name: 'endpoint',
-      value: '',
+      value: data?.endpoint || '',
     },
   ]
 
@@ -61,7 +62,15 @@ export function useAddProviderForm() {
     async onSubmit(values) {
       const toaster = toast.loading('Submitting...', { showLayer: true })
       try {
-        await apiService.addProvider(values)
+        if (isEdit) {
+          await apiService.updateProvider({
+            where: { id: data.id },
+            data: values,
+          })
+        } else {
+          await apiService.addProvider(values)
+        }
+
         await Refetcher.refetchMyProviders()
         toaster.update('Submitted', { type: 'success' })
         hide()

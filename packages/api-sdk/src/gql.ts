@@ -38,6 +38,36 @@ query setting($id: Int, $userId: Int){
     }
 }
 `;
+export const PROVIDER = gql`
+query provider($id: Int!){
+    provider(id: $id){
+        apiKey
+        authorizationCode
+        createdAt
+        endpoint
+        id
+        name
+        type
+        updatedAt
+        userId
+    }
+}
+`;
+export const ACTIVE_PROVIDER = gql`
+query activeProvider{
+    activeProvider{
+        apiKey
+        authorizationCode
+        createdAt
+        endpoint
+        id
+        name
+        type
+        updatedAt
+        userId
+    }
+}
+`;
 export const MY_PROVIDERS = gql`
 query myProviders{
     myProviders{
@@ -193,6 +223,21 @@ mutation updateSetting($input: UpdateSettingInput!){
         activeProviderId
         activeSessionId
         id
+        userId
+    }
+}
+`;
+export const UPDATE_PROVIDER = gql`
+mutation updateProvider($input: UpdateProviderInput!){
+    updateProvider(input: $input){
+        apiKey
+        authorizationCode
+        createdAt
+        endpoint
+        id
+        name
+        type
+        updatedAt
         userId
     }
 }

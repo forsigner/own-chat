@@ -664,6 +664,7 @@ export type ProvidersConnection = {
 
 export type Query = {
   __typename?: 'Query';
+  activeProvider: Provider;
   /** check token */
   checkPersonalToken: User;
   /** 检查 reset password URL token 是否过期 */
@@ -1111,9 +1112,14 @@ export type UpdateMessageWhereInput = {
 
 /** 更新data */
 export type UpdateProviderDataInput = {
+  apiKey?: InputMaybe<Scalars['String']>;
+  /** self host auth code */
+  authorizationCode?: InputMaybe<Scalars['String']>;
+  /** self host server endpoint */
+  endpoint?: InputMaybe<Scalars['String']>;
   /** 该 Provider Name */
   name: Scalars['String'];
-  type: Scalars['String'];
+  type: ProviderType;
 };
 
 /** 更新单个 */

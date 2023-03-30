@@ -4,10 +4,12 @@ import { useSetting } from './useSetting'
 import { useUser } from '../../../stores'
 import { fetchChatStream } from '../../../common/request'
 import { useAddMessage } from './useAddMessage'
+import { useProviders } from './useProviders'
 
 export function useSendMessage() {
   const { user } = useUser()
   const { setting } = useSetting()
+  const { activeProvider } = useProviders()
   const { addMessage } = useAddMessage()
 
   function initAnswer() {

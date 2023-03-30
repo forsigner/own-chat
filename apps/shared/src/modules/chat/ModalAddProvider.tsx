@@ -6,7 +6,7 @@ import { Form } from 'fomir'
 import { useAddProviderForm } from './hooks/useAddProviderForm'
 
 export const ModalAddProvider = () => {
-  const { register, hide } = useModal()
+  const { register, hide, data } = useModal()
   const form = useAddProviderForm()
 
   return (
@@ -14,7 +14,7 @@ export const ModalAddProvider = () => {
       <ModalOverlay />
       <ModalContent>
         <ModalCloseButton />
-        <ModalHeader>Add Provider</ModalHeader>
+        <ModalHeader>{!!data ? 'Edit Provider' : 'Add Provider'} </ModalHeader>
         <ModalBody>
           <Form
             form={form}
