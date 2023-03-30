@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Hooks } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
 import { useSetting } from './useSetting'
@@ -11,5 +12,15 @@ export function useSessions() {
       providerId: setting.activeProviderId,
     },
   })
-  return { sessions, ...rest }
+
+  const activeSession = useMemo(() => {
+    if (!sessions || !setting?.activeSessionId) return
+    return sessions?.find((item) => item.id === setting.activeSessionId)
+  }, [sessions, setting])
+
+  return {
+    ...rest,
+    sessions,
+    activeSession,
+  }
 }

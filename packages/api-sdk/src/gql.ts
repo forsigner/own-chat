@@ -210,3 +210,15 @@ mutation addSession($input: AddSessionInput!){
     }
 }
 `;
+export const UPDATE_SESSION = gql`
+mutation updateSession($input: UpdateSessionInput!){
+    updateSession(input: $input){
+        createdAt
+        id
+        name
+        providerId
+        updatedAt
+        userId
+    }
+}
+`;

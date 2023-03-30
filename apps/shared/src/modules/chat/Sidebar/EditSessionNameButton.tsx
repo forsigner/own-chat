@@ -3,15 +3,21 @@ import { PencilSolid } from '@bone-ui/icons'
 import { Button } from 'bone-ui'
 import { Popover, PopoverContent, PopoverTrigger } from 'bone-ui'
 import { Input } from 'bone-ui'
-import { Session, useSessions } from '../../../hooks'
+import { Session } from '@own-chat/api-sdk'
+import { useSetting } from '../hooks/useSetting'
+import { useSessions } from '../hooks/useSessions'
+import { useUpdateSession } from '../hooks/useUpdateSession'
+import { useState } from 'react'
 
 interface Props {
   session: Session
 }
 
 export function EditSessionNameButton({ session }: Props) {
-  const { currentSession, updateSessionName } = useSessions()
-  const { selected } = session
+  const [name, setName] = useState(session.name)
+  const { setting } = useSetting()
+  const { updateSession } = useUpdateSession()
+  const selected = setting.activeSessionId === session.id
 
   return (
     <Popover>
@@ -31,7 +37,7 @@ export function EditSessionNameButton({ session }: Props) {
             <Input
               px2
               autoFocus
-              value={currentSession.name}
+              value={name}
               onKeyDown={(event) => {
                 if (event.key === 'Enter') {
                   close()
@@ -39,11 +45,15 @@ export function EditSessionNameButton({ session }: Props) {
               }}
               onChange={(e) => {
                 const name = e.target.value
-                updateSessionName(session.id, name)
+                setName(name)
               }}
             />
             <Button
               onClick={async () => {
+                await updateSession({
+                  where: { id: session.id },
+                  data: { name },
+                })
                 close()
               }}
             >
