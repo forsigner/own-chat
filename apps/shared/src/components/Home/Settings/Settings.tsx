@@ -1,8 +1,12 @@
-import { Box } from '@fower/react'
-import { Divider } from 'bone-ui'
-import { Field, Form, useForm } from 'fomir'
-import { SettingItem } from './SettingItem'
-import { Title } from './Title'
+import { useState } from "react";
+import { Box } from "@fower/react"
+import { Divider } from "bone-ui"
+import { Field, Form, useForm } from "fomir"
+import { useSettings } from "../../../hooks"
+import { SettingItem } from "./SettingItem"
+import { Title } from "./Title"
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 interface Values {
   apiKey: string
@@ -11,21 +15,36 @@ interface Values {
   model: string
   showTokenCount: string
   theme: string
+  temperature: number
+  top_p: number
+  frequencyPenalty: number
+  presencePenalty: number
 }
 
 export const Settings = () => {
+  const { settings, setSettings } = useSettings()
+  const [temperature, setTemperature] = useState<number>(0.5)
+  const [top_p, setTop_p] = useState<number>(0.5)
+  const [frequencyPenalty, setFrequencyPenalty] = useState<number>(0.5)
+  const [presencePenalty, setPresencePenalty] = useState<number>(0.5)
+
   const form = useForm<Values>({
-    layout: 'horizontal',
+    layout: "horizontal",
     watch: {
-      '*.value': values => {
-        console.log('values:', values)
-        // TODO:
+      "*.value": (values: any) => {
+        console.log("values:", values)
+        values.temperature = temperature
+        values.top_p = top_p
+        values.frequencyPenalty = frequencyPenalty
+        values.presencePenalty = presencePenalty
+        setSettings(values)
       },
     },
     onSubmit(values) {
-      console.log('==========:', values)
+      console.log("==========:", values)
     },
   })
+
   return (
     <Box pb8>
       <Form form={form}>
@@ -38,7 +57,7 @@ export const Settings = () => {
               name="apiKey"
               wrapper={false}
               componentProps={{
-                placeholder: 'sk-......',
+                placeholder: "sk-......",
               }}
             />
           </SettingItem>
@@ -50,8 +69,8 @@ export const Settings = () => {
               name="model"
               wrapper={false}
               options={[
-                { label: '3.5', value: '3.5' },
-                { label: '4.0', value: '4.0' },
+                { label: "3.5", value: "3.5" },
+                { label: "4.0", value: "4.0" },
               ]}
               componentProps={{ width: 200 }}
             />
@@ -64,9 +83,37 @@ export const Settings = () => {
               name="maxToken"
               wrapper={false}
               componentProps={{
-                placeholder: '',
+                placeholder: "",
               }}
             />
+          </SettingItem>
+
+          <SettingItem name="Temperature" desc="随机数">
+            <Box w="100%">
+              <Box text={16} mb="6px">{temperature}</Box>
+              <Slider min={0} max={1} step={0.1} defaultValue={0.5} onChange={(e) => setTemperature(e)} handleStyle={{ opacity: 1 }} trackStyle={{ background: "#20c997" }} />
+            </Box>
+          </SettingItem>
+
+          <SettingItem name="Top P" desc="Frequency penalty">
+            <Box w="100%">
+              <Box text={16} mb="6px">{top_p}</Box>
+              <Slider min={0} max={1} step={0.1} defaultValue={0.5} onChange={(e) => setTop_p(e)} handleStyle={{ opacity: 1 }} trackStyle={{ background: "#20c997" }} />
+            </Box>
+          </SettingItem>
+
+          <SettingItem name="Frequency penalty" desc="Frequency penalty">
+            <Box w="100%">
+              <Box text={16} mb="6px">{frequencyPenalty}</Box>
+              <Slider min={0} max={2} step={0.1} defaultValue={1} onChange={(e) => setFrequencyPenalty(e)} handleStyle={{ opacity: 1 }} trackStyle={{ background: "#20c997" }} />
+            </Box>
+          </SettingItem>
+
+          <SettingItem name="Presence penalty" desc="Presence penalty">
+            <Box w="100%">
+              <Box text={16} mb="6px">{presencePenalty}</Box>
+              <Slider min={0} max={2} step={0.1} defaultValue={1} onChange={(e) => setPresencePenalty(e)} handleStyle={{ opacity: 1 }} trackStyle={{ background: "#20c997" }} />
+            </Box>
           </SettingItem>
 
           <SettingItem name="Show estimated token count" desc="">
@@ -85,8 +132,8 @@ export const Settings = () => {
               name="theme"
               wrapper={false}
               options={[
-                { label: 'Light', value: 'light' },
-                { label: 'Dark', value: 'dark' },
+                { label: "Light", value: "light" },
+                { label: "Dark", value: "dark" },
               ]}
               componentProps={{ width: 120 }}
             />
@@ -106,8 +153,8 @@ export const Settings = () => {
               name="lang"
               wrapper={false}
               options={[
-                { label: 'English', value: 'en' },
-                { label: '简体中文', value: 'zh_CN' },
+                { label: "English", value: "en" },
+                { label: "简体中文", value: "zh_CN" },
               ]}
               componentProps={{ width: 120 }}
             />
