@@ -1,7 +1,8 @@
-import { Box } from '@fower/react'
-import { Hooks, LoginSuccessPayload } from '@own-chat/api-sdk'
+import { LoginSuccessPayload } from '@own-chat/api-sdk'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { ChatLayout } from '../layouts'
+import { ModuleChat } from '../modules'
 import { useToken, useUser } from '../stores'
 
 interface Props {
@@ -23,5 +24,7 @@ export function PageChat({ userId, payload }: Props) {
     }
   }, [payload, query.from, setToken, setUser])
 
-  return <Box>wip...</Box>
+  return <ModuleChat />
 }
+
+PageChat.Layout = ChatLayout
