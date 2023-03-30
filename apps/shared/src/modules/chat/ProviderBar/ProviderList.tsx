@@ -1,14 +1,9 @@
 import { Box } from '@fower/react'
-import { Refetcher } from '@own-chat/api-sdk'
 import { Avatar, Spinner, Tooltip } from 'bone-ui'
-import { useUser } from '../../../stores'
 import { useProviders } from '../hooks/useProviders'
-import { updateActiveProviderId, useSetting } from '../hooks/useSetting'
 import { useUpdateActiveProviderId } from '../hooks/useUpdateActiveProviderId'
 
 export const ProviderList = () => {
-  const { user } = useUser()
-  const { setting } = useSetting()
   const { providers, activeProvider, loading } = useProviders()
   const { updateActiveProviderId } = useUpdateActiveProviderId()
 
