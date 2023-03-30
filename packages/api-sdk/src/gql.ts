@@ -22,7 +22,6 @@ query tokens($orderBy: String, $skip: Int, $take: Int, $where: TokenWhereInput){
             phone
             planType
             username
-            walletAddress
         }
         userId
         value
@@ -85,7 +84,6 @@ mutation loginByGithub($code: String!){
             phone
             planType
             username
-            walletAddress
         }
         userId
         username
@@ -111,7 +109,6 @@ mutation loginByGoogle($code: String!){
             phone
             planType
             username
-            walletAddress
         }
         userId
         username
@@ -137,7 +134,6 @@ mutation loginByPersonalToken($token: String!){
             phone
             planType
             username
-            walletAddress
         }
         userId
         username
@@ -166,7 +162,6 @@ mutation addToken($input: AddTokenInput!){
             phone
             planType
             username
-            walletAddress
         }
         userId
         value

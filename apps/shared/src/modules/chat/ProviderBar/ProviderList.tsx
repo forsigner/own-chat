@@ -1,9 +1,12 @@
 import { Box } from '@fower/react'
+import { Refetcher } from '@own-chat/api-sdk'
 import { Avatar, Spinner, Tooltip } from 'bone-ui'
+import { useUser } from '../../../stores'
 import { useProviders } from '../hooks/useProviders'
 import { updateActiveProviderId, useSetting } from '../hooks/useSetting'
 
 export const ProviderList = () => {
+  const { user } = useUser()
   const { setting } = useSetting()
   const { providers, activeProvider, loading } = useProviders()
 
@@ -26,6 +29,12 @@ export const ProviderList = () => {
             cursorPointer
             onClick={async () => {
               await updateActiveProviderId(setting.id, item.id)
+              await Refetcher.refetchSessions({
+                where: {
+                  userId: user.id,
+                  providerId: item.id,
+                },
+              })
             }}
             w-100p
             toBetween

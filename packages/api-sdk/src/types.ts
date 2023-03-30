@@ -808,8 +808,8 @@ export type Session = {
 
 /** 筛选条件 */
 export type SessionWhereInput = {
-  /** sessionId */
-  sessionId?: InputMaybe<Scalars['Int']>;
+  /** providerId */
+  providerId?: InputMaybe<Scalars['Int']>;
   /** 用户ID */
   userId: Scalars['Int'];
 };
@@ -1104,8 +1104,6 @@ export type User = {
   planType: PlanType;
   /** 用户名 */
   username: Scalars['String'];
-  /** 钱包地址 */
-  walletAddress?: Maybe<Scalars['String']>;
 };
 
 /** 筛选条件 */

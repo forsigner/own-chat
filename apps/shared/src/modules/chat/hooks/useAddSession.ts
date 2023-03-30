@@ -1,12 +1,23 @@
 import { apiService, Refetcher } from '@own-chat/api-sdk'
+import { useUser } from '../../../stores'
+import { useSetting } from './useSetting'
 
 export function useAddSession() {
+  const { user } = useUser()
+  const { setting } = useSetting()
+
   async function addSession() {
     await apiService.addSession({
-      providerId: 1,
+      providerId: setting.activeProviderId!,
       name: 'New chat',
     })
-    Refetcher.refetchSessions()
+
+    await Refetcher.refetchSessions({
+      where: {
+        userId: user.id,
+        providerId: setting.activeProviderId,
+      },
+    })
   }
 
   return { addSession }

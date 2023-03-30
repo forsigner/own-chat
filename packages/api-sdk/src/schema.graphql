@@ -703,8 +703,8 @@ type Session {
 
 """筛选条件"""
 input SessionWhereInput {
-  """sessionId"""
-  sessionId: Int
+  """providerId"""
+  providerId: Int
 
   """用户ID"""
   userId: Int!
@@ -1050,9 +1050,6 @@ type User {
 
   """用户名"""
   username: String!
-
-  """钱包地址"""
-  walletAddress: String
 }
 
 """筛选条件"""
