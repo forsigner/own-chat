@@ -25,6 +25,18 @@ input AddProviderInput {
   type: ProviderType!
 }
 
+"""添加 Session"""
+input AddSessionInput {
+  """该 Session Name"""
+  name: String!
+
+  """providerId"""
+  providerId: Int!
+
+  """用户ID"""
+  userId: Int
+}
+
 """添加 access token"""
 input AddTokenInput {
   """description"""
@@ -99,6 +111,18 @@ input CreateProviderInput {
 }
 
 """创建"""
+input CreateSessionInput {
+  """该 Session Name"""
+  name: String!
+
+  """provider Id"""
+  providerId: Int
+
+  """用户ID"""
+  userId: Int
+}
+
+"""创建"""
 input CreateTokenInput {
   """description"""
   description: String
@@ -132,6 +156,12 @@ input DeleteCollaboratorInput {
 
 """删除"""
 input DeleteProviderInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteSessionInput {
   """ID"""
   id: Int!
 }
@@ -190,6 +220,9 @@ type Mutation {
   """添加Provider"""
   addProvider(input: AddProviderInput!): Provider!
 
+  """添加Session"""
+  addSession(input: AddSessionInput!): Session!
+
   """新增Token"""
   addToken(input: AddTokenInput!): Token!
 
@@ -198,6 +231,9 @@ type Mutation {
 
   """创建"""
   createProvider(input: CreateProviderInput!): Provider!
+
+  """创建"""
+  createSession(input: CreateSessionInput!): Session!
 
   """创建"""
   createToken(input: CreateTokenInput!): Token!
@@ -215,6 +251,9 @@ type Mutation {
   deleteManyProviders(input: DeleteProviderInput!): Float!
 
   """批量删除"""
+  deleteManySessions(input: DeleteSessionInput!): Float!
+
+  """批量删除"""
   deleteManyTokens(input: DeleteTokenInput!): Float!
 
   """批量删除"""
@@ -222,6 +261,9 @@ type Mutation {
 
   """删除单个"""
   deleteProvider(input: DeleteProviderInput!): Boolean!
+
+  """删除单个"""
+  deleteSession(input: DeleteSessionInput!): Boolean!
 
   """删除单个"""
   deleteToken(input: DeleteTokenInput!): Boolean!
@@ -269,6 +311,9 @@ type Mutation {
   updateManyProviders(input: UpdateManyProviderInput!): Boolean!
 
   """批量更新"""
+  updateManySessions(input: UpdateManySessionInput!): Boolean!
+
+  """批量更新"""
   updateManyTokens(input: UpdateManyTokenInput!): Boolean!
 
   """批量更新"""
@@ -276,6 +321,9 @@ type Mutation {
 
   """更新单个"""
   updateProvider(input: UpdateProviderInput!): Provider!
+
+  """更新单个"""
+  updateSession(input: UpdateSessionInput!): Session!
 
   """更新单个"""
   updateToken(input: UpdateTokenInput!): Token!
@@ -424,6 +472,39 @@ type Query {
   searchUsers(q: String!): [User!]!
 
   """获取单个"""
+  session(id: Int!): Session!
+
+  """获取列表"""
+  sessions(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: SessionWhereInput
+  ): [Session!]!
+
+  """获取分页列表"""
+  sessionsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: SessionWhereInput
+  ): SessionsConnection!
+
+  """获取单个"""
   token(
     """ID"""
     id: Int!
@@ -530,6 +611,40 @@ enum RoleType {
   Reader
 }
 
+""""""
+type Session {
+  createdAt: DateTime
+
+  """"""
+  id: Int!
+
+  """"""
+  name: String!
+
+  """providerId"""
+  providerId: Int!
+  updatedAt: DateTime
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input SessionWhereInput {
+  """sessionId"""
+  sessionId: Int
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""connection"""
+type SessionsConnection {
+  hasNextPage: Boolean!
+  items: [Session!]!
+  totalCount: Int!
+}
+
 """personal token"""
 type Token {
   createdAt: DateTime
@@ -622,6 +737,15 @@ input UpdateManyProviderInput {
 }
 
 """批量更新"""
+input UpdateManySessionInput {
+  """更新的数据"""
+  data: UpdateSessionDataInput
+
+  """更新条件"""
+  where: UpdateSessionWhereInput
+}
+
+"""批量更新"""
 input UpdateManyTokenInput {
   """更新的数据"""
   data: UpdateTokenDataInput
@@ -659,6 +783,27 @@ input UpdateProviderInput {
 
 """更新条件"""
 input UpdateProviderWhereInput {
+  """ID"""
+  id: Int
+}
+
+"""更新data"""
+input UpdateSessionDataInput {
+  """该 Session Name"""
+  name: String!
+}
+
+"""更新单个"""
+input UpdateSessionInput {
+  """更新的数据"""
+  data: UpdateSessionDataInput
+
+  """更新条件"""
+  where: UpdateSessionWhereInput
+}
+
+"""更新条件"""
+input UpdateSessionWhereInput {
   """ID"""
   id: Int
 }

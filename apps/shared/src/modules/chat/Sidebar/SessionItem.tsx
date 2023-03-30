@@ -1,7 +1,8 @@
 import { Box } from '@fower/react'
+import { Session } from '@own-chat/api-sdk'
 import { useModal } from '@own-chat/easy-modal'
 import { Button, ChatOutline, TrashOutline } from 'bone-ui'
-import { Session, useSessions } from '../../../hooks'
+import { useSessions } from '../../../hooks'
 import { EditSessionNameButton } from './EditSessionNameButton'
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 export const SessionItem = ({ session }: Props) => {
   const { selectSession, deleteSession } = useSessions()
   const { hide } = useModal()
-  const { selected } = session
+  const selected = true
 
   return (
     <Box
@@ -27,7 +28,7 @@ export const SessionItem = ({ session }: Props) => {
       bgSlate100--hover
       transitionCommon
       onClick={() => {
-        selectSession(session.id)
+        // selectSession(session.id)
         hide()
       }}
       h-50
@@ -37,7 +38,7 @@ export const SessionItem = ({ session }: Props) => {
         <Box textBase>{session.name}</Box>
       </Box>
       <Box toCenterY>
-        <EditSessionNameButton session={session} />
+        {/* <EditSessionNameButton session={session} /> */}
 
         <Button
           flex={selected}
@@ -48,7 +49,7 @@ export const SessionItem = ({ session }: Props) => {
           icon={<TrashOutline gray400 />}
           onClick={(e) => {
             e.stopPropagation()
-            deleteSession(session.id)
+            // deleteSession(session.id)
           }}
         />
       </Box>

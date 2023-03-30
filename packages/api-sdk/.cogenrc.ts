@@ -22,6 +22,9 @@ const gqlConfig: ConfigItem[] = [
 
   { name: 'myProviders', actions: ['useQuery', 'refetch'] },
   { name: 'addProvider', actions: ['query'] },
+
+  { name: 'sessions', actions: ['useQuery', 'refetch'] },
+  { name: 'addSession', actions: ['query'] },
 ]
 
 const dirName = 'src'

@@ -10,8 +10,6 @@ import { baseURL, subscriptionsEndpoint } from './constants'
 export function initStookGraphql() {
   applyMiddleware(async (ctx, next) => {
     const token = getToken()
-    console.log('------token；', token)
-
     if (token) {
       ctx.headers.authorization = `bearer ${token}`
     }

@@ -44,6 +44,18 @@ query myProviders{
     }
 }
 `;
+export const SESSIONS = gql`
+query sessions($orderBy: String, $skip: Int, $take: Int, $where: SessionWhereInput){
+    sessions(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
+        createdAt
+        id
+        name
+        providerId
+        updatedAt
+        userId
+    }
+}
+`;
 export const LOGIN_BY_GITHUB = gql`
 mutation loginByGithub($code: String!){
     loginByGithub(code: $code){
@@ -166,6 +178,18 @@ mutation addProvider($input: AddProviderInput!){
         id
         name
         type
+        updatedAt
+        userId
+    }
+}
+`;
+export const ADD_SESSION = gql`
+mutation addSession($input: AddSessionInput!){
+    addSession(input: $input){
+        createdAt
+        id
+        name
+        providerId
         updatedAt
         userId
     }

@@ -33,6 +33,16 @@ export type AddProviderInput = {
   type: ProviderType;
 };
 
+/** 添加 Session */
+export type AddSessionInput = {
+  /** 该 Session Name */
+  name: Scalars['String'];
+  /** providerId */
+  providerId: Scalars['Int'];
+  /** 用户ID */
+  userId?: InputMaybe<Scalars['Int']>;
+};
+
 /** 添加 access token */
 export type AddTokenInput = {
   /** description */
@@ -93,6 +103,16 @@ export type CreateProviderInput = {
 };
 
 /** 创建 */
+export type CreateSessionInput = {
+  /** 该 Session Name */
+  name: Scalars['String'];
+  /** provider Id */
+  providerId?: InputMaybe<Scalars['Int']>;
+  /** 用户ID */
+  userId?: InputMaybe<Scalars['Int']>;
+};
+
+/** 创建 */
 export type CreateTokenInput = {
   /** description */
   description?: InputMaybe<Scalars['String']>;
@@ -118,6 +138,12 @@ export type DeleteCollaboratorInput = {
 
 /** 删除 */
 export type DeleteProviderInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 删除 */
+export type DeleteSessionInput = {
   /** ID */
   id: Scalars['Int'];
 };
@@ -174,12 +200,16 @@ export type Mutation = {
   addCollaborator: Collaborator;
   /** 添加Provider */
   addProvider: Provider;
+  /** 添加Session */
+  addSession: Session;
   /** 新增Token */
   addToken: Token;
   /** 创建 */
   createCollaborator: Collaborator;
   /** 创建 */
   createProvider: Provider;
+  /** 创建 */
+  createSession: Session;
   /** 创建 */
   createToken: Token;
   /** 创建 */
@@ -191,11 +221,15 @@ export type Mutation = {
   /** 批量删除 */
   deleteManyProviders: Scalars['Float'];
   /** 批量删除 */
+  deleteManySessions: Scalars['Float'];
+  /** 批量删除 */
   deleteManyTokens: Scalars['Float'];
   /** 批量删除 */
   deleteManyUsers: Scalars['Float'];
   /** 删除单个 */
   deleteProvider: Scalars['Boolean'];
+  /** 删除单个 */
+  deleteSession: Scalars['Boolean'];
   /** 删除单个 */
   deleteToken: Scalars['Boolean'];
   /** 删除单个 */
@@ -227,11 +261,15 @@ export type Mutation = {
   /** 批量更新 */
   updateManyProviders: Scalars['Boolean'];
   /** 批量更新 */
+  updateManySessions: Scalars['Boolean'];
+  /** 批量更新 */
   updateManyTokens: Scalars['Boolean'];
   /** 批量更新 */
   updateManyUsers: Scalars['Boolean'];
   /** 更新单个 */
   updateProvider: Provider;
+  /** 更新单个 */
+  updateSession: Session;
   /** 更新单个 */
   updateToken: Token;
   /** 更新单个 */
@@ -249,6 +287,11 @@ export type MutationAddProviderArgs = {
 };
 
 
+export type MutationAddSessionArgs = {
+  input: AddSessionInput;
+};
+
+
 export type MutationAddTokenArgs = {
   input: AddTokenInput;
 };
@@ -261,6 +304,11 @@ export type MutationCreateCollaboratorArgs = {
 
 export type MutationCreateProviderArgs = {
   input: CreateProviderInput;
+};
+
+
+export type MutationCreateSessionArgs = {
+  input: CreateSessionInput;
 };
 
 
@@ -289,6 +337,11 @@ export type MutationDeleteManyProvidersArgs = {
 };
 
 
+export type MutationDeleteManySessionsArgs = {
+  input: DeleteSessionInput;
+};
+
+
 export type MutationDeleteManyTokensArgs = {
   input: DeleteTokenInput;
 };
@@ -301,6 +354,11 @@ export type MutationDeleteManyUsersArgs = {
 
 export type MutationDeleteProviderArgs = {
   input: DeleteProviderInput;
+};
+
+
+export type MutationDeleteSessionArgs = {
+  input: DeleteSessionInput;
 };
 
 
@@ -379,6 +437,11 @@ export type MutationUpdateManyProvidersArgs = {
 };
 
 
+export type MutationUpdateManySessionsArgs = {
+  input: UpdateManySessionInput;
+};
+
+
 export type MutationUpdateManyTokensArgs = {
   input: UpdateManyTokenInput;
 };
@@ -391,6 +454,11 @@ export type MutationUpdateManyUsersArgs = {
 
 export type MutationUpdateProviderArgs = {
   input: UpdateProviderInput;
+};
+
+
+export type MutationUpdateSessionArgs = {
+  input: UpdateSessionInput;
 };
 
 
@@ -473,6 +541,12 @@ export type Query = {
   /** 搜索用户 */
   searchUsers: Array<User>;
   /** 获取单个 */
+  session: Session;
+  /** 获取列表 */
+  sessions: Array<Session>;
+  /** 获取分页列表 */
+  sessionsConnection: SessionsConnection;
+  /** 获取单个 */
   token: Token;
   /** 获取列表 */
   tokens: Array<Token>;
@@ -549,6 +623,27 @@ export type QuerySearchUsersArgs = {
 };
 
 
+export type QuerySessionArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QuerySessionsArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SessionWhereInput>;
+};
+
+
+export type QuerySessionsConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SessionWhereInput>;
+};
+
+
 export type QueryTokenArgs = {
   id: Scalars['Int'];
 };
@@ -621,6 +716,34 @@ export enum RoleType {
   Owner = 'Owner',
   Reader = 'Reader'
 }
+
+export type Session = {
+  __typename?: 'Session';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  /** providerId */
+  providerId: Scalars['Int'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** 筛选条件 */
+export type SessionWhereInput = {
+  /** sessionId */
+  sessionId?: InputMaybe<Scalars['Int']>;
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** connection */
+export type SessionsConnection = {
+  __typename?: 'SessionsConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Session>;
+  totalCount: Scalars['Int'];
+};
 
 /** personal token */
 export type Token = {
@@ -703,6 +826,14 @@ export type UpdateManyProviderInput = {
 };
 
 /** 批量更新 */
+export type UpdateManySessionInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateSessionDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateSessionWhereInput>;
+};
+
+/** 批量更新 */
 export type UpdateManyTokenInput = {
   /** 更新的数据 */
   data?: InputMaybe<UpdateTokenDataInput>;
@@ -735,6 +866,26 @@ export type UpdateProviderInput = {
 
 /** 更新条件 */
 export type UpdateProviderWhereInput = {
+  /** ID */
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+/** 更新data */
+export type UpdateSessionDataInput = {
+  /** 该 Session Name */
+  name: Scalars['String'];
+};
+
+/** 更新单个 */
+export type UpdateSessionInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateSessionDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateSessionWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdateSessionWhereInput = {
   /** ID */
   id?: InputMaybe<Scalars['Int']>;
 };
