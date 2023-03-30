@@ -33,9 +33,8 @@ const ChatItem = ({ message }: Props) => {
             {format(new Date(message.createdAt), 'yyyy-MM-dd HH:mm:ss')}
           </Box>
         </Box>
-        {/* {message.streaming && <ChatLoading />} */}
-        {/* {!message.streaming && <Box leadingRelaxed>{message.content}</Box>} */}
-        <Box leadingRelaxed>{message.content}</Box>
+        {message.streaming && <ChatLoading />}
+        {!message.streaming && <Box leadingRelaxed>{message.content}</Box>}
       </Box>
     </Box>
   )

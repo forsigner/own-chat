@@ -1,22 +1,12 @@
-import { PlanType, User } from '@own-chat/api-sdk'
+import { User } from '@own-chat/api-sdk'
 import { useLocalStorage, getLocalStorage, mutateLocalStorage } from 'stook-localstorage'
 
 const key = 'User'
 
 export function useUser() {
   const [user, setUser] = useLocalStorage<User>('User')
-  const { nickname = '' } = user || {}
-
-  // const shortNickname = nickname.substring(0, 4) + '...' + nickname.substring(3, -1)
-  const shortNickname = nickname
   return {
-    user: {
-      ...user,
-      shortNickname,
-      isGod() {
-        return user?.planType === PlanType.God
-      },
-    },
+    user,
     setUser,
   }
 }

@@ -7,11 +7,11 @@ export function useAddMessage() {
   const { user } = useUser()
   const { setting } = useSetting()
 
-  async function addMessage(value: string) {
+  async function addMessage(value: string, role?: ChatCompletionResponseMessageRoleEnum) {
     await apiService.addMessage({
       userId: user.id,
       sessionId: setting.activeSessionId!,
-      role: ChatCompletionResponseMessageRoleEnum.User,
+      role: role || ChatCompletionResponseMessageRoleEnum.User,
       content: value,
     })
 

@@ -8,12 +8,12 @@ export const config = {
 
 // # https://platform.openai.com/docs/api-reference/chat/create
 async function createStream(req: NextRequest) {
-  const apiKey = process.env.OPENAI_API_KEY
-  const encoder = new TextEncoder()
-  const decoder = new TextDecoder()
+  const apiKey = process.env.OPENAI_API_KEY;
+  const encoder = new TextEncoder();
+  const decoder = new TextDecoder();
   console.log('res===>', apiKey)
 
-  const result = await fetch('https://api.openai.com/v1/chat/completions', {
+  const result = await fetch("https://api.openai.com/v1/chat/completions", {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${apiKey}`,
@@ -23,7 +23,7 @@ async function createStream(req: NextRequest) {
   })
 
   if (result.status !== 200) {
-    return await result.json()
+    return await result.json();
   }
 
   const stream = new ReadableStream({
@@ -46,20 +46,20 @@ async function createStream(req: NextRequest) {
         }
       }
 
-      const parser = createParser(onParse)
+      const parser = createParser(onParse);
       for await (const chunk of result.body as any) {
-        parser.feed(decoder.decode(chunk))
+        parser.feed(decoder.decode(chunk));
       }
     },
-  })
+  });
 
-  return stream
+  return stream;
 }
 
 const handler = async (req: NextRequest, res: NextApiResponse<any>) => {
   try {
-    const stream = await createStream(req)
-    return new Response(stream)
+    const stream = await createStream(req);
+    return new Response(stream);
   } catch (err: any) {
     console.log('error:', err)
     res.status(500).send({ code: 0, message: err })

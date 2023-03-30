@@ -59,6 +59,7 @@
     "use-debounce": "^9.0.3"
   },
   "devDependencies": {
+    "@svgr/webpack": "^7.0.0",
     "@types/node": "^18.15.11",
     "@types/prismjs": "^1.26.0",
     "@types/react": "^18.0.31",
