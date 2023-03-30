@@ -65,6 +65,18 @@ query sessions($orderBy: String, $skip: Int, $take: Int, $where: SessionWhereInp
     }
 }
 `;
+export const MESSAGE = gql`
+query message($id: Int!){
+    message(id: $id){
+        content
+        createdAt
+        id
+        sessionId
+        updatedAt
+        userId
+    }
+}
+`;
 export const LOGIN_BY_GITHUB = gql`
 mutation loginByGithub($code: String!){
     loginByGithub(code: $code){
@@ -217,6 +229,18 @@ mutation updateSession($input: UpdateSessionInput!){
         id
         name
         providerId
+        updatedAt
+        userId
+    }
+}
+`;
+export const ADD_MESSAGE = gql`
+mutation addMessage($input: AddMessageInput!){
+    addMessage(input: $input){
+        content
+        createdAt
+        id
+        sessionId
         updatedAt
         userId
     }

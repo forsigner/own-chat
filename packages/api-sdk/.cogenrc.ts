@@ -29,6 +29,9 @@ const gqlConfig: ConfigItem[] = [
   { name: 'sessions', actions: ['useQuery', 'refetch'] },
   { name: 'addSession', actions: ['query'] },
   { name: 'updateSession', actions: ['query'] },
+
+  { name: 'message', actions: ['useQuery', 'refetch'] },
+  { name: 'addMessage', actions: ['query'] },
 ]
 
 const dirName = 'src'

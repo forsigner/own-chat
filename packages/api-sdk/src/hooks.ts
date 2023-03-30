@@ -1,8 +1,12 @@
 import { Options, useQuery, useMutation } from "stook-graphql";
-import { Provider, Session, Setting, Token, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
-import { MY_PROVIDERS, SESSIONS, SETTING, TOKENS } from "./gql";
+import { Message, Provider, Session, Setting, Token, QueryMessageArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
+import { MESSAGE, MY_PROVIDERS, SESSIONS, SETTING, TOKENS } from "./gql";
 
 class HooksService {
+  useMessage(args?: QueryMessageArgs | (() => QueryMessageArgs), opt: Options = {}) {
+    return useQuery<Message, QueryMessageArgs>(MESSAGE, { ...opt, variables: args })
+  }
+
   useMyProviders(args?: any | (() => any), opt: Options = {}) {
     return useQuery<Provider[], any>(MY_PROVIDERS, { ...opt, variables: args })
   }

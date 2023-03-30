@@ -1,8 +1,12 @@
 import { Options, query } from "stook-graphql";
-import { Provider, Session, Token, LoginSuccessPayload, Setting, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, UpdateSessionInput, UpdateSettingInput } from "./types";
-import { ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, UPDATE_SESSION, UPDATE_SETTING } from "./gql";
+import { Message, Provider, Session, Token, LoginSuccessPayload, Setting, AddMessageInput, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, UpdateSessionInput, UpdateSettingInput } from "./types";
+import { ADD_MESSAGE, ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, UPDATE_SESSION, UPDATE_SETTING } from "./gql";
 
 class ApiService {
+  async addMessage(args: AddMessageInput = {} as AddMessageInput, opt: Options = {}) {
+    return await query<Message>(ADD_MESSAGE, { ...opt, variables: { input: args } })
+  }
+
   async addProvider(args: AddProviderInput = {} as AddProviderInput, opt: Options = {}) {
     return await query<Provider>(ADD_PROVIDER, { ...opt, variables: { input: args } })
   }

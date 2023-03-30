@@ -7,6 +7,18 @@ input AddCollaboratorInput {
   userId: Int!
 }
 
+"""添加 Message"""
+input AddMessageInput {
+  """"""
+  content: String!
+
+  """sessionId"""
+  sessionId: Int!
+
+  """用户ID"""
+  userId: Int
+}
+
 """添加 Provider"""
 input AddProviderInput {
   """"""
@@ -93,6 +105,18 @@ input CreateCollaboratorInput {
 }
 
 """创建"""
+input CreateMessageInput {
+  """"""
+  content: String!
+
+  """sessionId"""
+  sessionId: Int!
+
+  """用户ID"""
+  userId: Int
+}
+
+"""创建"""
 input CreateProviderInput {
   """"""
   apiKey: String!
@@ -167,6 +191,12 @@ input DeleteCollaboratorInput {
 }
 
 """删除"""
+input DeleteMessageInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
 input DeleteProviderInput {
   """ID"""
   id: Int!
@@ -222,6 +252,36 @@ type LoginSuccessPayload {
   username: String
 }
 
+""""""
+type Message {
+  """"""
+  content: String!
+  createdAt: DateTime
+
+  """"""
+  id: Int!
+
+  """sessionId"""
+  sessionId: Int!
+  updatedAt: DateTime
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input MessageWhereInput {
+  """sessionId"""
+  sessionId: Int
+}
+
+"""connection"""
+type MessagesConnection {
+  hasNextPage: Boolean!
+  items: [Message!]!
+  totalCount: Int!
+}
+
 """修改秘密"""
 input ModifyPasswordInput {
   """新密码"""
@@ -235,6 +295,9 @@ type Mutation {
   """新增"""
   addCollaborator(input: AddCollaboratorInput!): Collaborator!
 
+  """添加Message"""
+  addMessage(input: AddMessageInput!): Message!
+
   """添加Provider"""
   addProvider(input: AddProviderInput!): Provider!
 
@@ -246,6 +309,9 @@ type Mutation {
 
   """创建"""
   createCollaborator(input: CreateCollaboratorInput!): Collaborator!
+
+  """创建"""
+  createMessage(input: CreateMessageInput!): Message!
 
   """创建"""
   createProvider(input: CreateProviderInput!): Provider!
@@ -269,6 +335,9 @@ type Mutation {
   deleteManyCollaborators(input: DeleteCollaboratorInput!): Float!
 
   """批量删除"""
+  deleteManyMessages(input: DeleteMessageInput!): Float!
+
+  """批量删除"""
   deleteManyProviders(input: DeleteProviderInput!): Float!
 
   """批量删除"""
@@ -282,6 +351,9 @@ type Mutation {
 
   """批量删除"""
   deleteManyUsers(input: DeleteUserInput!): Float!
+
+  """删除单个"""
+  deleteMessage(input: DeleteMessageInput!): Boolean!
 
   """删除单个"""
   deleteProvider(input: DeleteProviderInput!): Boolean!
@@ -335,6 +407,9 @@ type Mutation {
   updateManyCollaborators(input: UpdateManyCollaboratorInput!): Boolean!
 
   """批量更新"""
+  updateManyMessages(input: UpdateManyMessageInput!): Boolean!
+
+  """批量更新"""
   updateManyProviders(input: UpdateManyProviderInput!): Boolean!
 
   """批量更新"""
@@ -348,6 +423,9 @@ type Mutation {
 
   """批量更新"""
   updateManyUsers(input: UpdateManyUserInput!): Boolean!
+
+  """更新单个"""
+  updateMessage(input: UpdateMessageInput!): Message!
 
   """更新单个"""
   updateProvider(input: UpdateProviderInput!): Provider!
@@ -464,6 +542,39 @@ type Query {
     """筛选条件"""
     where: CollaboratorWhereInput
   ): CollaboratorsConnection!
+
+  """获取单个"""
+  message(id: Int!): Message!
+
+  """获取列表"""
+  messages(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: MessageWhereInput
+  ): [Message!]!
+
+  """获取分页列表"""
+  messagesConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: MessageWhereInput
+  ): MessagesConnection!
 
   """自己可以访问的 provider"""
   myProviders: [Provider!]!
@@ -828,6 +939,15 @@ input UpdateManyCollaboratorInput {
 }
 
 """批量更新"""
+input UpdateManyMessageInput {
+  """更新的数据"""
+  data: UpdateMessageDataInput
+
+  """更新条件"""
+  where: UpdateMessageWhereInput
+}
+
+"""批量更新"""
 input UpdateManyProviderInput {
   """更新的数据"""
   data: UpdateProviderDataInput
@@ -870,6 +990,27 @@ input UpdateManyUserInput {
 
   """更新条件"""
   where: UpdateUserWhereInput
+}
+
+"""更新data"""
+input UpdateMessageDataInput {
+  """该 Message Name"""
+  content: String!
+}
+
+"""更新单个"""
+input UpdateMessageInput {
+  """更新的数据"""
+  data: UpdateMessageDataInput
+
+  """更新条件"""
+  where: UpdateMessageWhereInput
+}
+
+"""更新条件"""
+input UpdateMessageWhereInput {
+  """ID"""
+  id: Int
 }
 
 """更新data"""

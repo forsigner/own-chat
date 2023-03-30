@@ -21,6 +21,15 @@ export type AddCollaboratorInput = {
   userId: Scalars['Int'];
 };
 
+/** 添加 Message */
+export type AddMessageInput = {
+  content: Scalars['String'];
+  /** sessionId */
+  sessionId: Scalars['Int'];
+  /** 用户ID */
+  userId?: InputMaybe<Scalars['Int']>;
+};
+
 /** 添加 Provider */
 export type AddProviderInput = {
   apiKey?: InputMaybe<Scalars['String']>;
@@ -92,6 +101,15 @@ export type CreateCollaboratorInput = {
 };
 
 /** 创建 */
+export type CreateMessageInput = {
+  content: Scalars['String'];
+  /** sessionId */
+  sessionId: Scalars['Int'];
+  /** 用户ID */
+  userId?: InputMaybe<Scalars['Int']>;
+};
+
+/** 创建 */
 export type CreateProviderInput = {
   apiKey: Scalars['String'];
   authorizationCode: Scalars['String'];
@@ -142,6 +160,12 @@ export type CreateUserInput = {
 export type DeleteCollaboratorInput = {
   /** ID */
   id?: InputMaybe<Scalars['Int']>;
+};
+
+/** 删除 */
+export type DeleteMessageInput = {
+  /** ID */
+  id: Scalars['Int'];
 };
 
 /** 删除 */
@@ -200,6 +224,32 @@ export type LoginSuccessPayload = {
   username?: Maybe<Scalars['String']>;
 };
 
+export type Message = {
+  __typename?: 'Message';
+  content: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['Int'];
+  /** sessionId */
+  sessionId: Scalars['Int'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** 筛选条件 */
+export type MessageWhereInput = {
+  /** sessionId */
+  sessionId?: InputMaybe<Scalars['Int']>;
+};
+
+/** connection */
+export type MessagesConnection = {
+  __typename?: 'MessagesConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Message>;
+  totalCount: Scalars['Int'];
+};
+
 /** 修改秘密 */
 export type ModifyPasswordInput = {
   /** 新密码 */
@@ -212,6 +262,8 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** 新增 */
   addCollaborator: Collaborator;
+  /** 添加Message */
+  addMessage: Message;
   /** 添加Provider */
   addProvider: Provider;
   /** 添加Session */
@@ -220,6 +272,8 @@ export type Mutation = {
   addToken: Token;
   /** 创建 */
   createCollaborator: Collaborator;
+  /** 创建 */
+  createMessage: Message;
   /** 创建 */
   createProvider: Provider;
   /** 创建 */
@@ -235,6 +289,8 @@ export type Mutation = {
   /** 批量删除 */
   deleteManyCollaborators: Scalars['Float'];
   /** 批量删除 */
+  deleteManyMessages: Scalars['Float'];
+  /** 批量删除 */
   deleteManyProviders: Scalars['Float'];
   /** 批量删除 */
   deleteManySessions: Scalars['Float'];
@@ -244,6 +300,8 @@ export type Mutation = {
   deleteManyTokens: Scalars['Float'];
   /** 批量删除 */
   deleteManyUsers: Scalars['Float'];
+  /** 删除单个 */
+  deleteMessage: Scalars['Boolean'];
   /** 删除单个 */
   deleteProvider: Scalars['Boolean'];
   /** 删除单个 */
@@ -279,6 +337,8 @@ export type Mutation = {
   /** 批量更新 */
   updateManyCollaborators: Scalars['Boolean'];
   /** 批量更新 */
+  updateManyMessages: Scalars['Boolean'];
+  /** 批量更新 */
   updateManyProviders: Scalars['Boolean'];
   /** 批量更新 */
   updateManySessions: Scalars['Boolean'];
@@ -288,6 +348,8 @@ export type Mutation = {
   updateManyTokens: Scalars['Boolean'];
   /** 批量更新 */
   updateManyUsers: Scalars['Boolean'];
+  /** 更新单个 */
+  updateMessage: Message;
   /** 更新单个 */
   updateProvider: Provider;
   /** 更新单个 */
@@ -303,6 +365,11 @@ export type Mutation = {
 
 export type MutationAddCollaboratorArgs = {
   input: AddCollaboratorInput;
+};
+
+
+export type MutationAddMessageArgs = {
+  input: AddMessageInput;
 };
 
 
@@ -323,6 +390,11 @@ export type MutationAddTokenArgs = {
 
 export type MutationCreateCollaboratorArgs = {
   input: CreateCollaboratorInput;
+};
+
+
+export type MutationCreateMessageArgs = {
+  input: CreateMessageInput;
 };
 
 
@@ -361,6 +433,11 @@ export type MutationDeleteManyCollaboratorsArgs = {
 };
 
 
+export type MutationDeleteManyMessagesArgs = {
+  input: DeleteMessageInput;
+};
+
+
 export type MutationDeleteManyProvidersArgs = {
   input: DeleteProviderInput;
 };
@@ -383,6 +460,11 @@ export type MutationDeleteManyTokensArgs = {
 
 export type MutationDeleteManyUsersArgs = {
   input: DeleteUserInput;
+};
+
+
+export type MutationDeleteMessageArgs = {
+  input: DeleteMessageInput;
 };
 
 
@@ -471,6 +553,11 @@ export type MutationUpdateManyCollaboratorsArgs = {
 };
 
 
+export type MutationUpdateManyMessagesArgs = {
+  input: UpdateManyMessageInput;
+};
+
+
 export type MutationUpdateManyProvidersArgs = {
   input: UpdateManyProviderInput;
 };
@@ -493,6 +580,11 @@ export type MutationUpdateManyTokensArgs = {
 
 export type MutationUpdateManyUsersArgs = {
   input: UpdateManyUserInput;
+};
+
+
+export type MutationUpdateMessageArgs = {
+  input: UpdateMessageInput;
 };
 
 
@@ -579,6 +671,12 @@ export type Query = {
   collaborators: Array<Collaborator>;
   /** 获取分页列表 */
   collaboratorsConnection: CollaboratorsConnection;
+  /** 获取单个 */
+  message: Message;
+  /** 获取列表 */
+  messages: Array<Message>;
+  /** 获取分页列表 */
+  messagesConnection: MessagesConnection;
   /** 自己可以访问的 provider */
   myProviders: Array<Provider>;
   /** 获取单个 */
@@ -649,6 +747,27 @@ export type QueryCollaboratorsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<CollaboratorWhereInput>;
+};
+
+
+export type QueryMessageArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryMessagesArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<MessageWhereInput>;
+};
+
+
+export type QueryMessagesConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<MessageWhereInput>;
 };
 
 
@@ -918,6 +1037,14 @@ export type UpdateManyCollaboratorInput = {
 };
 
 /** 批量更新 */
+export type UpdateManyMessageInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateMessageDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateMessageWhereInput>;
+};
+
+/** 批量更新 */
 export type UpdateManyProviderInput = {
   /** 更新的数据 */
   data?: InputMaybe<UpdateProviderDataInput>;
@@ -955,6 +1082,26 @@ export type UpdateManyUserInput = {
   data?: InputMaybe<UpdateUserDataInput>;
   /** 更新条件 */
   where?: InputMaybe<UpdateUserWhereInput>;
+};
+
+/** 更新data */
+export type UpdateMessageDataInput = {
+  /** 该 Message Name */
+  content: Scalars['String'];
+};
+
+/** 更新单个 */
+export type UpdateMessageInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateMessageDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateMessageWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdateMessageWhereInput = {
+  /** ID */
+  id?: InputMaybe<Scalars['Int']>;
 };
 
 /** 更新data */
