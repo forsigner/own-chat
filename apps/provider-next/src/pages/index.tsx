@@ -2,7 +2,7 @@ import { withIronSessionSsr } from 'iron-session/next'
 import { Modal, ModalOverlay, ModalContent } from 'bone-ui'
 import { useState } from 'react'
 import { sessionOptions } from '@common/session'
-import { Home } from '@own-chat/shared'
+import { ChatLayout, Home } from '@own-chat/shared'
 import { Login } from '@components/Login'
 
 interface Props {
@@ -27,6 +27,8 @@ export default function PageHome({ authorizationCode }: Props) {
   }
   return <Home />
 }
+
+PageHome.Layout = ChatLayout
 
 export const getServerSideProps = withIronSessionSsr(async function ({ req, res, locale = '' }) {
   const { authorizationCode = '' } = req?.session || {}
