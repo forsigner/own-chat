@@ -33,7 +33,7 @@ const PreCode = (props: any) => {
   const match = /language-(\w+)/.exec(className || '') || ''
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="pre-code">
       <span
         className="copy-code-button"
         onClick={() => {
@@ -42,7 +42,7 @@ const PreCode = (props: any) => {
             copyToClipboard(code);
           }
         }}
-      />
+      >Copy</span>
       <SyntaxHighlighter
         children={String(children).replace(/\n$/, '')}
         language={match && match[1]}
