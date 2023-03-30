@@ -19,7 +19,7 @@
     "@monaco-editor/react": "^4.4.6",
     "@own-chat/api-sdk": "*",
     "@own-chat/shared": "*",
-    "bone-ui": "^0.31.0",
+    "bone-ui": "^0.32.0",
     "case": "^1.6.3",
     "chart.js": "^4.2.1",
     "cookies-next": "^2.1.1",

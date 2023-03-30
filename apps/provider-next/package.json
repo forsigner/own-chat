@@ -17,7 +17,7 @@
     "@floating-ui/react-dom-interactions": "^0.13.3",
     "@fower/react": "^1.76.0",
     "@own-chat/shared": "*",
-    "bone-ui": "^0.31.0",
+    "bone-ui": "^0.32.0",
     "case": "^1.6.3",
     "cookies-next": "^2.1.1",
     "date-fns": "^2.29.3",

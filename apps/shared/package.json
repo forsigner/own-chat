@@ -18,11 +18,11 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
-    "@bone-ui/iconify": "^0.31.0",
-    "@bone-ui/icons": "^0.31.0",
+    "@bone-ui/iconify": "^0.32.0",
+    "@bone-ui/icons": "^0.32.0",
     "@fower/react": "^1.76.0",
     "@own-chat/easy-modal": "*",
-    "bone-ui": "^0.31.0",
+    "bone-ui": "^0.32.0",
     "fomir": "^0.21.0",
     "i18next": "^22.4.13",
     "lodash": "^4.17.21",

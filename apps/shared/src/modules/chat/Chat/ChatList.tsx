@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { useMessages } from '../../../hooks'
+import { useMessages } from '../hooks/useMessages'
 import ChatItem from './ChatItem'
 
 export const ChatList = () => {

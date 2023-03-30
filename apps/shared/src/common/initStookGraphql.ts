@@ -50,6 +50,8 @@ export function initStookGraphql() {
     }
   })
 
+  console.log('baseURL:', baseURL)
+
   config({
     endpoint: baseURL + '/graphql',
     subscriptionsEndpoint,

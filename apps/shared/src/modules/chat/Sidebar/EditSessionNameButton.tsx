@@ -5,7 +5,6 @@ import { Popover, PopoverContent, PopoverTrigger } from 'bone-ui'
 import { Input } from 'bone-ui'
 import { Session } from '@own-chat/api-sdk'
 import { useSetting } from '../hooks/useSetting'
-import { useSessions } from '../hooks/useSessions'
 import { useUpdateSession } from '../hooks/useUpdateSession'
 import { useState } from 'react'
 

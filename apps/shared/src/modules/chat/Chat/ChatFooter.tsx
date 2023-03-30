@@ -2,16 +2,16 @@ import { Box } from '@fower/react'
 import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Button, PaperAirplaneSolid } from 'bone-ui'
-import { useSendMessage } from '../../../hooks'
 import { useState } from 'react'
+import { useAddMessage } from '../hooks/useAddMessage'
 
 export const ChatFooter = () => {
-  const { sendMessage } = useSendMessage()
+  const { addMessage } = useAddMessage()
   const [value, setValue] = useState('')
 
   async function send() {
     if (!value) return
-    sendMessage(value)
+    addMessage(value)
     setValue('')
   }
 
