@@ -1,81 +1,28 @@
-"""创建API"""
-input AddApiInput {
-  """apiKey"""
-  apiKey: String!
-
-  """交易所类型"""
-  exchange: ExchangeType!
-
-  """该 Api 名字"""
-  name: String!
-
-  """secretKey"""
-  secretKey: String!
-}
-
-"""新增机器人"""
-input AddBotInput {
-  """api ID"""
-  apiId: Int
-
-  """机器人名字"""
-  name: String!
-
-  """参数"""
-  params: JSON!
-
-  """策略ID"""
-  strategyId: Int!
-
-  """用户ID"""
-  userId: Int!
-}
-
 """新增Collaborator"""
 input AddCollaboratorInput {
-  """角色类型"""
-  roleType: RoleType!
-
-  """策略ID"""
-  strategyId: Int!
+  """Provider ID"""
+  providerId: Int!
 
   """用户ID"""
   userId: Int!
 }
 
-input AddLogInput {
-  """机器人ID"""
-  botId: Int!
+"""添加 Provider"""
+input AddProviderInput {
+  """"""
+  apiKey: String
 
-  """日志内容"""
-  content: String!
+  """self host auth code"""
+  authorizationCode: String
 
-  """类型"""
-  type: String
-}
+  """self host server endpoint"""
+  endpoint: String
 
-"""新增RunnerStrategy"""
-input AddRunnerStrategyInput {
-  """Runner ID"""
-  runnerId: Int!
+  """该 Provider Name"""
+  name: String!
 
-  """策略ID"""
-  strategyId: Int!
-}
-
-"""创建策略"""
-input AddStrategyInput {
-  """介绍"""
-  intro: String
-
-  """策略显示名字"""
-  name: String
-
-  """策略唯一名字"""
-  slug: String!
-
-  """用户ID"""
-  userId: Int!
+  """"""
+  type: ProviderType!
 }
 
 """添加 access token"""
@@ -87,291 +34,6 @@ input AddTokenInput {
   type: String
 }
 
-"""交易所Api"""
-type Api {
-  createdAt: DateTime
-
-  """交易所类型"""
-  exchange: ExchangeType!
-
-  """"""
-  id: Int!
-
-  """是否是模拟盘"""
-  isSimulated: Boolean
-
-  """该 Api 名字"""
-  name: String!
-
-  """secretKey"""
-  passphrase: String
-  updatedAt: DateTime
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""筛选条件"""
-input ApiWhereInput {
-  """用户ID"""
-  userId: Int!
-}
-
-"""connection"""
-type ApisConnection {
-  hasNextPage: Boolean!
-  items: [Api!]!
-  totalCount: Int!
-}
-
-"""回测日志"""
-type BacktestLog {
-  """日志内容"""
-  content: String
-  createdAt: DateTime
-
-  """类型"""
-  type: String
-}
-
-"""回测结果"""
-type BacktestResult {
-  """
-  年化收益率是指把当前的收益率（日收益率、周收益率、月收益率等）换算成年收益率来计算的，是一种理论收益，并不是真正已经取得的收益率。年化收益率需要和年收益率区分开，年收益率是指策略执行一年的收益率，是实际的收益。
-  """
-  annualReturn: Float!
-
-  """买入并持有收益率，类似基准收益率"""
-  buyAndHoldReturn: Float!
-
-  """K线数据"""
-  candles: [Candle!]!
-
-  """"""
-  chartConfig: ChartConfig
-
-  """策略收益也就是策略开始到结束，总资产的变化率"""
-  cumulativeReturn: Float!
-
-  """运行时间"""
-  duration: Int!
-
-  """手续费"""
-  fee: Float!
-
-  """手续费率"""
-  feeRatio: Float!
-
-  """回测日志"""
-  logs: [BacktestLog!]!
-
-  """描述的策略最大的亏损情况。最大回撤通常越小越好"""
-  maxDrawdown: Float!
-
-  """另一种风险回报绩效指标。它相对于Sharpe比率的最大优势是-通过构造-它考虑了所有统计时刻，而Sharpe比率仅考虑前两个时刻。"""
-  omegaRatio: Float
-
-  """回测订单列表"""
-  orders: [Order!]!
-
-  """利润"""
-  profit: Float!
-
-  """夏普"""
-  sharpeRatio: Float
-
-  """描述的是策略在单位下行风险下所能获得的超额收益。"""
-  sortino: Float
-
-  """胜率"""
-  winRate: Float!
-}
-
-"""回测状态"""
-enum BacktestStatus {
-  Error
-  Initial
-  Running
-  Stopped
-}
-
-type Balance {
-  """可用余额"""
-  free: String!
-
-  """锁住的"""
-  locked: String!
-}
-
-"""机器人"""
-type Bot {
-  """交易所 API ID"""
-  apiId: Int
-
-  """apiKey"""
-  apiKey: String
-
-  """回测机器人参数"""
-  backtestBotParams: JSON
-
-  """回测参数"""
-  backtestParams: JSON
-
-  """回测状态"""
-  backtestStatus: BacktestStatus!
-  createdAt: DateTime
-
-  """运行时间"""
-  duration: Int!
-
-  """中止事件"""
-  endTime: DateTime
-
-  """"""
-  id: Int!
-
-  """是否公开"""
-  isPublic: Boolean!
-
-  """名字"""
-  name: String!
-
-  """参数"""
-  params: JSON
-
-  """状态"""
-  status: BotStatus!
-
-  """持久化策略(机器人)信息"""
-  storage: JSON
-
-  """Strategy"""
-  strategy: Strategy!
-
-  """策略ID"""
-  strategyId: Int!
-  updatedAt: DateTime
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""机器人事件"""
-type BotEventPayload {
-  """事件数据"""
-  data: JSON!
-
-  """机器人事件"""
-  eventName: String!
-}
-
-"""Bot params"""
-type BotParamsPayload {
-  params: JSON
-}
-
-type BotStats {
-  """运行时间"""
-  duration: Int!
-
-  """订单数"""
-  orderNum: Int!
-
-  """可用余额"""
-  profit: Float!
-}
-
-"""机器人状态"""
-enum BotStatus {
-  Booting
-  Error
-  Running
-  Stopped
-}
-
-"""筛选条件"""
-input BotWhereInput {
-  """状态"""
-  status: BotStatus
-
-  """策略ID"""
-  strategyId: Int
-}
-
-"""connection"""
-type BotsConnection {
-  hasNextPage: Boolean!
-  items: [Bot!]!
-  totalCount: Int!
-}
-
-"""蜡烛图"""
-type Candle {
-  """"""
-  close: Float!
-
-  """"""
-  closeTime: Float
-
-  """"""
-  high: Float!
-
-  """"""
-  low: Float!
-
-  """"""
-  open: Float!
-
-  """"""
-  openTime: Float
-
-  """"""
-  period: String
-
-  """"""
-  volume: Float!
-}
-
-"""图表配置"""
-type ChartConfig {
-  """布林带"""
-  bb: [Int!]
-
-  """是否显示 K 线"""
-  candle: Boolean
-
-  """"""
-  ema: [Int!]
-
-  """kdj"""
-  kdj: Float
-
-  """"""
-  ma: [Int!]
-
-  """roc"""
-  roc: Float
-
-  """rsi"""
-  rsi: Float
-
-  """成交量"""
-  volume: Boolean
-}
-
-"""CLI Login"""
-input CliLoginInput {
-  """CLI token"""
-  cliToken: String!
-}
-
-"""CliLoginStatus"""
-enum CliLoginStatus {
-  Canceled
-  Confirmed
-  Init
-}
-
 """协作者"""
 type Collaborator {
   createdAt: DateTime
@@ -379,11 +41,11 @@ type Collaborator {
   """"""
   id: Int!
 
+  """Provider ID"""
+  providerId: Int!
+
   """角色类型"""
   roleType: RoleType!
-
-  """策略ID"""
-  strategyId: Int!
   updatedAt: DateTime
 
   """User"""
@@ -410,213 +72,30 @@ type CollaboratorsConnection {
 }
 
 """创建"""
-input CreateApiInput {
-  """apiKey"""
+input CreateCollaboratorInput {
+  """Provider ID"""
+  providerId: Int!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""创建"""
+input CreateProviderInput {
+  """"""
   apiKey: String!
 
-  """交易所类型"""
-  exchange: ExchangeType!
+  """"""
+  authorizationCode: String!
 
-  """是否是模拟盘"""
-  isSimulated: Boolean
-
-  """该 Api 名字"""
+  """该 Provider Name"""
   name: String!
 
-  """secretKey"""
-  passphrase: String
-
-  """secretKey"""
-  secretKey: String!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""创建机器人"""
-input CreateBotInput {
-  """机器人名字"""
-  name: String!
-
-  """参数"""
-  params: JSON!
-
-  """策略ID"""
-  strategyId: Int!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""创建"""
-input CreateCollaboratorInput {
-  """策略ID"""
-  strategyId: Int!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""创建"""
-input CreateDepositCodeInput {
-  """金额"""
-  cashAmount: Float!
-
-  """充值码"""
-  code: String!
-}
-
-"""创建"""
-input CreateExitRuleInput {
-  """唯一Code"""
-  code: ExitRuleCode!
-
-  """名字"""
-  name: String!
-
-  """类型"""
-  type: ExitRuleType!
-}
-
-"""创建"""
-input CreateGridOrderInput {
-  """机器人ID"""
-  botId: Int
-
-  """交易所订单ID"""
-  buyOrderId: Int
-
-  """交易所订单ID"""
-  sellOrderId: Int
-}
-
-"""创建"""
-input CreateInvitationTokenInput {
-  """用户ID"""
-  userId: Int!
-}
-
-"""创建"""
-input CreateLogInput {
-  """机器人ID"""
-  botId: Int!
-
-  """日志内容"""
-  content: String!
-}
-
-"""创建通知通道"""
-input CreateNotifierInput {
-  """配置"""
-  config: JSON
-
-  """名字"""
-  name: String!
-
-  """通知通道类型"""
-  type: NotifierType!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""创建"""
-input CreateOrderInput {
-  """机器人ID"""
-  botId: Int!
-
-  """交易所自定义订单ID"""
-  clientOrderId: String!
-
-  """类型，做多入场、做空入场、做多止损..."""
-  operationType: String!
-
-  """交易所订单ID"""
-  orderId: String!
-
-  """成交价格"""
-  price: Float
-
-  """成交量"""
-  qty: Float
-
-  """成交金额"""
-  quoteQty: Float
-
-  """交易类型"""
-  side: String
-
-  """状态"""
-  status: OrderStatus!
-
-  """交易对"""
-  symbol: String!
-
-  """订单时间"""
-  time: Float!
-
-  """类型，市价、限价"""
+  """"""
   type: String!
 
   """用户ID"""
-  userId: Int!
-}
-
-"""创建策略"""
-input CreateRunnerInput {
-  """策略名字"""
-  name: String!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""创建"""
-input CreateRunnerStrategyInput {
-  """Runner ID"""
-  runnerId: Int!
-
-  """策略ID"""
-  strategyId: Int!
-}
-
-"""创建"""
-input CreateSourceCodeInput {
-  """UI 代码"""
-  strategyCode: String!
-
-  """策略ID"""
-  strategyId: Int!
-
-  """UI 代码"""
-  uiCode: String!
-}
-
-"""创建策略"""
-input CreateStrategyInput {
-  """介绍"""
-  intro: String
-
-  """策略名字"""
-  name: String!
-
-  """slug, 唯一标识"""
-  slug: String!
-
-  """唯一token, sync 的时候用"""
-  token: String
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""创建"""
-input CreateTodoInput {
-  """该 Todo Title"""
-  title: String!
-
-  """用户ID"""
-  userId: Int!
+  userId: Int
 }
 
 """创建"""
@@ -635,27 +114,9 @@ input CreateTokenInput {
 }
 
 """创建"""
-input CreateTransactionLogInput {
-  """总收入"""
-  amount: Float!
-
-  """Deposit/Withdraw/Deduct"""
-  transactionType: TransactionType!
-
-  """钱包ID"""
-  walletId: Int!
-}
-
-"""创建"""
 input CreateUserInput {
   nickname: String!
   username: String!
-}
-
-"""创建"""
-input CreateWalletInput {
-  """用户ID"""
-  userId: Int!
 }
 
 """
@@ -664,93 +125,13 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 scalar DateTime
 
 """删除"""
-input DeleteApiInput {
-  """ID"""
-  id: Int
-}
-
-"""删除机器人"""
-input DeleteBotInput {
-  """Bot ID"""
-  id: Int!
-}
-
-"""删除"""
 input DeleteCollaboratorInput {
   """ID"""
   id: Int
 }
 
 """删除"""
-input DeleteDepositCodeInput {
-  """ID"""
-  id: Int!
-}
-
-"""删除"""
-input DeleteExitRuleInput {
-  """"""
-  id: Int!
-}
-
-"""删除网格订单"""
-input DeleteGridOrderInput {
-  """机器人ID"""
-  botId: Int
-  id: Int
-}
-
-"""删除成员"""
-input DeleteInvitationTokenInput {
-  """ID"""
-  id: Int!
-}
-
-"""删除日志"""
-input DeleteLogInput {
-  """"""
-  id: Int!
-}
-
-"""删除策略"""
-input DeleteNotifierInput {
-  """"""
-  id: Int!
-}
-
-"""删除订单"""
-input DeleteOrderInput {
-  """机器人ID"""
-  botId: Int
-  id: Int
-}
-
-"""删除策略"""
-input DeleteRunnerInput {
-  """"""
-  id: Int!
-}
-
-"""删除"""
-input DeleteRunnerStrategyInput {
-  """ID"""
-  id: Int
-}
-
-"""删除"""
-input DeleteSourceCodeInput {
-  """ID"""
-  id: Int!
-}
-
-"""删除策略"""
-input DeleteStrategyInput {
-  """"""
-  id: Int!
-}
-
-"""删除"""
-input DeleteTodoInput {
+input DeleteProviderInput {
   """ID"""
   id: Int!
 }
@@ -762,12 +143,6 @@ input DeleteTokenInput {
 }
 
 """删除"""
-input DeleteTransactionLogInput {
-  """ID"""
-  id: Int!
-}
-
-"""删除"""
 input DeleteUserInput {
   """id"""
   id: Int
@@ -775,264 +150,10 @@ input DeleteUserInput {
   username: String!
 }
 
-"""删除"""
-input DeleteWalletInput {
-  """ID"""
-  id: Int!
-}
-
-"""根据充值码充值"""
-input DepositByCodeInput {
-  """充值码"""
-  code: String!
-}
-
-""""""
-type DepositCode {
-  """金额"""
-  cashAmount: Float!
-
-  """充值码"""
-  code: String!
-
-  """是否已消费(已使用)"""
-  consumed: Boolean!
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-  updatedAt: DateTime
-}
-
-"""筛选条件"""
-input DepositCodeWhereInput {
-  """"""
-  id: Int!
-}
-
-"""connection"""
-type DepositCodesConnection {
-  hasNextPage: Boolean!
-  items: [DepositCode!]!
-  totalCount: Int!
-}
-
-"""交易所类型"""
-enum ExchangeType {
-  Binance
-  OKX
-}
-
-"""出场规则/止盈止损策略"""
-type ExitRule {
-  """唯一Code"""
-  code: ExitRuleCode!
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """规则名字"""
-  name: String!
-
-  """类型"""
-  type: ExitRuleType!
-  updatedAt: DateTime
-}
-
-"""止盈止损规则唯一代码"""
-enum ExitRuleCode {
-  StopLossByPercent
-  StopLossByPrice
-  TakeProfitByPercent
-  TakeProfitByPrice
-  TakeProfitTrailingStop
-}
-
-"""止盈止损类型"""
-enum ExitRuleType {
-  StopLoss
-  TakeProfit
-}
-
-"""筛选条件"""
-input ExitRuleWhereInput {
-  """"""
-  id: Int!
-}
-
-"""connection"""
-type ExitRulesConnection {
-  hasNextPage: Boolean!
-  items: [ExitRule!]!
-  totalCount: Int!
-}
-
 """忘记密码"""
 input ForgotPasswordInput {
   """邮箱"""
   email: String!
-}
-
-"""合约下单"""
-input FuturesOrderInput {
-  """机器人ID"""
-  botId: Int!
-
-  """类型，做多入场、做空入场、做多止损..."""
-  operationType: String!
-
-  """交易数量"""
-  quantity: Float!
-
-  """交易方向"""
-  side: OrderSide!
-}
-
-""""""
-input GenerateBotStopByPasswordLinkInput {
-  """Bot ID"""
-  id: Int!
-}
-
-"""生成充值码"""
-input GenerateDepositCodeInput {
-  """金额"""
-  cashAmount: Float!
-
-  """充值码数量"""
-  quantity: Int!
-}
-
-""""""
-input GenerateSetStopPasswordLinkInput {
-  """Bot ID"""
-  id: Int!
-}
-
-"""网格配对订单"""
-type GridOrder {
-  """机器人ID"""
-  botId: Int!
-
-  """Order"""
-  buyOrder: Order
-
-  """交易所订单ID"""
-  buyOrderId: Int
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """Order"""
-  sellOrder: Order
-
-  """交易所订单ID"""
-  sellOrderId: Int
-  updatedAt: DateTime
-}
-
-"""筛选条件"""
-input GridOrderWhereInput {
-  """机器人ID"""
-  botId: Int
-}
-
-"""connection"""
-type GridOrdersConnection {
-  hasNextPage: Boolean!
-  items: [GridOrder!]!
-  totalCount: Int!
-}
-
-"""网格交易自动化参数"""
-type GridParamsPayload {
-  """网格数量"""
-  gridNumber: Int!
-
-  """网格价格下限"""
-  lowerPrice: Float!
-
-  """网格价格上限"""
-  upperPrice: Float!
-}
-
-"""更新data"""
-input IncreaseDurationInput {
-  """Bot ID"""
-  id: Int!
-
-  """增加多少时间"""
-  increment: Int!
-}
-
-"""邀请链接Token"""
-type InvitationToken {
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """角色类型"""
-  roleType: RoleType!
-
-  """策略ID"""
-  strategyId: Int!
-
-  """token"""
-  token: String!
-  updatedAt: DateTime
-}
-
-"""筛选条件"""
-input InvitationTokenWhereInput {
-  """ID"""
-  id: Int!
-
-  """策略ID"""
-  strategyId: Int!
-}
-
-"""connection"""
-type InvitationTokensConnection {
-  hasNextPage: Boolean!
-  items: [InvitationToken!]!
-  totalCount: Int!
-}
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
-
-"""策略日志"""
-type Log {
-  """机器人ID"""
-  botId: Int!
-
-  """日志内容"""
-  content: String!
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """类型"""
-  type: String
-  updatedAt: DateTime
-}
-
-"""筛选条件"""
-input LogWhereInput {
-  """机器人ID"""
-  botId: Int
-}
-
-"""CLI Login"""
-input LoginByCliInput {
-  """CLI token"""
-  cliToken: String!
 }
 
 """邮箱登录"""
@@ -1053,43 +174,6 @@ type LoginSuccessPayload {
   username: String
 }
 
-"""connection"""
-type LogsConnection {
-  hasNextPage: Boolean!
-  items: [Log!]!
-  totalCount: Int!
-}
-
-"""网格订单匹配"""
-input MatchOrderInput {
-  """机器人ID"""
-  botId: Int!
-
-  """交易所订单ID"""
-  buyOrderId: Int
-
-  """交易所订单ID"""
-  sellOrderId: Int
-}
-
-"""修改API"""
-input ModifyApiInput {
-  """apiKey"""
-  apiKey: String!
-
-  """交易所类型"""
-  exchange: ExchangeType
-
-  """"""
-  id: Int!
-
-  """该 Api 名字"""
-  name: String!
-
-  """secretKey"""
-  secretKey: String!
-}
-
 """修改秘密"""
 input ModifyPasswordInput {
   """新密码"""
@@ -1099,264 +183,54 @@ input ModifyPasswordInput {
   oldPassword: String!
 }
 
-"""修改策略"""
-input ModifyStrategyInput {
-  """docs"""
-  docs: JSON
-
-  """"""
-  id: Int!
-
-  """介绍"""
-  intro: String
-
-  """策略名字"""
-  name: String
-
-  """参数定义Schema"""
-  paramsSchema: JSON
-
-  """slug, 唯一标识"""
-  slug: String
-}
-
 type Mutation {
-  """新增API"""
-  addApi(input: AddApiInput!): Api!
-
-  """新增机器人"""
-  addBot(input: AddBotInput!): Bot!
-
   """新增"""
   addCollaborator(input: AddCollaboratorInput!): Collaborator!
 
-  """新增日志"""
-  addLog(input: AddLogInput!): Log!
-
-  """新增"""
-  addRunnerStrategy(input: AddRunnerStrategyInput!): RunnerStrategy!
-
-  """新增策略"""
-  addStrategy(input: AddStrategyInput!): Strategy!
+  """添加Provider"""
+  addProvider(input: AddProviderInput!): Provider!
 
   """新增Token"""
   addToken(input: AddTokenInput!): Token!
-
-  """清除日志"""
-  clearLogs(botId: Float!): Boolean!
-
-  """平仓"""
-  closePosition(botId: Float!): Boolean!
-
-  """cli 登录"""
-  confirmCliLogin(input: CliLoginInput!): Boolean!
-
-  """创建"""
-  createApi(input: CreateApiInput!): Api!
-
-  """创建"""
-  createBot(input: CreateBotInput!): Bot!
 
   """创建"""
   createCollaborator(input: CreateCollaboratorInput!): Collaborator!
 
   """创建"""
-  createDepositCode(input: CreateDepositCodeInput!): DepositCode!
-
-  """创建"""
-  createExitRule(input: CreateExitRuleInput!): ExitRule!
-
-  """创建"""
-  createGridOrder(input: CreateGridOrderInput!): GridOrder!
-
-  """创建"""
-  createInvitationToken(input: CreateInvitationTokenInput!): InvitationToken!
-
-  """创建"""
-  createLog(input: CreateLogInput!): Log!
-
-  """创建"""
-  createNotifier(input: CreateNotifierInput!): Notifier!
-
-  """创建"""
-  createOrder(input: CreateOrderInput!): Order!
-
-  """创建"""
-  createRunner(input: CreateRunnerInput!): Runner!
-
-  """创建"""
-  createRunnerStrategy(input: CreateRunnerStrategyInput!): RunnerStrategy!
-
-  """创建"""
-  createSourceCode(input: CreateSourceCodeInput!): SourceCode!
-
-  """现货下单"""
-  createSpotOrder(input: SpotOrderInput!): Boolean!
-
-  """创建"""
-  createStrategy(input: CreateStrategyInput!): Strategy!
-
-  """创建"""
-  createTodo(input: CreateTodoInput!): Todo!
+  createProvider(input: CreateProviderInput!): Provider!
 
   """创建"""
   createToken(input: CreateTokenInput!): Token!
 
   """创建"""
-  createTransactionLog(input: CreateTransactionLogInput!): TransactionLog!
-
-  """创建"""
   createUser(input: CreateUserInput!): User!
-
-  """新增验证通道"""
-  createValidatedNotifier(input: CreateNotifierInput!): NotifierCreateObject!
-
-  """创建"""
-  createWallet(input: CreateWalletInput!): Wallet!
-
-  """删除单个"""
-  deleteApi(input: DeleteApiInput!): Boolean!
-
-  """删除单个"""
-  deleteBot(input: DeleteBotInput!): Boolean!
 
   """删除单个"""
   deleteCollaborator(input: DeleteCollaboratorInput!): Boolean!
-
-  """删除单个"""
-  deleteDepositCode(input: DeleteDepositCodeInput!): Boolean!
-
-  """删除单个"""
-  deleteExitRule(input: DeleteExitRuleInput!): Boolean!
-
-  """删除单个"""
-  deleteGridOrder(input: DeleteGridOrderInput!): Boolean!
-
-  """删除单个"""
-  deleteInvitationToken(input: DeleteInvitationTokenInput!): Boolean!
-
-  """删除单个"""
-  deleteLog(input: DeleteLogInput!): Boolean!
-
-  """批量删除"""
-  deleteManyApis(input: DeleteApiInput!): Float!
-
-  """批量删除"""
-  deleteManyBots(input: DeleteBotInput!): Float!
 
   """批量删除"""
   deleteManyCollaborators(input: DeleteCollaboratorInput!): Float!
 
   """批量删除"""
-  deleteManyDepositCodes(input: DeleteDepositCodeInput!): Float!
-
-  """批量删除"""
-  deleteManyExitRules(input: DeleteExitRuleInput!): Float!
-
-  """批量删除"""
-  deleteManyGridOrders(input: DeleteGridOrderInput!): Float!
-
-  """批量删除"""
-  deleteManyInvitationTokens(input: DeleteInvitationTokenInput!): Float!
-
-  """批量删除"""
-  deleteManyLogs(input: DeleteLogInput!): Float!
-
-  """批量删除"""
-  deleteManyNotifiers(input: DeleteNotifierInput!): Float!
-
-  """批量删除"""
-  deleteManyOrders(input: DeleteOrderInput!): Float!
-
-  """批量删除"""
-  deleteManyRunnerStrategys(input: DeleteRunnerStrategyInput!): Float!
-
-  """批量删除"""
-  deleteManyRunners(input: DeleteRunnerInput!): Float!
-
-  """批量删除"""
-  deleteManySourceCodes(input: DeleteSourceCodeInput!): Float!
-
-  """批量删除"""
-  deleteManyStrategys(input: DeleteStrategyInput!): Float!
-
-  """批量删除"""
-  deleteManyTodos(input: DeleteTodoInput!): Float!
+  deleteManyProviders(input: DeleteProviderInput!): Float!
 
   """批量删除"""
   deleteManyTokens(input: DeleteTokenInput!): Float!
 
   """批量删除"""
-  deleteManyTransactionLogs(input: DeleteTransactionLogInput!): Float!
-
-  """批量删除"""
   deleteManyUsers(input: DeleteUserInput!): Float!
 
-  """批量删除"""
-  deleteManyWallets(input: DeleteWalletInput!): Float!
-
   """删除单个"""
-  deleteNotifier(input: DeleteNotifierInput!): Boolean!
-
-  """删除单个"""
-  deleteOrder(input: DeleteOrderInput!): Boolean!
-
-  """删除单个"""
-  deleteRunner(input: DeleteRunnerInput!): Boolean!
-
-  """删除单个"""
-  deleteRunnerStrategy(input: DeleteRunnerStrategyInput!): Boolean!
-
-  """删除单个"""
-  deleteSourceCode(input: DeleteSourceCodeInput!): Boolean!
-
-  """删除单个"""
-  deleteStrategy(input: DeleteStrategyInput!): Boolean!
-
-  """删除单个"""
-  deleteTodo(input: DeleteTodoInput!): Boolean!
+  deleteProvider(input: DeleteProviderInput!): Boolean!
 
   """删除单个"""
   deleteToken(input: DeleteTokenInput!): Boolean!
 
   """删除单个"""
-  deleteTransactionLog(input: DeleteTransactionLogInput!): Boolean!
-
-  """删除单个"""
   deleteUser(input: DeleteUserInput!): Boolean!
-
-  """删除单个"""
-  deleteWallet(input: DeleteWalletInput!): Boolean!
-
-  """根据充值码充值"""
-  depositByCode(input: DepositByCodeInput!): Boolean!
 
   """重置密码"""
   forgotPassword(input: ForgotPasswordInput!): Boolean!
-
-  """合约下单"""
-  futuresOrder(input: FuturesOrderInput!): Boolean!
-
-  """生成停止机器人链接(通过密码)"""
-  generateBotStopByPasswordLink(input: GenerateBotStopByPasswordLinkInput!): String!
-
-  """生成 bot 设置停止密码链接"""
-  generateSetStopPasswordLink(input: GenerateSetStopPasswordLinkInput!): String!
-  getOrders(
-    currentPage: Float!
-    pageSize: Float!
-
-    """Symbol"""
-    symbol: String
-    type: String
-    userId: Float!
-  ): Orders!
-
-  """增加 duration"""
-  increaseDuration(input: IncreaseDurationInput!): Boolean!
-
-  """cli 登录"""
-  loginByCli(input: LoginByCliInput!): LoginSuccessPayload!
 
   """邮箱登录"""
   loginByEmail(input: LoginByEmailInput!): LoginSuccessPayload!
@@ -1370,404 +244,44 @@ type Mutation {
   """Login by personal token"""
   loginByPersonalToken(token: String!): LoginSuccessPayload!
 
-  """钱包登录"""
-  loginByWallet(input: VerifySignMessageInput!): LoginSuccessPayload!
-
-  """匹配网格订单"""
-  matchOrder(input: MatchOrderInput!): Boolean!
-
-  """更改API"""
-  modifyApi(input: ModifyApiInput!): Api!
-
   """修改密码"""
   modifyPassword(input: ModifyPasswordInput!): Boolean!
-
-  """修改策略"""
-  modifyStrategy(input: ModifyStrategyInput!): Boolean!
-
-  """发布机器人通用事件"""
-  publishBotEvent(input: PublishBotEventInput!): Boolean!
-
-  """生成 apiKey"""
-  regenerateBotApiKey(input: RegenerateBotApiKeyInput!): Boolean!
-
-  """生成strategy token"""
-  regenerateStrategyToken(input: RegenerateStrategyTokenInput!): Boolean!
 
   """邮箱注册"""
   registerByEmail(input: RegisterByEmailInput!): Boolean!
 
-  """注册runner"""
-  registerRunner(input: RegisterRunnerInput!): Runner!
-
-  """删除API"""
-  removeApi(input: RemoveApiInput!): Boolean!
-
   """删除"""
   removeCollaborator(input: RemoveCollaboratorInput!): Collaborator!
-
-  """remove KV"""
-  removeKV(input: RemoveKvInput!): Boolean!
-
-  """删除Runner"""
-  removeRunner(input: RemoveRunnerInput!): Boolean!
-
-  """删除"""
-  removeRunnerStrategy(input: RemoveRunnerStrategyInput!): RunnerStrategy!
-
-  """删除策略"""
-  removeStrategy(input: RemoveStrategyInput!): Boolean!
 
   """重置密码"""
   resetPassword(input: ResetPasswordInput!): Boolean!
 
-  """开启策略回测"""
-  runBacktest(input: RunBacktestInput!): Boolean!
-
-  """启动策略"""
-  runBot(input: RunBotInput!): Boolean!
-
-  """Set KV"""
-  setKV(input: SetKvInput!): Boolean!
-
-  """设置机器人密码"""
-  setStopBotPassword(input: SetStopBotPasswordInput!): Boolean!
-
-  """停止策略回测"""
-  stopBacktest(input: StopBacktestInput!): Boolean!
-
-  """停止策略"""
-  stopBot(input: StopBotInput!): Boolean!
-
-  """停止机器人"""
-  stopBotByPassword(input: StopBotByPasswordInput!): Boolean!
-
-  """"""
-  storageClear: Boolean!
-
-  """"""
-  storageRemove(input: StorageRemoveInput!): Boolean!
-
-  """"""
-  storageSet(input: StorageSetInput!): Boolean!
-
-  """Set all"""
-  storageSetAll(input: StorageSetAllInput!): Boolean!
-
-  """sync binance order"""
-  syncSpotOrder(
-    endTime: Float!
-    startTime: Float!
-
-    """Symbol"""
-    symbol: String
-    type: String
-    userId: Float!
-  ): SyncOrdersRes!
-
-  """boter cli sync 策略"""
-  syncStrategy(input: SyncStrategyInput!): Boolean!
-
-  """更新单个"""
-  updateApi(input: UpdateApiInput!): Api!
-
-  """更新单个"""
-  updateBot(input: UpdateBotInput!): Bot!
-
-  """更新 bot name"""
-  updateBotName(input: UpdateBotNameInput!): Boolean!
-
-  """修改参数"""
-  updateBotParams(input: UpdateBotParamsInput!): Boolean!
-
   """更新单个"""
   updateCollaborator(input: UpdateCollaboratorInput!): Collaborator!
 
-  """更新单个"""
-  updateDepositCode(input: UpdateDepositCodeInput!): DepositCode!
-
   """修改email"""
   updateEmail(input: UpdateEmailInput!): Boolean!
-
-  """更新单个"""
-  updateExitRule(input: UpdateExitRuleInput!): ExitRule!
-
-  """更新单个"""
-  updateGridOrder(input: UpdateGridOrderInput!): GridOrder!
-
-  """更新单个"""
-  updateInvitationToken(input: UpdateInvitationTokenInput!): InvitationToken!
-
-  """更新单个"""
-  updateLog(input: UpdateLogInput!): Log!
-
-  """批量更新"""
-  updateManyApis(input: UpdateManyApiInput!): Boolean!
-
-  """批量更新"""
-  updateManyBots(input: UpdateManyBotInput!): Boolean!
 
   """批量更新"""
   updateManyCollaborators(input: UpdateManyCollaboratorInput!): Boolean!
 
   """批量更新"""
-  updateManyDepositCodes(input: UpdateManyDepositCodeInput!): Boolean!
-
-  """批量更新"""
-  updateManyExitRules(input: UpdateManyExitRuleInput!): Boolean!
-
-  """批量更新"""
-  updateManyGridOrders(input: UpdateManyGridOrderInput!): Boolean!
-
-  """批量更新"""
-  updateManyInvitationTokens(input: UpdateManyInvitationTokenInput!): Boolean!
-
-  """批量更新"""
-  updateManyLogs(input: UpdateManyLogInput!): Boolean!
-
-  """批量更新"""
-  updateManyNotifiers(input: UpdateManyNotifierInput!): Boolean!
-
-  """批量更新"""
-  updateManyOrders(input: UpdateManyOrderInput!): Boolean!
-
-  """批量更新"""
-  updateManyRunnerStrategys(input: UpdateManyRunnerStrategyInput!): Boolean!
-
-  """批量更新"""
-  updateManyRunners(input: UpdateManyRunnerInput!): Boolean!
-
-  """批量更新"""
-  updateManySourceCodes(input: UpdateManySourceCodeInput!): Boolean!
-
-  """批量更新"""
-  updateManyStrategys(input: UpdateManyStrategyInput!): Boolean!
-
-  """批量更新"""
-  updateManyTodos(input: UpdateManyTodoInput!): Boolean!
+  updateManyProviders(input: UpdateManyProviderInput!): Boolean!
 
   """批量更新"""
   updateManyTokens(input: UpdateManyTokenInput!): Boolean!
 
   """批量更新"""
-  updateManyTransactionLogs(input: UpdateManyTransactionLogInput!): Boolean!
-
-  """批量更新"""
   updateManyUsers(input: UpdateManyUserInput!): Boolean!
 
-  """批量更新"""
-  updateManyWallets(input: UpdateManyWalletInput!): Boolean!
-
   """更新单个"""
-  updateNotifier(input: UpdateNotifierInput!): Notifier!
-
-  """更新单个"""
-  updateOrder(input: UpdateOrderInput!): Order!
-
-  """更新单个"""
-  updateRunner(input: UpdateRunnerInput!): Runner!
-
-  """更新 Runner 心跳"""
-  updateRunnerHeartbeat(input: UpdateRunnerHeartbeatInput!): Runner!
-
-  """更新单个"""
-  updateRunnerStrategy(input: UpdateRunnerStrategyInput!): RunnerStrategy!
-
-  """更新单个"""
-  updateSourceCode(input: UpdateSourceCodeInput!): SourceCode!
-
-  """更新单个"""
-  updateStrategy(input: UpdateStrategyInput!): Strategy!
-
-  """更新策略代码"""
-  updateStrategyCode(input: UpdateStrategyCodeInput!): Boolean!
-
-  """更新单个"""
-  updateTodo(input: UpdateTodoInput!): Todo!
+  updateProvider(input: UpdateProviderInput!): Provider!
 
   """更新单个"""
   updateToken(input: UpdateTokenInput!): Token!
 
   """更新单个"""
-  updateTransactionLog(input: UpdateTransactionLogInput!): TransactionLog!
-
-  """更新UI代码"""
-  updateUiCode(input: UpdateUiCodeInput!): Boolean!
-
-  """更新单个"""
   updateUser(input: UpdateUserInput!): User!
-
-  """编辑验证通道"""
-  updateValidatedNotifier(input: UpdateNotifierInput!): NotifierCreateObject!
-
-  """更新单个"""
-  updateWallet(input: UpdateWalletInput!): Wallet!
-}
-
-"""通知"""
-type Notifier {
-  """配置"""
-  config: JSON
-
-  """"""
-  id: Int!
-
-  """名字"""
-  name: String!
-
-  """通知通道类型"""
-  type: NotifierType!
-
-  """用户ID"""
-  userId: Int!
-}
-
-type NotifierCreateObject {
-  code: Float!
-  msg: String!
-}
-
-"""通知通道类型"""
-enum NotifierType {
-  Dingtalk
-  Discord
-  Email
-  Feishu
-  Slack
-  Telegram
-  Twitter
-}
-
-"""筛选条件"""
-input NotifierWhereInput {
-  """用户ID"""
-  userId: Int!
-}
-
-"""connection"""
-type NotifiersConnection {
-  hasNextPage: Boolean!
-  items: [Notifier!]!
-  totalCount: Int!
-}
-
-"""操作类型"""
-enum OperationType {
-  DECREASE
-  ENTRY
-  EXIT
-  INCREASE
-}
-
-"""订单"""
-type Order {
-  """机器人ID"""
-  botId: Int
-
-  """交易所自定义订单ID"""
-  clientOrderId: String
-
-  """手续费"""
-  commission: Float
-
-  """手续费 asset"""
-  commissionAsset: String
-  createdAt: DateTime
-
-  """"""
-  id: Int
-
-  """是否是买家"""
-  isBuyer: Boolean
-
-  """是否是挂单方"""
-  isMaker: Boolean
-
-  """类型，做多入场、做空入场、做多止损..."""
-  operationType: String
-
-  """交易所订单ID"""
-  orderId: String!
-
-  """成交价格"""
-  price: Float
-
-  """成交量"""
-  qty: Float
-
-  """成交金额"""
-  quoteQty: Float
-
-  """已实现利润"""
-  realizedProfit: Float
-
-  """交易类型"""
-  side: String!
-
-  """状态"""
-  status: OrderStatus
-
-  """交易对"""
-  symbol: String!
-
-  """订单时间"""
-  time: Float!
-
-  """类型，市价、限价"""
-  type: String!
-  updatedAt: DateTime
-
-  """用户ID"""
-  userId: Int
-}
-
-"""下单方向"""
-enum OrderSide {
-  BUY
-  SELL
-}
-
-"""订单状态"""
-enum OrderStatus {
-  CANCELED
-  EXPIRED
-  FILLED
-  NEW
-  PARTIALLY_FILLED
-  PENDING_CANCEL
-  REJECTED
-}
-
-"""筛选条件"""
-input OrderWhereInput {
-  """机器人ID"""
-  botId: Int
-
-  """状态"""
-  status: String
-}
-
-type Orderbook {
-  """委托价格"""
-  p: Float!
-
-  """委托数量"""
-  q: Float!
-
-  """买卖方向, B or S, 为了性能，用 B|S 简写"""
-  s: String!
-}
-
-type Orders {
-  data: [Order!]!
-  total: Float!
-}
-
-"""connection"""
-type OrdersConnection {
-  hasNextPage: Boolean!
-  items: [Order!]!
-  totalCount: Int!
 }
 
 """付费类型"""
@@ -1778,103 +292,53 @@ enum PlanType {
   God
 }
 
-"""发布通用机器人事件"""
-input PublishBotEventInput {
-  """Bot ID"""
-  botId: Int!
+""""""
+type Provider {
+  """"""
+  apiKey: String
 
-  """事件数据"""
-  data: JSON
+  """self host auth code"""
+  authorizationCode: String
+  createdAt: DateTime
 
-  """事件名称"""
-  eventName: String!
+  """self host server endpoint"""
+  endpoint: String
+
+  """"""
+  id: Int!
+
+  """"""
+  name: String!
+
+  """"""
+  type: ProviderType!
+  updatedAt: DateTime
+
+  """用户ID"""
+  userId: Int
+}
+
+"""Provider 类型"""
+enum ProviderType {
+  ApiKey
+  Official
+  SelfHost
+}
+
+"""筛选条件"""
+input ProviderWhereInput {
+  """用户ID"""
+  userId: Int!
+}
+
+"""connection"""
+type ProvidersConnection {
+  hasNextPage: Boolean!
+  items: [Provider!]!
+  totalCount: Int!
 }
 
 type Query {
-  """"""
-  aggTrades(symbol: String!, type: String!): [TradeRecord!]!
-
-  """获取单个"""
-  api(
-    """ID"""
-    id: Int!
-  ): Api!
-
-  """获取列表"""
-  apis(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: ApiWhereInput
-  ): [Api!]!
-
-  """获取分页列表"""
-  apisConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: ApiWhereInput
-  ): ApisConnection!
-
-  """获取币种的余额"""
-  balance(apiId: Float!, coin: String!, type: String!): Balance!
-
-  """获取单个"""
-  bot(id: Int!): Bot!
-
-  """机器人 apiKey"""
-  botApiKey(botId: Float!): String!
-
-  """GET botParam"""
-  botParams(botId: Float!): BotParamsPayload!
-
-  """机器人统计信息"""
-  botStats(botId: Float!): BotStats!
-
-  """获取列表"""
-  bots(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: BotWhereInput
-  ): [Bot!]!
-
-  """获取分页列表"""
-  botsConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: BotWhereInput
-  ): BotsConnection!
-
   """check token"""
   checkPersonalToken(token: String!): User!
 
@@ -1883,9 +347,6 @@ type Query {
 
   """注册时，验证邮箱"""
   checkVerifyEmailToken(token: String!): LoginSuccessPayload!
-
-  """cli 登录状态"""
-  cliLoginStatus(cliToken: String!): CliLoginStatus!
 
   """获取单个"""
   collaborator(
@@ -1923,44 +384,14 @@ type Query {
     where: CollaboratorWhereInput
   ): CollaboratorsConnection!
 
-  """获取单个"""
-  depositCode(id: Int!): DepositCode!
-
-  """获取列表"""
-  depositCodes(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: DepositCodeWhereInput
-  ): [DepositCode!]!
-
-  """获取分页列表"""
-  depositCodesConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: DepositCodeWhereInput
-  ): DepositCodesConnection!
+  """自己可以访问的 provider"""
+  myProviders: [Provider!]!
 
   """获取单个"""
-  exitRule(id: Int!): ExitRule!
+  provider(id: Int!): Provider!
 
   """获取列表"""
-  exitRules(
+  providers(
     """排序类型, 例如：id_ASC、id_DESC"""
     orderBy: String
 
@@ -1971,11 +402,11 @@ type Query {
     take: Int = 20
 
     """筛选条件"""
-    where: ExitRuleWhereInput
-  ): [ExitRule!]!
+    where: ProviderWhereInput
+  ): [Provider!]!
 
   """获取分页列表"""
-  exitRulesConnection(
+  providersConnection(
     """排序类型, 例如：id_ASC、id_DESC"""
     orderBy: String
 
@@ -1986,483 +417,11 @@ type Query {
     take: Int = 20
 
     """筛选条件"""
-    where: ExitRuleWhereInput
-  ): ExitRulesConnection!
-
-  """生成充值码"""
-  generateDepositCode(input: GenerateDepositCodeInput!): Boolean!
-
-  """获取单个"""
-  gridOrder(id: Int): GridOrder!
-
-  """获取列表"""
-  gridOrders(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: GridOrderWhereInput
-  ): [GridOrder!]!
-
-  """获取分页列表"""
-  gridOrdersConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: GridOrderWhereInput
-  ): GridOrdersConnection!
-
-  """获取单个"""
-  invitationToken(
-    """ID"""
-    id: Int!
-  ): InvitationToken!
-
-  """获取列表"""
-  invitationTokens(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: InvitationTokenWhereInput
-  ): [InvitationToken!]!
-
-  """获取分页列表"""
-  invitationTokensConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: InvitationTokenWhereInput
-  ): InvitationTokensConnection!
-
-  """is stopPassword empty"""
-  isStopPasswordEmpty(botId: Float!): Boolean!
-
-  """Get KV"""
-  kv(key: String!): JSON!
-
-  """List KV"""
-  kvs(pattern: String!): JSON!
-
-  """获取单个"""
-  log(id: Int!): Log!
-
-  """获取列表"""
-  logs(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: LogWhereInput
-  ): [Log!]!
-
-  """获取分页列表"""
-  logsConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: LogWhereInput
-  ): LogsConnection!
-
-  """Generate Nonce"""
-  nonce(address: String!): String!
-
-  """获取单个"""
-  notifier(id: Int!): Notifier!
-
-  """获取列表"""
-  notifiers(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: NotifierWhereInput
-  ): [Notifier!]!
-
-  """获取分页列表"""
-  notifiersConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: NotifierWhereInput
-  ): NotifiersConnection!
-
-  """获取订单"""
-  openedOrders(botId: Float!): [Order!]!
-
-  """获取单个"""
-  order(
-    id: Int
-
-    """交易所订单ID"""
-    orderId: String
-  ): Order!
-
-  """"""
-  orderbooks(symbol: String!, type: String!): [Orderbook!]!
-
-  """获取列表"""
-  orders(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: OrderWhereInput
-  ): [Order!]!
-
-  """获取分页列表"""
-  ordersConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: OrderWhereInput
-  ): OrdersConnection!
-
-  """获取自己的 Api"""
-  ownedApis: [Api!]!
-
-  """获取自己的机器人"""
-  ownedBots(status: String!): [Bot!]!
-
-  """获取通知通道"""
-  ownedNotifiers: [Notifier!]!
-
-  """获取自己的 Runner"""
-  ownedRunners: [Runner!]!
-
-  """获取自己能看到的策略"""
-  ownedStrategies: [Strategy!]!
-
-  """获取公开的的机器人"""
-  publicBots: [Bot!]!
-
-  """获取公开的策略"""
-  publicStrategies: [Strategy!]!
-
-  """网格字段化参数"""
-  recommendedGridParams(
-    """K线数量"""
-    limit: Int
-
-    """K线周期"""
-    period: String!
-
-    """交易对"""
-    symbol: String!
-  ): GridParamsPayload!
-
-  """获取单个"""
-  runner(id: Int!): Runner!
-
-  """获取单个"""
-  runnerStrategy(
-    """ID"""
-    id: Int!
-  ): RunnerStrategy!
-
-  """获取列表"""
-  runnerStrategys(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: RunnerStrategyWhereInput
-  ): [RunnerStrategy!]!
-
-  """获取分页列表"""
-  runnerStrategysConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: RunnerStrategyWhereInput
-  ): RunnerStrategysConnection!
-
-  """获取列表"""
-  runners(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: RunnerWhereInput
-  ): [Runner!]!
-
-  """获取分页列表"""
-  runnersConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: RunnerWhereInput
-  ): RunnersConnection!
-
-  """save 交易所的 symbols"""
-  saveSymbols(tradeType: String!): Boolean!
+    where: ProviderWhereInput
+  ): ProvidersConnection!
 
   """搜索用户"""
   searchUsers(q: String!): [User!]!
-
-  """设置symbol杠杆"""
-  setLeverage(input: SetLeverageInput!): Boolean!
-
-  """信号列表"""
-  signals: [Signal!]!
-
-  """获取单个"""
-  sourceCode(id: Int!): SourceCode!
-
-  """获取列表"""
-  sourceCodes(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: SourceCodeWhereInput
-  ): [SourceCode!]!
-
-  """获取分页列表"""
-  sourceCodesConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: SourceCodeWhereInput
-  ): SourceCodesConnection!
-
-  """获取现货交易所订单"""
-  spotOrders(apiId: Int!, endTime: Float, limit: Float, orderId: Float, recvWindow: Float, startTime: Float, symbol: String!): [SpotOrder!]!
-
-  """数据统计"""
-  stats: Stats!
-
-  """GET"""
-  storageGet(
-    """storage key"""
-    key: String!
-  ): JSON!
-
-  """GET ALl"""
-  storageGetAll: JSON!
-
-  """获取单个"""
-  strategy(
-    id: Int
-
-    """策略名字"""
-    name: String
-  ): Strategy!
-
-  """策略代码"""
-  strategyCode(strategyId: Float!): String!
-
-  """获取列表"""
-  strategys(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: StrategyWhereInput
-  ): [Strategy!]!
-
-  """获取分页列表"""
-  strategysConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: StrategyWhereInput
-  ): StrategysConnection!
-
-  """获取单个 symbol"""
-  symbol(
-    """交易对"""
-    symbol: String!
-
-    """spot or futures"""
-    tradeType: TradeType!
-  ): Symbol!
-
-  """获取symbol当前杠杆"""
-  symbolLeverage(apiId: Float!, symbol: String!): Float!
-
-  """获取symbol价格"""
-  symbolPrice(
-    """"""
-    isSpot: Boolean!
-
-    """exchange or redis"""
-    source: String!
-
-    """"""
-    symbol: String!
-  ): Float!
-
-  """获取symbol的ticker"""
-  symbolTicker(
-    """"""
-    isSpot: Boolean!
-
-    """exchange or redis"""
-    source: String!
-
-    """"""
-    symbol: String!
-  ): Ticker!
-
-  """获取 symbol 列表"""
-  symbols(
-    """USDT or BUSD"""
-    quoteAsset: String
-
-    """spot or futures"""
-    tradeType: TradeType!
-  ): [Symbol!]!
-
-  """获取单个"""
-  todo(id: Int!): Todo!
-
-  """获取列表"""
-  todos(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: TodoWhereInput
-  ): [Todo!]!
-
-  """获取分页列表"""
-  todosConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: TodoWhereInput
-  ): TodosConnection!
 
   """获取单个"""
   token(
@@ -2501,48 +460,6 @@ type Query {
   ): TokensConnection!
 
   """获取单个"""
-  transactionLog(id: Int!): TransactionLog!
-
-  """获取列表"""
-  transactionLogs(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: TransactionLogWhereInput
-  ): [TransactionLog!]!
-
-  """获取分页列表"""
-  transactionLogsConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: TransactionLogWhereInput
-  ): TransactionLogsConnection!
-
-  """获取Twitter用户"""
-  twitterUserByUsername(username: String!): TwitterUser!
-
-  """UI代码"""
-  uiCode(strategyId: Float!): String!
-
-  """这个策略可以使用的 Runner"""
-  usableRunners(strategyId: Float!): [Runner!]!
-
-  """获取单个"""
   user(
     """ID"""
     id: Int
@@ -2579,57 +496,6 @@ type Query {
     """筛选条件"""
     where: UserWhereInput
   ): UsersConnection!
-
-  """"""
-  verifyPasswordLinkToken(token: String!): Bot!
-
-  """获取单个"""
-  wallet(
-    """用户ID"""
-    userId: Int
-  ): Wallet!
-
-  """获取列表"""
-  wallets(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: WalletWhereInput
-  ): [Wallet!]!
-
-  """获取分页列表"""
-  walletsConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: WalletWhereInput
-  ): WalletsConnection!
-}
-
-"""重新生成Bot apiKey"""
-input RegenerateBotApiKeyInput {
-  """Bot ID"""
-  botId: Int!
-}
-
-"""重新生成策略token"""
-input RegenerateStrategyTokenInput {
-  """策略ID"""
-  strategyId: Int!
 }
 
 """邮箱注册"""
@@ -2641,51 +507,9 @@ input RegisterByEmailInput {
   password: String!
 }
 
-"""注册runner"""
-input RegisterRunnerInput {
-  """唯一ID"""
-  machineHash: String!
-
-  """机器 ip"""
-  machineIp: String!
-
-  """个人 token"""
-  token: String!
-}
-
-"""删除"""
-input RemoveApiInput {
-  """ID"""
-  id: Int!
-}
-
 """删除"""
 input RemoveCollaboratorInput {
   """ID"""
-  id: Int!
-}
-
-""""""
-input RemoveKvInput {
-  """kv key"""
-  key: String!
-}
-
-"""删除策略"""
-input RemoveRunnerInput {
-  """"""
-  id: Int!
-}
-
-"""删除"""
-input RemoveRunnerStrategyInput {
-  """ID"""
-  id: Int!
-}
-
-"""删除策略"""
-input RemoveStrategyInput {
-  """"""
   id: Int!
 }
 
@@ -2704,589 +528,6 @@ enum RoleType {
   Member
   Owner
   Reader
-}
-
-"""启动策略回测"""
-input RunBacktestInput {
-  """回测机器人参数"""
-  backtestBotParams: JSON!
-
-  """回测参数"""
-  backtestParams: JSON!
-
-  """机器人ID"""
-  id: Int!
-}
-
-"""启动机器人"""
-input RunBotInput {
-  """Bot ID"""
-  id: Int!
-
-  """是否是重启"""
-  isRestart: Boolean = false
-}
-
-"""Strategy runner, 策略运行器"""
-type Runner {
-  createdAt: DateTime
-
-  """最后心跳时间"""
-  heartbeatAt: DateTime
-
-  """"""
-  id: Int!
-
-  """唯一ID"""
-  machineHash: String!
-
-  """机器 ip"""
-  machineIp: String!
-
-  """名字"""
-  name: String!
-
-  """runner 类型"""
-  runnerType: RunnerType!
-  updatedAt: DateTime
-
-  """User"""
-  user: User!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""Runner Strategy"""
-type RunnerStrategy {
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """Runner ID"""
-  runnerId: Int!
-
-  """Strategy"""
-  strategy: Strategy!
-
-  """策略ID"""
-  strategyId: Int!
-  updatedAt: DateTime
-}
-
-"""筛选条件"""
-input RunnerStrategyWhereInput {
-  """Runner ID"""
-  runnerId: Int!
-}
-
-"""connection"""
-type RunnerStrategysConnection {
-  hasNextPage: Boolean!
-  items: [RunnerStrategy!]!
-  totalCount: Int!
-}
-
-"""运行器类型"""
-enum RunnerType {
-  Official
-  Private
-  Public
-}
-
-"""筛选条件"""
-input RunnerWhereInput {
-  id: Int
-
-  """用户ID"""
-  userId: Int
-}
-
-"""connection"""
-type RunnersConnection {
-  hasNextPage: Boolean!
-  items: [Runner!]!
-  totalCount: Int!
-}
-
-""""""
-input SetKvInput {
-  """是否公开"""
-  isPublic: Boolean
-
-  """kv key"""
-  key: String!
-
-  """值"""
-  metadata: JSON
-
-  """kv value"""
-  value: JSON!
-}
-
-"""设置杠杆"""
-input SetLeverageInput {
-  """"""
-  apiId: Int!
-
-  """"""
-  leverage: Int!
-
-  """"""
-  symbol: String!
-}
-
-""""""
-input SetStopBotPasswordInput {
-  """Bot ID"""
-  id: Int!
-
-  """机器人密码"""
-  password: String!
-}
-
-"""信号"""
-type Signal {
-  """"""
-  alias: String!
-
-  """"""
-  candle: Candle
-
-  """"""
-  name: String!
-
-  """"""
-  period: String
-
-  """"""
-  symbol: String
-
-  """"""
-  ticker: Ticker
-
-  """"""
-  time: Float!
-
-  """spot or futures"""
-  tradeType: TradeType
-}
-
-""""""
-type SourceCode {
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """策略代码"""
-  strategyCode: String!
-
-  """策略ID"""
-  strategyId: Int!
-
-  """UI 代码"""
-  uiCode: String!
-  updatedAt: DateTime
-}
-
-"""筛选条件"""
-input SourceCodeWhereInput {
-  """"""
-  id: Int!
-}
-
-"""connection"""
-type SourceCodesConnection {
-  hasNextPage: Boolean!
-  items: [SourceCode!]!
-  totalCount: Int!
-}
-
-"""交易所原始现货订单"""
-type SpotOrder {
-  """"""
-  clientOrderId: String!
-
-  """"""
-  cummulativeQuoteQty: String!
-
-  """"""
-  executedQty: String!
-
-  """"""
-  icebergQty: String!
-
-  """"""
-  isWorking: Boolean!
-
-  """"""
-  orderId: Float!
-
-  """"""
-  orderListId: Float!
-
-  """"""
-  origQty: String!
-
-  """"""
-  origQuoteOrderQty: String!
-
-  """"""
-  price: String!
-
-  """"""
-  side: String!
-
-  """"""
-  status: String!
-
-  """"""
-  stopPrice: String!
-
-  """"""
-  symbol: String!
-
-  """"""
-  time: Float!
-
-  """"""
-  timeInForce: String!
-
-  """"""
-  type: String!
-
-  """"""
-  updateTime: Float!
-}
-
-"""现货下单"""
-input SpotOrderInput {
-  """机器人ID"""
-  botId: Int!
-
-  """交易金额"""
-  cash: Float
-
-  """类型，做多入场、做空入场、做多止损..."""
-  operationType: OperationType!
-
-  """价格"""
-  price: Float
-
-  """交易数量"""
-  quantity: Float
-
-  """交易方向"""
-  side: OrderSide!
-
-  """symbol"""
-  symbol: String!
-}
-
-"""数据统计"""
-type Stats {
-  """机器人数量"""
-  botCount: Int!
-
-  """策略人数量"""
-  strategyCount: Int!
-
-  """用户数量"""
-  userCount: Int!
-}
-
-"""停止策略回测"""
-input StopBacktestInput {
-  """机器人ID"""
-  id: Int!
-}
-
-""""""
-input StopBotByPasswordInput {
-  """Bot ID"""
-  id: Int!
-
-  """机器人密码"""
-  password: String!
-}
-
-"""停止机器人"""
-input StopBotInput {
-  """"""
-  id: Int!
-}
-
-""""""
-input StorageRemoveInput {
-  """storage key"""
-  key: String!
-}
-
-""""""
-input StorageSetAllInput {
-  storage: JSON
-}
-
-""""""
-input StorageSetInput {
-  """storage key"""
-  key: String!
-
-  """storage value"""
-  value: JSON!
-}
-
-"""策略"""
-type Strategy {
-  """Collaborator"""
-  collaborators: [Collaborator!]!
-
-  """配置"""
-  config: JSON
-  createdAt: DateTime
-
-  """开发调试的 botID"""
-  devBotId: Int
-
-  """docs"""
-  docs: JSON
-
-  """终止机器人是否需要密码"""
-  enableStopPassword: Boolean
-
-  """是否开启交易"""
-  enableTrade: Boolean
-
-  """是否开启自定义 UI, 默认不开启"""
-  enableUI: Boolean
-
-  """"""
-  id: Int!
-
-  """介绍"""
-  intro: String
-
-  """立刻启动还是创建后手动启动"""
-  isLazyStart: Boolean
-
-  """是否公开"""
-  isPublic: Boolean!
-
-  """策略名字"""
-  name: String!
-
-  """参数定义Schema"""
-  paramsSchema: JSON
-
-  """slug, 唯一标识"""
-  slug: String!
-
-  """唯一token, sync 的时候用"""
-  token: String!
-
-  """交易类型"""
-  tradeTypes: [String!]
-  updatedAt: DateTime
-
-  """被使用的次数"""
-  usedCount: Int!
-
-  """User"""
-  user: User!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""筛选条件"""
-input StrategyWhereInput {
-  """"""
-  id: Int!
-}
-
-"""connection"""
-type StrategysConnection {
-  hasNextPage: Boolean!
-  items: [Strategy!]!
-  totalCount: Int!
-}
-
-type Subscription {
-  """订阅机器人最新添加日志"""
-  addLogSubscription(botId: Float!): Log!
-
-  """订阅回测结果"""
-  backtestResultSubscription(botId: Float!): BacktestResult!
-
-  """订阅回测状态"""
-  backtestStatusSubscription(botId: Float!): BacktestStatus!
-
-  """机器人通用事件"""
-  botEventSubscription(botId: Float!): BotEventPayload!
-
-  """订阅机器人 storage"""
-  botStorageSubscription(botId: Float!): String!
-
-  """订阅市场深度"""
-  orderbooksSubscription(symbol: String!, type: String!): [Orderbook!]!
-
-  """价格"""
-  symbolPriceSubscription: Float!
-
-  """订阅逐笔成交"""
-  tradesSubscription(symbol: String!, type: String!): TradeRecord!
-}
-
-"""监控的交易对"""
-type Symbol {
-  """"""
-  baseAsset: String!
-
-  """"""
-  isMarginTradingAllowed: Boolean
-
-  """"""
-  isSpotTradingAllowed: Boolean
-
-  """"""
-  maxPrice: Float!
-
-  """"""
-  maxQty: Float!
-
-  """"""
-  minNotional: Float!
-
-  """"""
-  minPrice: Float!
-
-  """"""
-  minQty: Float!
-
-  """"""
-  pricePrecision: Float!
-
-  """"""
-  qtyPrecision: Float!
-
-  """"""
-  quoteAsset: String!
-
-  """"""
-  symbol: String!
-
-  """spot or futures"""
-  tradeType: TradeType
-}
-
-type SyncOrdersRes {
-  code: Float!
-  msg: String!
-  total: Float!
-}
-
-"""sync 策略"""
-input SyncStrategyInput {
-  """参数定义Schema"""
-  paramsSchema: JSON
-
-  """策略唯一名字"""
-  slug: String!
-
-  """策略代码"""
-  strategyCode: String!
-
-  """UI 代码"""
-  uiCode: String
-}
-
-"""ticker"""
-type Ticker {
-  """"""
-  ask: Float
-
-  """"""
-  askVolume: Float
-
-  """"""
-  average: Float!
-
-  """"""
-  bid: Float
-
-  """"""
-  bidVolume: Float
-
-  """"""
-  change: Float!
-
-  """"""
-  close: Float!
-
-  """"""
-  closeVolume: Float!
-
-  """"""
-  high: Float!
-
-  """"""
-  low: Float!
-
-  """"""
-  open: Float!
-
-  """"""
-  percentage: Float!
-
-  """"""
-  previousClose: Float!
-
-  """"""
-  quoteVolume: Float!
-
-  """"""
-  symbol: String!
-
-  """"""
-  time: Float!
-
-  """"""
-  volume: Float!
-}
-
-"""Todo list 应用"""
-type Todo {
-  """是否已完成"""
-  completed: Boolean!
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """该 Todo Title"""
-  title: String!
-  updatedAt: DateTime
-
-  """用户ID"""
-  userId: Int
-}
-
-"""筛选条件"""
-input TodoWhereInput {
-  """是否已完成"""
-  completed: Boolean!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""connection"""
-type TodosConnection {
-  hasNextPage: Boolean!
-  items: [Todo!]!
-  totalCount: Int!
 }
 
 """personal token"""
@@ -3329,172 +570,10 @@ type TokensConnection {
   totalCount: Int!
 }
 
-"""逐笔成交"""
-type TradeRecord {
-  """ID"""
-  aggId: Float!
-
-  """是否是 maker"""
-  isBuyerMaker: Boolean!
-
-  """成交价格"""
-  price: Float!
-
-  """成交数量"""
-  quantity: Float!
-
-  """时间"""
-  timestamp: Float!
-}
-
-"""交易类型"""
-enum TradeType {
-  Futures
-  Spot
-}
-
-"""充值流水"""
-type TransactionLog {
-  """金额"""
-  cashAmount: Float!
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """时间额度(数量)"""
-  timeAmount: Float!
-
-  """Deposit/Withdraw/Deduct"""
-  transactionType: TransactionType!
-  updatedAt: DateTime
-
-  """钱包ID"""
-  walletId: Int!
-}
-
-"""筛选条件"""
-input TransactionLogWhereInput {
-  """钱包ID"""
-  walletId: Int!
-}
-
-"""connection"""
-type TransactionLogsConnection {
-  hasNextPage: Boolean!
-  items: [TransactionLog!]!
-  totalCount: Int!
-}
-
-"""运行器类型"""
-enum TransactionType {
-  Deduct
-  Deposit
-  Withdraw
-}
-
-type TwitterUser {
-  """"""
-  id: String!
-
-  """"""
-  name: String!
-
-  """"""
-  profile_image_url: String!
-
-  """"""
-  username: String!
-}
-
-"""更新data"""
-input UpdateApiDataInput {
-  """apiKey"""
-  apiKey: String!
-
-  """交易所类型"""
-  exchange: ExchangeType!
-
-  """是否是模拟盘"""
-  isSimulated: Boolean
-
-  """该 Api 名字"""
-  name: String!
-
-  """secretKey"""
-  passphrase: String
-
-  """secretKey"""
-  secretKey: String!
-}
-
-"""更新单个"""
-input UpdateApiInput {
-  """更新的数据"""
-  data: UpdateApiDataInput
-
-  """更新条件"""
-  where: UpdateApiWhereInput
-}
-
-"""更新条件"""
-input UpdateApiWhereInput {
-  """ID"""
-  id: Int!
-}
-
-"""更新data"""
-input UpdateBotDataInput {
-  """机器人名字"""
-  name: String
-
-  """参数"""
-  params: JSON
-
-  """状态"""
-  status: BotStatus
-}
-
-"""更新单个"""
-input UpdateBotInput {
-  """更新的数据"""
-  data: UpdateBotDataInput
-
-  """更新条件"""
-  where: UpdateBotWhereInput
-}
-
-"""更新 botName"""
-input UpdateBotNameInput {
-  """ID"""
-  id: Int!
-
-  """名字"""
-  name: String!
-}
-
-"""更新data"""
-input UpdateBotParamsInput {
-  """api ID"""
-  apiId: Int
-
-  """Bot ID"""
-  id: Int!
-
-  """参数"""
-  params: JSON!
-}
-
-"""更新条件"""
-input UpdateBotWhereInput {
-  """Bot ID"""
-  id: Int!
-}
-
 """更新data"""
 input UpdateCollaboratorDataInput {
-  """策略ID"""
-  strategyId: Int!
+  """Provider ID"""
+  providerId: Int!
 
   """用户ID"""
   userId: Int!
@@ -3515,27 +594,6 @@ input UpdateCollaboratorWhereInput {
   id: Int
 }
 
-"""更新data"""
-input UpdateDepositCodeDataInput {
-  """是否已消费(已使用)"""
-  consumed: Boolean!
-}
-
-"""更新单个"""
-input UpdateDepositCodeInput {
-  """更新的数据"""
-  data: UpdateDepositCodeDataInput
-
-  """更新条件"""
-  where: UpdateDepositCodeWhereInput
-}
-
-"""更新条件"""
-input UpdateDepositCodeWhereInput {
-  """ID"""
-  id: Int
-}
-
 """修改email"""
 input UpdateEmailInput {
   """邮箱"""
@@ -3543,124 +601,6 @@ input UpdateEmailInput {
 
   """密码"""
   password: String!
-}
-
-"""更新data"""
-input UpdateExitRuleDataInput {
-  """唯一Code"""
-  code: ExitRuleCode!
-
-  """名字"""
-  name: String!
-
-  """类型"""
-  type: ExitRuleType!
-}
-
-"""更新单个"""
-input UpdateExitRuleInput {
-  """更新的数据"""
-  data: UpdateExitRuleDataInput
-
-  """更新条件"""
-  where: UpdateExitRuleWhereInput
-}
-
-"""更新条件"""
-input UpdateExitRuleWhereInput {
-  """"""
-  id: Int!
-}
-
-"""更新data"""
-input UpdateGridOrderDataInput {
-  """机器人ID"""
-  botId: Int
-
-  """交易所订单ID"""
-  buyOrderId: Int
-
-  """交易所订单ID"""
-  sellOrderId: Int
-}
-
-"""更新单个"""
-input UpdateGridOrderInput {
-  """更新的数据"""
-  data: UpdateGridOrderDataInput
-
-  """更新条件"""
-  where: UpdateGridOrderWhereInput
-}
-
-"""更新条件"""
-input UpdateGridOrderWhereInput {
-  """机器人ID"""
-  botId: Int
-  id: Int
-}
-
-"""更新data"""
-input UpdateInvitationTokenDataInput {
-  """用户ID"""
-  userId: Int!
-}
-
-"""更新单个"""
-input UpdateInvitationTokenInput {
-  """更新的数据"""
-  data: UpdateInvitationTokenDataInput
-
-  """更新条件"""
-  where: UpdateInvitationTokenWhereInput
-}
-
-"""更新条件"""
-input UpdateInvitationTokenWhereInput {
-  """ID"""
-  id: Int!
-}
-
-"""更新data"""
-input UpdateLogDataInput {
-  """机器人ID"""
-  botId: Int!
-
-  """日志内容"""
-  content: String!
-}
-
-"""更新单个"""
-input UpdateLogInput {
-  """更新的数据"""
-  data: UpdateLogDataInput
-
-  """更新条件"""
-  where: UpdateLogWhereInput
-}
-
-"""更新条件"""
-input UpdateLogWhereInput {
-  """"""
-  id: Int!
-}
-
-"""批量更新"""
-input UpdateManyApiInput {
-  """更新的数据"""
-  data: UpdateApiDataInput
-
-  """更新条件"""
-  where: UpdateApiWhereInput
-}
-
-"""批量更新"""
-input UpdateManyBotInput {
-  """更新的数据"""
-  data: UpdateBotDataInput
-
-  """更新条件"""
-  where: UpdateBotWhereInput
 }
 
 """批量更新"""
@@ -3673,111 +613,12 @@ input UpdateManyCollaboratorInput {
 }
 
 """批量更新"""
-input UpdateManyDepositCodeInput {
+input UpdateManyProviderInput {
   """更新的数据"""
-  data: UpdateDepositCodeDataInput
+  data: UpdateProviderDataInput
 
   """更新条件"""
-  where: UpdateDepositCodeWhereInput
-}
-
-"""批量更新"""
-input UpdateManyExitRuleInput {
-  """更新的数据"""
-  data: UpdateExitRuleDataInput
-
-  """更新条件"""
-  where: UpdateExitRuleWhereInput
-}
-
-"""批量更新"""
-input UpdateManyGridOrderInput {
-  """更新的数据"""
-  data: UpdateGridOrderDataInput
-
-  """更新条件"""
-  where: UpdateGridOrderWhereInput
-}
-
-"""批量更新"""
-input UpdateManyInvitationTokenInput {
-  """更新的数据"""
-  data: UpdateInvitationTokenDataInput
-
-  """更新条件"""
-  where: UpdateInvitationTokenWhereInput
-}
-
-"""批量更新"""
-input UpdateManyLogInput {
-  """更新的数据"""
-  data: UpdateLogDataInput
-
-  """更新条件"""
-  where: UpdateLogWhereInput
-}
-
-"""批量更新"""
-input UpdateManyNotifierInput {
-  """更新的数据"""
-  data: UpdateNotifierDataInput
-
-  """更新条件"""
-  where: UpdateNotifierWhereInput
-}
-
-"""批量更新"""
-input UpdateManyOrderInput {
-  """更新的数据"""
-  data: UpdateOrderDataInput
-
-  """更新条件"""
-  where: UpdateOrderWhereInput
-}
-
-"""批量更新"""
-input UpdateManyRunnerInput {
-  """更新的数据"""
-  data: UpdateRunnerDataInput
-
-  """更新条件"""
-  where: UpdateRunnerWhereInput
-}
-
-"""批量更新"""
-input UpdateManyRunnerStrategyInput {
-  """更新的数据"""
-  data: UpdateRunnerStrategyDataInput
-
-  """更新条件"""
-  where: UpdateRunnerStrategyWhereInput
-}
-
-"""批量更新"""
-input UpdateManySourceCodeInput {
-  """更新的数据"""
-  data: UpdateSourceCodeDataInput
-
-  """更新条件"""
-  where: UpdateSourceCodeWhereInput
-}
-
-"""批量更新"""
-input UpdateManyStrategyInput {
-  """更新的数据"""
-  data: UpdateStrategyDataInput
-
-  """更新条件"""
-  where: UpdateStrategyWhereInput
-}
-
-"""批量更新"""
-input UpdateManyTodoInput {
-  """更新的数据"""
-  data: UpdateTodoDataInput
-
-  """更新条件"""
-  where: UpdateTodoWhereInput
+  where: UpdateProviderWhereInput
 }
 
 """批量更新"""
@@ -3790,15 +631,6 @@ input UpdateManyTokenInput {
 }
 
 """批量更新"""
-input UpdateManyTransactionLogInput {
-  """更新的数据"""
-  data: UpdateTransactionLogDataInput
-
-  """更新条件"""
-  where: UpdateTransactionLogWhereInput
-}
-
-"""批量更新"""
 input UpdateManyUserInput {
   """更新的数据"""
   data: UpdateUserDataInput
@@ -3807,279 +639,26 @@ input UpdateManyUserInput {
   where: UpdateUserWhereInput
 }
 
-"""批量更新"""
-input UpdateManyWalletInput {
-  """更新的数据"""
-  data: UpdateWalletDataInput
-
-  """更新条件"""
-  where: UpdateWalletWhereInput
-}
-
 """更新data"""
-input UpdateNotifierDataInput {
-  """配置"""
-  config: JSON
-
-  """名字"""
+input UpdateProviderDataInput {
+  """该 Provider Name"""
   name: String!
 
-  """通知通道类型"""
-  type: NotifierType!
-}
-
-"""更新单个"""
-input UpdateNotifierInput {
-  """更新的数据"""
-  data: UpdateNotifierDataInput
-
-  """更新条件"""
-  where: UpdateNotifierWhereInput
-}
-
-"""更新条件"""
-input UpdateNotifierWhereInput {
   """"""
-  id: Int!
-}
-
-"""更新data"""
-input UpdateOrderDataInput {
-  """机器人ID"""
-  botId: Int
-
-  """交易所自定义订单ID"""
-  clientOrderId: String
-
-  """手续费"""
-  commission: Float
-
-  """手续费 asset"""
-  commissionAsset: String
-
-  """是否是买家"""
-  isBuyer: Boolean
-
-  """是否是挂单方"""
-  isMaker: Boolean
-
-  """交易所订单ID"""
-  orderId: String
-
-  """成交价格"""
-  price: Float
-
-  """成交量"""
-  qty: Float
-
-  """成交金额"""
-  quoteQty: Float
-
-  """已实现利润"""
-  realizedProfit: Float
-
-  """交易类型"""
-  side: String
-
-  """状态"""
-  status: OrderStatus
-
-  """交易对"""
-  symbol: String
-
-  """订单时间"""
-  time: Float
+  type: String!
 }
 
 """更新单个"""
-input UpdateOrderInput {
+input UpdateProviderInput {
   """更新的数据"""
-  data: UpdateOrderDataInput
+  data: UpdateProviderDataInput
 
   """更新条件"""
-  where: UpdateOrderWhereInput
+  where: UpdateProviderWhereInput
 }
 
 """更新条件"""
-input UpdateOrderWhereInput {
-  """机器人ID"""
-  botId: Int
-  id: Int
-
-  """交易所订单ID"""
-  orderId: String
-
-  """订单状态"""
-  status: OrderStatus
-}
-
-"""更新data"""
-input UpdateRunnerDataInput {
-  """最后心跳时间"""
-  heartbeatAt: DateTime
-
-  """策略名字"""
-  name: String
-
-  """runner 类型"""
-  runnerType: RunnerType
-}
-
-"""更新 Runner 心跳"""
-input UpdateRunnerHeartbeatInput {
-  """最后心跳时间"""
-  heartbeatAt: DateTime!
-
-  """"""
-  runnerId: Int!
-}
-
-"""更新单个"""
-input UpdateRunnerInput {
-  """更新的数据"""
-  data: UpdateRunnerDataInput
-
-  """更新条件"""
-  where: UpdateRunnerWhereInput
-}
-
-"""更新data"""
-input UpdateRunnerStrategyDataInput {
-  """Runner ID"""
-  runnerId: Int!
-
-  """策略ID"""
-  strategyId: Int!
-}
-
-"""更新单个"""
-input UpdateRunnerStrategyInput {
-  """更新的数据"""
-  data: UpdateRunnerStrategyDataInput
-
-  """更新条件"""
-  where: UpdateRunnerStrategyWhereInput
-}
-
-"""更新条件"""
-input UpdateRunnerStrategyWhereInput {
-  """ID"""
-  id: Int
-}
-
-"""更新条件"""
-input UpdateRunnerWhereInput {
-  """"""
-  id: Int!
-}
-
-"""更新data"""
-input UpdateSourceCodeDataInput {
-  """策略代码"""
-  strategyCode: String
-
-  """UI 代码"""
-  uiCode: String
-}
-
-"""更新单个"""
-input UpdateSourceCodeInput {
-  """更新的数据"""
-  data: UpdateSourceCodeDataInput
-
-  """更新条件"""
-  where: UpdateSourceCodeWhereInput
-}
-
-"""更新条件"""
-input UpdateSourceCodeWhereInput {
-  """ID"""
-  id: Int
-
-  """策略ID"""
-  strategyId: Int!
-}
-
-"""更新策略代码"""
-input UpdateStrategyCodeInput {
-  """策略代码"""
-  strategyCode: String!
-
-  """策略ID"""
-  strategyId: Int!
-}
-
-"""更新data"""
-input UpdateStrategyDataInput {
-  """docs"""
-  docs: JSON
-
-  """终止机器人是否需要密码"""
-  enableStopPassword: Boolean
-
-  """是否开启交易"""
-  enableTrade: Boolean
-
-  """是否开启自定义 UI, 默认不开启"""
-  enableUI: Boolean
-
-  """介绍"""
-  intro: String
-
-  """是否公开"""
-  isPublic: Boolean
-
-  """策略名字"""
-  name: String
-
-  """参数定义Schema"""
-  paramsSchema: JSON
-
-  """slug, 唯一标识"""
-  slug: String
-
-  """交易类型"""
-  tradeTypes: JSON
-}
-
-"""更新单个"""
-input UpdateStrategyInput {
-  """更新的数据"""
-  data: UpdateStrategyDataInput
-
-  """更新条件"""
-  where: UpdateStrategyWhereInput
-}
-
-"""更新条件"""
-input UpdateStrategyWhereInput {
-  """"""
-  id: Int!
-}
-
-"""更新data"""
-input UpdateTodoDataInput {
-  """是否已完成"""
-  completed: Boolean
-
-  """该 Todo Title"""
-  title: String
-}
-
-"""更新单个"""
-input UpdateTodoInput {
-  """更新的数据"""
-  data: UpdateTodoDataInput
-
-  """更新条件"""
-  where: UpdateTodoWhereInput
-}
-
-"""更新条件"""
-input UpdateTodoWhereInput {
-  """是否已完成"""
-  completed: Boolean
-
+input UpdateProviderWhereInput {
   """ID"""
   id: Int
 }
@@ -4115,36 +694,6 @@ input UpdateTokenWhereInput {
 }
 
 """更新data"""
-input UpdateTransactionLogDataInput {
-  """钱包ID"""
-  walletId: Int!
-}
-
-"""更新单个"""
-input UpdateTransactionLogInput {
-  """更新的数据"""
-  data: UpdateTransactionLogDataInput
-
-  """更新条件"""
-  where: UpdateTransactionLogWhereInput
-}
-
-"""更新条件"""
-input UpdateTransactionLogWhereInput {
-  """ID"""
-  id: Int
-}
-
-"""更新UI代码"""
-input UpdateUiCodeInput {
-  """策略ID"""
-  strategyId: Int!
-
-  """UI 代码"""
-  uiCode: String
-}
-
-"""更新data"""
 input UpdateUserDataInput {
   """个人简介"""
   bio: String
@@ -4176,27 +725,6 @@ input UpdateUserInput {
 
 """更新条件"""
 input UpdateUserWhereInput {
-  """ID"""
-  id: Int
-}
-
-"""更新data"""
-input UpdateWalletDataInput {
-  """该 Wallet Title"""
-  title: String
-}
-
-"""更新单个"""
-input UpdateWalletInput {
-  """更新的数据"""
-  data: UpdateWalletDataInput
-
-  """更新条件"""
-  where: UpdateWalletWhereInput
-}
-
-"""更新条件"""
-input UpdateWalletWhereInput {
   """ID"""
   id: Int
 }
@@ -4259,45 +787,5 @@ input UserWhereInput {
 type UsersConnection {
   hasNextPage: Boolean!
   items: [User!]!
-  totalCount: Int!
-}
-
-"""verify wallet sign message input"""
-input VerifySignMessageInput {
-  """Message"""
-  message: String!
-
-  """签名"""
-  signature: String!
-}
-
-""""""
-type Wallet {
-  createdAt: DateTime
-
-  """可用余额(时间秒)"""
-  free: Float!
-
-  """冻结金额(时间秒)"""
-  frozen: Float!
-
-  """"""
-  id: Int!
-  updatedAt: DateTime
-
-  """用户ID"""
-  userId: Int
-}
-
-"""筛选条件"""
-input WalletWhereInput {
-  """用户ID"""
-  userId: Int!
-}
-
-"""connection"""
-type WalletsConnection {
-  hasNextPage: Boolean!
-  items: [Wallet!]!
   totalCount: Int!
 }

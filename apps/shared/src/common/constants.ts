@@ -28,3 +28,6 @@ export const googleAuthUrl =
 export const CHAT_URL = '/chat'
 
 export const LOGIN_SUCCESS_REDIRECT_URL = CHAT_URL
+
+export const NAV_HEIGHT = 56
+export const SIDEBAR_WIDTH = 260

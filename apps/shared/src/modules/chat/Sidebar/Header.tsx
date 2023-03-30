@@ -1,10 +1,10 @@
 import { Box } from '@fower/react'
-import { Logo } from '../../Logo'
+import { Logo } from '../../../components'
 
 export const Header = () => {
   return (
     <Box>
-      <Logo></Logo>
+      <Logo />
     </Box>
   )
 }

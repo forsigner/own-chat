@@ -1,8 +1,12 @@
 import { Options, query } from "stook-graphql";
-import { Token, LoginSuccessPayload, AddTokenInput, DeleteTokenInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs } from "./types";
-import { ADD_TOKEN, DELETE_TOKEN, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN } from "./gql";
+import { Provider, Token, LoginSuccessPayload, AddProviderInput, AddTokenInput, DeleteTokenInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs } from "./types";
+import { ADD_PROVIDER, ADD_TOKEN, DELETE_TOKEN, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN } from "./gql";
 
 class ApiService {
+  async addProvider(args: AddProviderInput = {} as AddProviderInput, opt: Options = {}) {
+    return await query<Provider>(ADD_PROVIDER, { ...opt, variables: { input: args } })
+  }
+
   async addToken(args: AddTokenInput = {} as AddTokenInput, opt: Options = {}) {
     return await query<Token>(ADD_TOKEN, { ...opt, variables: { input: args } })
   }

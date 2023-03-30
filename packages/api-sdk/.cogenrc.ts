@@ -19,6 +19,9 @@ const gqlConfig: ConfigItem[] = [
   { name: 'tokens', actions: ['useQuery', 'refetch'] },
   { name: 'addToken', actions: ['query'] },
   { name: 'deleteToken', actions: ['query'] },
+
+  { name: 'myProviders', actions: ['useQuery', 'refetch'] },
+  { name: 'addProvider', actions: ['query'] },
 ]
 
 const dirName = 'src'

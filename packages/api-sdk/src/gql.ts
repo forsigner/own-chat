@@ -29,6 +29,21 @@ query tokens($orderBy: String, $skip: Int, $take: Int, $where: TokenWhereInput){
     }
 }
 `;
+export const MY_PROVIDERS = gql`
+query myProviders{
+    myProviders{
+        apiKey
+        authorizationCode
+        createdAt
+        endpoint
+        id
+        name
+        type
+        updatedAt
+        userId
+    }
+}
+`;
 export const LOGIN_BY_GITHUB = gql`
 mutation loginByGithub($code: String!){
     loginByGithub(code: $code){
@@ -139,5 +154,20 @@ mutation addToken($input: AddTokenInput!){
 export const DELETE_TOKEN = gql`
 mutation deleteToken($input: DeleteTokenInput!){
     deleteToken(input: $input)
+}
+`;
+export const ADD_PROVIDER = gql`
+mutation addProvider($input: AddProviderInput!){
+    addProvider(input: $input){
+        apiKey
+        authorizationCode
+        createdAt
+        endpoint
+        id
+        name
+        type
+        updatedAt
+        userId
+    }
 }
 `;

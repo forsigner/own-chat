@@ -9,7 +9,7 @@ export const getServerSideProps = withIronSessionSsr(async ({ req }) => {
 
   if (payload) {
     return {
-      props: {},
+      props: { payload },
     }
   }
 

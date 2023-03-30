@@ -18,6 +18,7 @@ export function PageChat({ userId, payload }: Props) {
   useEffect(() => {
     if (!payload) return
     const { token, user } = payload
+
     if (query.from === 'third-party-login') {
       setToken(token)
       setUser(user)

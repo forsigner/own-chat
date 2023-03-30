@@ -1,17 +1,26 @@
 import { Box } from '@fower/react'
 import { EasyModal } from '@own-chat/easy-modal'
 import { Button, CogSolid } from 'bone-ui'
-import { Logo } from '../../../components'
+import { SIDEBAR_WIDTH } from '../../../common'
 import { AddSessionButton } from '../AddSessionButton'
 import { ModalSettings } from '../ModalSettings'
 import { SessionList } from './SessionList'
 
 export const Sidebar = () => {
   return (
-    <Box column w-300 py6 h-100p borderRight borderRightGray100 display={['none', 'flex']}>
-      <Box px5>
-        <Logo />
+    <Box
+      column
+      w={SIDEBAR_WIDTH}
+      pb6
+      h-100p
+      borderRight
+      borderRightGray100
+      display={['none', 'flex']}
+    >
+      <Box toBetween toCenterY columnGap-8 px5 pt4>
+        <AddSessionButton />
       </Box>
+
       <Box flex-1 overflowYAuto pb6 px5>
         <SessionList />
       </Box>
