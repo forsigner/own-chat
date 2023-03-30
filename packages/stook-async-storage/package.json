@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/forsigner/stook#README",
   "devDependencies": {
-    "stook": "^1.14.0"
+    "stook": "^1.16.0"
   }
 }

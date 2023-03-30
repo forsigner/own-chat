@@ -17,7 +17,7 @@
     "@floating-ui/react-dom-interactions": "^0.13.3",
     "@fower/react": "^1.76.0",
     "@own-chat/shared": "*",
-    "bone-ui": "^0.32.0",
+    "bone-ui": "^0.32.1",
     "case": "^1.6.3",
     "cookies-next": "^2.1.1",
     "date-fns": "^2.29.3",
@@ -42,10 +42,10 @@
     "react-textarea-autosize": "^8.4.1",
     "react-use": "^17.4.0",
     "rough-notation": "^0.5.1",
-    "stook-devtools": "^1.14.0",
-    "stook-graphql": "^1.15.0",
-    "stook-localstorage": "^1.14.0",
-    "stook-rest": "^1.15.0",
+    "stook-devtools": "^1.16.0",
+    "stook-graphql": "^1.16.0",
+    "stook-localstorage": "^1.16.0",
+    "stook-rest": "^1.16.0",
     "use-debounce": "^9.0.3"
   },
   "devDependencies": {

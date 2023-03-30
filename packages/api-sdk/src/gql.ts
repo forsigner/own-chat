@@ -65,13 +65,15 @@ query sessions($orderBy: String, $skip: Int, $take: Int, $where: SessionWhereInp
     }
 }
 `;
-export const MESSAGE = gql`
-query message($id: Int!){
-    message(id: $id){
+export const MESSAGES = gql`
+query messages($orderBy: String, $skip: Int, $take: Int, $where: MessageWhereInput){
+    messages(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
         content
         createdAt
         id
+        role
         sessionId
+        streaming
         updatedAt
         userId
     }
@@ -240,7 +242,9 @@ mutation addMessage($input: AddMessageInput!){
         content
         createdAt
         id
+        role
         sessionId
+        streaming
         updatedAt
         userId
     }

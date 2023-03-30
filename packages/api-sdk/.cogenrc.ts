@@ -30,7 +30,7 @@ const gqlConfig: ConfigItem[] = [
   { name: 'addSession', actions: ['query'] },
   { name: 'updateSession', actions: ['query'] },
 
-  { name: 'message', actions: ['useQuery', 'refetch'] },
+  { name: 'messages', actions: ['useQuery', 'refetch', 'mutator'] },
   { name: 'addMessage', actions: ['query'] },
 ]
 

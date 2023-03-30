@@ -18,11 +18,11 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
-    "@bone-ui/iconify": "^0.32.0",
-    "@bone-ui/icons": "^0.32.0",
+    "@bone-ui/iconify": "^0.32.1",
+    "@bone-ui/icons": "^0.32.1",
     "@fower/react": "^1.76.0",
     "@own-chat/easy-modal": "*",
-    "bone-ui": "^0.32.0",
+    "bone-ui": "^0.32.1",
     "fomir": "^0.21.0",
     "i18next": "^22.4.13",
     "lodash": "^4.17.21",
@@ -34,10 +34,10 @@
     "react-syntax-highlighter": "^15.5.0",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
-    "stook": "^1.14.0",
+    "stook": "^1.16.0",
     "stook-async-storage": "*",
-    "stook-graphql": "^1.15.0",
-    "stook-localstorage": "^1.14.0",
-    "stook-rest": "^1.15.0"
+    "stook-graphql": "^1.16.0",
+    "stook-localstorage": "^1.16.0",
+    "stook-rest": "^1.16.0"
   }
 }

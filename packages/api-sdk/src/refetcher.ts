@@ -1,11 +1,11 @@
 import { RefetchOptions, fetcher } from "stook-graphql";
-import { Message, Provider, Session, Setting, Token, QueryMessageArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
-import { MESSAGE, MY_PROVIDERS, SESSIONS, SETTING, TOKENS } from "./gql";
+import { Message, Provider, Session, Setting, Token, QueryMessagesArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
+import { MESSAGES, MY_PROVIDERS, SESSIONS, SETTING, TOKENS } from "./gql";
 
 class RefetcherService {
-  async refetchMessage(args: QueryMessageArgs = {} as QueryMessageArgs, opt: RefetchOptions = {}): Promise<Message> {
+  async refetchMessages(args: QueryMessagesArgs = {} as QueryMessagesArgs, opt: RefetchOptions = {}): Promise<Message[]> {
 
-    const key = opt.key ? opt.key : MESSAGE
+    const key = opt.key ? opt.key : MESSAGES
     if (!fetcher.get(key)) {
       return console.warn('fetcher找不到' + key) as any
     }

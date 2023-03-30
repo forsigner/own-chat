@@ -30,8 +30,8 @@
   },
   "homepage": "https://github.com/forsigner/fomir#readme",
   "dependencies": {
-    "stook": "^1.14.0",
-    "stook-graphql": "^1.15.0"
+    "stook": "^1.16.0",
+    "stook-graphql": "^1.16.0"
   },
   "devDependencies": {
     "@cogen/cli": "^0.11.5",

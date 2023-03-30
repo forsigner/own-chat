@@ -12,6 +12,9 @@ input AddMessageInput {
   """"""
   content: String!
 
+  """"""
+  role: String!
+
   """sessionId"""
   sessionId: Int!
 
@@ -108,6 +111,9 @@ input CreateCollaboratorInput {
 input CreateMessageInput {
   """"""
   content: String!
+
+  """"""
+  role: String!
 
   """sessionId"""
   sessionId: Int!
@@ -261,8 +267,14 @@ type Message {
   """"""
   id: Int!
 
+  """"""
+  role: String!
+
   """sessionId"""
   sessionId: Int!
+
+  """streaming status"""
+  streaming: Boolean
   updatedAt: DateTime
 
   """用户ID"""

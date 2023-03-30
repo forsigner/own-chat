@@ -24,6 +24,7 @@ export type AddCollaboratorInput = {
 /** 添加 Message */
 export type AddMessageInput = {
   content: Scalars['String'];
+  role: Scalars['String'];
   /** sessionId */
   sessionId: Scalars['Int'];
   /** 用户ID */
@@ -103,6 +104,7 @@ export type CreateCollaboratorInput = {
 /** 创建 */
 export type CreateMessageInput = {
   content: Scalars['String'];
+  role: Scalars['String'];
   /** sessionId */
   sessionId: Scalars['Int'];
   /** 用户ID */
@@ -229,8 +231,11 @@ export type Message = {
   content: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
+  role: Scalars['String'];
   /** sessionId */
   sessionId: Scalars['Int'];
+  /** streaming status */
+  streaming?: Maybe<Scalars['Boolean']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** 用户ID */
   userId: Scalars['Int'];
