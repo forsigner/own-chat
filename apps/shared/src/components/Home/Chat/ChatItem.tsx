@@ -6,6 +6,7 @@ import IconChatgpt from './icon-chatgpt.svg'
 import ChatLoading from './chat-loading.svg'
 import { Message } from '../../../hooks'
 import { memo } from 'react'
+import { Markdown } from './Markdown'
 interface Props {
   message: Message
 }
@@ -23,7 +24,7 @@ const ChatItem = ({ message }: Props) => {
         )}
       </Box>
 
-      <Box>
+      <Box w='80%'>
         <Box mb2 toLeft columnGap-8>
           <Box>
             {!isUser && <Box fontMedium>AI</Box>}
@@ -34,7 +35,10 @@ const ChatItem = ({ message }: Props) => {
           </Box>
         </Box>
         {message.streaming && <ChatLoading />}
-        {!message.streaming && <Box leadingRelaxed>{message.content}</Box>}
+        {!message.streaming && <Box leadingRelaxed>
+          {isUser && message.content}
+          {!isUser && <Markdown content={message.content} />}
+        </Box>}
       </Box>
     </Box>
   )
