@@ -7,7 +7,6 @@ import { copyToClipboard } from '../../../common/utils';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 // or use theme like this
 // import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
-
 import "./markdown.scss";
 
 interface MarkdownProps {
@@ -30,7 +29,7 @@ export const Markdown = ({ content }: MarkdownProps) => {
 
 const PreCode = (props: any) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { node, inline, className, children } = props
+  const { className, children } = props
   const match = /language-(\w+)/.exec(className || '') || ''
 
   return (
@@ -48,7 +47,6 @@ const PreCode = (props: any) => {
         children={String(children).replace(/\n$/, '')}
         language={match && match[1]}
         style={oneDark}
-        // node={node}
         PreTag="div"
       />
     </div>
