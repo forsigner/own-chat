@@ -8,6 +8,8 @@ export const isServer = typeof window === 'undefined'
 
 export const isEqual = reactFastCompare
 
+export const KeyCode_Enter = 13;
+
 export function genId() {
   return nanoid()
 }
