@@ -1,5 +1,5 @@
 import { ChatCompletionResponseMessage } from 'openai'
-import { TIME_OUT_MS } from './api-util'
+import { TIME_OUT_MS } from './chatService'
 
 export interface Result {
   code: string | number
@@ -10,10 +10,15 @@ export interface Result {
 interface ChatParams {
   model: string
   messages: ChatCompletionResponseMessage[]
+  // https://platform.openai.com/docs/api-reference/completions/create#completions/create-presence_penalty
   presence_penalty: number
+  // https://platform.openai.com/docs/api-reference/chat/create#chat/create-stream
   stream: boolean
-  temperature: number
-  top_p: number
+  // https://platform.openai.com/docs/api-reference/chat/create#chat/create-temperature
+  temperature?: number
+  // https://platform.openai.com/docs/api-reference/edits/create#edits/create-top_p
+  top_p?: number
+  // https://platform.openai.com/docs/api-reference/chat/create#chat/create-max_tokens
   max_tokens: number
 }
 
