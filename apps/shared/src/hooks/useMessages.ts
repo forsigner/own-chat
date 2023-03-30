@@ -18,7 +18,7 @@ export const useMessages = () => {
 
   function initNewMessage(value: string) {
     const { id: sessionId } = getCurrentSession()
-    setMessages(messages => {
+    setMessages((messages) => {
       messages.push({
         sessionId,
         content: value,
@@ -43,10 +43,10 @@ export const useMessages = () => {
     })
   }
 
-  const msg = useMemo(() => messages.filter(item => item.sessionId === currentSession.id), [
-    currentSession,
-    messages,
-  ])
+  const msg = useMemo(
+    () => messages.filter((item) => item.sessionId === currentSession.id),
+    [currentSession, messages],
+  )
 
   return {
     loading,

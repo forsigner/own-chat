@@ -4,11 +4,13 @@ import { Avatar, Spinner, Tooltip } from 'bone-ui'
 import { useUser } from '../../../stores'
 import { useProviders } from '../hooks/useProviders'
 import { updateActiveProviderId, useSetting } from '../hooks/useSetting'
+import { useUpdateActiveProviderId } from '../hooks/useUpdateActiveProviderId'
 
 export const ProviderList = () => {
   const { user } = useUser()
   const { setting } = useSetting()
   const { providers, activeProvider, loading } = useProviders()
+  const { updateActiveProviderId } = useUpdateActiveProviderId()
 
   if (loading) {
     return (
@@ -28,13 +30,7 @@ export const ProviderList = () => {
             key={item.id}
             cursorPointer
             onClick={async () => {
-              await updateActiveProviderId(setting.id, item.id)
-              await Refetcher.refetchSessions({
-                where: {
-                  userId: user.id,
-                  providerId: item.id,
-                },
-              })
+              await updateActiveProviderId(item.id)
             }}
             w-100p
             toBetween
