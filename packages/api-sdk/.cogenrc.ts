@@ -20,6 +20,9 @@ const gqlConfig: ConfigItem[] = [
   { name: 'addToken', actions: ['query'] },
   { name: 'deleteToken', actions: ['query'] },
 
+  { name: 'setting', actions: ['useQuery', 'refetch', 'mutator'] },
+  { name: 'updateSetting', actions: ['query'] },
+
   { name: 'myProviders', actions: ['useQuery', 'refetch'] },
   { name: 'addProvider', actions: ['query'] },
 

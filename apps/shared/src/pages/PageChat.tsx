@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ChatLayout } from '../layouts'
 import { ModuleChat } from '../modules'
+import { useSetting } from '../modules/chat/hooks/useSetting'
 import { useToken, useUser } from '../stores'
 
 interface Props {
@@ -12,8 +13,8 @@ interface Props {
 
 export function PageChat({ userId, payload }: Props) {
   const { query } = useRouter()
-  const { setUser } = useUser()
-  const { setToken } = useToken()
+  const { user, setUser } = useUser()
+  const { token, setToken } = useToken()
 
   useEffect(() => {
     if (!payload) return
@@ -24,6 +25,8 @@ export function PageChat({ userId, payload }: Props) {
       setUser(user)
     }
   }, [payload, query.from, setToken, setUser])
+
+  if (!user || !token) return
 
   return <ModuleChat />
 }

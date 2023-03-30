@@ -113,6 +113,14 @@ export type CreateSessionInput = {
 };
 
 /** 创建 */
+export type CreateSettingInput = {
+  activeProviderId?: InputMaybe<Scalars['Int']>;
+  activeSessionId?: InputMaybe<Scalars['Int']>;
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** 创建 */
 export type CreateTokenInput = {
   /** description */
   description?: InputMaybe<Scalars['String']>;
@@ -144,6 +152,12 @@ export type DeleteProviderInput = {
 
 /** 删除 */
 export type DeleteSessionInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 删除 */
+export type DeleteSettingInput = {
   /** ID */
   id: Scalars['Int'];
 };
@@ -211,6 +225,8 @@ export type Mutation = {
   /** 创建 */
   createSession: Session;
   /** 创建 */
+  createSetting: Setting;
+  /** 创建 */
   createToken: Token;
   /** 创建 */
   createUser: User;
@@ -223,6 +239,8 @@ export type Mutation = {
   /** 批量删除 */
   deleteManySessions: Scalars['Float'];
   /** 批量删除 */
+  deleteManySettings: Scalars['Float'];
+  /** 批量删除 */
   deleteManyTokens: Scalars['Float'];
   /** 批量删除 */
   deleteManyUsers: Scalars['Float'];
@@ -230,6 +248,8 @@ export type Mutation = {
   deleteProvider: Scalars['Boolean'];
   /** 删除单个 */
   deleteSession: Scalars['Boolean'];
+  /** 删除单个 */
+  deleteSetting: Scalars['Boolean'];
   /** 删除单个 */
   deleteToken: Scalars['Boolean'];
   /** 删除单个 */
@@ -263,6 +283,8 @@ export type Mutation = {
   /** 批量更新 */
   updateManySessions: Scalars['Boolean'];
   /** 批量更新 */
+  updateManySettings: Scalars['Boolean'];
+  /** 批量更新 */
   updateManyTokens: Scalars['Boolean'];
   /** 批量更新 */
   updateManyUsers: Scalars['Boolean'];
@@ -270,6 +292,8 @@ export type Mutation = {
   updateProvider: Provider;
   /** 更新单个 */
   updateSession: Session;
+  /** 更新单个 */
+  updateSetting: Setting;
   /** 更新单个 */
   updateToken: Token;
   /** 更新单个 */
@@ -312,6 +336,11 @@ export type MutationCreateSessionArgs = {
 };
 
 
+export type MutationCreateSettingArgs = {
+  input: CreateSettingInput;
+};
+
+
 export type MutationCreateTokenArgs = {
   input: CreateTokenInput;
 };
@@ -342,6 +371,11 @@ export type MutationDeleteManySessionsArgs = {
 };
 
 
+export type MutationDeleteManySettingsArgs = {
+  input: DeleteSettingInput;
+};
+
+
 export type MutationDeleteManyTokensArgs = {
   input: DeleteTokenInput;
 };
@@ -359,6 +393,11 @@ export type MutationDeleteProviderArgs = {
 
 export type MutationDeleteSessionArgs = {
   input: DeleteSessionInput;
+};
+
+
+export type MutationDeleteSettingArgs = {
+  input: DeleteSettingInput;
 };
 
 
@@ -442,6 +481,11 @@ export type MutationUpdateManySessionsArgs = {
 };
 
 
+export type MutationUpdateManySettingsArgs = {
+  input: UpdateManySettingInput;
+};
+
+
 export type MutationUpdateManyTokensArgs = {
   input: UpdateManyTokenInput;
 };
@@ -459,6 +503,11 @@ export type MutationUpdateProviderArgs = {
 
 export type MutationUpdateSessionArgs = {
   input: UpdateSessionInput;
+};
+
+
+export type MutationUpdateSettingArgs = {
+  input: UpdateSettingInput;
 };
 
 
@@ -546,6 +595,12 @@ export type Query = {
   sessions: Array<Session>;
   /** 获取分页列表 */
   sessionsConnection: SessionsConnection;
+  /** 获取单个 */
+  setting: Setting;
+  /** 获取列表 */
+  settings: Array<Setting>;
+  /** 获取分页列表 */
+  settingsConnection: SettingsConnection;
   /** 获取单个 */
   token: Token;
   /** 获取列表 */
@@ -641,6 +696,28 @@ export type QuerySessionsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<SessionWhereInput>;
+};
+
+
+export type QuerySettingArgs = {
+  id?: InputMaybe<Scalars['Int']>;
+  userId?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QuerySettingsArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SettingWhereInput>;
+};
+
+
+export type QuerySettingsConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SettingWhereInput>;
 };
 
 
@@ -745,6 +822,29 @@ export type SessionsConnection = {
   totalCount: Scalars['Int'];
 };
 
+export type Setting = {
+  __typename?: 'Setting';
+  activeProviderId?: Maybe<Scalars['Int']>;
+  activeSessionId?: Maybe<Scalars['Int']>;
+  id: Scalars['Int'];
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** 筛选条件 */
+export type SettingWhereInput = {
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** connection */
+export type SettingsConnection = {
+  __typename?: 'SettingsConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Setting>;
+  totalCount: Scalars['Int'];
+};
+
 /** personal token */
 export type Token = {
   __typename?: 'Token';
@@ -834,6 +934,14 @@ export type UpdateManySessionInput = {
 };
 
 /** 批量更新 */
+export type UpdateManySettingInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateSettingDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateSettingWhereInput>;
+};
+
+/** 批量更新 */
 export type UpdateManyTokenInput = {
   /** 更新的数据 */
   data?: InputMaybe<UpdateTokenDataInput>;
@@ -888,6 +996,28 @@ export type UpdateSessionInput = {
 export type UpdateSessionWhereInput = {
   /** ID */
   id?: InputMaybe<Scalars['Int']>;
+};
+
+/** 更新data */
+export type UpdateSettingDataInput = {
+  activeProviderId?: InputMaybe<Scalars['Int']>;
+  activeSessionId?: InputMaybe<Scalars['Int']>;
+};
+
+/** 更新单个 */
+export type UpdateSettingInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateSettingDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateSettingWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdateSettingWhereInput = {
+  /** ID */
+  id?: InputMaybe<Scalars['Int']>;
+  /** 用户ID */
+  userId?: InputMaybe<Scalars['Int']>;
 };
 
 /** 更新data */

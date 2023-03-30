@@ -1,6 +1,6 @@
 import { Options, useQuery, useMutation } from "stook-graphql";
-import { Provider, Session, Token, QuerySessionsArgs, QueryTokensArgs } from "./types";
-import { MY_PROVIDERS, SESSIONS, TOKENS } from "./gql";
+import { Provider, Session, Setting, Token, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
+import { MY_PROVIDERS, SESSIONS, SETTING, TOKENS } from "./gql";
 
 class HooksService {
   useMyProviders(args?: any | (() => any), opt: Options = {}) {
@@ -9,6 +9,10 @@ class HooksService {
 
   useSessions(args?: QuerySessionsArgs | (() => QuerySessionsArgs), opt: Options = {}) {
     return useQuery<Session[], QuerySessionsArgs>(SESSIONS, { ...opt, variables: args })
+  }
+
+  useSetting(args?: QuerySettingArgs | (() => QuerySettingArgs), opt: Options = {}) {
+    return useQuery<Setting, QuerySettingArgs>(SETTING, { ...opt, variables: args })
   }
 
   useTokens(args?: QueryTokensArgs | (() => QueryTokensArgs), opt: Options = {}) {

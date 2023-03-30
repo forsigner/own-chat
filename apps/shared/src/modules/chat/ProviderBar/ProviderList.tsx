@@ -1,39 +1,31 @@
 import { Box } from '@fower/react'
-import { Hooks, Provider } from '@own-chat/api-sdk'
 import { Avatar, Spinner, Tooltip } from 'bone-ui'
-import { useState } from 'react'
+import { useProviders } from '../hooks/useProviders'
+import { updateActiveProviderId, useSetting } from '../hooks/useSetting'
 
 export const ProviderList = () => {
-  const [provider, setProvider] = useState<Provider>()
-  const { data = [], loading } = Hooks.useMyProviders(
-    {},
-    {
-      onUpdate({ data }) {
-        if (!data?.length) return
-        if (!provider) {
-          setProvider(data[0])
-        }
-      },
-    },
-  )
-  if (loading)
+  const { setting } = useSetting()
+  const { providers, activeProvider, loading } = useProviders()
+
+  if (loading) {
     return (
       <Box toCenter>
         <Spinner />
       </Box>
     )
+  }
 
   return (
     <Box column toCenterX rowGap-12 mt4>
-      {data.map((item) => {
-        const selected = item.id === provider?.id
+      {providers.map((item) => {
+        const selected = item.id === activeProvider?.id
 
         return (
           <Box
             key={item.id}
             cursorPointer
-            onClick={() => {
-              setProvider(item)
+            onClick={async () => {
+              await updateActiveProviderId(setting.id, item.id)
             }}
             w-100p
             toBetween

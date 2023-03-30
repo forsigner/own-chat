@@ -29,6 +29,16 @@ query tokens($orderBy: String, $skip: Int, $take: Int, $where: TokenWhereInput){
     }
 }
 `;
+export const SETTING = gql`
+query setting($id: Int, $userId: Int){
+    setting(id: $id, userId: $userId){
+        activeProviderId
+        activeSessionId
+        id
+        userId
+    }
+}
+`;
 export const MY_PROVIDERS = gql`
 query myProviders{
     myProviders{
@@ -166,6 +176,16 @@ mutation addToken($input: AddTokenInput!){
 export const DELETE_TOKEN = gql`
 mutation deleteToken($input: DeleteTokenInput!){
     deleteToken(input: $input)
+}
+`;
+export const UPDATE_SETTING = gql`
+mutation updateSetting($input: UpdateSettingInput!){
+    updateSetting(input: $input){
+        activeProviderId
+        activeSessionId
+        id
+        userId
+    }
 }
 `;
 export const ADD_PROVIDER = gql`

@@ -1,6 +1,6 @@
 import { Options, query } from "stook-graphql";
-import { Provider, Session, Token, LoginSuccessPayload, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs } from "./types";
-import { ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN } from "./gql";
+import { Provider, Session, Token, LoginSuccessPayload, Setting, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, UpdateSettingInput } from "./types";
+import { ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, UPDATE_SETTING } from "./gql";
 
 class ApiService {
   async addProvider(args: AddProviderInput = {} as AddProviderInput, opt: Options = {}) {
@@ -29,6 +29,10 @@ class ApiService {
 
   async loginByPersonalToken(args: MutationLoginByPersonalTokenArgs = {} as MutationLoginByPersonalTokenArgs, opt: Options = {}) {
     return await query<LoginSuccessPayload>(LOGIN_BY_PERSONAL_TOKEN, { ...opt, variables: args })
+  }
+
+  async updateSetting(args: UpdateSettingInput = {} as UpdateSettingInput, opt: Options = {}) {
+    return await query<Setting>(UPDATE_SETTING, { ...opt, variables: { input: args } })
   }
 }
 
