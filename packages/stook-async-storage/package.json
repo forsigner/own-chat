@@ -23,7 +23,7 @@
     "url": "https://github.com/forsigner/stook/issues"
   },
   "homepage": "https://github.com/forsigner/stook#README",
-  "devDependencies": {
+  "dependencies": {
     "stook": "^1.16.0"
   }
 }
