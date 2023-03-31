@@ -19,7 +19,9 @@ export function useSendMessage() {
       },
     ]
 
-    const { maxToken, historyMsgLength, temperature, top_p, frequencyPenalty, presencePenalty } = settings
+    const { maxToken, historyMsgLength, temperature, top_p, frequencyPenalty, presencePenalty } =
+      settings
+
     const histeryMsgQueue = new HisteryMsgQueue(historyMsgLength, messages)
     try {
       await fetchChatStream({
@@ -29,7 +31,7 @@ export function useSendMessage() {
           stream: true,
           top_p: top_p,
           model: 'gpt-3.5-turbo',
-          max_tokens: Number(maxToken),
+          max_tokens: Number(maxToken || '2000'),
           messages: [...newMsg, ...histeryMsgQueue.gethisteryMsgQueue()],
         },
         onMessage(text, done) {
