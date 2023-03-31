@@ -28,6 +28,25 @@ query tokens($orderBy: String, $skip: Int, $take: Int, $where: TokenWhereInput){
     }
 }
 `;
+export const SEARCH_USERS = gql`
+query searchUsers($q: String!){
+    searchUsers(q: $q){
+        avatar
+        bio
+        email
+        emailValidatedAt
+        githubId
+        googleId
+        id
+        jobTitle
+        login
+        nickname
+        phone
+        planType
+        username
+    }
+}
+`;
 export const SETTING = gql`
 query setting($id: Int, $userId: Int){
     setting(id: $id, userId: $userId){
@@ -43,12 +62,35 @@ query provider($id: Int!){
     provider(id: $id){
         apiKey
         authorizationCode
+        collaborators{
+            createdAt
+            id
+            providerId
+            roleType
+            updatedAt
+            userId
+        }
         createdAt
         endpoint
         id
         name
         type
         updatedAt
+        user{
+            avatar
+            bio
+            email
+            emailValidatedAt
+            githubId
+            googleId
+            id
+            jobTitle
+            login
+            nickname
+            phone
+            planType
+            username
+        }
         userId
     }
 }
@@ -58,12 +100,35 @@ query activeProvider{
     activeProvider{
         apiKey
         authorizationCode
+        collaborators{
+            createdAt
+            id
+            providerId
+            roleType
+            updatedAt
+            userId
+        }
         createdAt
         endpoint
         id
         name
         type
         updatedAt
+        user{
+            avatar
+            bio
+            email
+            emailValidatedAt
+            githubId
+            googleId
+            id
+            jobTitle
+            login
+            nickname
+            phone
+            planType
+            username
+        }
         userId
     }
 }
@@ -73,12 +138,35 @@ query myProviders{
     myProviders{
         apiKey
         authorizationCode
+        collaborators{
+            createdAt
+            id
+            providerId
+            roleType
+            updatedAt
+            userId
+        }
         createdAt
         endpoint
         id
         name
         type
         updatedAt
+        user{
+            avatar
+            bio
+            email
+            emailValidatedAt
+            githubId
+            googleId
+            id
+            jobTitle
+            login
+            nickname
+            phone
+            planType
+            username
+        }
         userId
     }
 }
@@ -217,6 +305,79 @@ mutation deleteToken($input: DeleteTokenInput!){
     deleteToken(input: $input)
 }
 `;
+export const UPDATE_USER = gql`
+mutation updateUser($input: UpdateUserInput!){
+    updateUser(input: $input){
+        avatar
+        bio
+        email
+        emailValidatedAt
+        githubId
+        googleId
+        id
+        jobTitle
+        login
+        nickname
+        phone
+        planType
+        username
+    }
+}
+`;
+export const ADD_COLLABORATOR = gql`
+mutation addCollaborator($input: AddCollaboratorInput!){
+    addCollaborator(input: $input){
+        createdAt
+        id
+        providerId
+        roleType
+        updatedAt
+        user{
+            avatar
+            bio
+            email
+            emailValidatedAt
+            githubId
+            googleId
+            id
+            jobTitle
+            login
+            nickname
+            phone
+            planType
+            username
+        }
+        userId
+    }
+}
+`;
+export const REMOVE_COLLABORATOR = gql`
+mutation removeCollaborator($input: RemoveCollaboratorInput!){
+    removeCollaborator(input: $input){
+        createdAt
+        id
+        providerId
+        roleType
+        updatedAt
+        user{
+            avatar
+            bio
+            email
+            emailValidatedAt
+            githubId
+            googleId
+            id
+            jobTitle
+            login
+            nickname
+            phone
+            planType
+            username
+        }
+        userId
+    }
+}
+`;
 export const UPDATE_SETTING = gql`
 mutation updateSetting($input: UpdateSettingInput!){
     updateSetting(input: $input){
@@ -232,12 +393,35 @@ mutation updateProvider($input: UpdateProviderInput!){
     updateProvider(input: $input){
         apiKey
         authorizationCode
+        collaborators{
+            createdAt
+            id
+            providerId
+            roleType
+            updatedAt
+            userId
+        }
         createdAt
         endpoint
         id
         name
         type
         updatedAt
+        user{
+            avatar
+            bio
+            email
+            emailValidatedAt
+            githubId
+            googleId
+            id
+            jobTitle
+            login
+            nickname
+            phone
+            planType
+            username
+        }
         userId
     }
 }
@@ -247,12 +431,35 @@ mutation addProvider($input: AddProviderInput!){
     addProvider(input: $input){
         apiKey
         authorizationCode
+        collaborators{
+            createdAt
+            id
+            providerId
+            roleType
+            updatedAt
+            userId
+        }
         createdAt
         endpoint
         id
         name
         type
         updatedAt
+        user{
+            avatar
+            bio
+            email
+            emailValidatedAt
+            githubId
+            googleId
+            id
+            jobTitle
+            login
+            nickname
+            phone
+            planType
+            username
+        }
         userId
     }
 }

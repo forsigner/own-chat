@@ -1,6 +1,6 @@
 import { Options, useQuery, useMutation } from "stook-graphql";
-import { Provider, Message, Session, Setting, Token, QueryMessagesArgs, QueryProviderArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
-import { ACTIVE_PROVIDER, MESSAGES, MY_PROVIDERS, PROVIDER, SESSIONS, SETTING, TOKENS } from "./gql";
+import { Provider, Message, User, Session, Setting, Token, QueryMessagesArgs, QueryProviderArgs, QuerySearchUsersArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
+import { ACTIVE_PROVIDER, MESSAGES, MY_PROVIDERS, PROVIDER, SEARCH_USERS, SESSIONS, SETTING, TOKENS } from "./gql";
 
 class HooksService {
   useActiveProvider(args?: any | (() => any), opt: Options = {}) {
@@ -17,6 +17,10 @@ class HooksService {
 
   useProvider(args?: QueryProviderArgs | (() => QueryProviderArgs), opt: Options = {}) {
     return useQuery<Provider, QueryProviderArgs>(PROVIDER, { ...opt, variables: args })
+  }
+
+  useSearchUsers(args?: QuerySearchUsersArgs | (() => QuerySearchUsersArgs), opt: Options = {}) {
+    return useQuery<User[], QuerySearchUsersArgs>(SEARCH_USERS, { ...opt, variables: args })
   }
 
   useSessions(args?: QuerySessionsArgs | (() => QuerySessionsArgs), opt: Options = {}) {

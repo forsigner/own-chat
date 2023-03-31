@@ -1,8 +1,12 @@
 import { Options, query } from "stook-graphql";
-import { Message, Provider, Session, Token, LoginSuccessPayload, Setting, AddMessageInput, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, UpdateProviderInput, UpdateSessionInput, UpdateSettingInput, QueryProviderArgs } from "./types";
-import { ADD_MESSAGE, ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, UPDATE_PROVIDER, UPDATE_SESSION, UPDATE_SETTING, ACTIVE_PROVIDER, PROVIDER } from "./gql";
+import { Collaborator, Message, Provider, Session, Token, LoginSuccessPayload, Setting, User, AddCollaboratorInput, AddMessageInput, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveCollaboratorInput, UpdateProviderInput, UpdateSessionInput, UpdateSettingInput, UpdateUserInput, QueryProviderArgs } from "./types";
+import { ADD_COLLABORATOR, ADD_MESSAGE, ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_COLLABORATOR, UPDATE_PROVIDER, UPDATE_SESSION, UPDATE_SETTING, UPDATE_USER, ACTIVE_PROVIDER, PROVIDER } from "./gql";
 
 class ApiService {
+  async addCollaborator(args: AddCollaboratorInput = {} as AddCollaboratorInput, opt: Options = {}) {
+    return await query<Collaborator>(ADD_COLLABORATOR, { ...opt, variables: { input: args } })
+  }
+
   async addMessage(args: AddMessageInput = {} as AddMessageInput, opt: Options = {}) {
     return await query<Message>(ADD_MESSAGE, { ...opt, variables: { input: args } })
   }
@@ -35,6 +39,10 @@ class ApiService {
     return await query<LoginSuccessPayload>(LOGIN_BY_PERSONAL_TOKEN, { ...opt, variables: args })
   }
 
+  async removeCollaborator(args: RemoveCollaboratorInput = {} as RemoveCollaboratorInput, opt: Options = {}) {
+    return await query<Collaborator>(REMOVE_COLLABORATOR, { ...opt, variables: { input: args } })
+  }
+
   async updateProvider(args: UpdateProviderInput = {} as UpdateProviderInput, opt: Options = {}) {
     return await query<Provider>(UPDATE_PROVIDER, { ...opt, variables: { input: args } })
   }
@@ -45,6 +53,10 @@ class ApiService {
 
   async updateSetting(args: UpdateSettingInput = {} as UpdateSettingInput, opt: Options = {}) {
     return await query<Setting>(UPDATE_SETTING, { ...opt, variables: { input: args } })
+  }
+
+  async updateUser(args: UpdateUserInput = {} as UpdateUserInput, opt: Options = {}) {
+    return await query<User>(UPDATE_USER, { ...opt, variables: { input: args } })
   }
 
   async activeProvider(args: any = {} as any, opt: Options = {}) {

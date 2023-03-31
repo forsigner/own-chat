@@ -1,6 +1,6 @@
 import { RefetchOptions, fetcher } from "stook-graphql";
-import { Provider, Message, Session, Setting, Token, QueryMessagesArgs, QueryProviderArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
-import { ACTIVE_PROVIDER, MESSAGES, MY_PROVIDERS, PROVIDER, SESSIONS, SETTING, TOKENS } from "./gql";
+import { Provider, Message, User, Session, Setting, Token, QueryMessagesArgs, QueryProviderArgs, QuerySearchUsersArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
+import { ACTIVE_PROVIDER, MESSAGES, MY_PROVIDERS, PROVIDER, SEARCH_USERS, SESSIONS, SETTING, TOKENS } from "./gql";
 
 class RefetcherService {
   async refetchActiveProvider(args: any = {} as any, opt: RefetchOptions = {}): Promise<Provider> {
@@ -42,6 +42,18 @@ class RefetcherService {
   async refetchProvider(args: QueryProviderArgs = {} as QueryProviderArgs, opt: RefetchOptions = {}): Promise<Provider> {
 
     const key = opt.key ? opt.key : PROVIDER
+    if (!fetcher.get(key)) {
+      return console.warn('fetcher找不到' + key) as any
+    }
+    if (Object.keys(args).length) opt.variables = args
+    if (!opt.showLoading) opt.showLoading = false
+    return await fetcher.get(key).refetch(opt)
+
+  }
+
+  async refetchSearchUsers(args: QuerySearchUsersArgs = {} as QuerySearchUsersArgs, opt: RefetchOptions = {}): Promise<User[]> {
+
+    const key = opt.key ? opt.key : SEARCH_USERS
     if (!fetcher.get(key)) {
       return console.warn('fetcher找不到' + key) as any
     }

@@ -630,6 +630,8 @@ export type Provider = {
   apiKey?: Maybe<Scalars['String']>;
   /** self host auth code */
   authorizationCode?: Maybe<Scalars['String']>;
+  /** Collaborator */
+  collaborators: Array<Collaborator>;
   createdAt?: Maybe<Scalars['DateTime']>;
   /** self host server endpoint */
   endpoint?: Maybe<Scalars['String']>;
@@ -637,6 +639,8 @@ export type Provider = {
   name: Scalars['String'];
   type: ProviderType;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  /** User */
+  user: User;
   /** 用户ID */
   userId?: Maybe<Scalars['Int']>;
 };

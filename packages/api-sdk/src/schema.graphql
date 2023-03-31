@@ -470,6 +470,9 @@ type Provider {
 
   """self host auth code"""
   authorizationCode: String
+
+  """Collaborator"""
+  collaborators: [Collaborator!]!
   createdAt: DateTime
 
   """self host server endpoint"""
@@ -484,6 +487,9 @@ type Provider {
   """"""
   type: ProviderType!
   updatedAt: DateTime
+
+  """User"""
+  user: User!
 
   """用户ID"""
   userId: Int

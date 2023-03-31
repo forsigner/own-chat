@@ -20,6 +20,11 @@ const gqlConfig: ConfigItem[] = [
   { name: 'addToken', actions: ['query'] },
   { name: 'deleteToken', actions: ['query'] },
 
+  { name: 'searchUsers', actions: ['useQuery', 'refetch'] },
+  { name: 'updateUser', actions: ['query'] },
+  { name: 'addCollaborator', actions: ['query'] },
+  { name: 'removeCollaborator', actions: ['query'] },
+
   { name: 'setting', actions: ['useQuery', 'refetch', 'mutator'] },
   { name: 'updateSetting', actions: ['query'] },
 
