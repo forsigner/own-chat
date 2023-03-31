@@ -1,22 +1,14 @@
 import { Box } from '@fower/react'
-import { RoleType } from '@own-chat/api-sdk'
 import { EasyModal } from '@own-chat/easy-modal'
 import { Button, CogSolid, Tag } from 'bone-ui'
-import { useMemo } from 'react'
 import { NAV_HEIGHT } from '../../../common'
-import { useUser } from '../../../stores'
+import { useIsOwner } from '../hooks/useIsOwner'
 import { useProviders } from '../hooks/useProviders'
 import { ModalUpsertProvider } from '../ModalUpsertProvider'
 
 export const CurrentProvider = () => {
-  const { user } = useUser()
-  const { activeProvider, loading } = useProviders()
-
-  const isOwner = useMemo(() => {
-    if (!activeProvider) return false
-    const member = activeProvider.members.find((i) => i.userId === user.id)
-    return member?.roleType === RoleType.Owner
-  }, [user, activeProvider])
+  const { activeProvider } = useProviders()
+  const { isOwner, loading } = useIsOwner()
 
   if (loading) return null
 

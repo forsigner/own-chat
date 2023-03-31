@@ -3,7 +3,8 @@ import { EasyModal } from '@own-chat/easy-modal'
 import { Button, ChevronDownOutline } from 'bone-ui'
 import { NAV_HEIGHT } from '../../../common'
 import { useSessions } from '../../../hooks'
-import { Members } from '../Members/Members'
+import { MemberList } from '../Members/MemberList'
+import { AddMemberButton } from '../Members/AddMemberButton'
 import { ModalSessionList } from '../ModalSessionList'
 
 export const ChatHeader = () => {
@@ -33,7 +34,10 @@ export const ChatHeader = () => {
           onClick={() => EasyModal.show(ModalSessionList)}
         />
       </Box>
-      <Members />
+      <Box toCenterY spaceX2 pr2>
+        <MemberList />
+        <AddMemberButton />
+      </Box>
     </Box>
   )
 }
