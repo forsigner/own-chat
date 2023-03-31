@@ -8,7 +8,7 @@ export function useProviders() {
 
   const activeProvider = useMemo(() => {
     if (!providers || !setting?.activeProviderId) return
-    return providers?.find((item) => item.id === setting.activeProviderId)
+    return providers?.find((item) => item.id === setting.activeProviderId)!
   }, [providers, setting])
 
   return {

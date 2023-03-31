@@ -13,7 +13,7 @@ interface Values {
 }
 
 export function useUpsertProviderForm() {
-  const { hide, data = {} as Provider } = useModal<Provider>()
+  const { hide, data } = useModal<Provider>()
   const { user } = useUser()
   const isEdit = !!data
 

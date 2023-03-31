@@ -87,11 +87,8 @@ type Collaborator {
 
 """筛选条件"""
 input CollaboratorWhereInput {
-  """ID"""
-  id: Int
-
-  """用户ID"""
-  userId: Int!
+  """Provider ID"""
+  providerId: Int!
 }
 
 """connection"""

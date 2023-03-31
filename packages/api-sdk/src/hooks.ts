@@ -1,10 +1,14 @@
 import { Options, useQuery, useMutation } from "stook-graphql";
-import { Provider, Message, User, Session, Setting, Token, QueryMessagesArgs, QueryProviderArgs, QuerySearchUsersArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
-import { ACTIVE_PROVIDER, MESSAGES, MY_PROVIDERS, PROVIDER, SEARCH_USERS, SESSIONS, SETTING, TOKENS } from "./gql";
+import { Provider, Collaborator, Message, User, Session, Setting, Token, QueryCollaboratorsArgs, QueryMessagesArgs, QueryProviderArgs, QuerySearchUsersArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
+import { ACTIVE_PROVIDER, COLLABORATORS, MESSAGES, MY_PROVIDERS, PROVIDER, SEARCH_USERS, SESSIONS, SETTING, TOKENS } from "./gql";
 
 class HooksService {
   useActiveProvider(args?: any | (() => any), opt: Options = {}) {
     return useQuery<Provider, any>(ACTIVE_PROVIDER, { ...opt, variables: args })
+  }
+
+  useCollaborators(args?: QueryCollaboratorsArgs | (() => QueryCollaboratorsArgs), opt: Options = {}) {
+    return useQuery<Collaborator[], QueryCollaboratorsArgs>(COLLABORATORS, { ...opt, variables: args })
   }
 
   useMessages(args?: QueryMessagesArgs | (() => QueryMessagesArgs), opt: Options = {}) {

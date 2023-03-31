@@ -81,10 +81,8 @@ export type Collaborator = {
 
 /** 筛选条件 */
 export type CollaboratorWhereInput = {
-  /** ID */
-  id?: InputMaybe<Scalars['Int']>;
-  /** 用户ID */
-  userId: Scalars['Int'];
+  /** Provider ID */
+  providerId: Scalars['Int'];
 };
 
 /** connection */

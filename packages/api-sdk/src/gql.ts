@@ -47,6 +47,33 @@ query searchUsers($q: String!){
     }
 }
 `;
+export const COLLABORATORS = gql`
+query collaborators($orderBy: String, $skip: Int, $take: Int, $where: CollaboratorWhereInput){
+    collaborators(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
+        createdAt
+        id
+        providerId
+        roleType
+        updatedAt
+        user{
+            avatar
+            bio
+            email
+            emailValidatedAt
+            githubId
+            googleId
+            id
+            jobTitle
+            login
+            nickname
+            phone
+            planType
+            username
+        }
+        userId
+    }
+}
+`;
 export const SETTING = gql`
 query setting($id: Int, $userId: Int){
     setting(id: $id, userId: $userId){
