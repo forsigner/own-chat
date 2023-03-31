@@ -50,11 +50,9 @@ query searchUsers($q: String!){
 export const MEMBERS = gql`
 query members($orderBy: String, $skip: Int, $take: Int, $where: MemberWhereInput){
     members(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
-        createdAt
         id
         providerId
         roleType
-        updatedAt
         user{
             avatar
             bio
@@ -93,11 +91,9 @@ query provider($id: Int!){
         endpoint
         id
         members{
-            createdAt
             id
             providerId
             roleType
-            updatedAt
             userId
         }
         name
@@ -131,11 +127,9 @@ query activeProvider{
         endpoint
         id
         members{
-            createdAt
             id
             providerId
             roleType
-            updatedAt
             userId
         }
         name
@@ -169,11 +163,9 @@ query myProviders{
         endpoint
         id
         members{
-            createdAt
             id
             providerId
             roleType
-            updatedAt
             userId
         }
         name
@@ -354,11 +346,9 @@ mutation updateUser($input: UpdateUserInput!){
 export const ADD_MEMBER = gql`
 mutation addMember($input: AddMemberInput!){
     addMember(input: $input){
-        createdAt
         id
         providerId
         roleType
-        updatedAt
         user{
             avatar
             bio
@@ -407,11 +397,9 @@ mutation updateProvider($input: UpdateProviderInput!){
         endpoint
         id
         members{
-            createdAt
             id
             providerId
             roleType
-            updatedAt
             userId
         }
         name
@@ -445,11 +433,9 @@ mutation addProvider($input: AddProviderInput!){
         endpoint
         id
         members{
-            createdAt
             id
             providerId
             roleType
-            updatedAt
             userId
         }
         name

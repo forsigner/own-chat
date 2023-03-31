@@ -207,13 +207,11 @@ export type LoginSuccessPayload = {
 /** 协作者 */
 export type Member = {
   __typename?: 'Member';
-  createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
   /** Provider ID */
   providerId: Scalars['Int'];
   /** 角色类型 */
   roleType: RoleType;
-  updatedAt?: Maybe<Scalars['DateTime']>;
   /** User */
   user: User;
   /** 用户ID */

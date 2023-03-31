@@ -235,8 +235,6 @@ type LoginSuccessPayload {
 
 """协作者"""
 type Member {
-  createdAt: DateTime
-
   """"""
   id: Int!
 
@@ -245,7 +243,6 @@ type Member {
 
   """角色类型"""
   roleType: RoleType!
-  updatedAt: DateTime
 
   """User"""
   user: User!
