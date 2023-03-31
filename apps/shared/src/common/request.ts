@@ -17,6 +17,9 @@ interface ChatParams {
   max_tokens?: number
   // https://platform.openai.com/docs/api-reference/chat/create#chat/create-temperature
   // Optional Defaults to 1
+  /**
+   * OpenAI文档建议在Temperature和Top P之间只使用一个函数，所以当使用其中一个时，确保另一个被设置为1。
+  */
   temperature?: number
   // https://platform.openai.com/docs/api-reference/chat/create#chat/create-top_p
   // Optional Defaults to 1

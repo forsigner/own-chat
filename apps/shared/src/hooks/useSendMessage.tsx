@@ -1,30 +1,36 @@
 import { fetchChatStream } from '../common/request'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { useMessages } from './useMessages'
+import { useSettings } from './useSettings'
+import { HisteryMsgQueue } from '../common/histeryMsgQueue'
 
 export function useSendMessage() {
-  const { initNewMessage, updateMessage } = useMessages()
+  const { initNewMessage, updateMessage, messages = [] } = useMessages()
+  const { settings } = useSettings()
   async function sendMessage(value = '') {
     if (!value) return
 
     initNewMessage(value)
 
-    const messages = [
+    const newMsg = [
       {
         content: value,
         role: ChatCompletionResponseMessageRoleEnum.User,
       },
     ]
 
+    const { maxToken, historyMsgLength, temperature, top_p, frequencyPenalty, presencePenalty } = settings
+    const histeryMsgQueue = new HisteryMsgQueue(historyMsgLength, messages)
     try {
       await fetchChatStream({
         params: {
-          temperature: 1,
-          presence_penalty: 0,
+          temperature: temperature,
+          presence_penalty: presencePenalty,
           stream: true,
+          top_p: top_p,
           model: 'gpt-3.5-turbo',
-          messages: messages,
-          max_tokens: 2000,
+          max_tokens: Number(maxToken),
+          messages: [...newMsg, ...histeryMsgQueue.gethisteryMsgQueue()],
         },
         onMessage(text, done) {
           console.log('text:', text)
