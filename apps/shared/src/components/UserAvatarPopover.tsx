@@ -6,7 +6,7 @@ import { useUser } from '../stores'
 import { EasyModal } from '@own-chat/easy-modal'
 import { useLogout } from '../hooks/useLogout'
 import { useMounted } from '../hooks/useMounted'
-import { DrawerProfile } from '../layouts/DashboardLayout/DrawerProfile'
+import { DrawerProfile } from './DrawerProfile'
 
 interface Props {}
 
@@ -26,19 +26,19 @@ export const UserAvatarPopover: FC<Props> = () => {
   return (
     <Popover placement="bottom-end">
       <PopoverTrigger>
-        <Avatar cursorPointer src={user.avatar} name={user.shortNickname} />
+        <Avatar cursorPointer src={user.avatar} name={user.nickname} />
       </PopoverTrigger>
       <PopoverContent shadow rounded overflowHidden bgGray800--T20--dark>
         {({ close }) => (
           <>
             <Box p4>
               <Box toCenterY spaceX2>
-                <Avatar src={user.avatar} name={user.shortNickname} circle12></Avatar>
+                <Avatar src={user.avatar} name={user.nickname} circle12></Avatar>
                 <Box>
                   <Box textLG fontBold>
                     {user.login}
                   </Box>
-                  <Box gray600>{user.shortNickname}</Box>
+                  <Box gray600>{user.nickname}</Box>
                 </Box>
               </Box>
             </Box>
