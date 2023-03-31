@@ -5,11 +5,10 @@ import { ChatFooter } from './ChatFooter'
 import { ChatHeader } from './ChatHeader'
 
 export const Chat = () => {
-  const { providers, loading } = useProviders()
+  const { loading } = useProviders()
 
   if (loading) return null
 
-  console.log('providers:----', providers)
   return (
     <Box column h-100p>
       <ChatHeader />

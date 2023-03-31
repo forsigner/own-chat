@@ -1,7 +1,10 @@
-"""新增Collaborator"""
-input AddCollaboratorInput {
+"""添加成员"""
+input AddMemberInput {
   """Provider ID"""
   providerId: Int!
+
+  """角色类型"""
+  roleType: RoleType!
 
   """用户ID"""
   userId: Int!
@@ -64,42 +67,8 @@ input AddTokenInput {
   type: String
 }
 
-"""协作者"""
-type Collaborator {
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """Provider ID"""
-  providerId: Int!
-
-  """角色类型"""
-  roleType: RoleType!
-  updatedAt: DateTime
-
-  """User"""
-  user: User!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""筛选条件"""
-input CollaboratorWhereInput {
-  """Provider ID"""
-  providerId: Int!
-}
-
-"""connection"""
-type CollaboratorsConnection {
-  hasNextPage: Boolean!
-  items: [Collaborator!]!
-  totalCount: Int!
-}
-
 """创建"""
-input CreateCollaboratorInput {
+input CreateMemberInput {
   """Provider ID"""
   providerId: Int!
 
@@ -190,10 +159,10 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
-"""删除"""
-input DeleteCollaboratorInput {
-  """ID"""
-  id: Int
+"""删除成员"""
+input DeleteMemberInput {
+  """member ID"""
+  id: Int!
 }
 
 """删除"""
@@ -234,6 +203,12 @@ input DeleteUserInput {
   username: String!
 }
 
+"""退出团队"""
+input ExitMemberInput {
+  """member ID"""
+  id: Int!
+}
+
 """忘记密码"""
 input ForgotPasswordInput {
   """邮箱"""
@@ -256,6 +231,40 @@ type LoginSuccessPayload {
   user: User!
   userId: Int!
   username: String
+}
+
+"""协作者"""
+type Member {
+  createdAt: DateTime
+
+  """"""
+  id: Int!
+
+  """Provider ID"""
+  providerId: Int!
+
+  """角色类型"""
+  roleType: RoleType!
+  updatedAt: DateTime
+
+  """User"""
+  user: User!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input MemberWhereInput {
+  """Provider ID"""
+  providerId: Int!
+}
+
+"""connection"""
+type MembersConnection {
+  hasNextPage: Boolean!
+  items: [Member!]!
+  totalCount: Int!
 }
 
 """"""
@@ -294,6 +303,15 @@ type MessagesConnection {
   totalCount: Int!
 }
 
+"""修改成员角色类型"""
+input ModifyMemberRoleTypeInput {
+  """member ID"""
+  id: Int!
+
+  """角色类型"""
+  roleType: RoleType!
+}
+
 """修改秘密"""
 input ModifyPasswordInput {
   """新密码"""
@@ -304,8 +322,8 @@ input ModifyPasswordInput {
 }
 
 type Mutation {
-  """新增"""
-  addCollaborator(input: AddCollaboratorInput!): Collaborator!
+  """添加成员"""
+  addMember(input: AddMemberInput!): Member!
 
   """添加Message"""
   addMessage(input: AddMessageInput!): Message!
@@ -320,7 +338,7 @@ type Mutation {
   addToken(input: AddTokenInput!): Token!
 
   """创建"""
-  createCollaborator(input: CreateCollaboratorInput!): Collaborator!
+  createMember(input: CreateMemberInput!): Member!
 
   """创建"""
   createMessage(input: CreateMessageInput!): Message!
@@ -340,11 +358,8 @@ type Mutation {
   """创建"""
   createUser(input: CreateUserInput!): User!
 
-  """删除单个"""
-  deleteCollaborator(input: DeleteCollaboratorInput!): Boolean!
-
   """批量删除"""
-  deleteManyCollaborators(input: DeleteCollaboratorInput!): Float!
+  deleteManyMembers(input: DeleteMemberInput!): Float!
 
   """批量删除"""
   deleteManyMessages(input: DeleteMessageInput!): Float!
@@ -365,6 +380,9 @@ type Mutation {
   deleteManyUsers(input: DeleteUserInput!): Float!
 
   """删除单个"""
+  deleteMember(input: DeleteMemberInput!): Boolean!
+
+  """删除单个"""
   deleteMessage(input: DeleteMessageInput!): Boolean!
 
   """删除单个"""
@@ -382,6 +400,9 @@ type Mutation {
   """删除单个"""
   deleteUser(input: DeleteUserInput!): Boolean!
 
+  """退出成员"""
+  exitMember(input: ExitMemberInput!): Boolean!
+
   """重置密码"""
   forgotPassword(input: ForgotPasswordInput!): Boolean!
 
@@ -397,26 +418,26 @@ type Mutation {
   """Login by personal token"""
   loginByPersonalToken(token: String!): LoginSuccessPayload!
 
+  """修改角色类型"""
+  modifyMemberRoleType(input: ModifyMemberRoleTypeInput!): Boolean!
+
   """修改密码"""
   modifyPassword(input: ModifyPasswordInput!): Boolean!
 
   """邮箱注册"""
   registerByEmail(input: RegisterByEmailInput!): Boolean!
 
-  """删除"""
-  removeCollaborator(input: RemoveCollaboratorInput!): Collaborator!
+  """删除成员，只有管理员以上才能操作"""
+  removeMember(input: RemoveMemberInput!): Boolean!
 
   """重置密码"""
   resetPassword(input: ResetPasswordInput!): Boolean!
-
-  """更新单个"""
-  updateCollaborator(input: UpdateCollaboratorInput!): Collaborator!
 
   """修改email"""
   updateEmail(input: UpdateEmailInput!): Boolean!
 
   """批量更新"""
-  updateManyCollaborators(input: UpdateManyCollaboratorInput!): Boolean!
+  updateManyMembers(input: UpdateManyMemberInput!): Boolean!
 
   """批量更新"""
   updateManyMessages(input: UpdateManyMessageInput!): Boolean!
@@ -435,6 +456,9 @@ type Mutation {
 
   """批量更新"""
   updateManyUsers(input: UpdateManyUserInput!): Boolean!
+
+  """更新单个"""
+  updateMember(input: UpdateMemberInput!): Member!
 
   """更新单个"""
   updateMessage(input: UpdateMessageInput!): Message!
@@ -470,9 +494,6 @@ type Provider {
 
   """self host auth code"""
   authorizationCode: String
-
-  """Collaborator"""
-  collaborators: [Collaborator!]!
   createdAt: DateTime
 
   """self host server endpoint"""
@@ -480,6 +501,9 @@ type Provider {
 
   """"""
   id: Int!
+
+  """Member"""
+  members: [Member!]!
 
   """"""
   name: String!
@@ -529,13 +553,13 @@ type Query {
   checkVerifyEmailToken(token: String!): LoginSuccessPayload!
 
   """获取单个"""
-  collaborator(
+  member(
     """ID"""
     id: Int!
-  ): Collaborator!
+  ): Member!
 
   """获取列表"""
-  collaborators(
+  members(
     """排序类型, 例如：id_ASC、id_DESC"""
     orderBy: String
 
@@ -546,11 +570,11 @@ type Query {
     take: Int = 20
 
     """筛选条件"""
-    where: CollaboratorWhereInput
-  ): [Collaborator!]!
+    where: MemberWhereInput
+  ): [Member!]!
 
   """获取分页列表"""
-  collaboratorsConnection(
+  membersConnection(
     """排序类型, 例如：id_ASC、id_DESC"""
     orderBy: String
 
@@ -561,8 +585,8 @@ type Query {
     take: Int = 20
 
     """筛选条件"""
-    where: CollaboratorWhereInput
-  ): CollaboratorsConnection!
+    where: MemberWhereInput
+  ): MembersConnection!
 
   """获取单个"""
   message(id: Int!): Message!
@@ -792,9 +816,9 @@ input RegisterByEmailInput {
   password: String!
 }
 
-"""删除"""
-input RemoveCollaboratorInput {
-  """ID"""
+"""删除成员"""
+input RemoveMemberInput {
+  """member ID"""
   id: Int!
 }
 
@@ -917,30 +941,6 @@ type TokensConnection {
   totalCount: Int!
 }
 
-"""更新data"""
-input UpdateCollaboratorDataInput {
-  """Provider ID"""
-  providerId: Int!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""更新单个"""
-input UpdateCollaboratorInput {
-  """更新的数据"""
-  data: UpdateCollaboratorDataInput
-
-  """更新条件"""
-  where: UpdateCollaboratorWhereInput
-}
-
-"""更新条件"""
-input UpdateCollaboratorWhereInput {
-  """ID"""
-  id: Int
-}
-
 """修改email"""
 input UpdateEmailInput {
   """邮箱"""
@@ -951,12 +951,12 @@ input UpdateEmailInput {
 }
 
 """批量更新"""
-input UpdateManyCollaboratorInput {
+input UpdateManyMemberInput {
   """更新的数据"""
-  data: UpdateCollaboratorDataInput
+  data: UpdateMemberDataInput
 
   """更新条件"""
-  where: UpdateCollaboratorWhereInput
+  where: UpdateMemberWhereInput
 }
 
 """批量更新"""
@@ -1011,6 +1011,30 @@ input UpdateManyUserInput {
 
   """更新条件"""
   where: UpdateUserWhereInput
+}
+
+"""更新data"""
+input UpdateMemberDataInput {
+  """Provider ID"""
+  providerId: Int!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""更新单个"""
+input UpdateMemberInput {
+  """更新的数据"""
+  data: UpdateMemberDataInput
+
+  """更新条件"""
+  where: UpdateMemberWhereInput
+}
+
+"""更新条件"""
+input UpdateMemberWhereInput {
+  """member ID"""
+  id: Int!
 }
 
 """更新data"""

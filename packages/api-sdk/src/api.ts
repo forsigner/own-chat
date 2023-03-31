@@ -1,10 +1,10 @@
 import { Options, query } from "stook-graphql";
-import { Collaborator, Message, Provider, Session, Token, LoginSuccessPayload, Setting, User, AddCollaboratorInput, AddMessageInput, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveCollaboratorInput, UpdateProviderInput, UpdateSessionInput, UpdateSettingInput, UpdateUserInput, QueryProviderArgs } from "./types";
-import { ADD_COLLABORATOR, ADD_MESSAGE, ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_COLLABORATOR, UPDATE_PROVIDER, UPDATE_SESSION, UPDATE_SETTING, UPDATE_USER, ACTIVE_PROVIDER, PROVIDER } from "./gql";
+import { Member, Message, Provider, Session, Token, LoginSuccessPayload, Setting, User, AddMemberInput, AddMessageInput, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, ExitMemberInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveMemberInput, UpdateProviderInput, UpdateSessionInput, UpdateSettingInput, UpdateUserInput, QueryProviderArgs } from "./types";
+import { ADD_MEMBER, ADD_MESSAGE, ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, EXIT_MEMBER, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_MEMBER, UPDATE_PROVIDER, UPDATE_SESSION, UPDATE_SETTING, UPDATE_USER, ACTIVE_PROVIDER, PROVIDER } from "./gql";
 
 class ApiService {
-  async addCollaborator(args: AddCollaboratorInput = {} as AddCollaboratorInput, opt: Options = {}) {
-    return await query<Collaborator>(ADD_COLLABORATOR, { ...opt, variables: { input: args } })
+  async addMember(args: AddMemberInput = {} as AddMemberInput, opt: Options = {}) {
+    return await query<Member>(ADD_MEMBER, { ...opt, variables: { input: args } })
   }
 
   async addMessage(args: AddMessageInput = {} as AddMessageInput, opt: Options = {}) {
@@ -27,6 +27,10 @@ class ApiService {
     return await query<boolean>(DELETE_TOKEN, { ...opt, variables: { input: args } })
   }
 
+  async exitMember(args: ExitMemberInput = {} as ExitMemberInput, opt: Options = {}) {
+    return await query<boolean>(EXIT_MEMBER, { ...opt, variables: { input: args } })
+  }
+
   async loginByGithub(args: MutationLoginByGithubArgs = {} as MutationLoginByGithubArgs, opt: Options = {}) {
     return await query<LoginSuccessPayload>(LOGIN_BY_GITHUB, { ...opt, variables: args })
   }
@@ -39,8 +43,8 @@ class ApiService {
     return await query<LoginSuccessPayload>(LOGIN_BY_PERSONAL_TOKEN, { ...opt, variables: args })
   }
 
-  async removeCollaborator(args: RemoveCollaboratorInput = {} as RemoveCollaboratorInput, opt: Options = {}) {
-    return await query<Collaborator>(REMOVE_COLLABORATOR, { ...opt, variables: { input: args } })
+  async removeMember(args: RemoveMemberInput = {} as RemoveMemberInput, opt: Options = {}) {
+    return await query<boolean>(REMOVE_MEMBER, { ...opt, variables: { input: args } })
   }
 
   async updateProvider(args: UpdateProviderInput = {} as UpdateProviderInput, opt: Options = {}) {

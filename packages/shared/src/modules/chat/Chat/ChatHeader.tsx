@@ -3,7 +3,7 @@ import { EasyModal } from '@own-chat/easy-modal'
 import { Button, ChevronDownOutline } from 'bone-ui'
 import { NAV_HEIGHT } from '../../../common'
 import { useSessions } from '../../../hooks'
-import { Collaborator } from '../Collaborator/Collaborator'
+import { Members } from '../Members/Members'
 import { ModalSessionList } from '../ModalSessionList'
 
 export const ChatHeader = () => {
@@ -33,7 +33,7 @@ export const ChatHeader = () => {
           onClick={() => EasyModal.show(ModalSessionList)}
         />
       </Box>
-      <Collaborator />
+      <Members />
     </Box>
   )
 }

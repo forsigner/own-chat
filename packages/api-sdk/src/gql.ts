@@ -47,9 +47,9 @@ query searchUsers($q: String!){
     }
 }
 `;
-export const COLLABORATORS = gql`
-query collaborators($orderBy: String, $skip: Int, $take: Int, $where: CollaboratorWhereInput){
-    collaborators(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
+export const MEMBERS = gql`
+query members($orderBy: String, $skip: Int, $take: Int, $where: MemberWhereInput){
+    members(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
         createdAt
         id
         providerId
@@ -89,7 +89,10 @@ query provider($id: Int!){
     provider(id: $id){
         apiKey
         authorizationCode
-        collaborators{
+        createdAt
+        endpoint
+        id
+        members{
             createdAt
             id
             providerId
@@ -97,9 +100,6 @@ query provider($id: Int!){
             updatedAt
             userId
         }
-        createdAt
-        endpoint
-        id
         name
         type
         updatedAt
@@ -127,7 +127,10 @@ query activeProvider{
     activeProvider{
         apiKey
         authorizationCode
-        collaborators{
+        createdAt
+        endpoint
+        id
+        members{
             createdAt
             id
             providerId
@@ -135,9 +138,6 @@ query activeProvider{
             updatedAt
             userId
         }
-        createdAt
-        endpoint
-        id
         name
         type
         updatedAt
@@ -165,7 +165,10 @@ query myProviders{
     myProviders{
         apiKey
         authorizationCode
-        collaborators{
+        createdAt
+        endpoint
+        id
+        members{
             createdAt
             id
             providerId
@@ -173,9 +176,6 @@ query myProviders{
             updatedAt
             userId
         }
-        createdAt
-        endpoint
-        id
         name
         type
         updatedAt
@@ -351,9 +351,9 @@ mutation updateUser($input: UpdateUserInput!){
     }
 }
 `;
-export const ADD_COLLABORATOR = gql`
-mutation addCollaborator($input: AddCollaboratorInput!){
-    addCollaborator(input: $input){
+export const ADD_MEMBER = gql`
+mutation addMember($input: AddMemberInput!){
+    addMember(input: $input){
         createdAt
         id
         providerId
@@ -378,31 +378,14 @@ mutation addCollaborator($input: AddCollaboratorInput!){
     }
 }
 `;
-export const REMOVE_COLLABORATOR = gql`
-mutation removeCollaborator($input: RemoveCollaboratorInput!){
-    removeCollaborator(input: $input){
-        createdAt
-        id
-        providerId
-        roleType
-        updatedAt
-        user{
-            avatar
-            bio
-            email
-            emailValidatedAt
-            githubId
-            googleId
-            id
-            jobTitle
-            login
-            nickname
-            phone
-            planType
-            username
-        }
-        userId
-    }
+export const REMOVE_MEMBER = gql`
+mutation removeMember($input: RemoveMemberInput!){
+    removeMember(input: $input)
+}
+`;
+export const EXIT_MEMBER = gql`
+mutation exitMember($input: ExitMemberInput!){
+    exitMember(input: $input)
 }
 `;
 export const UPDATE_SETTING = gql`
@@ -420,7 +403,10 @@ mutation updateProvider($input: UpdateProviderInput!){
     updateProvider(input: $input){
         apiKey
         authorizationCode
-        collaborators{
+        createdAt
+        endpoint
+        id
+        members{
             createdAt
             id
             providerId
@@ -428,9 +414,6 @@ mutation updateProvider($input: UpdateProviderInput!){
             updatedAt
             userId
         }
-        createdAt
-        endpoint
-        id
         name
         type
         updatedAt
@@ -458,7 +441,10 @@ mutation addProvider($input: AddProviderInput!){
     addProvider(input: $input){
         apiKey
         authorizationCode
-        collaborators{
+        createdAt
+        endpoint
+        id
+        members{
             createdAt
             id
             providerId
@@ -466,9 +452,6 @@ mutation addProvider($input: AddProviderInput!){
             updatedAt
             userId
         }
-        createdAt
-        endpoint
-        id
         name
         type
         updatedAt
