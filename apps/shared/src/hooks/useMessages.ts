@@ -1,5 +1,5 @@
 import { mutateLocalStorage, useLocalStorage } from 'stook-localstorage'
-import { useAsyncStorage } from 'stook-async-storage'
+import { useAsyncStorage } from '../../../../packages/xxx/dist'
 import { ChatCompletionResponseMessageRoleEnum, ChatCompletionResponseMessage } from 'openai'
 import { getCurrentSession, useSessions } from './useSessions'
 import { useMemo } from 'react'

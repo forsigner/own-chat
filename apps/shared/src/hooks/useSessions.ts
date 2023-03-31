@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useMemo } from 'react'
-import { getStorage, useAsyncStorage } from 'stook-async-storage'
+import { getStorage, useAsyncStorage } from '../../../../packages/xxx/dist'
 import { nanoid } from 'nanoid'
 
 export type Session = {
