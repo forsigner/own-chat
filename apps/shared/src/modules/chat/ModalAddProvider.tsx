@@ -1,6 +1,13 @@
 import { Box } from '@fower/react'
-import { Modal, ModalOverlay, ModalContent, Button } from 'bone-ui'
-import { ModalCloseButton, ModalHeader, ModalBody } from '@bone-ui/modal'
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalHeader,
+  ModalBody,
+  Button,
+} from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { Form } from 'fomir'
 import { useAddProviderForm } from './hooks/useAddProviderForm'
