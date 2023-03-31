@@ -19,7 +19,7 @@ export function EditSessionNameButton({ session }: Props) {
   const selected = setting.activeSessionId === session.id
 
   return (
-    <Popover>
+    <Popover trigger="manual">
       <PopoverTrigger>
         <Button
           size={28}
@@ -28,17 +28,25 @@ export function EditSessionNameButton({ session }: Props) {
           icon={<PencilSolid gray400 />}
           flex={selected}
           hidden={!selected}
+          onClick={(e) => {
+            e.stopPropagation()
+            //
+          }}
         />
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent onClick={(e) => e.stopPropagation()}>
         {({ close }) => (
           <Box toCenterY p3 spaceX2>
             <Input
               px2
               autoFocus
               value={name}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter') {
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+              onKeyDown={(e) => {
+                e.stopPropagation()
+                if (e.key === 'Enter') {
                   close()
                 }
               }}

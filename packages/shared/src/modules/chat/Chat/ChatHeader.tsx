@@ -26,6 +26,7 @@ export const ChatHeader = () => {
           {currentSession?.name}
         </Box>
         <Button
+          display={['flex', 'none']}
           p1
           colorScheme="gray400"
           variant="ghost"

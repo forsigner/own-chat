@@ -9,7 +9,16 @@ import { ProviderList } from './ProviderList'
 
 export const ProviderBar = () => {
   return (
-    <Box slate100 w-68 h-100vh borderRight borderRightGray100 column borderRightGray800--dark>
+    <Box
+      slate100
+      w-68
+      h-100vh
+      borderRight
+      borderRightGray100
+      column
+      borderRightGray800--dark
+      display={['none', 'flex']}
+    >
       <Box h-64 toCenter>
         <Logo showText={false} />
       </Box>

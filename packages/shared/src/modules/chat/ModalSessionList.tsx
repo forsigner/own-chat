@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { Modal, ModalOverlay, ModalContent, ModalCloseButton } from 'bone-ui'
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { SessionList } from './Sidebar/SessionList'
 import { AddSessionButton } from './AddSessionButton'
@@ -10,9 +10,9 @@ export const ModalSessionList = () => {
   return (
     <Modal {...register('bone-ui')}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent w={['100vw', 460]} maxH-100vh h={['100vh', 'auto']} rounded={[0, 6]}>
         <ModalCloseButton />
-        <Box px8 py2>
+        <ModalBody>
           <Box fontBold textXL leadingLoose mb2>
             Sessions
           </Box>
@@ -23,7 +23,7 @@ export const ModalSessionList = () => {
               <AddSessionButton />
             </Box>
           </Box>
-        </Box>
+        </ModalBody>
       </ModalContent>
     </Modal>
   )

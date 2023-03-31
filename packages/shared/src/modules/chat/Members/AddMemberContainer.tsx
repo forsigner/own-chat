@@ -73,7 +73,7 @@ export default function AddMemberContainer() {
               <Menu>
                 {users.map((item) => {
                   return (
-                    <MenuItem key={item.id} onClick={() => selectUser(item)}>
+                    <MenuItem key={item.id} onClick={() => selectUser(item)} cursorPointer>
                       <Avatar src={item.avatar} />
                       <Box>{item.nickname}</Box>
                     </MenuItem>
