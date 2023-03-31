@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { PageChat } from '@own-chat/shared'
+import { PageChat } from '../../../../packages/shared/src'
 
 export default PageChat
 

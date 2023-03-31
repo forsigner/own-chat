@@ -7,8 +7,8 @@
  */
 import 'i18next'
 
-import type common from '@own-chat/shared/src/locales/en/common.json'
-import type home from '@own-chat/shared/src/locales/en/home.json'
+import type common from '../../../packages/shared/src/locales/en/common.json'
+import type home from '../../../packages/shared/src/locales/en/home.json'
 
 interface I18nNamespaces {
   common: typeof common

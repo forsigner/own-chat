@@ -4,7 +4,7 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import { ToastContainer } from 'bone-ui'
 import { EasyModalProvider } from '@own-chat/easy-modal'
-import { init } from '@own-chat/shared'
+import { init } from '../../../../packages/shared/src'
 import '../styles/globals.css'
 
 init()

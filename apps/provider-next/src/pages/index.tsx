@@ -2,7 +2,7 @@ import { withIronSessionSsr } from 'iron-session/next'
 import { Modal, ModalOverlay, ModalContent } from 'bone-ui'
 import { useState } from 'react'
 import { sessionOptions } from '@common/session'
-import { ChatLayout, Home } from '@own-chat/shared'
+import { ChatLayout, Home } from '../../../../packages/shared/src'
 import { Login } from '@components/Login'
 
 interface Props {

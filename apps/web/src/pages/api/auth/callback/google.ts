@@ -3,7 +3,7 @@ import { setCookie } from 'cookies-next'
 import { sessionOptions } from '@common/session'
 import { graphqlClient } from '@common/query'
 import { LoginSuccessPayload, LOGIN_BY_GOOGLE } from '@own-chat/api-sdk'
-import { LOGIN_SUCCESS_REDIRECT_URL } from '@own-chat/shared'
+import { LOGIN_SUCCESS_REDIRECT_URL } from '../../../../../../../packages/shared/src'
 
 export default withIronSessionApiRoute(async (req, res) => {
   const { code } = req.query

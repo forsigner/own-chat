@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import Router from 'next/router'
 import { Fragment, useEffect } from 'react'
 import { EasyModalProvider } from '@own-chat/easy-modal'
-import { init } from '@own-chat/shared'
+import { init } from '../../../../packages/shared/src'
 import { mutate } from 'stook'
 
 interface Props extends AppProps {
