@@ -16,7 +16,7 @@ export const ChatFooter = () => {
   }
 
   return (
-    <Box borderTop borderTopGray100 toCenterY>
+    <Box borderTop borderTopGray100 toCenterY borderTopGray800--dark>
       <Box flex-1 minH-80 toCenterY>
         <TextareaAutosize
           placeholder="请输入..."

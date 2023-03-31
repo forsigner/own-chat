@@ -8,7 +8,7 @@ import { ProviderList } from './ProviderList'
 
 export const ProviderBar = () => {
   return (
-    <Box slate100 w-68 h-100vh borderRight borderRightGray100 column>
+    <Box slate100 w-68 h-100vh borderRight borderRightGray100 column borderRightGray800--dark>
       <Box h-64 toCenter>
         <Logo showText={false} />
       </Box>

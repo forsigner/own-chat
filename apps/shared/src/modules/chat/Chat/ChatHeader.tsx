@@ -8,7 +8,15 @@ import { ModalSessionList } from '../ModalSessionList'
 export const ChatHeader = () => {
   const { currentSession } = useSessions()
   return (
-    <Box h={NAV_HEIGHT} borderBottom borderBottomGray100 p4 toCenterY columnGap-4>
+    <Box
+      h={NAV_HEIGHT}
+      // borderBottom
+      // borderBottomGray100
+      // borderBottomGray800--dark
+      p4
+      toCenterY
+      columnGap-4
+    >
       <Box textLG fontBold>
         {currentSession?.name}
       </Box>

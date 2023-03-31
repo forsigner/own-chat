@@ -16,6 +16,7 @@ export const Sidebar = () => {
       h-100p
       borderRight
       borderRightGray100
+      borderRightGray800--dark
       display={['none', 'flex']}
     >
       <CurrentProvider />

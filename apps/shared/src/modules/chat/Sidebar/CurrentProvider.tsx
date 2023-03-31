@@ -9,11 +9,21 @@ export const CurrentProvider = () => {
   const { activeProvider } = useProviders()
 
   return (
-    <Box toBetween toCenterY columnGap-8 pl5 pr2 h={NAV_HEIGHT} borderBottom borderBottomGray100>
+    <Box
+      toBetween
+      toCenterY
+      columnGap-8
+      pl3
+      pr2
+      h={NAV_HEIGHT}
+      borderBottom
+      borderBottomGray100
+      borderBottomGray800--dark
+    >
       <Box toCenterY columnGap-8>
-        <Avatar name={activeProvider?.name} />
+        <Avatar roundedLG name={activeProvider?.name} />
         <Box>
-          <Box textLG fontSemibold>
+          <Box textBase fontSemibold>
             {activeProvider?.name}
           </Box>
           <Box textXS gray400>
