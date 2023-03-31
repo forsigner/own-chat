@@ -15,7 +15,7 @@ const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
 
 const HOST =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://www.onechat.dev'
+  process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://www.ownchat.me'
 
 const githubRedirectUri = `${HOST}/api/auth/callback/github`
 const googleRedirectUri = `${HOST}/api/auth/callback/google`

@@ -12,7 +12,7 @@ export const Logo = ({ showText = true }: Props) => {
       {showText && (
         <Box>
           <Box textXL black fontBold>
-            Owned.Chat
+            Own Chat
           </Box>
           <Box textXS gray600>
             Own a personal chatGPT

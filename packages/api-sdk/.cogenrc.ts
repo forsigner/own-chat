@@ -6,7 +6,7 @@ const { NODE_ENV } = process.env
 const isProd = NODE_ENV === 'production'
 
 export const getEndpoint = () => {
-  if (isProd) return 'http://www.ownchat.me/graphql'
+  if (isProd) return 'https://www.ownchat.me/graphql'
   return 'http://localhost:5001/graphql'
 }
 
