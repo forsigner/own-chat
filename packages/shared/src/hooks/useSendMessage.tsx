@@ -1,8 +1,8 @@
-import { fetchChatStream } from '../common/request'
+import { fetchChatStream, fetchModels } from '../common/request'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { useMessages } from './useMessages'
 import { useSettings } from './useSettings'
-import { HisteryMsgQueue } from '../common/histeryMsgQueue'
+import { HistoryMsgQueue } from '../common/historyMsgQueue'
 
 export function useSendMessage() {
   const { initNewMessage, updateMessage, messages = [] } = useMessages()
@@ -12,17 +12,14 @@ export function useSendMessage() {
 
     initNewMessage(value)
 
-    const newMsg = [
-      {
-        content: value,
-        role: ChatCompletionResponseMessageRoleEnum.User,
-      },
-    ]
+    const newMsg = {
+      content: value,
+      role: ChatCompletionResponseMessageRoleEnum.User,
+    }
 
-    const { maxToken, historyMsgLength, temperature, top_p, frequencyPenalty, presencePenalty } =
-      settings
+    const { maxToken, historyMsgLength, temperature, top_p, frequencyPenalty, presencePenalty } = settings
+    const historyMsgQueue = new HistoryMsgQueue(historyMsgLength, messages, newMsg)
 
-    const histeryMsgQueue = new HisteryMsgQueue(historyMsgLength, messages)
     try {
       await fetchChatStream({
         params: {
@@ -31,8 +28,8 @@ export function useSendMessage() {
           stream: true,
           top_p: top_p,
           model: 'gpt-3.5-turbo',
-          max_tokens: Number(maxToken || '2000'),
-          messages: [...newMsg, ...histeryMsgQueue.gethisteryMsgQueue()],
+          max_tokens: Number(maxToken),
+          messages: historyMsgQueue.getHistoryMsgQueue()
         },
         onMessage(text, done) {
           console.log('text:', text)

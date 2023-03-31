@@ -1,21 +1,21 @@
 import { Message } from "../hooks"
 import { ChatCompletionResponseMessage } from 'openai'
 
-export class HisteryMsgQueue {
-  histeryMsgQueue: ChatCompletionResponseMessage[]
+export class HistoryMsgQueue {
+  HistoryMsgQueue: ChatCompletionResponseMessage[]
   maxSize: number
 
-  constructor(maxSize: number, message: Message[]) {
-    this.histeryMsgQueue = []
+  constructor(maxSize: number, message: Message[], newMsg: ChatCompletionResponseMessage) {
+    this.HistoryMsgQueue = []
     this.maxSize = maxSize
 
     let times = 0
-    const messageTemp = []
+    const historyMsg = []
     for (let dynamicLength = message.length - 1; dynamicLength >= 0; dynamicLength--) {
       const element = message[dynamicLength];
       if (times < maxSize) {
         times = times + 1
-        messageTemp.push({
+        historyMsg.push({
           role: element.role,
           content: element.content
         })
@@ -23,40 +23,40 @@ export class HisteryMsgQueue {
         break
       }
     }
-
-    this.histeryMsgQueue = messageTemp
+    historyMsg.push(newMsg)
+    this.HistoryMsgQueue = historyMsg
   }
 
   enqueue(item: Message) {
-    if (this.histeryMsgQueue.length >= this.maxSize) {
-      this.histeryMsgQueue.shift()
+    if (this.HistoryMsgQueue.length >= this.maxSize) {
+      this.HistoryMsgQueue.shift()
     }
-    this.histeryMsgQueue.push(item)
+    this.HistoryMsgQueue.push(item)
   }
 
   dequeue() {
     if (this.isEmpty()) {
       return null
     }
-    return this.histeryMsgQueue.shift()
+    return this.HistoryMsgQueue.shift()
   }
 
   front() {
     if (this.isEmpty()) {
       return null
     }
-    return this.histeryMsgQueue[0]
+    return this.HistoryMsgQueue[0]
   }
 
   isEmpty() {
-    return this.histeryMsgQueue.length === 0
+    return this.HistoryMsgQueue.length === 0
   }
 
   size() {
-    return this.histeryMsgQueue.length
+    return this.HistoryMsgQueue.length
   }
 
-  gethisteryMsgQueue() {
-    return this.histeryMsgQueue
+  getHistoryMsgQueue() {
+    return this.HistoryMsgQueue
   }
 }
