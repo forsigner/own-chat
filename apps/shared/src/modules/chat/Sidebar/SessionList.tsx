@@ -3,7 +3,7 @@ import { useSessions } from '../hooks/useSessions'
 import { SessionItem } from './SessionItem'
 
 export const SessionList = () => {
-  const { sessions, loading } = useSessions()
+  const { sessions = [], loading } = useSessions()
   if (loading) return null
   return (
     <Box column mt6 rowGap-8>

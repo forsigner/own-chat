@@ -2,6 +2,7 @@ import { Node, useForm } from 'fomir'
 import { toast } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { apiService, Provider, ProviderType, Refetcher } from '@own-chat/api-sdk'
+import { useUser } from '../../../stores'
 
 interface Values {
   name: string
@@ -13,6 +14,7 @@ interface Values {
 
 export function useAddProviderForm() {
   const { hide, data = {} as Provider } = useModal<Provider>()
+  const { user } = useUser()
   const isEdit = !!data
 
   const nodes: Node[] = [
@@ -68,7 +70,10 @@ export function useAddProviderForm() {
             data: values,
           })
         } else {
-          await apiService.addProvider(values)
+          await apiService.addProvider({
+            ...values,
+            userId: user.id,
+          })
         }
 
         await Refetcher.refetchMyProviders()

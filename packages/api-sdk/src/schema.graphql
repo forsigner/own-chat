@@ -38,6 +38,9 @@ input AddProviderInput {
 
   """"""
   type: ProviderType!
+
+  """用户ID"""
+  userId: Int!
 }
 
 """添加 Session"""
@@ -492,7 +495,7 @@ type Provider {
   user: User!
 
   """用户ID"""
-  userId: Int
+  userId: Int!
 }
 
 """Provider 类型"""

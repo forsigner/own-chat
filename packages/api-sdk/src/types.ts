@@ -41,6 +41,8 @@ export type AddProviderInput = {
   /** 该 Provider Name */
   name: Scalars['String'];
   type: ProviderType;
+  /** 用户ID */
+  userId: Scalars['Int'];
 };
 
 /** 添加 Session */
@@ -642,7 +644,7 @@ export type Provider = {
   /** User */
   user: User;
   /** 用户ID */
-  userId?: Maybe<Scalars['Int']>;
+  userId: Scalars['Int'];
 };
 
 /** Provider 类型 */
