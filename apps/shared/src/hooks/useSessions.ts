@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useMemo } from 'react'
-import { getStorage, useAsyncStorage } from '../../../../packages/xxx/dist'
+import { getStorage, useAsyncStorage } from 'stook-async-storage'
 import { nanoid } from 'nanoid'
 
 export type Session = {
@@ -16,7 +16,7 @@ export const useSessions = () => {
   const { loading, data: sessions = [], setData: setSessions } = useAsyncStorage<Session[]>(key, [])
 
   const addSession = useCallback(() => {
-    setSessions(sessions => {
+    setSessions((sessions) => {
       for (const session of sessions) {
         session.selected = false
       }
@@ -32,8 +32,8 @@ export const useSessions = () => {
 
   const deleteSession = useCallback(
     (id: string) => {
-      setSessions(state => {
-        const index = state.findIndex(item => item.id === id)
+      setSessions((state) => {
+        const index = state.findIndex((item) => item.id === id)
         state.splice(index, 1)
         state[0].selected = true
       })
@@ -43,8 +43,8 @@ export const useSessions = () => {
 
   const updateSessionName = useCallback(
     (id: string, name: string) => {
-      setSessions(state => {
-        const index = state.findIndex(item => item.id === id)
+      setSessions((state) => {
+        const index = state.findIndex((item) => item.id === id)
         state[index].name = name
       })
     },
@@ -53,7 +53,7 @@ export const useSessions = () => {
 
   const selectSession = useCallback(
     (id: string) => {
-      setSessions(state => {
+      setSessions((state) => {
         for (const session of state) {
           session.selected = session.id === id
         }
@@ -68,7 +68,7 @@ export const useSessions = () => {
     }
   }, [sessions, addSession, loading])
 
-  const currentSession = useMemo(() => sessions.find(item => item.selected)!, [sessions])
+  const currentSession = useMemo(() => sessions.find((item) => item.selected)!, [sessions])
 
   return {
     currentSession,
@@ -84,5 +84,5 @@ export const useSessions = () => {
 
 export function getCurrentSession() {
   const sessions = getStorage(key) as Session[]
-  return sessions.find(item => item.selected)!
+  return sessions.find((item) => item.selected)!
 }
