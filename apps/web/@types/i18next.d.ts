@@ -7,14 +7,12 @@
  */
 import 'i18next'
 
-import type common from '../public/locales/en/common.json'
-import type home from '../public/locales/en/home.json'
-import type dashboard from '../public/locales/en/dashboard.json'
+import type common from '@own-chat/shared/src/locales/en/common.json'
+import type home from '@own-chat/shared/src/locales/en/home.json'
 
 interface I18nNamespaces {
   common: typeof common
   home: typeof home
-  dashboard: typeof dashboard
 }
 
 declare module 'i18next' {

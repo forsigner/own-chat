@@ -1,4 +1,3 @@
-import { ExchangeType } from '@own-chat/api-sdk'
 import { nanoid } from 'nanoid'
 import reactFastCompare from 'react-fast-compare'
 import { FieldNode, Node } from 'fomir'
@@ -8,7 +7,7 @@ export const isServer = typeof window === 'undefined'
 
 export const isEqual = reactFastCompare
 
-export const KeyCode_Enter = 13;
+export const KeyCode_Enter = 13
 
 export function genId() {
   return nanoid()
@@ -43,13 +42,12 @@ export function copyToClipboard(text: string) {
   navigator.clipboard
     .writeText(text)
     .then((res) => {
-      console.log('Copy success');
+      console.log('Copy success')
     })
     .catch((err) => {
-      console.log('Copy failed');
-    });
+      console.log('Copy failed')
+    })
 }
-
 
 /**
  * 获取前景色
@@ -60,14 +58,6 @@ export function calculateForeColor(color = '') {
   const colorType = color.replace(weightString, '')
   const base = colorType === 'yellow' ? 40 : 30
   return colorWeight > base ? 'white' : 'gray80'
-}
-
-export function getExchangeIcon(exchange: ExchangeType) {
-  const maps: any = {
-    [ExchangeType.Binance]: '/images/binance.png',
-    [ExchangeType.Okx]: '/images/okex.png',
-  }
-  return maps[exchange]
 }
 
 /**
