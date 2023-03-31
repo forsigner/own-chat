@@ -15,7 +15,7 @@ export class HistoryMsgQueue {
       const element = message[dynamicLength];
       if (times < maxSize) {
         times = times + 1
-        historyMsg.push({
+        historyMsg.unshift({
           role: element.role,
           content: element.content
         })
