@@ -11,7 +11,7 @@ import { DrawerProfile } from './DrawerProfile'
 interface Props {}
 
 export const UserAvatarPopover: FC<Props> = () => {
-  const { t } = useTranslation('dashboard')
+  const { t } = useTranslation('common')
   const { mounted } = useMounted()
   const { user } = useUser()
   const { logout } = useLogout()

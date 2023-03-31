@@ -1,7 +1,6 @@
 import { Box } from '@fower/react'
 import { Avatar } from 'bone-ui'
 import { getUser, useUser } from '../../stores'
-import { EditEmailPopover } from './EditEmailPopover'
 import { EditNamePopover } from './EditNamePopover'
 
 export const BasicInfo = () => {

@@ -9,7 +9,7 @@ interface Props extends ButtonProps {
 }
 
 export const CreateBotButton = (props: Props) => {
-  const { t } = useTranslation('dashboard')
+  const { t } = useTranslation('common')
   const { strategy, ...rest } = props
   return (
     <Button

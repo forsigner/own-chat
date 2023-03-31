@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const DeleteTokenPopover = ({ token }: Props) => {
-  const { t } = useTranslation('dashboard')
+  const { t } = useTranslation('common')
   const { user } = useUser()
 
   async function deleteToken(close: any) {
