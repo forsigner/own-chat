@@ -9,6 +9,7 @@ interface Settings {
   model: string
   showTokenCount: string
   theme: string
+  historyMsgLength: number
   temperature: number
   top_p: number
   frequencyPenalty: number
@@ -23,9 +24,10 @@ export function useSettings() {
     model: "",
     showTokenCount: "",
     theme: "",
-    temperature: 0.5,
-    top_p: 0.6,
-    frequencyPenalty: 1,
+    historyMsgLength: 3,
+    temperature: 1,
+    top_p: 1,
+    frequencyPenalty: 0,
     presencePenalty: 0
   })
   return { settings, setSettings }

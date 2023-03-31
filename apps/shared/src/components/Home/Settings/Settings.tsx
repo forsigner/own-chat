@@ -15,6 +15,7 @@ interface Values {
   model: string
   showTokenCount: string
   theme: string
+  historyMsgLength: number
   temperature: number
   top_p: number
   frequencyPenalty: number
@@ -23,16 +24,18 @@ interface Values {
 
 export const Settings = () => {
   const { settings, setSettings } = useSettings()
-  const [temperature, setTemperature] = useState<number>(0.5)
-  const [top_p, setTop_p] = useState<number>(0.5)
-  const [frequencyPenalty, setFrequencyPenalty] = useState<number>(0.5)
-  const [presencePenalty, setPresencePenalty] = useState<number>(0.5)
+  const [historyMsgLength, setHistoryMsgLength] = useState<number>(3)
+  const [temperature, setTemperature] = useState<number>(1)
+  const [top_p, setTop_p] = useState<number>(1)
+  const [frequencyPenalty, setFrequencyPenalty] = useState<number>(0)
+  const [presencePenalty, setPresencePenalty] = useState<number>(0)
 
   const form = useForm<Values>({
     layout: 'horizontal',
     watch: {
       '*.value': (values: any) => {
         console.log('values:', values)
+        values.historyMsgLength = historyMsgLength
         values.temperature = temperature
         values.top_p = top_p
         values.frequencyPenalty = frequencyPenalty
@@ -76,7 +79,7 @@ export const Settings = () => {
             />
           </SettingItem>
 
-          <SettingItem name="Max token" desc="单次交互所用的最大 Token 数">
+          <SettingItem name="Max token" desc="1个token约4个字符或者0.75个单词,值越小响应回复文本越短并且速度越快">
             <Field
               component="Input"
               value="2000"
@@ -88,7 +91,14 @@ export const Settings = () => {
             />
           </SettingItem>
 
-          <SettingItem name="Temperature" desc="随机数">
+          <SettingItem name="Attached history messages" desc="发送给模型的历史对话，值越高模型将根据更多的历史消息上下文进行响应，同时也将消耗更多的token">
+            <Box w="100%">
+              <Box text={16} mb="6px">{historyMsgLength}</Box>
+              <Slider min={2} max={10} step={1} defaultValue={historyMsgLength} onChange={(e) => setHistoryMsgLength(e)} handleStyle={{ opacity: 1 }} trackStyle={{ background: "#20c997" }} />
+            </Box>
+          </SettingItem>
+
+          <SettingItem name="Temperature" desc="值越低,输出更保守接近于训练数据,值越高模型会去评估可能适合上下文的响应，生成的文本也会更加多样化">
             <Box w="100%">
               <Box text={16} mb="6px">
                 {temperature}
@@ -97,7 +107,7 @@ export const Settings = () => {
                 min={0}
                 max={1}
                 step={0.1}
-                defaultValue={0.5}
+                defaultValue={temperature}
                 onChange={(e) => setTemperature(e as number)}
                 handleStyle={{ opacity: 1 }}
                 trackStyle={{ background: '#20c997' }}
@@ -105,7 +115,7 @@ export const Settings = () => {
             </Box>
           </SettingItem>
 
-          <SettingItem name="Top P" desc="Frequency penalty">
+          <SettingItem name="Top P" desc="值越低，会返回较为准确的答案，同时会限制返回值的多样性。值越高能帮助我们获得更多见解，同时结果准确率会有所降低">
             <Box w="100%">
               <Box text={16} mb="6px">
                 {top_p}
@@ -114,7 +124,7 @@ export const Settings = () => {
                 min={0}
                 max={1}
                 step={0.1}
-                defaultValue={0.5}
+                defaultValue={top_p}
                 onChange={(e) => setTop_p(e as number)}
                 handleStyle={{ opacity: 1 }}
                 trackStyle={{ background: '#20c997' }}
@@ -122,34 +132,34 @@ export const Settings = () => {
             </Box>
           </SettingItem>
 
-          <SettingItem name="Frequency penalty" desc="Frequency penalty">
+          <SettingItem name="Presence penalty" desc="调整模型使其返回更加新颖的词语，值越高将减少同一词语在不同回答中出现的次数">
             <Box w="100%">
               <Box text={16} mb="6px">
-                {frequencyPenalty}
+                {presencePenalty}
               </Box>
               <Slider
-                min={0}
+                min={-2}
                 max={2}
                 step={0.1}
-                defaultValue={1}
-                onChange={(e) => setFrequencyPenalty(e as number)}
+                defaultValue={presencePenalty}
+                onChange={(e) => setPresencePenalty(e as number)}
                 handleStyle={{ opacity: 1 }}
                 trackStyle={{ background: '#20c997' }}
               />
             </Box>
           </SettingItem>
 
-          <SettingItem name="Presence penalty" desc="Presence penalty">
+          <SettingItem name="Frequency penalty" desc="正值使模型不太可能重复常用单词和短语，从而使输出更加多样和富有创造性;负值使模型更可能重复常用单词和短语，从而产生与训练数据更相似的输出">
             <Box w="100%">
               <Box text={16} mb="6px">
-                {presencePenalty}
+                {frequencyPenalty}
               </Box>
               <Slider
-                min={0}
+                min={-2}
                 max={2}
                 step={0.1}
-                defaultValue={1}
-                onChange={(e) => setPresencePenalty(e as number)}
+                defaultValue={frequencyPenalty}
+                onChange={(e) => setFrequencyPenalty(e as number)}
                 handleStyle={{ opacity: 1 }}
                 trackStyle={{ background: '#20c997' }}
               />

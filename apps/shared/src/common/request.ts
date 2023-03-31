@@ -10,16 +10,20 @@ export interface Result {
 interface ChatParams {
   model: string
   messages: ChatCompletionResponseMessage[]
-  // https://platform.openai.com/docs/api-reference/completions/create#completions/create-presence_penalty
-  presence_penalty: number
   // https://platform.openai.com/docs/api-reference/chat/create#chat/create-stream
   stream: boolean
-  // https://platform.openai.com/docs/api-reference/chat/create#chat/create-temperature
-  temperature?: number
-  // https://platform.openai.com/docs/api-reference/edits/create#edits/create-top_p
-  top_p?: number
   // https://platform.openai.com/docs/api-reference/chat/create#chat/create-max_tokens
-  max_tokens: number
+  // Optional Defaults to inf
+  max_tokens?: number
+  // https://platform.openai.com/docs/api-reference/chat/create#chat/create-temperature
+  // Optional Defaults to 1
+  temperature?: number
+  // https://platform.openai.com/docs/api-reference/chat/create#chat/create-top_p
+  // Optional Defaults to 1
+  top_p?: number
+  // https://platform.openai.com/docs/api-reference/completions/create#completions/create-presence_penalty
+  // Number between -2.0 and 2.0. ,Optional Defaults to 0
+  presence_penalty?: number
 }
 
 interface Options {
