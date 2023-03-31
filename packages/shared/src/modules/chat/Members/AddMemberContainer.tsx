@@ -3,7 +3,7 @@ import { Input } from '@bone-ui/input'
 import { Button } from '@bone-ui/button'
 import { Box } from '@fower/react'
 import { Hooks, Refetcher, User } from '@own-chat/api-sdk'
-import useDebounce from '../../../common/useDebounce'
+import { useDebouncedCallback } from 'use-debounce'
 import { Avatar, CloseButton, Menu, MenuItem } from 'bone-ui'
 import { useAddMember } from '../hooks/useAddMember'
 import { useUser } from '../../../stores'
@@ -17,7 +17,7 @@ export default function AddMemberContainer() {
   const [selectedUser, setSelectedUser] = useState<User>()
   const { data = [] } = Hooks.useSearchUsers({ q: '' })
 
-  const onChangeInput = useDebounce(async (val: string) => {
+  const onChangeInput = useDebouncedCallback(async (val) => {
     if (!val) return
     Refetcher.refetchSearchUsers({ q: val })
   }, 300)
