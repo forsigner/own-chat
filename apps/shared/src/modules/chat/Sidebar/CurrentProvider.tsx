@@ -3,7 +3,7 @@ import { EasyModal } from '@own-chat/easy-modal'
 import { Avatar, Button, CogSolid } from 'bone-ui'
 import { NAV_HEIGHT } from '../../../common'
 import { useProviders } from '../hooks/useProviders'
-import { ModalAddProvider } from '../ModalAddProvider'
+import { ModalUpsertProvider } from '../ModalUpsertProvider'
 
 export const CurrentProvider = () => {
   const { activeProvider } = useProviders()
@@ -38,7 +38,7 @@ export const CurrentProvider = () => {
         variant="ghost"
         icon={<CogSolid square5 cursorPointer gray600--hover />}
         onClick={() => {
-          EasyModal.show(ModalAddProvider, activeProvider)
+          EasyModal.show(ModalUpsertProvider, activeProvider)
         }}
       />
     </Box>

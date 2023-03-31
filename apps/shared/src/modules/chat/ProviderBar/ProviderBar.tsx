@@ -1,9 +1,10 @@
 import { Box } from '@fower/react'
 import { EasyModal } from '@own-chat/easy-modal'
-import { Button, PlusOutline, Tooltip } from 'bone-ui'
+import { Button, CogSolid, PlusOutline, Tooltip } from 'bone-ui'
 import { Logo } from '../../../components'
 import { UserAvatarPopover } from '../../../components/UserAvatarPopover'
-import { ModalAddProvider } from '../ModalAddProvider'
+import { ModalUpsertProvider } from '../ModalUpsertProvider'
+import { ModalSettings } from '../ModalSettings'
 import { ProviderList } from './ProviderList'
 
 export const ProviderBar = () => {
@@ -21,13 +22,23 @@ export const ProviderBar = () => {
               variant="ghost"
               icon={<PlusOutline />}
               onClick={() => {
-                EasyModal.show(ModalAddProvider)
+                EasyModal.show(ModalUpsertProvider)
               }}
             />
           </Tooltip>
         </Box>
       </Box>
-      <Box toCenter py4>
+      <Box toCenter py4 column rowGap-8>
+        <Button
+          size="lg"
+          colorScheme="gray500"
+          variant="ghost"
+          icon={<CogSolid square5 cursorPointer gray500 gray600--hover />}
+          onClick={() => {
+            EasyModal.show(ModalSettings)
+          }}
+        />
+
         <UserAvatarPopover />
       </Box>
     </Box>

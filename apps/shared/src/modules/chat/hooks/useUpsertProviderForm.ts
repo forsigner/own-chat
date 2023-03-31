@@ -12,7 +12,7 @@ interface Values {
   endpoint?: string
 }
 
-export function useAddProviderForm() {
+export function useUpsertProviderForm() {
   const { hide, data = {} as Provider } = useModal<Provider>()
   const { user } = useUser()
   const isEdit = !!data
@@ -34,6 +34,7 @@ export function useAddProviderForm() {
       name: 'type',
       value: data?.type,
       options: [
+        { label: 'Official', value: ProviderType.Official },
         { label: 'API Key', value: ProviderType.ApiKey },
         { label: 'Self host', value: ProviderType.SelfHost },
       ],

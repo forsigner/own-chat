@@ -1,12 +1,10 @@
 import { Box } from '@fower/react'
-import { ModalCloseButton, Modal, ModalOverlay, ModalContent, Button } from 'bone-ui'
+import { ModalCloseButton, Modal, ModalOverlay, ModalContent } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { Settings } from './Settings/Settings'
-import { useLogout } from '../../hooks/useLogout'
 
 export const ModalSettings = () => {
-  const { register, hide } = useModal()
-  const { logout } = useLogout()
+  const { register } = useModal()
 
   return (
     <Modal {...register('bone-ui')}>
@@ -19,18 +17,6 @@ export const ModalSettings = () => {
           </Box>
 
           <Settings />
-          <Box toCenter py4>
-            <Button
-              w-200
-              colorScheme="red500"
-              onClick={() => {
-                logout()
-                hide()
-              }}
-            >
-              Logout
-            </Button>
-          </Box>
         </Box>
       </ModalContent>
     </Modal>

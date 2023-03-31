@@ -10,11 +10,11 @@ import {
 } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { Form } from 'fomir'
-import { useAddProviderForm } from './hooks/useAddProviderForm'
+import { useUpsertProviderForm } from './hooks/useUpsertProviderForm'
 
-export const ModalAddProvider = () => {
+export const ModalUpsertProvider = () => {
   const { register, hide, data } = useModal()
-  const form = useAddProviderForm()
+  const form = useUpsertProviderForm()
 
   return (
     <Modal {...register('bone-ui')}>
