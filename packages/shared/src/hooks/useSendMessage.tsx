@@ -28,7 +28,7 @@ export function useSendMessage() {
           stream: true,
           top_p: top_p,
           model: 'gpt-3.5-turbo',
-          max_tokens: Number(maxToken),
+          max_tokens: Number(maxToken || '2000'),
           messages: historyMsgQueue.getHistoryMsgQueue()
         },
         onMessage(text, done) {
