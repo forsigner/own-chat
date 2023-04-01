@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid'
 import reactFastCompare from 'react-fast-compare'
 import { FieldNode, Node } from 'fomir'
+import { toast } from 'bone-ui'
 import { ONE_DAY, ONE_HOUR, ONE_MINUTE, ONE_SECOND } from './constants'
 
 export const isServer = typeof window === 'undefined'
@@ -42,10 +43,10 @@ export function copyToClipboard(text: string) {
   navigator.clipboard
     .writeText(text)
     .then((res) => {
-      console.log('Copy success')
+      toast.info('Copy success')
     })
     .catch((err) => {
-      console.log('Copy failed')
+      toast.error('Copy failed')
     })
 }
 

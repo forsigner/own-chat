@@ -42,7 +42,7 @@ const PreCode = (props: any) => {
             copyToClipboard(code);
           }
         }}
-      >Copy</span>
+      />
       <SyntaxHighlighter
         children={String(children).replace(/\n$/, '')}
         language={match && match[1]}
