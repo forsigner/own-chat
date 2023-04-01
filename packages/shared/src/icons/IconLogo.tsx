@@ -2,7 +2,7 @@ import { iconify } from '@bone-ui/iconify'
 
 export const IconLogo = iconify({
   displayName: 'IconLogo',
-  viewBox: '0 0 40 50',
+  viewBox: '0 0 610 712',
   fill: 'currentColor',
   atomicProps: {
     square: 16,
@@ -12,10 +12,40 @@ export const IconLogo = iconify({
   path: (
     <>
       <path
-        d="M0 2.85714C0 1.27919 1.27919 0 2.85714 0V0C6.80203 0 10 3.19797 10 7.14286V30H0V2.85714Z"
-        fill="#0ACF83"
+        d="M610 309.228C610 473.78 436.227 655.422 318.158 706.74C313.825 708.623 309.705 703.762 311.767 699.511C328.277 665.475 336.951 618.456 305 618.456C136.553 618.456 0 480.01 0 309.228C0 138.446 136.553 0 305 0C473.447 0 610 138.446 610 309.228Z"
+        fill="url(#paint0_linear_202_60)"
       />
-      <circle cx="20" cy="30" r="15" stroke="#0ACF83" strokeWidth="10" strokeLinejoin="bevel" />
+      <path
+        d="M610 309.228C610 473.78 436.227 655.422 318.158 706.74C313.825 708.623 309.705 703.762 311.767 699.511C328.277 665.475 336.951 618.456 305 618.456C136.553 618.456 0 480.01 0 309.228C0 138.446 136.553 0 305 0C473.447 0 610 138.446 610 309.228Z"
+        fill="url(#paint1_linear_202_60)"
+      />
+      <circle cx="303" cy="303" r="160" fill="white" />
+      <defs>
+        <linearGradient
+          id="paint0_linear_202_60"
+          x1="610"
+          y1="-74.8116"
+          x2="-71.5878"
+          y2="671.013"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#7041EE" />
+          <stop offset="0.527788" stop-color="#8D41EE" />
+          <stop offset="1" stop-color="#D641EE" />
+        </linearGradient>
+        <linearGradient
+          id="paint1_linear_202_60"
+          x1="610"
+          y1="-74.8116"
+          x2="-71.5878"
+          y2="671.013"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#7041EE" />
+          <stop offset="0.527788" stop-color="#8D41EE" />
+          <stop offset="1" stop-color="#D641EE" />
+        </linearGradient>
+      </defs>
     </>
   ),
 })

@@ -8,7 +8,7 @@ interface Props {
 export const Logo = ({ showText = true }: Props) => {
   return (
     <Box toCenterY gray800--hover black spaceX1>
-      <IconLogo square7 white />
+      <IconLogo square8 white />
       {showText && (
         <Box>
           <Box textXL black fontBold>
