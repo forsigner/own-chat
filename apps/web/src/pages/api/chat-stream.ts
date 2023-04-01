@@ -20,6 +20,9 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
   )
   const provider: Provider = data.activeProvider
 
+  console.log('token:', payload?.token)
+  console.log('provider:', provider)
+
   return httpProxyMiddleware(req, res, {
     target: provider.endpoint!,
     pathRewrite: [
