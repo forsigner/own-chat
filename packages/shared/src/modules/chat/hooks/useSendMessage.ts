@@ -4,16 +4,15 @@ import { useSetting } from './useSetting'
 import { useToken, useUser } from '../../../stores'
 import { fetchChatStream } from '../../../common/request'
 import { useAddMessage } from './useAddMessage'
-import { useProviders } from './useProviders'
 import { isProd } from '../../../common'
-
+import { useProviders } from './useProviders'
 
 export function useSendMessage() {
   const { token } = useToken()
   const { user } = useUser()
   const { setting } = useSetting()
-  const { activeProvider } = useProviders()
   const { addMessage } = useAddMessage()
+  const { activeProvider } = useProviders()
 
   function initAnswer() {
     const newMessage = {
@@ -46,12 +45,10 @@ export function useSendMessage() {
     ]
 
     let host: string = ''
-    console.log('NEXT_PUBLIC_PLATFORM:', process.env.NEXT_PUBLIC_PLATFORM)
 
     if (process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP') {
       host = 'https://www.ownchat.me'
-
-      host = !isProd ? 'http://localhost:4000' : 'https://www.ownchat.me'
+      // host = !isProd ? 'http://localhost:4000' : 'https://www.ownchat.me'
     }
 
     await fetchChatStream({
@@ -64,7 +61,7 @@ export function useSendMessage() {
         max_tokens: 2000,
       },
       baseURL: host,
-      token: token,
+      token,
       async onMessage(text, done) {
         console.log('text:', text)
         if (!done) {

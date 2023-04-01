@@ -4,7 +4,12 @@ import { useUser } from '../../../stores'
 export function useSetting() {
   const { user } = useUser()
   const { data: setting, ...res } = Hooks.useSetting({ userId: user.id })
-  return { setting, ...res }
+
+
+  return {
+    setting,
+    ...res,
+  }
 }
 
 export async function updateActiveProviderId(settingId: number, activeProviderId: number) {

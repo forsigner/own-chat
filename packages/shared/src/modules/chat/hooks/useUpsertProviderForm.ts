@@ -3,6 +3,7 @@ import { toast } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { apiService, Provider, ProviderType, Refetcher } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
+import { useSetting } from './useSetting'
 
 interface Values {
   name: string
@@ -15,6 +16,7 @@ interface Values {
 export function useUpsertProviderForm() {
   const { hide, data } = useModal<Provider>()
   const { user } = useUser()
+  const { refetch } = useSetting()
   const isEdit = !!data
 
   const nodes: Node[] = [
@@ -44,6 +46,26 @@ export function useUpsertProviderForm() {
       validators: {
         required: 'Type is required',
       },
+
+      onFieldInit({ value }) {
+        form.setFieldState('apiKey', { visible: value === ProviderType.ApiKey })
+        form.setFieldState('authorizationCode', { visible: value === ProviderType.SelfHost })
+        form.setFieldState('endpoint', { visible: value === ProviderType.SelfHost })
+      },
+
+      onValueChange({ value }) {
+        form.setFieldState('apiKey', { visible: value === ProviderType.ApiKey })
+        form.setFieldState('authorizationCode', { visible: value === ProviderType.SelfHost })
+        form.setFieldState('endpoint', { visible: value === ProviderType.SelfHost })
+      },
+    },
+
+    {
+      label: 'apiKey',
+      component: 'Input',
+      name: 'apiKey',
+      value: data?.apiKey || '',
+      visible: false,
     },
 
     {
@@ -51,6 +73,7 @@ export function useUpsertProviderForm() {
       component: 'Input',
       name: 'authorizationCode',
       value: data?.authorizationCode || '',
+      visible: false,
     },
 
     {
@@ -58,6 +81,7 @@ export function useUpsertProviderForm() {
       component: 'Input',
       name: 'endpoint',
       value: data?.endpoint || '',
+      visible: false,
     },
   ]
 
@@ -75,6 +99,8 @@ export function useUpsertProviderForm() {
             ...values,
             userId: user.id,
           })
+
+          await refetch()
         }
 
         await Refetcher.refetchMyProviders()

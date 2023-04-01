@@ -3,7 +3,7 @@ import { withIronSessionApiRoute } from 'iron-session/next'
 import Cors from 'cors'
 import { sessionOptions } from '@common/session'
 import { graphqlClient } from '@common/query'
-import { ACTIVE_PROVIDER, LoginSuccessPayload, Provider, PROVIDER } from '@own-chat/api-sdk'
+import { ACTIVE_PROVIDER, Provider, ProviderType } from '@own-chat/api-sdk'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const cors = Cors({
@@ -49,14 +49,24 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
     {},
     { headers: { authorization: `bearer ${token}` } },
   )
+
   const provider: Provider = data.activeProvider
 
+  let endpoint: string = provider.endpoint || ''
+  let replaceStr = '/api/chat-stream'
+
+  if (provider.type === ProviderType.ApiKey) {
+    // endpoint = 'http://localhost:4001'
+    endpoint = 'https://own-chat-official-provider.vercel.app'
+    replaceStr = `${replaceStr}?apiKey=${provider.apiKey}`
+  }
+
   return httpProxyMiddleware(req, res, {
-    target: provider.endpoint!,
+    target: endpoint,
     pathRewrite: [
       {
         patternStr: '^/api/chat-stream',
-        replaceStr: '/api/chat-stream',
+        replaceStr,
       },
     ],
   })

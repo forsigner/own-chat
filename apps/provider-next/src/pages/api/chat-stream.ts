@@ -14,7 +14,11 @@ export const config = {
 
 // # https://platform.openai.com/docs/api-reference/chat/create
 async function createStream(req: NextRequest) {
-  const apiKey = process.env.OPENAI_API_KEY
+  const { searchParams } = new URL(req.url)
+  const urlApiKey = searchParams.get('apiKey')
+
+  // api from url first
+  const apiKey = urlApiKey || process.env.OPENAI_API_KEY
   const encoder = new TextEncoder()
   const decoder = new TextDecoder()
 
@@ -34,14 +38,14 @@ async function createStream(req: NextRequest) {
     try {
       reason = json?.error?.message
     } catch (err) {
-      reason = result.statusText;
+      reason = result.statusText
     }
-    const msg = `ChatGPT error ${status}: ${reason}`;
-    const error = new ChatGPTError(msg, { cause: json });
-    error.statusCode = status;
-    error.statusText = statusText;
+    const msg = `ChatGPT error ${status}: ${reason}`
+    const error = new ChatGPTError(msg, { cause: json })
+    error.statusCode = status
+    error.statusText = statusText
     error.reason = msg
-    throw error;
+    throw error
   }
 
   const stream = new ReadableStream({
@@ -81,10 +85,10 @@ const handler = async (req: NextRequest, _: NextApiResponse) => {
   } catch (error: any) {
     const response = new Response(error, {
       headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    return response;
+        'Content-Type': 'application/json',
+      },
+    })
+    return response
   }
 }
 

@@ -1,5 +1,6 @@
 import { ChatCompletionResponseMessage } from 'openai'
 import { TIME_OUT_MS } from './chatService'
+import { ProviderType } from '@own-chat/api-sdk'
 
 export interface Result {
   code: string | number
