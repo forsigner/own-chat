@@ -1,12 +1,15 @@
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { Message, Mutator } from '@own-chat/api-sdk'
 import { useSetting } from './useSetting'
-import { useUser } from '../../../stores'
+import { useToken, useUser } from '../../../stores'
 import { fetchChatStream } from '../../../common/request'
 import { useAddMessage } from './useAddMessage'
 import { useProviders } from './useProviders'
+import { isProd } from '../../../common'
+
 
 export function useSendMessage() {
+  const { token } = useToken()
   const { user } = useUser()
   const { setting } = useSetting()
   const { activeProvider } = useProviders()
@@ -42,6 +45,15 @@ export function useSendMessage() {
       },
     ]
 
+    let host: string = ''
+    console.log('NEXT_PUBLIC_PLATFORM:', process.env.NEXT_PUBLIC_PLATFORM)
+
+    if (process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP') {
+      host = 'https://www.ownchat.me'
+
+      host = !isProd ? 'http://localhost:4000' : 'https://www.ownchat.me'
+    }
+
     await fetchChatStream({
       params: {
         temperature: 1,
@@ -51,6 +63,8 @@ export function useSendMessage() {
         messages: messages,
         max_tokens: 2000,
       },
+      baseURL: host,
+      token: token,
       async onMessage(text, done) {
         console.log('text:', text)
         if (!done) {

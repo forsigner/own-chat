@@ -12,8 +12,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@own-chat/easy-modal": "*",
-    "@own-chat/shared": "*",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/modifiers": "^6.0.1",
     "@dnd-kit/sortable": "^7.0.2",
@@ -22,6 +20,9 @@
     "@floating-ui/react-dom-interactions": "^0.13.3",
     "@fower/react": "^1.76.0",
     "@monaco-editor/react": "^4.4.6",
+    "@own-chat/easy-modal": "*",
+    "@own-chat/shared": "*",
+    "@svgr/webpack": "^7.0.0",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.31",
     "@types/react-dom": "^18.0.11",

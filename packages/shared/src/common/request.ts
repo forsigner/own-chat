@@ -19,7 +19,7 @@ interface ChatParams {
   // Optional Defaults to 1
   /**
    * OpenAI文档建议在Temperature和Top P之间只使用一个函数，所以当使用其中一个时，确保另一个被设置为1。
-  */
+   */
   temperature?: number
   // https://platform.openai.com/docs/api-reference/chat/create#chat/create-top_p
   // Optional Defaults to 1
@@ -34,18 +34,21 @@ interface Options {
   onMessage: (message: string, done: boolean) => void
   onError?: (error: Error) => void
   onController?: (controller: AbortController) => void
+  baseURL?: string
+  token?: string
 }
 
 export async function fetchChatStream(options: Options) {
-  const { params, onMessage, onError, onController } = options
+  const { params, onMessage, onError, onController, baseURL = '', token = '' } = options
   const controller = new AbortController()
   const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS)
 
   try {
-    const result = await fetch('/api/chat-stream', {
+    const result = await fetch(`${baseURL}/api/chat-stream`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        authorization: `bearer ${token}`,
       },
       body: JSON.stringify(params),
       signal: controller.signal,

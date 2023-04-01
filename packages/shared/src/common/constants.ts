@@ -7,14 +7,14 @@ export const ONE_YEAR = ONE_DAY * 365 // 一年
 export const isProd = process.env.NODE_ENV === 'production'
 export const baseURL = process.env.NEXT_PUBLIC_API_HOST as string
 
-const host = process.env.NEXT_PUBLIC_HOST
+export const host = process.env.NEXT_PUBLIC_HOST
 
 export const subscriptionsEndpoint = isProd ? `wss://${host}/graphql` : `ws://${host}/graphql`
 
 const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
 
-const HOST =
+export const HOST =
   process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://www.ownchat.me'
 
 const githubRedirectUri = `${HOST}/api/auth/callback/github`
