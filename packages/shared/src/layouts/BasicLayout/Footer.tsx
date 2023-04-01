@@ -16,7 +16,7 @@ export const Footer = () => {
   return (
     <Box toCenter py6>
       <Box mr5 gray500>
-        © 2023 boter
+        © 2023 OwnChat
       </Box>
       <Box toCenterY spaceX2 textSM display={['none', 'flex']}>
         {navData.map((item) => (

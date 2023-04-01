@@ -15,7 +15,7 @@ export function Home() {
           size="lg"
           placeholder="Your personal token"
           value={token}
-          onChange={e => setToken(e.target.value)}
+          onChange={(e) => setToken(e.target.value)}
         />
         <Button
           size="lg"

@@ -10,7 +10,7 @@ export const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <Box black bgWhite bgGray900--dark>
       <Box container mx-auto column>
-        <Box className="nav" toBetween py3>
+        <Box className="nav" toBetween py3 px={[18, 0]}>
           <Logo />
           <Nav />
           <Box toCenterY spaceX2>
