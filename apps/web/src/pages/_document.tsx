@@ -27,6 +27,7 @@ class MyDocument extends Document {
       <Html lang="en" className={theme || 'light'}>
         <Head>
           <style data-fower={getAtomIds()} dangerouslySetInnerHTML={{ __html: getCssString() }} />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
           <Main />

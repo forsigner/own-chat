@@ -29,9 +29,9 @@ export const IconLogo = iconify({
           y2="671.013"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#7041EE" />
-          <stop offset="0.527788" stop-color="#8D41EE" />
-          <stop offset="1" stop-color="#D641EE" />
+          <stop stopColor="#7041EE" />
+          <stop offset="0.527788" stopColor="#8D41EE" />
+          <stop offset="1" stopColor="#D641EE" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_202_60"
@@ -41,9 +41,9 @@ export const IconLogo = iconify({
           y2="671.013"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#7041EE" />
-          <stop offset="0.527788" stop-color="#8D41EE" />
-          <stop offset="1" stop-color="#D641EE" />
+          <stop stopColor="#7041EE" />
+          <stop offset="0.527788" stopColor="#8D41EE" />
+          <stop offset="1" stopColor="#D641EE" />
         </linearGradient>
       </defs>
     </>
