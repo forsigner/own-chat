@@ -2,6 +2,12 @@ import { NextApiResponse } from 'next'
 import { NextRequest } from 'next/server'
 import { createParser } from 'eventsource-parser'
 
+class ChatGPTError extends Error {
+  statusCode?: number
+  statusText?: string
+  reason?: string
+}
+
 export const config = {
   runtime: 'edge',
 }
@@ -21,8 +27,21 @@ async function createStream(req: NextRequest) {
     body: req.body,
   })
 
-  if (result.status !== 200) {
-    return await result.json()
+  const { status, statusText } = result
+  if (status !== 200) {
+    const json = await result.json()
+    let reason = ''
+    try {
+      reason = json?.error?.message
+    } catch (err) {
+      reason = result.statusText;
+    }
+    const msg = `ChatGPT error ${status}: ${reason}`;
+    const error = new ChatGPTError(msg, { cause: json });
+    error.statusCode = status;
+    error.statusText = statusText;
+    error.reason = msg
+    throw error;
   }
 
   const stream = new ReadableStream({
@@ -55,13 +74,17 @@ async function createStream(req: NextRequest) {
   return stream
 }
 
-const handler = async (req: NextRequest, res: NextApiResponse<any>) => {
+const handler = async (req: NextRequest, _: NextApiResponse) => {
   try {
     const stream = await createStream(req)
     return new Response(stream)
-  } catch (err: any) {
-    console.log('error:', err)
-    res.status(500).send({ code: 0, message: err })
+  } catch (error: any) {
+    const response = new Response(error, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return response;
   }
 }
 

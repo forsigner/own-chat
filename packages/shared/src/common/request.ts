@@ -66,9 +66,7 @@ export async function fetchChatStream(options: Options) {
     if (result.ok) {
       const reader = result.body?.getReader()
       const decoder = new TextDecoder()
-
       onController && onController(controller)
-
       while (true) {
         // handle time out, will stop if no response in 10 secs
         const resTimeoutId = setTimeout(() => finish(), TIME_OUT_MS)
@@ -84,7 +82,6 @@ export async function fetchChatStream(options: Options) {
       }
       finish()
     } else if (result.status === 401) {
-      console.error('Anauthorized')
       responseText = 'Unauthorized access, please enter access code in settings page.'
       finish()
     } else {
