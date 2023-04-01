@@ -28,7 +28,7 @@ export const DeleteTokenPopover = ({ token }: Props) => {
     }
   }
   return (
-    <Popover>
+    <Popover placement="bottom-end">
       <PopoverTrigger>
         <Button size="sm" variant="light" colorScheme="red500">
           Delete

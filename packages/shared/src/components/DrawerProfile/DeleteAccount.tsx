@@ -13,7 +13,9 @@ export const DeleteAccount = () => {
       </Box>
 
       <Box>
-        <Button colorScheme="red500">Delete your account</Button>
+        <Button colorScheme="red500" disabled>
+          Delete your account
+        </Button>
       </Box>
     </Box>
   )

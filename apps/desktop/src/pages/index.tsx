@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
 
 export default function PageHome() {
-  return <Box>haome</Box>
+  return <Box>haome...</Box>
 }

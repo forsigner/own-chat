@@ -6,7 +6,7 @@ import { CHAT_WIDTH } from '../../../common'
 export const ChatBody = () => {
   return (
     <Box flex-1 column overflowAuto px4 pt5 pb0>
-      <Box maxW={CHAT_WIDTH} mx-auto>
+      <Box maxW={CHAT_WIDTH} mx-auto w={['100p']}>
         <ChatList />
         <Anchor />
       </Box>

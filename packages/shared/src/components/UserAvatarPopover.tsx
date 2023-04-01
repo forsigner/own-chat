@@ -42,14 +42,14 @@ export const UserAvatarPopover: FC<Props> = () => {
                 </Box>
               </Box>
             </Box>
-            {/* <MenuItem
+            <MenuItem
               onClick={() => {
                 EasyModal.show(DrawerProfile)
                 close()
               }}
             >
               {t('settings')}
-            </MenuItem> */}
+            </MenuItem>
             <MenuItem onClick={onLogout}>{t('logout')}</MenuItem>
           </>
         )}
