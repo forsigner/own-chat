@@ -1,6 +1,9 @@
 {
   "login": "Login",
   "logout": "Logout",
+  "download": "Download",
+  "docs": "Docs",
+  "feedback": "Feedback",
   "cancel": "Cancel",
   "confirm": "Confirm",
   "delete": "Delete",
@@ -8,7 +11,6 @@
   "register": "Register",
   "user-count": "Users",
   "about": "About",
-  "docs": "Docs",
   "pricing": "Pricing",
   "contact": "Contact",
   "blog": "Blog"

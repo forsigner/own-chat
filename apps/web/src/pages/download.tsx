@@ -10,7 +10,7 @@ import {
 import { Box } from '@fower/react'
 import { Button, toast } from 'bone-ui'
 
-export default function PageHome() {
+export default function PageDownload() {
   function comingSoon() {
     toast.info('Coming soon...')
   }
@@ -63,7 +63,7 @@ export default function PageHome() {
   )
 }
 
-PageHome.Layout = BasicLayout
+PageDownload.Layout = BasicLayout
 
 export const getServerSideProps = withIronSessionSsr(async function ({ req, res, locale = '' }) {
   const { payload } = req.session

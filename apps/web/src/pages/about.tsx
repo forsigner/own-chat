@@ -1,12 +1,13 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
 import { BasicLayout, LOGIN_SUCCESS_REDIRECT_URL, Plan } from '@own-chat/shared'
+import { Box } from '@fower/react'
 
-export default function PagePricing() {
-  return <Plan />
+export default function PageAbout() {
+  return <Box>About</Box>
 }
 
-PagePricing.Layout = BasicLayout
+PageAbout.Layout = BasicLayout
 
 export const getServerSideProps = withIronSessionSsr(async function ({ req, res, locale = '' }) {
   const { payload } = req.session
