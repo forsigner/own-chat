@@ -11,7 +11,7 @@ export const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
     <Box black bgWhite bgGray900--dark>
       <Box container mx-auto column>
         <Box className="nav" toBetween py3 px={[18, 0]}>
-          <Logo />
+          <Logo to="/" />
           <Nav />
           <Box toCenterY spaceX2>
             <LocaleSelect></LocaleSelect>
