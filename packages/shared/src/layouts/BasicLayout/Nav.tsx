@@ -3,11 +3,18 @@ import { Box } from '@fower/react'
 import { useTranslation } from 'react-i18next'
 import { StyledLink } from '../../components/StyledLink'
 
+type NavItem = {
+  text: string
+  to: string
+  isExternal?: boolean
+}
+
 export const Nav = () => {
   const { t } = useTranslation('common')
-  const navData = [
-    { text: t('docs'), to: 'https://boter.app/docs/intro', isExternal: true },
+  const navData: NavItem[] = [
+    // { text: t('docs'), to: 'https://boter.app/docs/intro', isExternal: true },
     // { text: 'Blog', to: 'blog' },
+    { text: t('download'), to: 'download' },
     { text: t('pricing'), to: 'pricing' },
     { text: t('about'), to: 'about' },
     // { text: 'Contact', to: 'contact' },
@@ -36,6 +43,7 @@ export const Nav = () => {
             </Box>
           )
         }
+
         return (
           <Box as="li" key={item.text}>
             <StyledLink href={item.to} gray600 brand500--hover transitionCommon>
