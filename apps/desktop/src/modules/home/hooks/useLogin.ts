@@ -1,6 +1,6 @@
 import { toast } from 'bone-ui'
 import { apiService } from '@own-chat/api-sdk'
-import { useUser, useToken, LOGIN_SUCCESS_REDIRECT_URL } from '../../../../../../packages/shared/src'
+import { useUser, useToken, LOGIN_SUCCESS_REDIRECT_URL } from '@own-chat/shared'
 import { useRouter } from 'next/router'
 
 export function useLogin() {

@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { WebHome, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '../../../../packages/shared/src'
+import { WebHome, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@own-chat/shared'
 
 export default function PageHome() {
   return <WebHome />
