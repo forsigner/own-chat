@@ -13,9 +13,9 @@ export const Nav = () => {
   const { t } = useTranslation('common')
   const navData: NavItem[] = [
     // { text: t('docs'), to: 'https://boter.app/docs/intro', isExternal: true },
-    // { text: 'Blog', to: 'blog' },
-    { text: t('download'), to: 'download' },
+    { text: t('home'), to: '/' },
     { text: t('pricing'), to: 'pricing' },
+    { text: t('download'), to: 'download' },
     {
       text: t('feedback'),
       to: 'https://github.com/forsigner/own-chat/issues/new',

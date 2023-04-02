@@ -193,10 +193,12 @@ query myProviders{
 export const SESSIONS = gql`
 query sessions($orderBy: String, $skip: Int, $take: Int, $where: SessionWhereInput){
     sessions(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
+        accessType
         createdAt
         id
         name
         providerId
+        slug
         updatedAt
         userId
     }
@@ -208,11 +210,13 @@ query messages($orderBy: String, $skip: Int, $take: Int, $where: MessageWhereInp
         content
         createdAt
         id
+        private
         role
         sessionId
         streaming
         updatedAt
         userId
+        views
     }
 }
 `;
@@ -463,10 +467,12 @@ mutation addProvider($input: AddProviderInput!){
 export const ADD_SESSION = gql`
 mutation addSession($input: AddSessionInput!){
     addSession(input: $input){
+        accessType
         createdAt
         id
         name
         providerId
+        slug
         updatedAt
         userId
     }
@@ -475,10 +481,12 @@ mutation addSession($input: AddSessionInput!){
 export const UPDATE_SESSION = gql`
 mutation updateSession($input: UpdateSessionInput!){
     updateSession(input: $input){
+        accessType
         createdAt
         id
         name
         providerId
+        slug
         updatedAt
         userId
     }
@@ -495,11 +503,13 @@ mutation addMessage($input: AddMessageInput!){
         content
         createdAt
         id
+        private
         role
         sessionId
         streaming
         updatedAt
         userId
+        views
     }
 }
 `;

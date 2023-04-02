@@ -96,10 +96,13 @@ export type CreateProviderInput = {
 
 /** 创建 */
 export type CreateSessionInput = {
+  /** 访问权限类型 */
+  accessType?: InputMaybe<Scalars['String']>;
   /** 该 Session Name */
   name: Scalars['String'];
   /** provider Id */
   providerId?: InputMaybe<Scalars['Int']>;
+  slug?: InputMaybe<Scalars['String']>;
   /** 用户ID */
   userId?: InputMaybe<Scalars['Int']>;
 };
@@ -237,6 +240,7 @@ export type Message = {
   content: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
+  private: Scalars['Boolean'];
   role: Scalars['String'];
   /** sessionId */
   sessionId: Scalars['Int'];
@@ -245,6 +249,8 @@ export type Message = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** 用户ID */
   userId: Scalars['Int'];
+  /** 阅读次数 */
+  views: Scalars['Int'];
 };
 
 /** 筛选条件 */
@@ -966,11 +972,14 @@ export enum RoleType {
 
 export type Session = {
   __typename?: 'Session';
+  /** 访问权限类型 */
+  accessType: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
   name: Scalars['String'];
   /** providerId */
   providerId: Scalars['Int'];
+  slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** 用户ID */
   userId: Scalars['Int'];

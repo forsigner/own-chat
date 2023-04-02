@@ -111,11 +111,17 @@ input CreateProviderInput {
 
 """创建"""
 input CreateSessionInput {
+  """访问权限类型"""
+  accessType: String
+
   """该 Session Name"""
   name: String!
 
   """provider Id"""
   providerId: Int
+
+  """"""
+  slug: String
 
   """用户ID"""
   userId: Int
@@ -274,6 +280,9 @@ type Message {
   id: Int!
 
   """"""
+  private: Boolean!
+
+  """"""
   role: String!
 
   """sessionId"""
@@ -285,6 +294,9 @@ type Message {
 
   """用户ID"""
   userId: Int!
+
+  """阅读次数"""
+  views: Int!
 }
 
 """筛选条件"""
@@ -847,6 +859,8 @@ enum RoleType {
 
 """"""
 type Session {
+  """访问权限类型"""
+  accessType: String!
   createdAt: DateTime
 
   """"""
@@ -857,6 +871,9 @@ type Session {
 
   """providerId"""
   providerId: Int!
+
+  """"""
+  slug: String!
   updatedAt: DateTime
 
   """用户ID"""
