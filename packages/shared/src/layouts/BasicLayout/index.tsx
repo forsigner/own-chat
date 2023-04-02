@@ -18,7 +18,7 @@ export const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
             <ModeToggle></ModeToggle>
           </Box>
         </Box>
-        <Box flex-1 minH-90vh w-100p toCenter>
+        <Box flex-1 minH-90vh w-100p>
           {children}
         </Box>
         <Footer></Footer>

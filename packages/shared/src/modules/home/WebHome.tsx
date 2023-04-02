@@ -6,7 +6,7 @@ export function WebHome() {
   const { t } = useTranslation('home')
 
   return (
-    <Box toCenter column mb-80>
+    <Box toCenter column mb-80 minH-70vh>
       <Box mb-40 mt-40 text6XL text5XL--sm text9XL--md fontBlack textCenter leading="1.1em">
         <Box inlineFlex bgGradientX={['green500', 'blue500']} bgClipText transparent>
           {t('slogan.prefix')}
