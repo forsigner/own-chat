@@ -484,6 +484,11 @@ mutation updateSession($input: UpdateSessionInput!){
     }
 }
 `;
+export const REMOVE_SESSION = gql`
+mutation removeSession($input: RemoveSessionInput!){
+    removeSession(input: $input)
+}
+`;
 export const ADD_MESSAGE = gql`
 mutation addMessage($input: AddMessageInput!){
     addMessage(input: $input){

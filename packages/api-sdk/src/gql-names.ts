@@ -35,6 +35,7 @@ export enum Names {
   modifyPassword = "modifyPassword",
   registerByEmail = "registerByEmail",
   removeMember = "removeMember",
+  removeSession = "removeSession",
   resetPassword = "resetPassword",
   updateEmail = "updateEmail",
   updateManyMembers = "updateManyMembers",

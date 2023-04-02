@@ -351,6 +351,8 @@ export type Mutation = {
   registerByEmail: Scalars['Boolean'];
   /** 删除成员，只有管理员以上才能操作 */
   removeMember: Scalars['Boolean'];
+  /** 删除Session */
+  removeSession: Scalars['Boolean'];
   /** 重置密码 */
   resetPassword: Scalars['Boolean'];
   /** 修改email */
@@ -563,6 +565,11 @@ export type MutationRegisterByEmailArgs = {
 
 export type MutationRemoveMemberArgs = {
   input: RemoveMemberInput;
+};
+
+
+export type MutationRemoveSessionArgs = {
+  input: RemoveSessionInput;
 };
 
 
@@ -932,6 +939,12 @@ export type RegisterByEmailInput = {
 /** 删除成员 */
 export type RemoveMemberInput = {
   /** member ID */
+  id: Scalars['Int'];
+};
+
+/** 删除 */
+export type RemoveSessionInput = {
+  /** ID */
   id: Scalars['Int'];
 };
 

@@ -427,6 +427,9 @@ type Mutation {
   """删除成员，只有管理员以上才能操作"""
   removeMember(input: RemoveMemberInput!): Boolean!
 
+  """删除Session"""
+  removeSession(input: RemoveSessionInput!): Boolean!
+
   """重置密码"""
   resetPassword(input: ResetPasswordInput!): Boolean!
 
@@ -816,6 +819,12 @@ input RegisterByEmailInput {
 """删除成员"""
 input RemoveMemberInput {
   """member ID"""
+  id: Int!
+}
+
+"""删除"""
+input RemoveSessionInput {
+  """ID"""
   id: Int!
 }
 

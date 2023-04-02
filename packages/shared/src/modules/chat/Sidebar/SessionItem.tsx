@@ -4,6 +4,7 @@ import { useModal } from '@own-chat/easy-modal'
 import { Button, ChatOutline, TrashOutline } from 'bone-ui'
 import { updateActiveSessionId, useSetting } from '../hooks/useSetting'
 import { EditSessionNameButton } from './EditSessionNameButton'
+import { RemoveSessionButton } from './RemoveSessionButton'
 
 interface Props {
   session: Session
@@ -44,19 +45,7 @@ export const SessionItem = ({ session }: Props) => {
       </Box>
       <Box toCenterY>
         <EditSessionNameButton session={session} />
-
-        <Button
-          flex={selected}
-          hidden={!selected}
-          size={28}
-          colorScheme="gray400"
-          variant="ghost"
-          icon={<TrashOutline gray400 />}
-          onClick={(e) => {
-            e.stopPropagation()
-            // deleteSession(session.id)
-          }}
-        />
+        <RemoveSessionButton session={session} />
       </Box>
     </Box>
   )

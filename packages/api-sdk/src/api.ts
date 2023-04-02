@@ -1,6 +1,6 @@
 import { Options, query } from "stook-graphql";
-import { Member, Message, Provider, Session, Token, LoginSuccessPayload, Setting, User, AddMemberInput, AddMessageInput, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, ExitMemberInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveMemberInput, UpdateProviderInput, UpdateSessionInput, UpdateSettingInput, UpdateUserInput, QueryProviderArgs } from "./types";
-import { ADD_MEMBER, ADD_MESSAGE, ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, EXIT_MEMBER, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_MEMBER, UPDATE_PROVIDER, UPDATE_SESSION, UPDATE_SETTING, UPDATE_USER, ACTIVE_PROVIDER, PROVIDER } from "./gql";
+import { Member, Message, Provider, Session, Token, LoginSuccessPayload, Setting, User, AddMemberInput, AddMessageInput, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, ExitMemberInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveMemberInput, RemoveSessionInput, UpdateProviderInput, UpdateSessionInput, UpdateSettingInput, UpdateUserInput, QueryProviderArgs } from "./types";
+import { ADD_MEMBER, ADD_MESSAGE, ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, EXIT_MEMBER, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_MEMBER, REMOVE_SESSION, UPDATE_PROVIDER, UPDATE_SESSION, UPDATE_SETTING, UPDATE_USER, ACTIVE_PROVIDER, PROVIDER } from "./gql";
 
 class ApiService {
   async addMember(args: AddMemberInput = {} as AddMemberInput, opt: Options = {}) {
@@ -45,6 +45,10 @@ class ApiService {
 
   async removeMember(args: RemoveMemberInput = {} as RemoveMemberInput, opt: Options = {}) {
     return await query<boolean>(REMOVE_MEMBER, { ...opt, variables: { input: args } })
+  }
+
+  async removeSession(args: RemoveSessionInput = {} as RemoveSessionInput, opt: Options = {}) {
+    return await query<boolean>(REMOVE_SESSION, { ...opt, variables: { input: args } })
   }
 
   async updateProvider(args: UpdateProviderInput = {} as UpdateProviderInput, opt: Options = {}) {
