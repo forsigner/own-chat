@@ -37,7 +37,11 @@ const gqlConfig: ConfigItem[] = [
   { name: 'updateProvider', actions: ['query'] },
   { name: 'addProvider', actions: ['query'] },
 
-  { name: 'sessions', actions: ['useQuery', 'refetch'], excludes: ['sessions.messages'] },
+  {
+    name: 'sessions',
+    actions: ['useQuery', 'refetch', 'mutator'],
+    excludes: ['sessions.messages'],
+  },
   {
     name: 'sessionBySlug',
     actions: ['query', 'useQuery', 'refetch'],

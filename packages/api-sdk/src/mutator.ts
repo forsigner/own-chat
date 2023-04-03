@@ -1,11 +1,17 @@
 import { Result } from "stook-graphql";
 import { mutate } from "stook";
-import { MESSAGES, SETTING } from "./gql";
-import { Message, Setting } from "./types";
+import { MESSAGES, SESSIONS, SETTING } from "./gql";
+import { Message, Session, Setting } from "./types";
 
 class MutatorService {
   mutateMessages(fn: (state: Message[]) => void) {
     return mutate(MESSAGES, (state: Result<Message[]>) => {
+      fn(state.data)
+    })
+  }
+
+  mutateSessions(fn: (state: Session[]) => void) {
+    return mutate(SESSIONS, (state: Result<Session[]>) => {
       fn(state.data)
     })
   }

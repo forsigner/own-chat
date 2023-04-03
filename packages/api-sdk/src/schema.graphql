@@ -863,7 +863,7 @@ enum RoleType {
 """"""
 type Session {
   """访问权限类型"""
-  accessType: String!
+  accessType: SessionAccessType!
   createdAt: DateTime
 
   """"""
@@ -884,6 +884,13 @@ type Session {
 
   """用户ID"""
   userId: Int!
+}
+
+"""会话对话类型"""
+enum SessionAccessType {
+  Member
+  Private
+  Public
 }
 
 """筛选条件"""
@@ -1122,8 +1129,11 @@ input UpdateProviderWhereInput {
 
 """更新data"""
 input UpdateSessionDataInput {
+  """访问权限类型"""
+  accessType: SessionAccessType
+
   """该 Session Name"""
-  name: String!
+  name: String
 }
 
 """更新单个"""

@@ -980,7 +980,7 @@ export enum RoleType {
 export type Session = {
   __typename?: 'Session';
   /** 访问权限类型 */
-  accessType: Scalars['String'];
+  accessType: SessionAccessType;
   createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
   /** Message */
@@ -993,6 +993,13 @@ export type Session = {
   /** 用户ID */
   userId: Scalars['Int'];
 };
+
+/** 会话对话类型 */
+export enum SessionAccessType {
+  Member = 'Member',
+  Private = 'Private',
+  Public = 'Public'
+}
 
 /** 筛选条件 */
 export type SessionWhereInput = {
@@ -1201,8 +1208,10 @@ export type UpdateProviderWhereInput = {
 
 /** 更新data */
 export type UpdateSessionDataInput = {
+  /** 访问权限类型 */
+  accessType?: InputMaybe<SessionAccessType>;
   /** 该 Session Name */
-  name: Scalars['String'];
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** 更新单个 */
