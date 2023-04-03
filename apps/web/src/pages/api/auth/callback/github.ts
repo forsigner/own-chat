@@ -3,7 +3,7 @@ import { setCookie } from 'cookies-next'
 import { sessionOptions } from '@common/session'
 import { graphqlClient } from '@common/query'
 import { LoginSuccessPayload, LOGIN_BY_GITHUB } from '@own-chat/api-sdk'
-import { LOGIN_SUCCESS_REDIRECT_URL } from '@own-chat/shared'
+import { LOGIN_SUCCESS_REDIRECT_URL, THIRD_PARTY_LOGIN_TAG } from '@own-chat/shared'
 
 export default withIronSessionApiRoute(async (req, res) => {
   const { code } = req.query
@@ -16,7 +16,7 @@ export default withIronSessionApiRoute(async (req, res) => {
     setCookie('planType', payload.user.planType, { req, res })
     await req.session.save()
 
-    res.redirect(`${LOGIN_SUCCESS_REDIRECT_URL}?from=third-party-login`)
+    res.redirect(`${LOGIN_SUCCESS_REDIRECT_URL}?from=${THIRD_PARTY_LOGIN_TAG}`)
   } catch (e) {
     const error: any = e
     console.log('error:', e)

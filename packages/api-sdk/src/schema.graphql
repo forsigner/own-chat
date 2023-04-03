@@ -52,7 +52,7 @@ input AddTeamInput {
   name: String!
 
   """"""
-  providerType: ProviderType!
+  providerType: ProviderType
 
   """用户ID"""
   userId: Int!
@@ -914,7 +914,7 @@ type Team {
   name: String!
 
   """"""
-  providerType: ProviderType!
+  providerType: ProviderType
   updatedAt: DateTime
 
   """User"""

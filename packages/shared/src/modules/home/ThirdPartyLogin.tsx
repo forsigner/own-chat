@@ -20,22 +20,6 @@ export function ThirdPartyLogin() {
     >
       <Box flex-1>
         <Button
-          as="a"
-          href={githubAuthUrl}
-          w-100p
-          variant="outline"
-          colorScheme="black"
-          border-2
-          flex-1
-          size="lg"
-          leftIcon={<IconGitHub mr2 />}
-        >
-          {t('login-with-github')}
-        </Button>
-      </Box>
-
-      <Box flex-1>
-        <Button
           w-100p
           as="a"
           href={googleAuthUrl}
@@ -47,6 +31,22 @@ export function ThirdPartyLogin() {
           leftIcon={<IconGoogle mr2 />}
         >
           {t('login-with-google')}
+        </Button>
+      </Box>
+
+      <Box flex-1>
+        <Button
+          as="a"
+          href={githubAuthUrl}
+          w-100p
+          variant="outline"
+          colorScheme="black"
+          border-2
+          flex-1
+          size="lg"
+          leftIcon={<IconGitHub mr2 />}
+        >
+          {t('login-with-github')}
         </Button>
       </Box>
     </Box>

@@ -6,6 +6,7 @@ import { UserAvatarPopover } from '../../../components/UserAvatarPopover'
 import { ModalUpsertTeam } from '../modals/ModalUpsertTeam'
 import { ModalSettings } from '../modals/ModalSettings'
 import { TeamList } from './TeamList'
+import { ModalAddTeam } from '../modals/ModalAddTeam'
 
 export const TeamBar = () => {
   return (
@@ -25,13 +26,13 @@ export const TeamBar = () => {
       <Box flex-1>
         <TeamList />
         <Box mt4 toCenter>
-          <Tooltip content="Add new Team" placement="right-center">
+          <Tooltip content="Create a new Team" placement="right-center">
             <Button
               colorScheme="gray500"
               variant="ghost"
               icon={<PlusOutline />}
               onClick={() => {
-                EasyModal.show(ModalUpsertTeam)
+                EasyModal.show(ModalAddTeam)
               }}
             />
           </Tooltip>

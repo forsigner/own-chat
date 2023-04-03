@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { ChatLayout } from '../layouts'
 import { ModuleChat } from '../modules'
 import { useToken, useUser } from '../stores'
+import { THIRD_PARTY_LOGIN_TAG } from '../common'
 
 interface Props {
   userId: number
@@ -19,7 +20,7 @@ export function PageChat({ userId, payload }: Props) {
     if (!payload) return
     const { token, user } = payload
 
-    if (query.from === 'third-party-login') {
+    if (query.from === THIRD_PARTY_LOGIN_TAG) {
       setToken(token)
       setUser(user)
     }

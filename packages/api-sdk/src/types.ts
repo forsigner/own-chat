@@ -52,7 +52,7 @@ export type AddTeamInput = {
   endpoint?: InputMaybe<Scalars['String']>;
   /** 该 Team Name */
   name: Scalars['String'];
-  providerType: ProviderType;
+  providerType?: InputMaybe<ProviderType>;
   /** 用户ID */
   userId: Scalars['Int'];
 };
@@ -1018,7 +1018,7 @@ export type Team = {
   /** Member */
   members: Array<Member>;
   name: Scalars['String'];
-  providerType: ProviderType;
+  providerType?: Maybe<ProviderType>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** User */
   user: User;
