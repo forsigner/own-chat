@@ -31,7 +31,7 @@ jobs:
               repo: context.repo.repo,
               tag_name: `own-chat-v${process.env.PACKAGE_VERSION}`,
               name: `Own Chat v${process.env.PACKAGE_VERSION}`,
-              body: 'Your personal Chat AI but collaborative, take a look at the assets to download and install this app.',
+              body: 'Own a Chat AI with collaboration, take a look at the assets to download and install this app.',
               draft: true,
               prerelease: false
             })

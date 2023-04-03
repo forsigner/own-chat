@@ -2,8 +2,8 @@
   "login-with-github": "Login with GitHub",
   "login-with-google": "Login with Google",
   "slogan": {
-    "prefix": "Own a personal",
-    "postfix": "ChatGPT"
+    "prefix": "Own a ChatGPT",
+    "postfix": "with collaboration"
   },
-  "intro": "Own Chat is tool to help you create your own chatGPT, Our mission is make everyone to own a ai assistant easily"
+  "intro": "Own Chat is tool to help you create your own chatGPT, Our mission is to make everyone to own a ai assistant easily"
 }

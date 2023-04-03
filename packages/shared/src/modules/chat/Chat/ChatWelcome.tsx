@@ -117,8 +117,8 @@ export const ChatWelcome = () => {
         </Box>
       </Box>
       <Box textLG gray500>
-        Own Chat is tool to help you create your own chatGPT, Our mission is make everyone to own a
-        ai assistant easily.
+        Own Chat is tool to help you create your own chatGPT, Our mission is to make everyone to own
+        a ai assistant easily.
       </Box>
       <Guide />
       <FAQ />

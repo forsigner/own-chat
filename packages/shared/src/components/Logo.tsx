@@ -17,7 +17,7 @@ export const Logo = ({ showText = true, to }: Props) => {
             Own Chat
           </Box>
           <Box textXS gray600>
-            Your personal Chat AI but collaborative
+            Own a Chat AI with collaboration
           </Box>
         </Box>
       )}

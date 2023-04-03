@@ -10,7 +10,7 @@ export function Home() {
   return (
     <Box toCenter column h-100vh>
       <Box column rowGap-12 mb4 toCenter fontBold text3XL w-360>
-        <Box>Login to Own.Chat</Box>
+        <Box>Login to OwnChat</Box>
         <Input
           size="lg"
           placeholder="Your personal token"

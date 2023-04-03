@@ -68,7 +68,7 @@ export function Plan() {
           Plans
         </Box>
         <Box text2XL text5XL--md text6XL--lg fontBold>
-          Your personal Chat AI but collaborative
+          Own a Chat AI with collaboration
         </Box>
       </Box>
 

@@ -5,7 +5,7 @@ import { Box } from '@fower/react'
 
 const OpenSourceList = () => {
   const list = [
-    { name: 'own-chat', desc: 'Your personal Chat AI but collaborative' },
+    { name: 'own-chat', desc: 'Own a Chat AI with collaboration' },
     { name: 'fower', desc: 'A utility-first CSS in JS library.' },
     { name: 'fexo', desc: 'A minimalist design theme for hexo.' },
     { name: 'stook', desc: 'A minimalist design state management library for React.' },
@@ -82,7 +82,7 @@ export default function PageAbout() {
         About OwnChat
       </Box>
       <Box textCenter mt6 text3XL fontSemibold>
-        Your personal Chat AI but collaborative
+        Own a Chat AI with collaboration
       </Box>
 
       <Box leadingRelaxed spaceY4 mt-30 textLG gray700>
