@@ -6,6 +6,7 @@ import { isApiError } from './type-guard'
 import { toast } from 'bone-ui'
 import { baseURL, subscriptionsEndpoint } from './constants'
 import { mutateUser } from '../stores'
+import { isServer } from './utils'
 
 export function initStookGraphql() {
   applyMiddleware(async (ctx, next) => {
@@ -36,7 +37,7 @@ export function initStookGraphql() {
 
       // 全局错误处理
       if (isApiError(error)) {
-        if (error.code !== 'TokenError') {
+        if (error.code !== 'TokenError' && !isServer) {
           toast.error(error.message, {
             type: 'error',
           })

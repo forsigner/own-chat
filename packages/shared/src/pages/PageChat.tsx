@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ChatLayout } from '../layouts'
 import { ModuleChat } from '../modules'
-import { useSetting } from '../modules/chat/hooks/useSetting'
 import { useToken, useUser } from '../stores'
 
 interface Props {

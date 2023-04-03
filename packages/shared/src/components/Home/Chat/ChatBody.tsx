@@ -7,12 +7,11 @@ import { ChatList } from '../../MessageList/MessageList'
 export const ChatBody = () => {
   const { loading: loadingSession } = useSessions()
   const { messages = [], loading } = useMessages()
-  if (loadingSession) return null
 
   return (
     <Box flex-1 column overflowAuto px4 pt5 pb0>
       <Box maxW={CHAT_WIDTH} mx-auto w={['100p']}>
-        <Box>{!loading && <ChatList messages={messages as any} />}</Box>
+        <Box>{!loading && !loadingSession && <ChatList messages={messages as any} />}</Box>
         <Anchor />
       </Box>
     </Box>
