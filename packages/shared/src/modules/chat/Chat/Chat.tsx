@@ -1,11 +1,11 @@
 import { Box } from '@fower/react'
-import { useProviders } from '../hooks/useProviders'
+import { useTeams } from '../hooks/useTeams'
 import { ChatBody } from './ChatBody'
 import { ChatFooter } from './ChatFooter'
 import { ChatHeader } from './ChatHeader'
 
 export const Chat = () => {
-  const { loading } = useProviders()
+  const { loading } = useTeams()
 
   if (loading) return null
 

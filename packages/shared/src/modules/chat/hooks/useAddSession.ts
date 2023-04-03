@@ -8,14 +8,14 @@ export function useAddSession() {
 
   async function addSession() {
     await apiService.addSession({
-      providerId: setting.activeProviderId!,
+      teamId: setting.activeTeamId!,
       name: 'New chat',
     })
 
     await Refetcher.refetchSessions({
       where: {
         userId: user.id,
-        providerId: setting.activeProviderId,
+        teamId: setting.activeTeamId,
       },
     })
   }

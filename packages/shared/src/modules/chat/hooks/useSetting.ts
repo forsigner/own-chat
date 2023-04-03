@@ -12,16 +12,16 @@ export function useSetting() {
   }
 }
 
-export async function updateActiveProviderId(settingId: number, activeProviderId: number) {
+export async function updateActiveTeamId(settingId: number, activeTeamId: number) {
   // TODO: why don't run ?
   Mutator.mutateSetting((setting) => {
     console.log('update setting...')
-    setting.activeProviderId = activeProviderId
+    setting.activeTeamId = activeTeamId
   })
 
   await apiService.updateSetting({
     where: { id: settingId },
-    data: { activeProviderId },
+    data: { activeTeamId },
   })
 
   await Refetcher.refetchSetting({ id: settingId })

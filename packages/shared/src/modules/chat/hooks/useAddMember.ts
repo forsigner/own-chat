@@ -9,13 +9,13 @@ export function useAddMember() {
 
   async function addMember(userId: number) {
     await apiService.addMember({
-      providerId: setting.activeProviderId!,
+      teamId: setting.activeTeamId!,
       roleType: RoleType.Member,
       userId,
     })
     await Refetcher.refetchMembers({
       where: {
-        providerId: setting.activeProviderId!,
+        teamId: setting.activeTeamId!,
       },
     })
     toast.success('添加成员成功')

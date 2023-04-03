@@ -9,7 +9,7 @@ export function useSessions() {
   const { data: sessions, ...rest } = Hooks.useSessions({
     where: {
       userId: user.id,
-      providerId: setting.activeProviderId,
+      teamId: setting.activeTeamId,
     },
   })
 

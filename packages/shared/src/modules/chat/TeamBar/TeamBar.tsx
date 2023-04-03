@@ -3,11 +3,11 @@ import { EasyModal } from '@own-chat/easy-modal'
 import { Button, CogSolid, PlusOutline, Tooltip } from 'bone-ui'
 import { Logo } from '../../../components'
 import { UserAvatarPopover } from '../../../components/UserAvatarPopover'
-import { ModalUpsertProvider } from '../ModalUpsertProvider'
+import { ModalUpsertTeam } from '../ModalUpsertTeam'
 import { ModalSettings } from '../ModalSettings'
-import { ProviderList } from './ProviderList'
+import { TeamList } from './TeamList'
 
-export const ProviderBar = () => {
+export const TeamBar = () => {
   return (
     <Box
       slate100
@@ -23,15 +23,15 @@ export const ProviderBar = () => {
         <Logo showText={false} />
       </Box>
       <Box flex-1>
-        <ProviderList />
+        <TeamList />
         <Box mt4 toCenter>
-          <Tooltip content="Add new Provider" placement="right-center">
+          <Tooltip content="Add new Team" placement="right-center">
             <Button
               colorScheme="gray500"
               variant="ghost"
               icon={<PlusOutline />}
               onClick={() => {
-                EasyModal.show(ModalUpsertProvider)
+                EasyModal.show(ModalUpsertTeam)
               }}
             />
           </Tooltip>

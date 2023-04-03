@@ -1,11 +1,11 @@
 import { Box } from '@fower/react'
 import { Avatar, Spinner, Tooltip } from 'bone-ui'
-import { useProviders } from '../hooks/useProviders'
-import { useUpdateActiveProviderId } from '../hooks/useUpdateActiveProviderId'
+import { useTeams } from '../hooks/useTeams'
+import { useUpdateActiveTeamId } from '../hooks/useUpdateActiveTeamId'
 
-export const ProviderList = () => {
-  const { providers, activeProvider, loading } = useProviders()
-  const { updateActiveProviderId } = useUpdateActiveProviderId()
+export const TeamList = () => {
+  const { teams, activeTeam, loading } = useTeams()
+  const { updateActiveTeamId } = useUpdateActiveTeamId()
 
   if (loading) {
     return (
@@ -17,15 +17,15 @@ export const ProviderList = () => {
 
   return (
     <Box column toCenterX rowGap-12 mt4>
-      {providers.map((item) => {
-        const selected = item.id === activeProvider?.id
+      {teams.map((item) => {
+        const selected = item.id === activeTeam?.id
 
         return (
           <Box
             key={item.id}
             cursorPointer
             onClick={async () => {
-              await updateActiveProviderId(item.id)
+              await updateActiveTeamId(item.id)
             }}
             w-100p
             toBetween

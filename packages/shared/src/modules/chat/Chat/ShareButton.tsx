@@ -19,7 +19,7 @@ export function ShareButton({ session }: Props) {
 
   const { updateSession } = useUpdateSession()
   const { copy } = useCopyToClipboard()
-  const link = `${HOST}/c/${session.slug}`
+  const link = `${HOST}/c/${session?.slug || ''}`
 
   return (
     <Popover placement="bottom-end">

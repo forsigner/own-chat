@@ -1,10 +1,10 @@
 """添加成员"""
 input AddMemberInput {
-  """Provider ID"""
-  providerId: Int!
-
   """角色类型"""
   roleType: RoleType!
+
+  """Team ID"""
+  teamId: Int!
 
   """用户ID"""
   userId: Int!
@@ -25,8 +25,20 @@ input AddMessageInput {
   userId: Int
 }
 
-"""添加 Provider"""
-input AddProviderInput {
+"""添加 Session"""
+input AddSessionInput {
+  """该 Session Name"""
+  name: String!
+
+  """teamId"""
+  teamId: Int!
+
+  """用户ID"""
+  userId: Int
+}
+
+"""添加 Team"""
+input AddTeamInput {
   """"""
   apiKey: String
 
@@ -36,26 +48,14 @@ input AddProviderInput {
   """self host server endpoint"""
   endpoint: String
 
-  """该 Provider Name"""
+  """该 Team Name"""
   name: String!
 
   """"""
-  type: ProviderType!
+  providerType: ProviderType!
 
   """用户ID"""
   userId: Int!
-}
-
-"""添加 Session"""
-input AddSessionInput {
-  """该 Session Name"""
-  name: String!
-
-  """providerId"""
-  providerId: Int!
-
-  """用户ID"""
-  userId: Int
 }
 
 """添加 access token"""
@@ -69,8 +69,8 @@ input AddTokenInput {
 
 """创建"""
 input CreateMemberInput {
-  """Provider ID"""
-  providerId: Int!
+  """Team ID"""
+  teamId: Int!
 
   """用户ID"""
   userId: Int!
@@ -92,24 +92,6 @@ input CreateMessageInput {
 }
 
 """创建"""
-input CreateProviderInput {
-  """"""
-  apiKey: String!
-
-  """"""
-  authorizationCode: String!
-
-  """该 Provider Name"""
-  name: String!
-
-  """"""
-  type: String!
-
-  """用户ID"""
-  userId: Int
-}
-
-"""创建"""
 input CreateSessionInput {
   """访问权限类型"""
   accessType: String
@@ -117,11 +99,11 @@ input CreateSessionInput {
   """该 Session Name"""
   name: String!
 
-  """provider Id"""
-  providerId: Int
-
   """"""
   slug: String
+
+  """Team Id"""
+  teamId: Int
 
   """用户ID"""
   userId: Int
@@ -130,13 +112,31 @@ input CreateSessionInput {
 """创建"""
 input CreateSettingInput {
   """"""
-  activeProviderId: Int
+  activeSessionId: Int
 
   """"""
-  activeSessionId: Int
+  activeTeamId: Int
 
   """用户ID"""
   userId: Int!
+}
+
+"""创建"""
+input CreateTeamInput {
+  """"""
+  apiKey: String!
+
+  """"""
+  authorizationCode: String!
+
+  """该 Team Name"""
+  name: String!
+
+  """"""
+  providerType: ProviderType!
+
+  """用户ID"""
+  userId: Int
 }
 
 """创建"""
@@ -178,12 +178,6 @@ input DeleteMessageInput {
 }
 
 """删除"""
-input DeleteProviderInput {
-  """ID"""
-  id: Int!
-}
-
-"""删除"""
 input DeleteSessionInput {
   """ID"""
   id: Int!
@@ -191,6 +185,12 @@ input DeleteSessionInput {
 
 """删除"""
 input DeleteSettingInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteTeamInput {
   """ID"""
   id: Int!
 }
@@ -244,11 +244,11 @@ type Member {
   """"""
   id: Int!
 
-  """Provider ID"""
-  providerId: Int!
-
   """角色类型"""
   roleType: RoleType!
+
+  """Team ID"""
+  teamId: Int!
 
   """User"""
   user: User!
@@ -259,8 +259,8 @@ type Member {
 
 """筛选条件"""
 input MemberWhereInput {
-  """Provider ID"""
-  providerId: Int!
+  """Team ID"""
+  teamId: Int!
 }
 
 """connection"""
@@ -337,11 +337,11 @@ type Mutation {
   """添加Message"""
   addMessage(input: AddMessageInput!): Message!
 
-  """添加Provider"""
-  addProvider(input: AddProviderInput!): Provider!
-
   """添加Session"""
   addSession(input: AddSessionInput!): Session!
+
+  """添加Team"""
+  addTeam(input: AddTeamInput!): Team!
 
   """新增Token"""
   addToken(input: AddTokenInput!): Token!
@@ -353,13 +353,13 @@ type Mutation {
   createMessage(input: CreateMessageInput!): Message!
 
   """创建"""
-  createProvider(input: CreateProviderInput!): Provider!
-
-  """创建"""
   createSession(input: CreateSessionInput!): Session!
 
   """创建"""
   createSetting(input: CreateSettingInput!): Setting!
+
+  """创建"""
+  createTeam(input: CreateTeamInput!): Team!
 
   """创建"""
   createToken(input: CreateTokenInput!): Token!
@@ -374,13 +374,13 @@ type Mutation {
   deleteManyMessages(input: DeleteMessageInput!): Float!
 
   """批量删除"""
-  deleteManyProviders(input: DeleteProviderInput!): Float!
-
-  """批量删除"""
   deleteManySessions(input: DeleteSessionInput!): Float!
 
   """批量删除"""
   deleteManySettings(input: DeleteSettingInput!): Float!
+
+  """批量删除"""
+  deleteManyTeams(input: DeleteTeamInput!): Float!
 
   """批量删除"""
   deleteManyTokens(input: DeleteTokenInput!): Float!
@@ -395,13 +395,13 @@ type Mutation {
   deleteMessage(input: DeleteMessageInput!): Boolean!
 
   """删除单个"""
-  deleteProvider(input: DeleteProviderInput!): Boolean!
-
-  """删除单个"""
   deleteSession(input: DeleteSessionInput!): Boolean!
 
   """删除单个"""
   deleteSetting(input: DeleteSettingInput!): Boolean!
+
+  """删除单个"""
+  deleteTeam(input: DeleteTeamInput!): Boolean!
 
   """删除单个"""
   deleteToken(input: DeleteTokenInput!): Boolean!
@@ -455,13 +455,13 @@ type Mutation {
   updateManyMessages(input: UpdateManyMessageInput!): Boolean!
 
   """批量更新"""
-  updateManyProviders(input: UpdateManyProviderInput!): Boolean!
-
-  """批量更新"""
   updateManySessions(input: UpdateManySessionInput!): Boolean!
 
   """批量更新"""
   updateManySettings(input: UpdateManySettingInput!): Boolean!
+
+  """批量更新"""
+  updateManyTeams(input: UpdateManyTeamInput!): Boolean!
 
   """批量更新"""
   updateManyTokens(input: UpdateManyTokenInput!): Boolean!
@@ -476,13 +476,13 @@ type Mutation {
   updateMessage(input: UpdateMessageInput!): Message!
 
   """更新单个"""
-  updateProvider(input: UpdateProviderInput!): Provider!
-
-  """更新单个"""
   updateSession(input: UpdateSessionInput!): Session!
 
   """更新单个"""
   updateSetting(input: UpdateSettingInput!): Setting!
+
+  """更新单个"""
+  updateTeam(input: UpdateTeamInput!): Team!
 
   """更新单个"""
   updateToken(input: UpdateTokenInput!): Token!
@@ -499,38 +499,6 @@ enum PlanType {
   God
 }
 
-""""""
-type Provider {
-  """"""
-  apiKey: String
-
-  """self host auth code"""
-  authorizationCode: String
-  createdAt: DateTime
-
-  """self host server endpoint"""
-  endpoint: String
-
-  """"""
-  id: Int!
-
-  """Member"""
-  members: [Member!]!
-
-  """"""
-  name: String!
-
-  """"""
-  type: ProviderType!
-  updatedAt: DateTime
-
-  """User"""
-  user: User!
-
-  """用户ID"""
-  userId: Int!
-}
-
 """Provider 类型"""
 enum ProviderType {
   ApiKey
@@ -538,22 +506,9 @@ enum ProviderType {
   SelfHost
 }
 
-"""筛选条件"""
-input ProviderWhereInput {
-  """用户ID"""
-  userId: Int!
-}
-
-"""connection"""
-type ProvidersConnection {
-  hasNextPage: Boolean!
-  items: [Provider!]!
-  totalCount: Int!
-}
-
 type Query {
   """"""
-  activeProvider: Provider!
+  activeTeam: Team!
 
   """check token"""
   checkPersonalToken(token: String!): User!
@@ -634,40 +589,7 @@ type Query {
   ): MessagesConnection!
 
   """自己可以访问的 provider"""
-  myProviders: [Provider!]!
-
-  """获取单个"""
-  provider(id: Int!): Provider!
-
-  """获取列表"""
-  providers(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: ProviderWhereInput
-  ): [Provider!]!
-
-  """获取分页列表"""
-  providersConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: ProviderWhereInput
-  ): ProvidersConnection!
+  myTeams: [Team!]!
 
   """搜索用户"""
   searchUsers(q: String!): [User!]!
@@ -746,6 +668,39 @@ type Query {
     """筛选条件"""
     where: SettingWhereInput
   ): SettingsConnection!
+
+  """获取单个"""
+  team(id: Int!): Team!
+
+  """获取列表"""
+  teams(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: TeamWhereInput
+  ): [Team!]!
+
+  """获取分页列表"""
+  teamsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: TeamWhereInput
+  ): TeamsConnection!
 
   """获取单个"""
   token(
@@ -875,11 +830,11 @@ type Session {
   """"""
   name: String!
 
-  """providerId"""
-  providerId: Int!
-
   """"""
   slug: String!
+
+  """teamId"""
+  teamId: Int!
   updatedAt: DateTime
 
   """用户ID"""
@@ -895,8 +850,8 @@ enum SessionAccessType {
 
 """筛选条件"""
 input SessionWhereInput {
-  """providerId"""
-  providerId: Int
+  """teamId"""
+  teamId: Int
 
   """用户ID"""
   userId: Int!
@@ -912,10 +867,10 @@ type SessionsConnection {
 """"""
 type Setting {
   """"""
-  activeProviderId: Int
+  activeSessionId: Int
 
   """"""
-  activeSessionId: Int
+  activeTeamId: Int
 
   """"""
   id: Int!
@@ -934,6 +889,51 @@ input SettingWhereInput {
 type SettingsConnection {
   hasNextPage: Boolean!
   items: [Setting!]!
+  totalCount: Int!
+}
+
+""""""
+type Team {
+  """"""
+  apiKey: String
+
+  """self host auth code"""
+  authorizationCode: String
+  createdAt: DateTime
+
+  """self host server endpoint"""
+  endpoint: String
+
+  """"""
+  id: Int!
+
+  """Member"""
+  members: [Member!]!
+
+  """"""
+  name: String!
+
+  """"""
+  providerType: ProviderType!
+  updatedAt: DateTime
+
+  """User"""
+  user: User!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input TeamWhereInput {
+  """用户ID"""
+  userId: Int!
+}
+
+"""connection"""
+type TeamsConnection {
+  hasNextPage: Boolean!
+  items: [Team!]!
   totalCount: Int!
 }
 
@@ -1005,15 +1005,6 @@ input UpdateManyMessageInput {
 }
 
 """批量更新"""
-input UpdateManyProviderInput {
-  """更新的数据"""
-  data: UpdateProviderDataInput
-
-  """更新条件"""
-  where: UpdateProviderWhereInput
-}
-
-"""批量更新"""
 input UpdateManySessionInput {
   """更新的数据"""
   data: UpdateSessionDataInput
@@ -1029,6 +1020,15 @@ input UpdateManySettingInput {
 
   """更新条件"""
   where: UpdateSettingWhereInput
+}
+
+"""批量更新"""
+input UpdateManyTeamInput {
+  """更新的数据"""
+  data: UpdateTeamDataInput
+
+  """更新条件"""
+  where: UpdateTeamWhereInput
 }
 
 """批量更新"""
@@ -1051,8 +1051,8 @@ input UpdateManyUserInput {
 
 """更新data"""
 input UpdateMemberDataInput {
-  """Provider ID"""
-  providerId: Int!
+  """Team ID"""
+  teamId: Int!
 
   """用户ID"""
   userId: Int!
@@ -1095,39 +1095,6 @@ input UpdateMessageWhereInput {
 }
 
 """更新data"""
-input UpdateProviderDataInput {
-  """"""
-  apiKey: String
-
-  """self host auth code"""
-  authorizationCode: String
-
-  """self host server endpoint"""
-  endpoint: String
-
-  """该 Provider Name"""
-  name: String!
-
-  """"""
-  type: ProviderType!
-}
-
-"""更新单个"""
-input UpdateProviderInput {
-  """更新的数据"""
-  data: UpdateProviderDataInput
-
-  """更新条件"""
-  where: UpdateProviderWhereInput
-}
-
-"""更新条件"""
-input UpdateProviderWhereInput {
-  """ID"""
-  id: Int
-}
-
-"""更新data"""
 input UpdateSessionDataInput {
   """访问权限类型"""
   accessType: SessionAccessType
@@ -1154,10 +1121,10 @@ input UpdateSessionWhereInput {
 """更新data"""
 input UpdateSettingDataInput {
   """"""
-  activeProviderId: Int
+  activeSessionId: Int
 
   """"""
-  activeSessionId: Int
+  activeTeamId: Int
 }
 
 """更新单个"""
@@ -1176,6 +1143,39 @@ input UpdateSettingWhereInput {
 
   """用户ID"""
   userId: Int
+}
+
+"""更新data"""
+input UpdateTeamDataInput {
+  """"""
+  apiKey: String
+
+  """self host auth code"""
+  authorizationCode: String
+
+  """self host server endpoint"""
+  endpoint: String
+
+  """该 Team Name"""
+  name: String!
+
+  """"""
+  providerType: ProviderType!
+}
+
+"""更新单个"""
+input UpdateTeamInput {
+  """更新的数据"""
+  data: UpdateTeamDataInput
+
+  """更新条件"""
+  where: UpdateTeamWhereInput
+}
+
+"""更新条件"""
+input UpdateTeamWhereInput {
+  """ID"""
+  id: Int
 }
 
 """更新data"""

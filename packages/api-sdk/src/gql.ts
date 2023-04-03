@@ -51,8 +51,8 @@ export const MEMBERS = gql`
 query members($orderBy: String, $skip: Int, $take: Int, $where: MemberWhereInput){
     members(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
         id
-        providerId
         roleType
+        teamId
         user{
             avatar
             bio
@@ -75,16 +75,16 @@ query members($orderBy: String, $skip: Int, $take: Int, $where: MemberWhereInput
 export const SETTING = gql`
 query setting($id: Int, $userId: Int){
     setting(id: $id, userId: $userId){
-        activeProviderId
         activeSessionId
+        activeTeamId
         id
         userId
     }
 }
 `;
-export const PROVIDER = gql`
-query provider($id: Int!){
-    provider(id: $id){
+export const TEAM = gql`
+query team($id: Int!){
+    team(id: $id){
         apiKey
         authorizationCode
         createdAt
@@ -92,12 +92,12 @@ query provider($id: Int!){
         id
         members{
             id
-            providerId
             roleType
+            teamId
             userId
         }
         name
-        type
+        providerType
         updatedAt
         user{
             avatar
@@ -118,9 +118,9 @@ query provider($id: Int!){
     }
 }
 `;
-export const ACTIVE_PROVIDER = gql`
-query activeProvider{
-    activeProvider{
+export const ACTIVE_TEAM = gql`
+query activeTeam{
+    activeTeam{
         apiKey
         authorizationCode
         createdAt
@@ -128,12 +128,12 @@ query activeProvider{
         id
         members{
             id
-            providerId
             roleType
+            teamId
             userId
         }
         name
-        type
+        providerType
         updatedAt
         user{
             avatar
@@ -154,9 +154,9 @@ query activeProvider{
     }
 }
 `;
-export const MY_PROVIDERS = gql`
-query myProviders{
-    myProviders{
+export const MY_TEAMS = gql`
+query myTeams{
+    myTeams{
         apiKey
         authorizationCode
         createdAt
@@ -164,12 +164,12 @@ query myProviders{
         id
         members{
             id
-            providerId
             roleType
+            teamId
             userId
         }
         name
-        type
+        providerType
         updatedAt
         user{
             avatar
@@ -197,8 +197,8 @@ query sessions($orderBy: String, $skip: Int, $take: Int, $where: SessionWhereInp
         createdAt
         id
         name
-        providerId
         slug
+        teamId
         updatedAt
         userId
     }
@@ -223,8 +223,8 @@ query sessionBySlug($slug: String!){
             views
         }
         name
-        providerId
         slug
+        teamId
         updatedAt
         userId
     }
@@ -377,8 +377,8 @@ export const ADD_MEMBER = gql`
 mutation addMember($input: AddMemberInput!){
     addMember(input: $input){
         id
-        providerId
         roleType
+        teamId
         user{
             avatar
             bio
@@ -411,16 +411,16 @@ mutation exitMember($input: ExitMemberInput!){
 export const UPDATE_SETTING = gql`
 mutation updateSetting($input: UpdateSettingInput!){
     updateSetting(input: $input){
-        activeProviderId
         activeSessionId
+        activeTeamId
         id
         userId
     }
 }
 `;
-export const UPDATE_PROVIDER = gql`
-mutation updateProvider($input: UpdateProviderInput!){
-    updateProvider(input: $input){
+export const UPDATE_TEAM = gql`
+mutation updateTeam($input: UpdateTeamInput!){
+    updateTeam(input: $input){
         apiKey
         authorizationCode
         createdAt
@@ -428,12 +428,12 @@ mutation updateProvider($input: UpdateProviderInput!){
         id
         members{
             id
-            providerId
             roleType
+            teamId
             userId
         }
         name
-        type
+        providerType
         updatedAt
         user{
             avatar
@@ -454,9 +454,9 @@ mutation updateProvider($input: UpdateProviderInput!){
     }
 }
 `;
-export const ADD_PROVIDER = gql`
-mutation addProvider($input: AddProviderInput!){
-    addProvider(input: $input){
+export const ADD_TEAM = gql`
+mutation addTeam($input: AddTeamInput!){
+    addTeam(input: $input){
         apiKey
         authorizationCode
         createdAt
@@ -464,12 +464,12 @@ mutation addProvider($input: AddProviderInput!){
         id
         members{
             id
-            providerId
             roleType
+            teamId
             userId
         }
         name
-        type
+        providerType
         updatedAt
         user{
             avatar
@@ -497,8 +497,8 @@ mutation addSession($input: AddSessionInput!){
         createdAt
         id
         name
-        providerId
         slug
+        teamId
         updatedAt
         userId
     }
@@ -511,8 +511,8 @@ mutation updateSession($input: UpdateSessionInput!){
         createdAt
         id
         name
-        providerId
         slug
+        teamId
         updatedAt
         userId
     }

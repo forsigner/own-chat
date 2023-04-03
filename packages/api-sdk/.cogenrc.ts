@@ -31,11 +31,11 @@ const gqlConfig: ConfigItem[] = [
   { name: 'setting', actions: ['useQuery', 'refetch', 'mutator'] },
   { name: 'updateSetting', actions: ['query'] },
 
-  { name: 'provider', actions: ['query', 'useQuery', 'refetch'] },
-  { name: 'activeProvider', actions: ['query', 'useQuery', 'refetch'] },
-  { name: 'myProviders', actions: ['useQuery', 'refetch'] },
-  { name: 'updateProvider', actions: ['query'] },
-  { name: 'addProvider', actions: ['query'] },
+  { name: 'team', actions: ['query', 'useQuery', 'refetch'] },
+  { name: 'activeTeam', actions: ['query', 'useQuery', 'refetch'] },
+  { name: 'myTeams', actions: ['useQuery', 'refetch'] },
+  { name: 'updateTeam', actions: ['query'] },
+  { name: 'addTeam', actions: ['query'] },
 
   {
     name: 'sessions',

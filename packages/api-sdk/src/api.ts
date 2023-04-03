@@ -1,6 +1,6 @@
 import { Options, query } from "stook-graphql";
-import { Member, Message, Provider, Session, Token, LoginSuccessPayload, Setting, User, AddMemberInput, AddMessageInput, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, ExitMemberInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveMemberInput, RemoveSessionInput, UpdateProviderInput, UpdateSessionInput, UpdateSettingInput, UpdateUserInput, QueryProviderArgs, QuerySessionBySlugArgs } from "./types";
-import { ADD_MEMBER, ADD_MESSAGE, ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, EXIT_MEMBER, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_MEMBER, REMOVE_SESSION, UPDATE_PROVIDER, UPDATE_SESSION, UPDATE_SETTING, UPDATE_USER, ACTIVE_PROVIDER, PROVIDER, SESSION_BY_SLUG } from "./gql";
+import { Member, Message, Session, Team, Token, LoginSuccessPayload, Setting, User, AddMemberInput, AddMessageInput, AddSessionInput, AddTeamInput, AddTokenInput, DeleteTokenInput, ExitMemberInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveMemberInput, RemoveSessionInput, UpdateSessionInput, UpdateSettingInput, UpdateTeamInput, UpdateUserInput, QuerySessionBySlugArgs, QueryTeamArgs } from "./types";
+import { ADD_MEMBER, ADD_MESSAGE, ADD_SESSION, ADD_TEAM, ADD_TOKEN, DELETE_TOKEN, EXIT_MEMBER, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_MEMBER, REMOVE_SESSION, UPDATE_SESSION, UPDATE_SETTING, UPDATE_TEAM, UPDATE_USER, ACTIVE_TEAM, SESSION_BY_SLUG, TEAM } from "./gql";
 
 class ApiService {
   async addMember(args: AddMemberInput = {} as AddMemberInput, opt: Options = {}) {
@@ -11,12 +11,12 @@ class ApiService {
     return await query<Message>(ADD_MESSAGE, { ...opt, variables: { input: args } })
   }
 
-  async addProvider(args: AddProviderInput = {} as AddProviderInput, opt: Options = {}) {
-    return await query<Provider>(ADD_PROVIDER, { ...opt, variables: { input: args } })
-  }
-
   async addSession(args: AddSessionInput = {} as AddSessionInput, opt: Options = {}) {
     return await query<Session>(ADD_SESSION, { ...opt, variables: { input: args } })
+  }
+
+  async addTeam(args: AddTeamInput = {} as AddTeamInput, opt: Options = {}) {
+    return await query<Team>(ADD_TEAM, { ...opt, variables: { input: args } })
   }
 
   async addToken(args: AddTokenInput = {} as AddTokenInput, opt: Options = {}) {
@@ -51,10 +51,6 @@ class ApiService {
     return await query<boolean>(REMOVE_SESSION, { ...opt, variables: { input: args } })
   }
 
-  async updateProvider(args: UpdateProviderInput = {} as UpdateProviderInput, opt: Options = {}) {
-    return await query<Provider>(UPDATE_PROVIDER, { ...opt, variables: { input: args } })
-  }
-
   async updateSession(args: UpdateSessionInput = {} as UpdateSessionInput, opt: Options = {}) {
     return await query<Session>(UPDATE_SESSION, { ...opt, variables: { input: args } })
   }
@@ -63,20 +59,24 @@ class ApiService {
     return await query<Setting>(UPDATE_SETTING, { ...opt, variables: { input: args } })
   }
 
+  async updateTeam(args: UpdateTeamInput = {} as UpdateTeamInput, opt: Options = {}) {
+    return await query<Team>(UPDATE_TEAM, { ...opt, variables: { input: args } })
+  }
+
   async updateUser(args: UpdateUserInput = {} as UpdateUserInput, opt: Options = {}) {
     return await query<User>(UPDATE_USER, { ...opt, variables: { input: args } })
   }
 
-  async activeProvider(args: any = {} as any, opt: Options = {}) {
-    return await query<Provider>(ACTIVE_PROVIDER, { ...opt, variables: args })
-  }
-
-  async provider(args: QueryProviderArgs = {} as QueryProviderArgs, opt: Options = {}) {
-    return await query<Provider>(PROVIDER, { ...opt, variables: args })
+  async activeTeam(args: any = {} as any, opt: Options = {}) {
+    return await query<Team>(ACTIVE_TEAM, { ...opt, variables: args })
   }
 
   async sessionBySlug(args: QuerySessionBySlugArgs = {} as QuerySessionBySlugArgs, opt: Options = {}) {
     return await query<Session>(SESSION_BY_SLUG, { ...opt, variables: args })
+  }
+
+  async team(args: QueryTeamArgs = {} as QueryTeamArgs, opt: Options = {}) {
+    return await query<Team>(TEAM, { ...opt, variables: args })
   }
 }
 

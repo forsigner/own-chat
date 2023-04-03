@@ -1,7 +1,7 @@
 import { Box } from '@fower/react'
 import { Chat } from './Chat/Chat'
 import { useSetting } from './hooks/useSetting'
-import { ProviderBar } from './ProviderBar/ProviderBar'
+import { TeamBar } from './TeamBar/TeamBar'
 import { Sidebar } from './Sidebar/Sidebar'
 
 export function ModuleChat() {
@@ -10,7 +10,7 @@ export function ModuleChat() {
 
   return (
     <>
-      <ProviderBar />
+      <TeamBar />
       <Sidebar />
       <Box flex-1 overflowAuto relative>
         <Chat />

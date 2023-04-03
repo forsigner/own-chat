@@ -11,7 +11,7 @@ export function useRemoveMember() {
     await apiService.removeMember({ id })
     await Refetcher.refetchMembers({
       where: {
-        providerId: setting.activeProviderId!,
+        teamId: setting.activeTeamId!,
       },
     })
     toast.success('移除成员成功')

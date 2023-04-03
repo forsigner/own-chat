@@ -12,7 +12,7 @@ export function useRemoveSession() {
     await Refetcher.refetchSessions({
       where: {
         userId: user.id,
-        providerId: setting.activeProviderId,
+        teamId: setting.activeTeamId,
       },
     })
 

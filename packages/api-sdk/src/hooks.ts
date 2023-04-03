@@ -1,10 +1,10 @@
 import { Options, useQuery, useMutation } from "stook-graphql";
-import { Provider, Member, Message, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QueryProviderArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
-import { ACTIVE_PROVIDER, MEMBERS, MESSAGES, MY_PROVIDERS, PROVIDER, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, SETTING, TOKENS } from "./gql";
+import { Team, Member, Message, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QuerySettingArgs, QueryTeamArgs, QueryTokensArgs } from "./types";
+import { ACTIVE_TEAM, MEMBERS, MESSAGES, MY_TEAMS, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, SETTING, TEAM, TOKENS } from "./gql";
 
 class HooksService {
-  useActiveProvider(args?: any | (() => any), opt: Options = {}) {
-    return useQuery<Provider, any>(ACTIVE_PROVIDER, { ...opt, variables: args })
+  useActiveTeam(args?: any | (() => any), opt: Options = {}) {
+    return useQuery<Team, any>(ACTIVE_TEAM, { ...opt, variables: args })
   }
 
   useMembers(args?: QueryMembersArgs | (() => QueryMembersArgs), opt: Options = {}) {
@@ -15,12 +15,8 @@ class HooksService {
     return useQuery<Message[], QueryMessagesArgs>(MESSAGES, { ...opt, variables: args })
   }
 
-  useMyProviders(args?: any | (() => any), opt: Options = {}) {
-    return useQuery<Provider[], any>(MY_PROVIDERS, { ...opt, variables: args })
-  }
-
-  useProvider(args?: QueryProviderArgs | (() => QueryProviderArgs), opt: Options = {}) {
-    return useQuery<Provider, QueryProviderArgs>(PROVIDER, { ...opt, variables: args })
+  useMyTeams(args?: any | (() => any), opt: Options = {}) {
+    return useQuery<Team[], any>(MY_TEAMS, { ...opt, variables: args })
   }
 
   useSearchUsers(args?: QuerySearchUsersArgs | (() => QuerySearchUsersArgs), opt: Options = {}) {
@@ -37,6 +33,10 @@ class HooksService {
 
   useSetting(args?: QuerySettingArgs | (() => QuerySettingArgs), opt: Options = {}) {
     return useQuery<Setting, QuerySettingArgs>(SETTING, { ...opt, variables: args })
+  }
+
+  useTeam(args?: QueryTeamArgs | (() => QueryTeamArgs), opt: Options = {}) {
+    return useQuery<Team, QueryTeamArgs>(TEAM, { ...opt, variables: args })
   }
 
   useTokens(args?: QueryTokensArgs | (() => QueryTokensArgs), opt: Options = {}) {

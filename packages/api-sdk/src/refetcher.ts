@@ -1,11 +1,11 @@
 import { RefetchOptions, fetcher } from "stook-graphql";
-import { Provider, Member, Message, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QueryProviderArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
-import { ACTIVE_PROVIDER, MEMBERS, MESSAGES, MY_PROVIDERS, PROVIDER, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, SETTING, TOKENS } from "./gql";
+import { Team, Member, Message, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QuerySettingArgs, QueryTeamArgs, QueryTokensArgs } from "./types";
+import { ACTIVE_TEAM, MEMBERS, MESSAGES, MY_TEAMS, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, SETTING, TEAM, TOKENS } from "./gql";
 
 class RefetcherService {
-  async refetchActiveProvider(args: any = {} as any, opt: RefetchOptions = {}): Promise<Provider> {
+  async refetchActiveTeam(args: any = {} as any, opt: RefetchOptions = {}): Promise<Team> {
 
-    const key = opt.key ? opt.key : ACTIVE_PROVIDER
+    const key = opt.key ? opt.key : ACTIVE_TEAM
     if (!fetcher.get(key)) {
       return console.warn('fetcher找不到' + key) as any
     }
@@ -39,21 +39,9 @@ class RefetcherService {
 
   }
 
-  async refetchMyProviders(args: any = {} as any, opt: RefetchOptions = {}): Promise<Provider[]> {
+  async refetchMyTeams(args: any = {} as any, opt: RefetchOptions = {}): Promise<Team[]> {
 
-    const key = opt.key ? opt.key : MY_PROVIDERS
-    if (!fetcher.get(key)) {
-      return console.warn('fetcher找不到' + key) as any
-    }
-    if (Object.keys(args).length) opt.variables = args
-    if (!opt.showLoading) opt.showLoading = false
-    return await fetcher.get(key).refetch(opt)
-
-  }
-
-  async refetchProvider(args: QueryProviderArgs = {} as QueryProviderArgs, opt: RefetchOptions = {}): Promise<Provider> {
-
-    const key = opt.key ? opt.key : PROVIDER
+    const key = opt.key ? opt.key : MY_TEAMS
     if (!fetcher.get(key)) {
       return console.warn('fetcher找不到' + key) as any
     }
@@ -102,6 +90,18 @@ class RefetcherService {
   async refetchSetting(args: QuerySettingArgs = {} as QuerySettingArgs, opt: RefetchOptions = {}): Promise<Setting> {
 
     const key = opt.key ? opt.key : SETTING
+    if (!fetcher.get(key)) {
+      return console.warn('fetcher找不到' + key) as any
+    }
+    if (Object.keys(args).length) opt.variables = args
+    if (!opt.showLoading) opt.showLoading = false
+    return await fetcher.get(key).refetch(opt)
+
+  }
+
+  async refetchTeam(args: QueryTeamArgs = {} as QueryTeamArgs, opt: RefetchOptions = {}): Promise<Team> {
+
+    const key = opt.key ? opt.key : TEAM
     if (!fetcher.get(key)) {
       return console.warn('fetcher找不到' + key) as any
     }

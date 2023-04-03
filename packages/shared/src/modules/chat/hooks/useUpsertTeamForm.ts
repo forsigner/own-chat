@@ -1,20 +1,20 @@
 import { Node, useForm } from 'fomir'
 import { toast } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
-import { apiService, Provider, ProviderType, Refetcher } from '@own-chat/api-sdk'
+import { apiService, Team, ProviderType, Refetcher } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
 import { useSetting } from './useSetting'
 
 interface Values {
   name: string
-  type: ProviderType
+  providerType: ProviderType
   apiKey?: string
   authorizationCode?: string
   endpoint?: string
 }
 
-export function useUpsertProviderForm() {
-  const { hide, data } = useModal<Provider>()
+export function useUpsertTeamForm() {
+  const { hide, data } = useModal<Team>()
   const { user } = useUser()
   const { refetch } = useSetting()
   const isEdit = !!data
@@ -33,8 +33,8 @@ export function useUpsertProviderForm() {
     {
       label: 'Type',
       component: 'Select',
-      name: 'type',
-      value: data?.type,
+      name: 'providerType',
+      value: data?.providerType,
       options: [
         { label: 'Official', value: ProviderType.Official },
         { label: 'API Key', value: ProviderType.ApiKey },
@@ -90,12 +90,12 @@ export function useUpsertProviderForm() {
       const toaster = toast.loading('Submitting...', { showLayer: true })
       try {
         if (isEdit) {
-          await apiService.updateProvider({
+          await apiService.updateTeam({
             where: { id: data.id },
             data: values,
           })
         } else {
-          await apiService.addProvider({
+          await apiService.addTeam({
             ...values,
             userId: user.id,
           })
@@ -103,7 +103,7 @@ export function useUpsertProviderForm() {
           await refetch()
         }
 
-        await Refetcher.refetchMyProviders()
+        await Refetcher.refetchMyTeams()
         toaster.update('Submitted', { type: 'success' })
         hide()
       } catch (error) {

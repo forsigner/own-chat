@@ -3,11 +3,11 @@ import { EasyModal } from '@own-chat/easy-modal'
 import { Button, CogSolid, Tag } from 'bone-ui'
 import { NAV_HEIGHT } from '../../../common'
 import { useIsOwner } from '../hooks/useIsOwner'
-import { useProviders } from '../hooks/useProviders'
-import { ModalUpsertProvider } from '../ModalUpsertProvider'
+import { useTeams } from '../hooks/useTeams'
+import { ModalUpsertTeam } from '../ModalUpsertTeam'
 
-export const CurrentProvider = () => {
-  const { activeProvider } = useProviders()
+export const CurrentTeam = () => {
+  const { activeTeam } = useTeams()
   const { isOwner, loading } = useIsOwner()
 
   if (loading) return null
@@ -26,7 +26,7 @@ export const CurrentProvider = () => {
     >
       <Box column toCenterY rowGap-2>
         <Box textBase fontSemibold>
-          {activeProvider?.name}
+          {activeTeam?.name}
         </Box>
         <Box toCenterY spaceX2>
           <Box textXS gray400>
@@ -47,7 +47,7 @@ export const CurrentProvider = () => {
           variant="ghost"
           icon={<CogSolid square5 cursorPointer gray600--hover />}
           onClick={() => {
-            EasyModal.show(ModalUpsertProvider, activeProvider)
+            EasyModal.show(ModalUpsertTeam, activeTeam)
           }}
         />
       )}

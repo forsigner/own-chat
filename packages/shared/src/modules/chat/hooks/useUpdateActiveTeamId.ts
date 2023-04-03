@@ -2,18 +2,18 @@ import { apiService, Mutator, Refetcher, SETTING } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
 import { useSetting } from './useSetting'
 
-export function useUpdateActiveProviderId() {
+export function useUpdateActiveTeamId() {
   const { setting } = useSetting()
   const { user } = useUser()
 
-  async function updateActiveProviderId(activeProviderId: number) {
+  async function updateActiveTeamId(activeTeamId: number) {
     Mutator.mutateSetting((setting) => {
-      setting.activeProviderId = activeProviderId
+      setting.activeTeamId = activeTeamId
     })
 
     await apiService.updateSetting({
       where: { id: setting.id },
-      data: { activeProviderId },
+      data: { activeTeamId },
     })
 
     await Refetcher.refetchSetting({ id: setting.id })
@@ -21,7 +21,7 @@ export function useUpdateActiveProviderId() {
     const sessions = await Refetcher.refetchSessions({
       where: {
         userId: user.id,
-        providerId: activeProviderId,
+        teamId: activeTeamId,
       },
     })
 
@@ -43,5 +43,5 @@ export function useUpdateActiveProviderId() {
     }
   }
 
-  return { updateActiveProviderId }
+  return { updateActiveTeamId }
 }

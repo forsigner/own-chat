@@ -10,18 +10,18 @@ import {
 } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { Form } from 'fomir'
-import { useUpsertProviderForm } from './hooks/useUpsertProviderForm'
+import { useUpsertTeamForm } from './hooks/useUpsertTeamForm'
 
-export const ModalUpsertProvider = () => {
+export const ModalUpsertTeam = () => {
   const { register, hide, data } = useModal()
-  const form = useUpsertProviderForm()
+  const form = useUpsertTeamForm()
 
   return (
     <Modal {...register('bone-ui')}>
       <ModalOverlay />
       <ModalContent>
         <ModalCloseButton />
-        <ModalHeader>{!!data ? 'Edit Provider' : 'Add Provider'} </ModalHeader>
+        <ModalHeader>{!!data ? 'Edit Team' : 'Add Team'} </ModalHeader>
         <ModalBody>
           <Form
             form={form}

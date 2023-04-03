@@ -5,14 +5,14 @@ import { useToken, useUser } from '../../../stores'
 import { fetchChatStream } from '../../../common/request'
 import { useAddMessage } from './useAddMessage'
 import { isProd } from '../../../common'
-import { useProviders } from './useProviders'
+import { useTeams } from './useTeams'
 
 export function useSendMessage() {
   const { token } = useToken()
   const { user } = useUser()
   const { setting } = useSetting()
   const { addMessage } = useAddMessage()
-  const { activeProvider } = useProviders()
+  const { activeTeam } = useTeams()
 
   function initAnswer() {
     const newMessage = {
