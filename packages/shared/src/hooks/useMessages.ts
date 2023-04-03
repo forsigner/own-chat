@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 
 export interface Message extends ChatCompletionResponseMessage {
   sessionId: string
-  date: string
+  createdAt: string
   streaming?: boolean
 }
 
@@ -22,14 +22,14 @@ export const useMessages = () => {
       messages.push({
         sessionId,
         content: value,
-        date: new Date().toLocaleDateString(),
+        createdAt: new Date().toLocaleDateString(),
         role: ChatCompletionResponseMessageRoleEnum.User,
       })
 
       messages.push({
         sessionId,
         content: '',
-        date: new Date().toLocaleDateString(),
+        createdAt: new Date().toLocaleDateString(),
         role: ChatCompletionResponseMessageRoleEnum.Assistant,
         streaming: true,
       })

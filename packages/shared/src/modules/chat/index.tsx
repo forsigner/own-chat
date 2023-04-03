@@ -5,14 +5,14 @@ import { TeamBar } from './TeamBar/TeamBar'
 import { Sidebar } from './Sidebar/Sidebar'
 
 export function ModuleChat() {
-  const { loading, setting } = useSetting()
+  const { loading } = useSetting()
   if (loading) return null
 
   return (
     <>
       <TeamBar />
       <Sidebar />
-      <Box flex-1 overflowAuto relative>
+      <Box flex-1>
         <Chat />
       </Box>
     </>

@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { Session } from '@own-chat/api-sdk'
-import { ChatList } from '../chat/Chat/ChatList'
+import { ChatList } from '../../components/MessageList/MessageList'
 import { Logo } from '../../components'
 import { ApiError } from '../../common'
 
