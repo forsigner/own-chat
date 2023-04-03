@@ -4,7 +4,7 @@ import { Button, ChevronDownOutline } from 'bone-ui'
 import { NAV_HEIGHT } from '../../../common'
 import { MemberList } from '../Members/MemberList'
 import { AddMemberButton } from '../Members/AddMemberButton'
-import { ModalSessionList } from '../ModalSessionList'
+import { ModalSessionList } from '../modals/ModalSessionList'
 import { ShareButton } from './ShareButton'
 import { useSessions } from '../hooks/useSessions'
 

@@ -1,7 +1,7 @@
 import { Box } from '@fower/react'
 import { ModalCloseButton, Modal, ModalOverlay, ModalContent } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
-import { Settings } from './Settings/Settings'
+import { Settings } from '../Settings/Settings'
 
 export const ModalSettings = () => {
   const { register } = useModal()

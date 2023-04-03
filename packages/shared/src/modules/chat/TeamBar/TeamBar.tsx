@@ -3,8 +3,8 @@ import { EasyModal } from '@own-chat/easy-modal'
 import { Button, CogSolid, PlusOutline, Tooltip } from 'bone-ui'
 import { Logo } from '../../../components'
 import { UserAvatarPopover } from '../../../components/UserAvatarPopover'
-import { ModalUpsertTeam } from '../ModalUpsertTeam'
-import { ModalSettings } from '../ModalSettings'
+import { ModalUpsertTeam } from '../modals/ModalUpsertTeam'
+import { ModalSettings } from '../modals/ModalSettings'
 import { TeamList } from './TeamList'
 
 export const TeamBar = () => {

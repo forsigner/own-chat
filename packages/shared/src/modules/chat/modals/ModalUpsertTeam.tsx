@@ -10,7 +10,7 @@ import {
 } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { Form } from 'fomir'
-import { useUpsertTeamForm } from './hooks/useUpsertTeamForm'
+import { useUpsertTeamForm } from '../hooks/useUpsertTeamForm'
 
 export const ModalUpsertTeam = () => {
   const { register, hide, data } = useModal()

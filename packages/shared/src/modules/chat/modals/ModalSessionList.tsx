@@ -1,8 +1,8 @@
 import { Box } from '@fower/react'
 import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
-import { SessionList } from './Sidebar/SessionList'
-import { AddSessionButton } from './AddSessionButton'
+import { SessionList } from '../Sidebar/SessionList'
+import { AddSessionButton } from '../AddSessionButton'
 
 export const ModalSessionList = () => {
   const { register } = useModal()

@@ -4,7 +4,7 @@ import { Button, CogSolid, Tag } from 'bone-ui'
 import { NAV_HEIGHT } from '../../../common'
 import { useIsOwner } from '../hooks/useIsOwner'
 import { useTeams } from '../hooks/useTeams'
-import { ModalUpsertTeam } from '../ModalUpsertTeam'
+import { ModalUpsertTeam } from '../modals/ModalUpsertTeam'
 
 export const CurrentTeam = () => {
   const { activeTeam } = useTeams()

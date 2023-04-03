@@ -1,5 +1,5 @@
-import { Message } from "../hooks"
 import { ChatCompletionResponseMessage } from 'openai'
+import { Message } from '../modules/provider-chat/hooks'
 
 export class HistoryMsgQueue {
   HistoryMsgQueue: ChatCompletionResponseMessage[]
@@ -12,12 +12,12 @@ export class HistoryMsgQueue {
     let times = 0
     const historyMsg = []
     for (let dynamicLength = message.length - 1; dynamicLength >= 0; dynamicLength--) {
-      const element = message[dynamicLength];
+      const element = message[dynamicLength]
       if (times < maxSize) {
         times = times + 1
         historyMsg.unshift({
           role: element.role,
-          content: element.content
+          content: element.content,
         })
       } else {
         break
