@@ -7,10 +7,12 @@ export const Anchor = () => {
   useEffect(() => {
     const dom = anchorRef.current
     if (dom) {
-      dom.scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-      })
+      setTimeout(() => {
+        dom.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        })
+      }, 100)
     }
   }, [])
 

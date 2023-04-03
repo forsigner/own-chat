@@ -12,8 +12,8 @@ export const ChatFooter = () => {
 
   async function send() {
     if (!value) return
-    await initMessage(value)
     setValue('')
+    await initMessage(value)
   }
 
   return (
