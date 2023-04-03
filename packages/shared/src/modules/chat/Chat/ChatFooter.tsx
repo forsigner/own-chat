@@ -18,12 +18,22 @@ export const ChatFooter = () => {
 
   return (
     <Box shadow2XL toCenterY toCenterX py4 px4>
-      <Box toCenterY flex-1 maxW={CHAT_WIDTH} shadowXL border borderGray100 rounded2XL>
+      <Box
+        toCenterY
+        flex-1
+        maxW={CHAT_WIDTH}
+        shadowXL
+        border
+        borderGray100
+        rounded2XL
+        borderTransparent--dark
+        bgGray800--dark
+      >
         <Box flex-1 minH={[56, 80]} toCenterY>
           <TextareaAutosize
             placeholder="请输入..."
             className={css(
-              'm0 borderNone w-100p outlineNone px3 py3 flex placeholderGray400 bgWhite textBase',
+              'm0 borderNone w-100p outlineNone px3 py3 flex placeholderGray400 bgWhite textBase gray300--dark bgTransparent',
             )}
             style={{ resize: 'none' }}
             value={value}

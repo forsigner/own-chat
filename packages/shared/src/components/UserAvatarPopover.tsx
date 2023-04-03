@@ -50,6 +50,7 @@ export const UserAvatarPopover: FC<Props> = () => {
             >
               {t('settings')}
             </MenuItem>
+            {/* <MenuItem onClick={onLogout}>{t('personal-token')}</MenuItem> */}
             <MenuItem onClick={onLogout}>{t('logout')}</MenuItem>
           </>
         )}

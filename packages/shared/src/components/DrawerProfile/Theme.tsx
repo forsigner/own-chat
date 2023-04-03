@@ -14,7 +14,7 @@ export const Theme = () => {
         options: [
           { label: 'Light', value: 'light' },
           { label: 'Dark', value: 'dark' },
-          { label: 'System theme', value: 'system' },
+          // { label: 'System theme', value: 'system' },
         ],
         value: mode,
         onValueChange({ value }) {

@@ -103,7 +103,7 @@ export default function PageAbout() {
         <Box>{"G'day, I'm Forsigner. 👋"}</Box>
         <Box>
           I become a full-time independent developer since this year(2023), I started OwnChat as a
-          passion project. There's no massive team, no investors looking for growth at any cost,
+          passion project. {`There's`} no massive team, no investors looking for growth at any cost,
           just me, running a sustainable business.
         </Box>
 

@@ -1,7 +1,9 @@
 {
   "login": "Login",
   "logout": "Logout",
+  "home": "Home",
   "download": "Download",
+  "personal-token": "Personal token",
   "docs": "Docs",
   "feedback": "Feedback",
   "cancel": "Cancel",

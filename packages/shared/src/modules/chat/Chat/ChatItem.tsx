@@ -7,6 +7,7 @@ import ChatLoading from './chat-loading.svg'
 import { memo } from 'react'
 import { Message } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
+import { Markdown } from '../../../components/Markdown'
 
 interface Props {
   message: Message
@@ -34,7 +35,7 @@ const ChatItem = ({ message }: Props) => {
           </Box>
         </Box>
         {message.streaming && <ChatLoading />}
-        {!message.streaming && <Box leadingRelaxed>{message.content}</Box>}
+        {!message.streaming && <Markdown content={message.content} />}
       </Box>
     </Box>
   )
