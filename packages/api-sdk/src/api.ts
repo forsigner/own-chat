@@ -1,6 +1,6 @@
 import { Options, query } from "stook-graphql";
-import { Member, Message, Provider, Session, Token, LoginSuccessPayload, Setting, User, AddMemberInput, AddMessageInput, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, ExitMemberInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveMemberInput, RemoveSessionInput, UpdateProviderInput, UpdateSessionInput, UpdateSettingInput, UpdateUserInput, QueryProviderArgs } from "./types";
-import { ADD_MEMBER, ADD_MESSAGE, ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, EXIT_MEMBER, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_MEMBER, REMOVE_SESSION, UPDATE_PROVIDER, UPDATE_SESSION, UPDATE_SETTING, UPDATE_USER, ACTIVE_PROVIDER, PROVIDER } from "./gql";
+import { Member, Message, Provider, Session, Token, LoginSuccessPayload, Setting, User, AddMemberInput, AddMessageInput, AddProviderInput, AddSessionInput, AddTokenInput, DeleteTokenInput, ExitMemberInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveMemberInput, RemoveSessionInput, UpdateProviderInput, UpdateSessionInput, UpdateSettingInput, UpdateUserInput, QueryProviderArgs, QuerySessionBySlugArgs } from "./types";
+import { ADD_MEMBER, ADD_MESSAGE, ADD_PROVIDER, ADD_SESSION, ADD_TOKEN, DELETE_TOKEN, EXIT_MEMBER, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_MEMBER, REMOVE_SESSION, UPDATE_PROVIDER, UPDATE_SESSION, UPDATE_SETTING, UPDATE_USER, ACTIVE_PROVIDER, PROVIDER, SESSION_BY_SLUG } from "./gql";
 
 class ApiService {
   async addMember(args: AddMemberInput = {} as AddMemberInput, opt: Options = {}) {
@@ -73,6 +73,10 @@ class ApiService {
 
   async provider(args: QueryProviderArgs = {} as QueryProviderArgs, opt: Options = {}) {
     return await query<Provider>(PROVIDER, { ...opt, variables: args })
+  }
+
+  async sessionBySlug(args: QuerySessionBySlugArgs = {} as QuerySessionBySlugArgs, opt: Options = {}) {
+    return await query<Session>(SESSION_BY_SLUG, { ...opt, variables: args })
   }
 }
 

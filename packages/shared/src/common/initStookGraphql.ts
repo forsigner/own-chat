@@ -2,10 +2,10 @@ import { config, applyMiddleware } from 'stook-graphql'
 import { request } from '@boter/request'
 import { config as configRest } from 'stook-rest'
 import { getToken, mutateToken } from '../stores/token.store'
-import { mutateUser } from '../stores/user.store'
 import { isApiError } from './type-guard'
 import { toast } from 'bone-ui'
 import { baseURL, subscriptionsEndpoint } from './constants'
+import { mutateUser } from '../stores'
 
 export function initStookGraphql() {
   applyMiddleware(async (ctx, next) => {
@@ -22,9 +22,9 @@ export function initStookGraphql() {
       if (ctx.body.code === 'TokenError') {
         try {
           await request('/api/logout')
+          mutateUser(null)
+          mutateToken(null)
         } catch {}
-        mutateUser(null)
-        mutateToken(null)
         // TODO:
         // location.href = '/'
         return
@@ -36,9 +36,11 @@ export function initStookGraphql() {
 
       // 全局错误处理
       if (isApiError(error)) {
-        toast.error(error.message, {
-          type: 'error',
-        })
+        if (error.code !== 'TokenError') {
+          toast.error(error.message, {
+            type: 'error',
+          })
+        }
       }
 
       ctx.body = error

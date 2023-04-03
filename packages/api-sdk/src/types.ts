@@ -740,6 +740,8 @@ export type Query = {
   searchUsers: Array<User>;
   /** 获取单个 */
   session: Session;
+  /** 获取session */
+  sessionBySlug: Session;
   /** 获取列表 */
   sessions: Array<Session>;
   /** 获取分页列表 */
@@ -850,6 +852,11 @@ export type QuerySearchUsersArgs = {
 
 export type QuerySessionArgs = {
   id: Scalars['Int'];
+};
+
+
+export type QuerySessionBySlugArgs = {
+  slug: Scalars['String'];
 };
 
 
@@ -976,6 +983,8 @@ export type Session = {
   accessType: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
+  /** Message */
+  messages: Array<Message>;
   name: Scalars['String'];
   /** providerId */
   providerId: Scalars['Int'];

@@ -1,11 +1,12 @@
 import { Box } from '@fower/react'
-import { useMessages } from '../hooks/useMessages'
+import { Message } from '@own-chat/api-sdk'
 import ChatItem from './ChatItem'
 
-export const ChatList = () => {
-  const { messages = [], loading } = useMessages()
-  if (loading) return null
+interface Props {
+  messages: Message[]
+}
 
+export const ChatList = ({ messages }: Props) => {
   return (
     <Box column>
       {messages.map((item, index) => (

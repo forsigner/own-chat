@@ -675,6 +675,9 @@ type Query {
   """获取单个"""
   session(id: Int!): Session!
 
+  """获取session"""
+  sessionBySlug(slug: String!): Session!
+
   """获取列表"""
   sessions(
     """排序类型, 例如：id_ASC、id_DESC"""
@@ -865,6 +868,9 @@ type Session {
 
   """"""
   id: Int!
+
+  """Message"""
+  messages: [Message!]!
 
   """"""
   name: String!

@@ -20,7 +20,7 @@ const ChatItem = ({ message }: Props) => {
     <Box toLeft py3>
       <Box mr-10>
         {!isUser && <IconChatgpt style={{ width: 32 }} />}
-        {isUser && <Avatar roundedLG src={user.avatar} name={user.nickname} />}
+        {isUser && <Avatar roundedLG src={user?.avatar} name={user?.nickname || 'U'} />}
       </Box>
 
       <Box>

@@ -68,6 +68,7 @@ export enum Names {
   providersConnection = "providersConnection",
   searchUsers = "searchUsers",
   session = "session",
+  sessionBySlug = "sessionBySlug",
   sessions = "sessions",
   sessionsConnection = "sessionsConnection",
   setting = "setting",

@@ -1,6 +1,6 @@
 import { Options, useQuery, useMutation } from "stook-graphql";
-import { Provider, Member, Message, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QueryProviderArgs, QuerySearchUsersArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
-import { ACTIVE_PROVIDER, MEMBERS, MESSAGES, MY_PROVIDERS, PROVIDER, SEARCH_USERS, SESSIONS, SETTING, TOKENS } from "./gql";
+import { Provider, Member, Message, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QueryProviderArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QuerySettingArgs, QueryTokensArgs } from "./types";
+import { ACTIVE_PROVIDER, MEMBERS, MESSAGES, MY_PROVIDERS, PROVIDER, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, SETTING, TOKENS } from "./gql";
 
 class HooksService {
   useActiveProvider(args?: any | (() => any), opt: Options = {}) {
@@ -25,6 +25,10 @@ class HooksService {
 
   useSearchUsers(args?: QuerySearchUsersArgs | (() => QuerySearchUsersArgs), opt: Options = {}) {
     return useQuery<User[], QuerySearchUsersArgs>(SEARCH_USERS, { ...opt, variables: args })
+  }
+
+  useSessionBySlug(args?: QuerySessionBySlugArgs | (() => QuerySessionBySlugArgs), opt: Options = {}) {
+    return useQuery<Session, QuerySessionBySlugArgs>(SESSION_BY_SLUG, { ...opt, variables: args })
   }
 
   useSessions(args?: QuerySessionsArgs | (() => QuerySessionsArgs), opt: Options = {}) {

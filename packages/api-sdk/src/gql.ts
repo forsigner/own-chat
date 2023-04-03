@@ -204,6 +204,32 @@ query sessions($orderBy: String, $skip: Int, $take: Int, $where: SessionWhereInp
     }
 }
 `;
+export const SESSION_BY_SLUG = gql`
+query sessionBySlug($slug: String!){
+    sessionBySlug(slug: $slug){
+        accessType
+        createdAt
+        id
+        messages{
+            content
+            createdAt
+            id
+            private
+            role
+            sessionId
+            streaming
+            updatedAt
+            userId
+            views
+        }
+        name
+        providerId
+        slug
+        updatedAt
+        userId
+    }
+}
+`;
 export const MESSAGES = gql`
 query messages($orderBy: String, $skip: Int, $take: Int, $where: MessageWhereInput){
     messages(orderBy: $orderBy, skip: $skip, take: $take, where: $where){

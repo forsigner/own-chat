@@ -2,13 +2,14 @@ import { Box } from '@fower/react'
 import { EasyModal } from '@own-chat/easy-modal'
 import { Button, ChevronDownOutline } from 'bone-ui'
 import { NAV_HEIGHT } from '../../../common'
-import { useSessions } from '../../../hooks'
 import { MemberList } from '../Members/MemberList'
 import { AddMemberButton } from '../Members/AddMemberButton'
 import { ModalSessionList } from '../ModalSessionList'
+import { ShareButton } from './ShareButton'
+import { useSessions } from '../hooks/useSessions'
 
 export const ChatHeader = () => {
-  const { currentSession } = useSessions()
+  const { activeSession } = useSessions()
 
   return (
     <Box
@@ -23,7 +24,7 @@ export const ChatHeader = () => {
     >
       <Box toCenterY>
         <Box textLG fontBold>
-          {currentSession?.name}
+          {activeSession?.name}
         </Box>
         <Button
           display={['flex', 'none']}
@@ -35,9 +36,10 @@ export const ChatHeader = () => {
           onClick={() => EasyModal.show(ModalSessionList)}
         />
       </Box>
-      <Box toCenterY spaceX2 pr2>
+      <Box toCenterY columnGap-12 pr2>
         <MemberList />
         <AddMemberButton />
+        <ShareButton session={activeSession!} />
       </Box>
     </Box>
   )
