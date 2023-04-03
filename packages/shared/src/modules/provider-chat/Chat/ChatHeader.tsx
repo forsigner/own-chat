@@ -1,8 +1,8 @@
 import { Box } from '@fower/react'
 import { EasyModal } from '@own-chat/easy-modal'
 import { Button, ChevronDownOutline } from 'bone-ui'
-import { useSessions } from '../../../hooks'
 import { ModalSessionList } from '../ModalSessionList'
+import { useSessions } from '../hooks'
 
 export const ChatHeader = () => {
   const { currentSession } = useSessions()

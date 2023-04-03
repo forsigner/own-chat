@@ -1,8 +1,8 @@
-import { fetchChatStream, fetchModels } from '../common/request'
+import { fetchChatStream, fetchModels } from '../../../common/request'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { useMessages } from './useMessages'
 import { useSettings } from './useSettings'
-import { HistoryMsgQueue } from '../common/historyMsgQueue'
+import { HistoryMsgQueue } from '../../../common/historyMsgQueue'
 
 export function useSendMessage() {
   const { initNewMessage, updateMessage, messages = [] } = useMessages()

@@ -1,8 +1,8 @@
 import { Box } from '@fower/react'
 import { Anchor } from './Anchor'
-import { useMessages, useSessions } from '../../../hooks'
 import { CHAT_WIDTH } from '../../../common'
-import { ChatList } from '../../MessageList/MessageList'
+import { ChatList } from '../../../components/MessageList/MessageList'
+import { useMessages, useSessions } from '../hooks'
 
 export const ChatBody = () => {
   const { loading: loadingSession } = useSessions()

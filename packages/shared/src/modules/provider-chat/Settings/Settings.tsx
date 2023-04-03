@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { Box } from '@fower/react'
 import { Divider } from 'bone-ui'
 import { Field, Form, useForm } from 'fomir'
-import { useSettings } from '../../../hooks'
 import { SettingItem } from './SettingItem'
 import { Title } from './Title'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
+import { useSettings } from '../hooks'
 
 interface Values {
   apiKey: string

@@ -1,7 +1,7 @@
 import { Box } from '@fower/react'
 import { EasyModal } from '@own-chat/easy-modal'
 import { Button, CogSolid } from 'bone-ui'
-import { Logo } from '../../Logo'
+import { Logo } from '../../../components/Logo'
 import { AddSessionButton } from '../AddSessionButton'
 import { ModalSettings } from '../ModalSettings'
 import { SessionList } from './SessionList'

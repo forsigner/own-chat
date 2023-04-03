@@ -2,7 +2,7 @@ import { withIronSessionSsr } from 'iron-session/next'
 import { Modal, ModalOverlay, ModalContent } from 'bone-ui'
 import { useState } from 'react'
 import { sessionOptions } from '@common/session'
-import { ChatLayout, Home } from '@own-chat/shared'
+import { ChatLayout, ProviderChat } from '@own-chat/shared'
 import { Login } from '@components/Login'
 
 interface Props {
@@ -15,7 +15,7 @@ export default function PageHome({ authorizationCode }: Props) {
   if (!authorizationCode) {
     return (
       <>
-        <Home />
+        <ProviderChat />
         <Modal isOpen={visible} onClose={() => setVisible(false)} closeOnOverlayClick={false}>
           <ModalOverlay />
           <ModalContent>
@@ -25,7 +25,7 @@ export default function PageHome({ authorizationCode }: Props) {
       </>
     )
   }
-  return <Home />
+  return <ProviderChat />
 }
 
 PageHome.Layout = ChatLayout

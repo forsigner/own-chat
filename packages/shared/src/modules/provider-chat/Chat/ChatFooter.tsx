@@ -1,5 +1,5 @@
-import { useSendMessage } from '../../../hooks'
-import { SendMessageBox } from '../../SendMessageBox'
+import { SendMessageBox } from '../../../components/SendMessageBox'
+import { useSendMessage } from '../hooks'
 
 export const ChatFooter = () => {
   const { sendMessage } = useSendMessage()

@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
-import { useSessions } from '../../../hooks'
 import { SessionItem } from './SessionItem'
+import { useSessions } from '../hooks'
 
 export const SessionList = () => {
   const { sessions, loading } = useSessions()

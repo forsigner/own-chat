@@ -1,8 +1,8 @@
 import { Box } from '@fower/react'
 import { useModal } from '@own-chat/easy-modal'
 import { Button, ChatOutline, TrashOutline } from 'bone-ui'
-import { Session, useSessions } from '../../../hooks'
 import { EditSessionNameButton } from './EditSessionNameButton'
+import { Session, useSessions } from '../hooks'
 
 interface Props {
   session: Session

@@ -1,6 +1,6 @@
 import { useModal } from '@own-chat/easy-modal'
 import { Button, PlusOutline } from 'bone-ui'
-import { useSessions } from '../../hooks'
+import { useSessions } from './hooks'
 
 export const AddSessionButton = () => {
   const { addSession } = useSessions()

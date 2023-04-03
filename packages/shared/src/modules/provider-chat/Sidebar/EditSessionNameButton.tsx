@@ -3,7 +3,7 @@ import { PencilSolid } from '@bone-ui/icons'
 import { Button } from 'bone-ui'
 import { Popover, PopoverContent, PopoverTrigger } from 'bone-ui'
 import { Input } from 'bone-ui'
-import { Session, useSessions } from '../../../hooks'
+import { Session, useSessions } from '../hooks'
 
 interface Props {
   session: Session
