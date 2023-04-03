@@ -3,14 +3,15 @@ import { IconLogo } from '../icons/IconLogo'
 import { StyledLink } from './StyledLink'
 
 interface Props {
+  size?: number
   to?: string
   showText?: boolean
 }
 
-export const Logo = ({ showText = true, to }: Props) => {
+export const Logo = ({ showText = true, to, size = 32 }: Props) => {
   const content = (
     <>
-      <IconLogo square8 white />
+      <IconLogo size={size} white />
       {showText && (
         <Box>
           <Box textXL black fontBold>

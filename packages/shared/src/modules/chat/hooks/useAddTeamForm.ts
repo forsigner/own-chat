@@ -26,7 +26,7 @@ export function useAddTeamForm() {
       value: data?.name || '',
       componentProps: {
         size: 'lg',
-        textCenter: true,
+        // textCenter: true,
         placeholder: 'Please name your team',
       },
       validators: {

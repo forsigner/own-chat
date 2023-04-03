@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { EasyModal } from '@own-chat/easy-modal'
-import { Button, CogSolid, Tag } from 'bone-ui'
+import { Button, CogSolid, Tag, Tooltip } from 'bone-ui'
 import { NAV_HEIGHT } from '../../../common'
 import { useIsOwner } from '../hooks/useIsOwner'
 import { useTeams } from '../hooks/useTeams'
@@ -41,15 +41,17 @@ export const CurrentTeam = () => {
       </Box>
 
       {isOwner && (
-        <Button
-          size="md"
-          colorScheme="gray500"
-          variant="ghost"
-          icon={<CogSolid square5 cursorPointer gray600--hover />}
-          onClick={() => {
-            EasyModal.show(ModalUpsertTeam, activeTeam)
-          }}
-        />
+        <Tooltip content="Team settings">
+          <Button
+            size="md"
+            colorScheme="gray500"
+            variant="ghost"
+            icon={<CogSolid square5 cursorPointer gray600--hover />}
+            onClick={() => {
+              EasyModal.show(ModalUpsertTeam, activeTeam)
+            }}
+          />
+        </Tooltip>
       )}
     </Box>
   )

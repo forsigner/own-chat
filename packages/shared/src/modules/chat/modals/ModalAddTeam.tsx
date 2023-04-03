@@ -3,6 +3,7 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, Button } fro
 import { useModal } from '@own-chat/easy-modal'
 import { Form } from 'fomir'
 import { useAddTeamForm } from '../hooks/useAddTeamForm'
+import { Logo } from '../../../components'
 
 export const ModalAddTeam = () => {
   const { register, hide, data } = useModal()
@@ -13,13 +14,16 @@ export const ModalAddTeam = () => {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          <Box toCenter>{!!data ? 'Edit Team' : 'Create a new Team'} </Box>
+          <Box toCenterY spaceX2>
+            <Logo showText={false} size={24}></Logo>
+            <Box>{!!data ? 'Edit Team' : 'Create a new Team'}</Box>
+          </Box>
         </ModalHeader>
         <ModalBody>
           <Form
             form={form}
             suffix={
-              <Box toCenterX spaceX2>
+              <Box toRight spaceX2>
                 <Button type="button" variant="ghost" colorScheme="gray600" onClick={hide}>
                   Cancel
                 </Button>
