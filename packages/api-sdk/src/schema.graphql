@@ -893,7 +893,7 @@ type PlansConnection {
 enum ProviderType {
   ApiKey
   Official
-  SelfHost
+  SelfHosted
 }
 
 type Query {

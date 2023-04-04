@@ -71,10 +71,10 @@ const FAQ = () => {
                 px2
                 size={28}
                 variant="light"
-                href="https://github.com/forsigner/own-chat"
+                href="https://github.com/forsigner/own-chat#one-click-to-deploy"
                 target="_blank"
               >
-                去部署
+                去一键部署
               </Button>
               。
             </Box>

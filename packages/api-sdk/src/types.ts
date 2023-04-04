@@ -1094,7 +1094,7 @@ export type PlansConnection = {
 export enum ProviderType {
   ApiKey = 'ApiKey',
   Official = 'Official',
-  SelfHost = 'SelfHost'
+  SelfHosted = 'SelfHosted'
 }
 
 export type Query = {
