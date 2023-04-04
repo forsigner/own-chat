@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { Modal, ModalOverlay, ModalContent, ModalBody, MenuItem } from 'bone-ui'
+import { Modal, ModalOverlay, ModalContent, ModalBody, MenuItem, ModalCloseButton } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { General } from './General'
 import { useState } from 'react'
@@ -26,17 +26,17 @@ export const ModalTeamSettings = () => {
       label: 'Members',
       value: SettingType.Members,
     },
-    {
-      label: 'Billing',
-      value: SettingType.Billing,
-    },
+    // {
+    //   label: 'Billing',
+    //   value: SettingType.Billing,
+    // },
   ]
 
   return (
     <Modal {...register('bone-ui')}>
       <ModalOverlay />
       <ModalContent minW-960--i h-80vh>
-        {/* <ModalCloseButton /> */}
+        <ModalCloseButton />
         <ModalBody>
           <Box toLeft columnGap-40>
             <Box w-200 py4>

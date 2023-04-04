@@ -8,6 +8,8 @@ import { baseURL, subscriptionsEndpoint } from './constants'
 import { mutateUser } from '../stores'
 import { isServer } from './utils'
 
+const manualCodes: string[] = ['MemberExceed']
+
 export function initStookGraphql() {
   applyMiddleware(async (ctx, next) => {
     const token = getToken()
@@ -36,7 +38,7 @@ export function initStookGraphql() {
       const error = ctx.body.errors[0]
 
       // 全局错误处理
-      if (isApiError(error)) {
+      if (isApiError(error) && !manualCodes.includes(error.code)) {
         if (error.code !== 'TokenError' && !isServer) {
           toast.error(error.message, {
             type: 'error',
