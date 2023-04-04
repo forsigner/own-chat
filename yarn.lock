@@ -6905,10 +6905,10 @@ follow-redirects@^1.0.0, follow-redirects@^1.14.8:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
 
-fomir@^0.21.0:
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/fomir/-/fomir-0.21.0.tgz#8fa6c74229139ba89a7a8343dc177244925023fd"
-  integrity sha512-8u4FGw5RyvJuNeFvgmvjsSYJPhTBsxPM25DogqNFZ69illvpEX32hYf4R+Mic12qdaBOSZLoVUcsVqy1uyFoRQ==
+fomir@^0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/fomir/-/fomir-0.22.0.tgz#dedf256ac1eade2a17774ba6be0faa5d8709eedb"
+  integrity sha512-otQGCwN5LztkrTzuGa87Xe1rRVuzhiLYsyPWYS0T7ksZYKxGv5bbv++s14cCe8rXTys3Medjt8Eu5AuwX4rRtw==
   dependencies:
     array-move "^3.0.1"
     is-promise "^4.0.0"

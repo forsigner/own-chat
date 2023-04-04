@@ -13,12 +13,22 @@ export interface DateRangePickerNode extends FieldNode {
 }
 
 export interface PercentInputNode extends FieldNode {
-  component: 'PercentInputNode'
+  component: 'PercentInput'
   value?: string
   componentProps?: HtmlInputProps
 }
 
-type CustomNode = BoneUINode | DatePickerNode | DateRangePickerNode | PercentInputNode
+export interface PlanIntervalNode extends FieldNode {
+  component: 'PlanInterval'
+  value?: string
+}
+
+type CustomNode =
+  | BoneUINode
+  | DatePickerNode
+  | DateRangePickerNode
+  | PercentInputNode
+  | PlanIntervalNode
 
 declare module 'fomir' {
   interface CustomTypes {

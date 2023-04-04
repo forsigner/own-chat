@@ -22,7 +22,7 @@
     "cors": "^2.8.5",
     "date-fns": "^2.29.3",
     "eventsource-parser": "^1.0.0",
-    "fomir": "^0.21.0",
+    "fomir": "^0.22.0",
     "framer-motion": "^10.10.0",
     "graphql": "^16.6.0",
     "i18next": "^22.4.13",

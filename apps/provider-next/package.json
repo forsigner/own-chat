@@ -20,7 +20,7 @@
     "case": "^1.6.3",
     "cookies-next": "^2.1.1",
     "date-fns": "^2.29.3",
-    "fomir": "^0.21.0",
+    "fomir": "^0.22.0",
     "framer-motion": "^10.9.2",
     "graphql": "^16.6.0",
     "i18next": "^22.4.13",

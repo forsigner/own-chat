@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { NodeProps } from 'fomir'
 import { Input as BoneInput } from '@bone-ui/input'
 import { FormField } from '../FormField'

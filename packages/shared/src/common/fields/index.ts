@@ -2,12 +2,14 @@ import { FomirPlugin } from 'fomir'
 import { DatePicker } from './DatePicker'
 import { DateRangePicker } from './DateRangePicker'
 import { PercentInput } from './PercentInput'
+import { PlanInterval } from './PlanInterval'
 
 export const FomirCustom: FomirPlugin = {
   components: {
     DatePicker,
     DateRangePicker,
     PercentInput,
+    PlanInterval,
   },
   validators: {
     moreThan(value, validator, { form }) {

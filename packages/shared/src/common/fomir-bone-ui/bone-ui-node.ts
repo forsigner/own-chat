@@ -19,6 +19,12 @@ export interface NumberInputNode extends FieldNode {
   componentProps?: InputProps
 }
 
+export interface CounterInputNode extends FieldNode {
+  component: 'CounterInput'
+  value?: number
+  componentProps?: InputProps
+}
+
 export interface PasswordInputNode extends FieldNode {
   component: 'PasswordInput'
   value?: string
@@ -86,3 +92,4 @@ export type BoneUINode =
   | ResetNode
   | SubmitNode
   | BoxNode
+  | CounterInputNode

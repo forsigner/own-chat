@@ -68,6 +68,24 @@ input AddTokenInput {
 }
 
 """创建"""
+input CreateInvoiceInput {
+  dueDate: DateTime
+  invoiceDate: DateTime
+
+  """"""
+  invoiceNumber: String!
+
+  """"""
+  orderId: Int!
+
+  """"""
+  status: String!
+
+  """"""
+  totalAmount: Float!
+}
+
+"""创建"""
 input CreateMemberInput {
   """Team ID"""
   teamId: Int!
@@ -89,6 +107,86 @@ input CreateMessageInput {
 
   """用户ID"""
   userId: Int
+}
+
+"""创建"""
+input CreateOrderInput {
+  """"""
+  billingMethod: String!
+
+  """"""
+  billingScheme: String!
+
+  """"""
+  billingStatus: String!
+  endDate: DateTime
+  nextBillingDate: DateTime
+
+  """"""
+  planId: Int!
+  startDate: DateTime
+
+  """"""
+  userId: Int!
+}
+
+"""创建"""
+input CreatePaymentInput {
+  """"""
+  amount: Float!
+
+  """"""
+  currency: String!
+
+  """"""
+  invoiceId: Int!
+  paymentDate: DateTime
+
+  """"""
+  paymentMethod: String!
+
+  """"""
+  paymentStatus: String!
+}
+
+"""创建"""
+input CreatePlanInput {
+  """"""
+  description: String!
+
+  """"""
+  features: String
+
+  """"""
+  interval: String
+
+  """"""
+  name: String!
+
+  """"""
+  price: Float
+
+  """"""
+  status: PlanStatus!
+
+  """"""
+  type: PlanType!
+}
+
+"""创建"""
+input CreateRefundInput {
+  """"""
+  amount: Int!
+
+  """"""
+  currency: String!
+
+  """"""
+  paymentId: Int!
+  refundDate: DateTime
+
+  """"""
+  refundStatus: String!
 }
 
 """创建"""
@@ -163,10 +261,25 @@ input CreateUserInput {
   username: String!
 }
 
+"""创建"""
+input CreateWalletInput {
+  """"""
+  balance: Float!
+
+  """用户ID"""
+  userId: Int!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
 scalar DateTime
+
+"""删除成员"""
+input DeleteInvoiceInput {
+  """ID"""
+  id: Int!
+}
 
 """删除成员"""
 input DeleteMemberInput {
@@ -176,6 +289,30 @@ input DeleteMemberInput {
 
 """删除"""
 input DeleteMessageInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除成员"""
+input DeleteOrderInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除成员"""
+input DeletePaymentInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除成员"""
+input DeletePlanInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除成员"""
+input DeleteRefundInput {
   """ID"""
   id: Int!
 }
@@ -212,6 +349,12 @@ input DeleteUserInput {
   username: String!
 }
 
+"""删除成员"""
+input DeleteWalletInput {
+  """ID"""
+  id: Int!
+}
+
 """退出团队"""
 input ExitMemberInput {
   """member ID"""
@@ -222,6 +365,42 @@ input ExitMemberInput {
 input ForgotPasswordInput {
   """邮箱"""
   email: String!
+}
+
+""""""
+type Invoice {
+  createdAt: DateTime
+  dueDate: DateTime
+
+  """"""
+  id: Int!
+  invoiceDate: DateTime
+
+  """"""
+  invoiceNumber: String!
+
+  """"""
+  orderId: Int!
+
+  """"""
+  status: String!
+
+  """"""
+  totalAmount: Float!
+  updatedAt: DateTime
+}
+
+"""筛选条件"""
+input InvoiceWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""connection"""
+type InvoicesConnection {
+  hasNextPage: Boolean!
+  items: [Invoice!]!
+  totalCount: Int!
 }
 
 """邮箱登录"""
@@ -350,10 +529,25 @@ type Mutation {
   addToken(input: AddTokenInput!): Token!
 
   """创建"""
+  createInvoice(input: CreateInvoiceInput!): Invoice!
+
+  """创建"""
   createMember(input: CreateMemberInput!): Member!
 
   """创建"""
   createMessage(input: CreateMessageInput!): Message!
+
+  """创建"""
+  createOrder(input: CreateOrderInput!): Order!
+
+  """创建"""
+  createPayment(input: CreatePaymentInput!): Payment!
+
+  """创建"""
+  createPlan(input: CreatePlanInput!): Plan!
+
+  """创建"""
+  createRefund(input: CreateRefundInput!): Refund!
 
   """创建"""
   createSession(input: CreateSessionInput!): Session!
@@ -370,11 +564,32 @@ type Mutation {
   """创建"""
   createUser(input: CreateUserInput!): User!
 
+  """创建"""
+  createWallet(input: CreateWalletInput!): Wallet!
+
+  """删除单个"""
+  deleteInvoice(input: DeleteInvoiceInput!): Boolean!
+
+  """批量删除"""
+  deleteManyInvoices(input: DeleteInvoiceInput!): Float!
+
   """批量删除"""
   deleteManyMembers(input: DeleteMemberInput!): Float!
 
   """批量删除"""
   deleteManyMessages(input: DeleteMessageInput!): Float!
+
+  """批量删除"""
+  deleteManyOrders(input: DeleteOrderInput!): Float!
+
+  """批量删除"""
+  deleteManyPayments(input: DeletePaymentInput!): Float!
+
+  """批量删除"""
+  deleteManyPlans(input: DeletePlanInput!): Float!
+
+  """批量删除"""
+  deleteManyRefunds(input: DeleteRefundInput!): Float!
 
   """批量删除"""
   deleteManySessions(input: DeleteSessionInput!): Float!
@@ -391,11 +606,26 @@ type Mutation {
   """批量删除"""
   deleteManyUsers(input: DeleteUserInput!): Float!
 
+  """批量删除"""
+  deleteManyWallets(input: DeleteWalletInput!): Float!
+
   """删除单个"""
   deleteMember(input: DeleteMemberInput!): Boolean!
 
   """删除单个"""
   deleteMessage(input: DeleteMessageInput!): Boolean!
+
+  """删除单个"""
+  deleteOrder(input: DeleteOrderInput!): Boolean!
+
+  """删除单个"""
+  deletePayment(input: DeletePaymentInput!): Boolean!
+
+  """删除单个"""
+  deletePlan(input: DeletePlanInput!): Boolean!
+
+  """删除单个"""
+  deleteRefund(input: DeleteRefundInput!): Boolean!
 
   """删除单个"""
   deleteSession(input: DeleteSessionInput!): Boolean!
@@ -411,6 +641,9 @@ type Mutation {
 
   """删除单个"""
   deleteUser(input: DeleteUserInput!): Boolean!
+
+  """删除单个"""
+  deleteWallet(input: DeleteWalletInput!): Boolean!
 
   """退出成员"""
   exitMember(input: ExitMemberInput!): Boolean!
@@ -451,11 +684,29 @@ type Mutation {
   """修改email"""
   updateEmail(input: UpdateEmailInput!): Boolean!
 
+  """更新单个"""
+  updateInvoice(input: UpdateInvoiceInput!): Invoice!
+
+  """批量更新"""
+  updateManyInvoices(input: UpdateManyInvoiceInput!): Boolean!
+
   """批量更新"""
   updateManyMembers(input: UpdateManyMemberInput!): Boolean!
 
   """批量更新"""
   updateManyMessages(input: UpdateManyMessageInput!): Boolean!
+
+  """批量更新"""
+  updateManyOrders(input: UpdateManyOrderInput!): Boolean!
+
+  """批量更新"""
+  updateManyPayments(input: UpdateManyPaymentInput!): Boolean!
+
+  """批量更新"""
+  updateManyPlans(input: UpdateManyPlanInput!): Boolean!
+
+  """批量更新"""
+  updateManyRefunds(input: UpdateManyRefundInput!): Boolean!
 
   """批量更新"""
   updateManySessions(input: UpdateManySessionInput!): Boolean!
@@ -472,11 +723,26 @@ type Mutation {
   """批量更新"""
   updateManyUsers(input: UpdateManyUserInput!): Boolean!
 
+  """批量更新"""
+  updateManyWallets(input: UpdateManyWalletInput!): Boolean!
+
   """更新单个"""
   updateMember(input: UpdateMemberInput!): Member!
 
   """更新单个"""
   updateMessage(input: UpdateMessageInput!): Message!
+
+  """更新单个"""
+  updateOrder(input: UpdateOrderInput!): Order!
+
+  """更新单个"""
+  updatePayment(input: UpdatePaymentInput!): Payment!
+
+  """更新单个"""
+  updatePlan(input: UpdatePlanInput!): Plan!
+
+  """更新单个"""
+  updateRefund(input: UpdateRefundInput!): Refund!
 
   """更新单个"""
   updateSession(input: UpdateSessionInput!): Session!
@@ -492,6 +758,127 @@ type Mutation {
 
   """更新单个"""
   updateUser(input: UpdateUserInput!): User!
+
+  """更新单个"""
+  updateWallet(input: UpdateWalletInput!): Wallet!
+}
+
+""""""
+type Order {
+  """"""
+  billingMethod: String!
+
+  """"""
+  billingScheme: String!
+
+  """"""
+  billingStatus: String!
+  createdAt: DateTime
+  endDate: DateTime
+
+  """"""
+  id: Int!
+  nextBillingDate: DateTime
+
+  """"""
+  planId: Int!
+  startDate: DateTime
+  updatedAt: DateTime
+
+  """"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input OrderWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""connection"""
+type OrdersConnection {
+  hasNextPage: Boolean!
+  items: [Order!]!
+  totalCount: Int!
+}
+
+""""""
+type Payment {
+  """"""
+  amount: Float!
+  createdAt: DateTime
+
+  """"""
+  currency: String!
+
+  """"""
+  id: Int!
+
+  """"""
+  invoiceId: Int!
+  paymentDate: DateTime
+
+  """"""
+  paymentMethod: String!
+
+  """"""
+  paymentStatus: String!
+  updatedAt: DateTime
+}
+
+"""筛选条件"""
+input PaymentWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""connection"""
+type PaymentsConnection {
+  hasNextPage: Boolean!
+  items: [Payment!]!
+  totalCount: Int!
+}
+
+""""""
+type Plan {
+  createdAt: DateTime
+
+  """"""
+  description: String!
+
+  """"""
+  features: String
+
+  """"""
+  id: Int!
+
+  """"""
+  interval: String
+
+  """"""
+  name: String!
+
+  """"""
+  price: Float
+
+  """"""
+  status: PlanStatus!
+
+  """"""
+  type: PlanType!
+  updatedAt: DateTime
+}
+
+"""Plan Interval"""
+enum PlanInterval {
+  Monthly
+  Yearly
+}
+
+"""plan status"""
+enum PlanStatus {
+  Disabled
+  Enabled
 }
 
 """付费类型"""
@@ -499,6 +886,19 @@ enum PlanType {
   Enterprise
   Free
   Plus
+}
+
+"""筛选条件"""
+input PlanWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""connection"""
+type PlansConnection {
+  hasNextPage: Boolean!
+  items: [Plan!]!
+  totalCount: Int!
 }
 
 """Provider 类型"""
@@ -520,6 +920,42 @@ type Query {
 
   """注册时，验证邮箱"""
   checkVerifyEmailToken(token: String!): LoginSuccessPayload!
+
+  """获取单个"""
+  invoice(
+    """ID"""
+    id: Int!
+  ): Invoice!
+
+  """获取列表"""
+  invoices(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: InvoiceWhereInput
+  ): [Invoice!]!
+
+  """获取分页列表"""
+  invoicesConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: InvoiceWhereInput
+  ): InvoicesConnection!
 
   """获取单个"""
   member(
@@ -592,6 +1028,150 @@ type Query {
 
   """自己可以访问的 provider"""
   myTeams: [Team!]!
+
+  """获取单个"""
+  order(
+    """ID"""
+    id: Int!
+  ): Order!
+
+  """获取列表"""
+  orders(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: OrderWhereInput
+  ): [Order!]!
+
+  """获取分页列表"""
+  ordersConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: OrderWhereInput
+  ): OrdersConnection!
+
+  """获取单个"""
+  payment(
+    """ID"""
+    id: Int!
+  ): Payment!
+
+  """获取列表"""
+  payments(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: PaymentWhereInput
+  ): [Payment!]!
+
+  """获取分页列表"""
+  paymentsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: PaymentWhereInput
+  ): PaymentsConnection!
+
+  """获取单个"""
+  plan(
+    """ID"""
+    id: Int!
+  ): Plan!
+
+  """获取列表"""
+  plans(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: PlanWhereInput
+  ): [Plan!]!
+
+  """获取分页列表"""
+  plansConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: PlanWhereInput
+  ): PlansConnection!
+
+  """获取单个"""
+  refund(
+    """ID"""
+    id: Int!
+  ): Refund!
+
+  """获取列表"""
+  refunds(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: RefundWhereInput
+  ): [Refund!]!
+
+  """获取分页列表"""
+  refundsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: RefundWhereInput
+  ): RefundsConnection!
 
   """搜索用户"""
   searchUsers(q: String!): [User!]!
@@ -777,6 +1357,76 @@ type Query {
     """筛选条件"""
     where: UserWhereInput
   ): UsersConnection!
+
+  """获取单个"""
+  wallet(
+    """ID"""
+    id: Int!
+  ): Wallet!
+
+  """获取列表"""
+  wallets(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: WalletWhereInput
+  ): [Wallet!]!
+
+  """获取分页列表"""
+  walletsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: WalletWhereInput
+  ): WalletsConnection!
+}
+
+""""""
+type Refund {
+  """"""
+  amount: Int!
+  createdAt: DateTime
+
+  """"""
+  currency: String!
+
+  """"""
+  id: Int!
+
+  """"""
+  paymentId: Int!
+  refundDate: DateTime
+
+  """"""
+  refundStatus: String!
+  updatedAt: DateTime
+}
+
+"""筛选条件"""
+input RefundWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""connection"""
+type RefundsConnection {
+  hasNextPage: Boolean!
+  items: [Refund!]!
+  totalCount: Int!
 }
 
 """邮箱注册"""
@@ -915,6 +1565,9 @@ type Team {
   """"""
   name: String!
 
+  """订阅时间类型"""
+  planInterval: PlanInterval
+
   """付费类型"""
   planType: PlanType!
 
@@ -994,6 +1647,48 @@ input UpdateEmailInput {
   password: String!
 }
 
+"""更新data"""
+input UpdateInvoiceDataInput {
+  dueDate: DateTime
+  invoiceDate: DateTime
+
+  """"""
+  invoiceNumber: String!
+
+  """"""
+  orderId: Int!
+
+  """"""
+  status: String!
+
+  """"""
+  totalAmount: Float!
+}
+
+"""更新单个"""
+input UpdateInvoiceInput {
+  """更新的数据"""
+  data: UpdateInvoiceDataInput
+
+  """更新条件"""
+  where: UpdateInvoiceWhereInput
+}
+
+"""更新条件"""
+input UpdateInvoiceWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""批量更新"""
+input UpdateManyInvoiceInput {
+  """更新的数据"""
+  data: UpdateInvoiceDataInput
+
+  """更新条件"""
+  where: UpdateInvoiceWhereInput
+}
+
 """批量更新"""
 input UpdateManyMemberInput {
   """更新的数据"""
@@ -1010,6 +1705,42 @@ input UpdateManyMessageInput {
 
   """更新条件"""
   where: UpdateMessageWhereInput
+}
+
+"""批量更新"""
+input UpdateManyOrderInput {
+  """更新的数据"""
+  data: UpdateOrderDataInput
+
+  """更新条件"""
+  where: UpdateOrderWhereInput
+}
+
+"""批量更新"""
+input UpdateManyPaymentInput {
+  """更新的数据"""
+  data: UpdatePaymentDataInput
+
+  """更新条件"""
+  where: UpdatePaymentWhereInput
+}
+
+"""批量更新"""
+input UpdateManyPlanInput {
+  """更新的数据"""
+  data: UpdatePlanDataInput
+
+  """更新条件"""
+  where: UpdatePlanWhereInput
+}
+
+"""批量更新"""
+input UpdateManyRefundInput {
+  """更新的数据"""
+  data: UpdateRefundDataInput
+
+  """更新条件"""
+  where: UpdateRefundWhereInput
 }
 
 """批量更新"""
@@ -1057,6 +1788,15 @@ input UpdateManyUserInput {
   where: UpdateUserWhereInput
 }
 
+"""批量更新"""
+input UpdateManyWalletInput {
+  """更新的数据"""
+  data: UpdateWalletDataInput
+
+  """更新条件"""
+  where: UpdateWalletWhereInput
+}
+
 """更新data"""
 input UpdateMemberDataInput {
   """Team ID"""
@@ -1100,6 +1840,146 @@ input UpdateMessageInput {
 input UpdateMessageWhereInput {
   """ID"""
   id: Int
+}
+
+"""更新data"""
+input UpdateOrderDataInput {
+  """"""
+  billingMethod: String!
+
+  """"""
+  billingScheme: String!
+
+  """"""
+  billingStatus: String!
+  endDate: DateTime
+  nextBillingDate: DateTime
+
+  """"""
+  planId: Int!
+  startDate: DateTime
+
+  """"""
+  userId: Int!
+}
+
+"""更新单个"""
+input UpdateOrderInput {
+  """更新的数据"""
+  data: UpdateOrderDataInput
+
+  """更新条件"""
+  where: UpdateOrderWhereInput
+}
+
+"""更新条件"""
+input UpdateOrderWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""更新data"""
+input UpdatePaymentDataInput {
+  """"""
+  amount: Float!
+
+  """"""
+  currency: String!
+
+  """"""
+  invoiceId: Int!
+  paymentDate: DateTime
+
+  """"""
+  paymentMethod: String!
+
+  """"""
+  paymentStatus: String!
+}
+
+"""更新单个"""
+input UpdatePaymentInput {
+  """更新的数据"""
+  data: UpdatePaymentDataInput
+
+  """更新条件"""
+  where: UpdatePaymentWhereInput
+}
+
+"""更新条件"""
+input UpdatePaymentWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""更新data"""
+input UpdatePlanDataInput {
+  """"""
+  description: String!
+
+  """"""
+  features: String
+
+  """"""
+  interval: String
+
+  """"""
+  name: String!
+
+  """"""
+  price: Float
+
+  """"""
+  status: PlanStatus!
+
+  """"""
+  type: PlanType!
+}
+
+"""更新单个"""
+input UpdatePlanInput {
+  """更新的数据"""
+  data: UpdatePlanDataInput
+
+  """更新条件"""
+  where: UpdatePlanWhereInput
+}
+
+"""更新条件"""
+input UpdatePlanWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""更新data"""
+input UpdateRefundDataInput {
+  """"""
+  amount: Int!
+
+  """"""
+  currency: String!
+
+  """"""
+  paymentId: Int!
+  refundDate: DateTime
+
+  """"""
+  refundStatus: String!
+}
+
+"""更新单个"""
+input UpdateRefundInput {
+  """更新的数据"""
+  data: UpdateRefundDataInput
+
+  """更新条件"""
+  where: UpdateRefundWhereInput
+}
+
+"""更新条件"""
+input UpdateRefundWhereInput {
+  """ID"""
+  id: Int!
 }
 
 """更新data"""
@@ -1166,6 +2046,12 @@ input UpdateTeamDataInput {
 
   """该 Team Name"""
   name: String!
+
+  """订阅时间类型"""
+  planInterval: PlanInterval
+
+  """付费类型"""
+  planType: PlanType
 
   """"""
   providerType: ProviderType!
@@ -1255,6 +2141,30 @@ input UpdateUserWhereInput {
   id: Int
 }
 
+"""更新data"""
+input UpdateWalletDataInput {
+  """"""
+  balance: Float!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""更新单个"""
+input UpdateWalletInput {
+  """更新的数据"""
+  data: UpdateWalletDataInput
+
+  """更新条件"""
+  where: UpdateWalletWhereInput
+}
+
+"""更新条件"""
+input UpdateWalletWhereInput {
+  """ID"""
+  id: Int!
+}
+
 """user"""
 type User {
   """头像"""
@@ -1307,5 +2217,35 @@ input UserWhereInput {
 type UsersConnection {
   hasNextPage: Boolean!
   items: [User!]!
+  totalCount: Int!
+}
+
+""""""
+type Wallet {
+  """"""
+  balance: Float!
+  createdAt: DateTime
+
+  """"""
+  id: Int!
+  updatedAt: DateTime
+
+  """"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input WalletWhereInput {
+  """ID"""
+  id: Int!
+
+  """策略ID"""
+  teamId: Int!
+}
+
+"""connection"""
+type WalletsConnection {
+  hasNextPage: Boolean!
+  items: [Wallet!]!
   totalCount: Int!
 }

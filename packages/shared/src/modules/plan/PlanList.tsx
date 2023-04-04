@@ -6,6 +6,7 @@ import { useTeams } from '../chat/hooks/useTeams'
 import { PlanType } from '@own-chat/api-sdk'
 
 type PlanItem = {
+  type: PlanType
   title: string
   desc: string
   price: string
@@ -16,14 +17,16 @@ type PlanItem = {
 
 interface Props {
   canUpgrade?: boolean
+  onUpgrade?(): any
 }
 
-export function PlanList({ canUpgrade = false }: Props) {
+export function PlanList({ canUpgrade = false, onUpgrade }: Props) {
   const { push } = useRouter()
   const { activeTeam } = useTeams()
 
   const plans: PlanItem[] = [
     {
+      type: PlanType.Free,
       title: 'Free',
       desc: 'The basics for individuals',
       price: 'Free',
@@ -38,9 +41,10 @@ export function PlanList({ canUpgrade = false }: Props) {
     },
 
     {
+      type: PlanType.Plus,
       title: 'Plus',
       desc: 'Advanced collaboration for individuals and teams',
-      price: '$1',
+      price: '$2',
       priceDesc: 'per user / month',
       features: [
         'Unlimited collaboration',
@@ -54,6 +58,7 @@ export function PlanList({ canUpgrade = false }: Props) {
     },
 
     {
+      type: PlanType.Enterprise,
       title: 'Customized',
       desc: 'Advanced controls & support to your team',
       price: 'Contact',
@@ -108,16 +113,18 @@ export function PlanList({ canUpgrade = false }: Props) {
             </Box>
 
             {canUpgrade && (
-              <>
-                <Button
-                  w-100p
-                  disabled={item.isCurrentPlan}
-                  variant={item.isCurrentPlan ? 'light' : 'filled'}
-                  colorScheme={item.isCurrentPlan ? 'gray700' : 'brand500'}
-                >
-                  {item.isCurrentPlan ? 'Current Plan' : 'Upgrade'}
-                </Button>
-              </>
+              <Button
+                w-100p
+                disabled={item.isCurrentPlan}
+                variant={item.isCurrentPlan ? 'light' : 'filled'}
+                colorScheme={item.isCurrentPlan ? 'gray700' : 'brand500'}
+                onClick={() => {
+                  // if(item.)
+                  onUpgrade?.()
+                }}
+              >
+                {item.isCurrentPlan ? 'Current Plan' : 'Upgrade'}
+              </Button>
             )}
 
             {!canUpgrade && (

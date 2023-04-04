@@ -66,6 +66,16 @@ export type AddTokenInput = {
 };
 
 /** 创建 */
+export type CreateInvoiceInput = {
+  dueDate?: InputMaybe<Scalars['DateTime']>;
+  invoiceDate?: InputMaybe<Scalars['DateTime']>;
+  invoiceNumber: Scalars['String'];
+  orderId: Scalars['Int'];
+  status: Scalars['String'];
+  totalAmount: Scalars['Float'];
+};
+
+/** 创建 */
 export type CreateMemberInput = {
   /** Team ID */
   teamId: Scalars['Int'];
@@ -81,6 +91,48 @@ export type CreateMessageInput = {
   sessionId: Scalars['Int'];
   /** 用户ID */
   userId?: InputMaybe<Scalars['Int']>;
+};
+
+/** 创建 */
+export type CreateOrderInput = {
+  billingMethod: Scalars['String'];
+  billingScheme: Scalars['String'];
+  billingStatus: Scalars['String'];
+  endDate?: InputMaybe<Scalars['DateTime']>;
+  nextBillingDate?: InputMaybe<Scalars['DateTime']>;
+  planId: Scalars['Int'];
+  startDate?: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['Int'];
+};
+
+/** 创建 */
+export type CreatePaymentInput = {
+  amount: Scalars['Float'];
+  currency: Scalars['String'];
+  invoiceId: Scalars['Int'];
+  paymentDate?: InputMaybe<Scalars['DateTime']>;
+  paymentMethod: Scalars['String'];
+  paymentStatus: Scalars['String'];
+};
+
+/** 创建 */
+export type CreatePlanInput = {
+  description: Scalars['String'];
+  features?: InputMaybe<Scalars['String']>;
+  interval?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  price?: InputMaybe<Scalars['Float']>;
+  status: PlanStatus;
+  type: PlanType;
+};
+
+/** 创建 */
+export type CreateRefundInput = {
+  amount: Scalars['Int'];
+  currency: Scalars['String'];
+  paymentId: Scalars['Int'];
+  refundDate?: InputMaybe<Scalars['DateTime']>;
+  refundStatus: Scalars['String'];
 };
 
 /** 创建 */
@@ -134,6 +186,19 @@ export type CreateUserInput = {
   username: Scalars['String'];
 };
 
+/** 创建 */
+export type CreateWalletInput = {
+  balance: Scalars['Float'];
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** 删除成员 */
+export type DeleteInvoiceInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
 /** 删除成员 */
 export type DeleteMemberInput = {
   /** member ID */
@@ -142,6 +207,30 @@ export type DeleteMemberInput = {
 
 /** 删除 */
 export type DeleteMessageInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 删除成员 */
+export type DeleteOrderInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 删除成员 */
+export type DeletePaymentInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 删除成员 */
+export type DeletePlanInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 删除成员 */
+export type DeleteRefundInput = {
   /** ID */
   id: Scalars['Int'];
 };
@@ -178,6 +267,12 @@ export type DeleteUserInput = {
   username: Scalars['String'];
 };
 
+/** 删除成员 */
+export type DeleteWalletInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
 /** 退出团队 */
 export type ExitMemberInput = {
   /** member ID */
@@ -188,6 +283,33 @@ export type ExitMemberInput = {
 export type ForgotPasswordInput = {
   /** 邮箱 */
   email: Scalars['String'];
+};
+
+export type Invoice = {
+  __typename?: 'Invoice';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dueDate?: Maybe<Scalars['DateTime']>;
+  id: Scalars['Int'];
+  invoiceDate?: Maybe<Scalars['DateTime']>;
+  invoiceNumber: Scalars['String'];
+  orderId: Scalars['Int'];
+  status: Scalars['String'];
+  totalAmount: Scalars['Float'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+/** 筛选条件 */
+export type InvoiceWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** connection */
+export type InvoicesConnection = {
+  __typename?: 'InvoicesConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Invoice>;
+  totalCount: Scalars['Int'];
 };
 
 /** 邮箱登录 */
@@ -297,9 +419,19 @@ export type Mutation = {
   /** 新增Token */
   addToken: Token;
   /** 创建 */
+  createInvoice: Invoice;
+  /** 创建 */
   createMember: Member;
   /** 创建 */
   createMessage: Message;
+  /** 创建 */
+  createOrder: Order;
+  /** 创建 */
+  createPayment: Payment;
+  /** 创建 */
+  createPlan: Plan;
+  /** 创建 */
+  createRefund: Refund;
   /** 创建 */
   createSession: Session;
   /** 创建 */
@@ -310,10 +442,24 @@ export type Mutation = {
   createToken: Token;
   /** 创建 */
   createUser: User;
+  /** 创建 */
+  createWallet: Wallet;
+  /** 删除单个 */
+  deleteInvoice: Scalars['Boolean'];
+  /** 批量删除 */
+  deleteManyInvoices: Scalars['Float'];
   /** 批量删除 */
   deleteManyMembers: Scalars['Float'];
   /** 批量删除 */
   deleteManyMessages: Scalars['Float'];
+  /** 批量删除 */
+  deleteManyOrders: Scalars['Float'];
+  /** 批量删除 */
+  deleteManyPayments: Scalars['Float'];
+  /** 批量删除 */
+  deleteManyPlans: Scalars['Float'];
+  /** 批量删除 */
+  deleteManyRefunds: Scalars['Float'];
   /** 批量删除 */
   deleteManySessions: Scalars['Float'];
   /** 批量删除 */
@@ -324,10 +470,20 @@ export type Mutation = {
   deleteManyTokens: Scalars['Float'];
   /** 批量删除 */
   deleteManyUsers: Scalars['Float'];
+  /** 批量删除 */
+  deleteManyWallets: Scalars['Float'];
   /** 删除单个 */
   deleteMember: Scalars['Boolean'];
   /** 删除单个 */
   deleteMessage: Scalars['Boolean'];
+  /** 删除单个 */
+  deleteOrder: Scalars['Boolean'];
+  /** 删除单个 */
+  deletePayment: Scalars['Boolean'];
+  /** 删除单个 */
+  deletePlan: Scalars['Boolean'];
+  /** 删除单个 */
+  deleteRefund: Scalars['Boolean'];
   /** 删除单个 */
   deleteSession: Scalars['Boolean'];
   /** 删除单个 */
@@ -338,6 +494,8 @@ export type Mutation = {
   deleteToken: Scalars['Boolean'];
   /** 删除单个 */
   deleteUser: Scalars['Boolean'];
+  /** 删除单个 */
+  deleteWallet: Scalars['Boolean'];
   /** 退出成员 */
   exitMember: Scalars['Boolean'];
   /** 重置密码 */
@@ -364,10 +522,22 @@ export type Mutation = {
   resetPassword: Scalars['Boolean'];
   /** 修改email */
   updateEmail: Scalars['Boolean'];
+  /** 更新单个 */
+  updateInvoice: Invoice;
+  /** 批量更新 */
+  updateManyInvoices: Scalars['Boolean'];
   /** 批量更新 */
   updateManyMembers: Scalars['Boolean'];
   /** 批量更新 */
   updateManyMessages: Scalars['Boolean'];
+  /** 批量更新 */
+  updateManyOrders: Scalars['Boolean'];
+  /** 批量更新 */
+  updateManyPayments: Scalars['Boolean'];
+  /** 批量更新 */
+  updateManyPlans: Scalars['Boolean'];
+  /** 批量更新 */
+  updateManyRefunds: Scalars['Boolean'];
   /** 批量更新 */
   updateManySessions: Scalars['Boolean'];
   /** 批量更新 */
@@ -378,10 +548,20 @@ export type Mutation = {
   updateManyTokens: Scalars['Boolean'];
   /** 批量更新 */
   updateManyUsers: Scalars['Boolean'];
+  /** 批量更新 */
+  updateManyWallets: Scalars['Boolean'];
   /** 更新单个 */
   updateMember: Member;
   /** 更新单个 */
   updateMessage: Message;
+  /** 更新单个 */
+  updateOrder: Order;
+  /** 更新单个 */
+  updatePayment: Payment;
+  /** 更新单个 */
+  updatePlan: Plan;
+  /** 更新单个 */
+  updateRefund: Refund;
   /** 更新单个 */
   updateSession: Session;
   /** 更新单个 */
@@ -392,6 +572,8 @@ export type Mutation = {
   updateToken: Token;
   /** 更新单个 */
   updateUser: User;
+  /** 更新单个 */
+  updateWallet: Wallet;
 };
 
 
@@ -420,6 +602,11 @@ export type MutationAddTokenArgs = {
 };
 
 
+export type MutationCreateInvoiceArgs = {
+  input: CreateInvoiceInput;
+};
+
+
 export type MutationCreateMemberArgs = {
   input: CreateMemberInput;
 };
@@ -427,6 +614,26 @@ export type MutationCreateMemberArgs = {
 
 export type MutationCreateMessageArgs = {
   input: CreateMessageInput;
+};
+
+
+export type MutationCreateOrderArgs = {
+  input: CreateOrderInput;
+};
+
+
+export type MutationCreatePaymentArgs = {
+  input: CreatePaymentInput;
+};
+
+
+export type MutationCreatePlanArgs = {
+  input: CreatePlanInput;
+};
+
+
+export type MutationCreateRefundArgs = {
+  input: CreateRefundInput;
 };
 
 
@@ -455,6 +662,21 @@ export type MutationCreateUserArgs = {
 };
 
 
+export type MutationCreateWalletArgs = {
+  input: CreateWalletInput;
+};
+
+
+export type MutationDeleteInvoiceArgs = {
+  input: DeleteInvoiceInput;
+};
+
+
+export type MutationDeleteManyInvoicesArgs = {
+  input: DeleteInvoiceInput;
+};
+
+
 export type MutationDeleteManyMembersArgs = {
   input: DeleteMemberInput;
 };
@@ -462,6 +684,26 @@ export type MutationDeleteManyMembersArgs = {
 
 export type MutationDeleteManyMessagesArgs = {
   input: DeleteMessageInput;
+};
+
+
+export type MutationDeleteManyOrdersArgs = {
+  input: DeleteOrderInput;
+};
+
+
+export type MutationDeleteManyPaymentsArgs = {
+  input: DeletePaymentInput;
+};
+
+
+export type MutationDeleteManyPlansArgs = {
+  input: DeletePlanInput;
+};
+
+
+export type MutationDeleteManyRefundsArgs = {
+  input: DeleteRefundInput;
 };
 
 
@@ -490,6 +732,11 @@ export type MutationDeleteManyUsersArgs = {
 };
 
 
+export type MutationDeleteManyWalletsArgs = {
+  input: DeleteWalletInput;
+};
+
+
 export type MutationDeleteMemberArgs = {
   input: DeleteMemberInput;
 };
@@ -497,6 +744,26 @@ export type MutationDeleteMemberArgs = {
 
 export type MutationDeleteMessageArgs = {
   input: DeleteMessageInput;
+};
+
+
+export type MutationDeleteOrderArgs = {
+  input: DeleteOrderInput;
+};
+
+
+export type MutationDeletePaymentArgs = {
+  input: DeletePaymentInput;
+};
+
+
+export type MutationDeletePlanArgs = {
+  input: DeletePlanInput;
+};
+
+
+export type MutationDeleteRefundArgs = {
+  input: DeleteRefundInput;
 };
 
 
@@ -522,6 +789,11 @@ export type MutationDeleteTokenArgs = {
 
 export type MutationDeleteUserArgs = {
   input: DeleteUserInput;
+};
+
+
+export type MutationDeleteWalletArgs = {
+  input: DeleteWalletInput;
 };
 
 
@@ -590,6 +862,16 @@ export type MutationUpdateEmailArgs = {
 };
 
 
+export type MutationUpdateInvoiceArgs = {
+  input: UpdateInvoiceInput;
+};
+
+
+export type MutationUpdateManyInvoicesArgs = {
+  input: UpdateManyInvoiceInput;
+};
+
+
 export type MutationUpdateManyMembersArgs = {
   input: UpdateManyMemberInput;
 };
@@ -597,6 +879,26 @@ export type MutationUpdateManyMembersArgs = {
 
 export type MutationUpdateManyMessagesArgs = {
   input: UpdateManyMessageInput;
+};
+
+
+export type MutationUpdateManyOrdersArgs = {
+  input: UpdateManyOrderInput;
+};
+
+
+export type MutationUpdateManyPaymentsArgs = {
+  input: UpdateManyPaymentInput;
+};
+
+
+export type MutationUpdateManyPlansArgs = {
+  input: UpdateManyPlanInput;
+};
+
+
+export type MutationUpdateManyRefundsArgs = {
+  input: UpdateManyRefundInput;
 };
 
 
@@ -625,6 +927,11 @@ export type MutationUpdateManyUsersArgs = {
 };
 
 
+export type MutationUpdateManyWalletsArgs = {
+  input: UpdateManyWalletInput;
+};
+
+
 export type MutationUpdateMemberArgs = {
   input: UpdateMemberInput;
 };
@@ -632,6 +939,26 @@ export type MutationUpdateMemberArgs = {
 
 export type MutationUpdateMessageArgs = {
   input: UpdateMessageInput;
+};
+
+
+export type MutationUpdateOrderArgs = {
+  input: UpdateOrderInput;
+};
+
+
+export type MutationUpdatePaymentArgs = {
+  input: UpdatePaymentInput;
+};
+
+
+export type MutationUpdatePlanArgs = {
+  input: UpdatePlanInput;
+};
+
+
+export type MutationUpdateRefundArgs = {
+  input: UpdateRefundInput;
 };
 
 
@@ -659,12 +986,113 @@ export type MutationUpdateUserArgs = {
   input: UpdateUserInput;
 };
 
+
+export type MutationUpdateWalletArgs = {
+  input: UpdateWalletInput;
+};
+
+export type Order = {
+  __typename?: 'Order';
+  billingMethod: Scalars['String'];
+  billingScheme: Scalars['String'];
+  billingStatus: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  id: Scalars['Int'];
+  nextBillingDate?: Maybe<Scalars['DateTime']>;
+  planId: Scalars['Int'];
+  startDate?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  userId: Scalars['Int'];
+};
+
+/** 筛选条件 */
+export type OrderWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** connection */
+export type OrdersConnection = {
+  __typename?: 'OrdersConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Order>;
+  totalCount: Scalars['Int'];
+};
+
+export type Payment = {
+  __typename?: 'Payment';
+  amount: Scalars['Float'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  currency: Scalars['String'];
+  id: Scalars['Int'];
+  invoiceId: Scalars['Int'];
+  paymentDate?: Maybe<Scalars['DateTime']>;
+  paymentMethod: Scalars['String'];
+  paymentStatus: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+/** 筛选条件 */
+export type PaymentWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** connection */
+export type PaymentsConnection = {
+  __typename?: 'PaymentsConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Payment>;
+  totalCount: Scalars['Int'];
+};
+
+export type Plan = {
+  __typename?: 'Plan';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  features?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  interval?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  price?: Maybe<Scalars['Float']>;
+  status: PlanStatus;
+  type: PlanType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+/** Plan Interval */
+export enum PlanInterval {
+  Monthly = 'Monthly',
+  Yearly = 'Yearly'
+}
+
+/** plan status */
+export enum PlanStatus {
+  Disabled = 'Disabled',
+  Enabled = 'Enabled'
+}
+
 /** 付费类型 */
 export enum PlanType {
   Enterprise = 'Enterprise',
   Free = 'Free',
   Plus = 'Plus'
 }
+
+/** 筛选条件 */
+export type PlanWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** connection */
+export type PlansConnection = {
+  __typename?: 'PlansConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Plan>;
+  totalCount: Scalars['Int'];
+};
 
 /** Provider 类型 */
 export enum ProviderType {
@@ -683,6 +1111,12 @@ export type Query = {
   /** 注册时，验证邮箱 */
   checkVerifyEmailToken: LoginSuccessPayload;
   /** 获取单个 */
+  invoice: Invoice;
+  /** 获取列表 */
+  invoices: Array<Invoice>;
+  /** 获取分页列表 */
+  invoicesConnection: InvoicesConnection;
+  /** 获取单个 */
   member: Member;
   /** 获取列表 */
   members: Array<Member>;
@@ -696,6 +1130,30 @@ export type Query = {
   messagesConnection: MessagesConnection;
   /** 自己可以访问的 provider */
   myTeams: Array<Team>;
+  /** 获取单个 */
+  order: Order;
+  /** 获取列表 */
+  orders: Array<Order>;
+  /** 获取分页列表 */
+  ordersConnection: OrdersConnection;
+  /** 获取单个 */
+  payment: Payment;
+  /** 获取列表 */
+  payments: Array<Payment>;
+  /** 获取分页列表 */
+  paymentsConnection: PaymentsConnection;
+  /** 获取单个 */
+  plan: Plan;
+  /** 获取列表 */
+  plans: Array<Plan>;
+  /** 获取分页列表 */
+  plansConnection: PlansConnection;
+  /** 获取单个 */
+  refund: Refund;
+  /** 获取列表 */
+  refunds: Array<Refund>;
+  /** 获取分页列表 */
+  refundsConnection: RefundsConnection;
   /** 搜索用户 */
   searchUsers: Array<User>;
   /** 获取单个 */
@@ -730,6 +1188,12 @@ export type Query = {
   users: Array<User>;
   /** 获取分页列表 */
   usersConnection: UsersConnection;
+  /** 获取单个 */
+  wallet: Wallet;
+  /** 获取列表 */
+  wallets: Array<Wallet>;
+  /** 获取分页列表 */
+  walletsConnection: WalletsConnection;
 };
 
 
@@ -745,6 +1209,27 @@ export type QueryCheckResetPasswordTokenArgs = {
 
 export type QueryCheckVerifyEmailTokenArgs = {
   token: Scalars['String'];
+};
+
+
+export type QueryInvoiceArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryInvoicesArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<InvoiceWhereInput>;
+};
+
+
+export type QueryInvoicesConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<InvoiceWhereInput>;
 };
 
 
@@ -787,6 +1272,90 @@ export type QueryMessagesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<MessageWhereInput>;
+};
+
+
+export type QueryOrderArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryOrdersArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<OrderWhereInput>;
+};
+
+
+export type QueryOrdersConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<OrderWhereInput>;
+};
+
+
+export type QueryPaymentArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryPaymentsArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PaymentWhereInput>;
+};
+
+
+export type QueryPaymentsConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PaymentWhereInput>;
+};
+
+
+export type QueryPlanArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryPlansArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PlanWhereInput>;
+};
+
+
+export type QueryPlansConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PlanWhereInput>;
+};
+
+
+export type QueryRefundArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryRefundsArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<RefundWhereInput>;
+};
+
+
+export type QueryRefundsConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<RefundWhereInput>;
 };
 
 
@@ -907,6 +1476,53 @@ export type QueryUsersConnectionArgs = {
   where?: InputMaybe<UserWhereInput>;
 };
 
+
+export type QueryWalletArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryWalletsArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WalletWhereInput>;
+};
+
+
+export type QueryWalletsConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WalletWhereInput>;
+};
+
+export type Refund = {
+  __typename?: 'Refund';
+  amount: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  currency: Scalars['String'];
+  id: Scalars['Int'];
+  paymentId: Scalars['Int'];
+  refundDate?: Maybe<Scalars['DateTime']>;
+  refundStatus: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+/** 筛选条件 */
+export type RefundWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** connection */
+export type RefundsConnection = {
+  __typename?: 'RefundsConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Refund>;
+  totalCount: Scalars['Int'];
+};
+
 /** 邮箱注册 */
 export type RegisterByEmailInput = {
   /** 邮箱 */
@@ -1018,6 +1634,8 @@ export type Team = {
   /** Member */
   members: Array<Member>;
   name: Scalars['String'];
+  /** 订阅时间类型 */
+  planInterval?: Maybe<PlanInterval>;
   /** 付费类型 */
   planType: PlanType;
   providerType?: Maybe<ProviderType>;
@@ -1085,6 +1703,38 @@ export type UpdateEmailInput = {
   password: Scalars['String'];
 };
 
+/** 更新data */
+export type UpdateInvoiceDataInput = {
+  dueDate?: InputMaybe<Scalars['DateTime']>;
+  invoiceDate?: InputMaybe<Scalars['DateTime']>;
+  invoiceNumber: Scalars['String'];
+  orderId: Scalars['Int'];
+  status: Scalars['String'];
+  totalAmount: Scalars['Float'];
+};
+
+/** 更新单个 */
+export type UpdateInvoiceInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateInvoiceDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateInvoiceWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdateInvoiceWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 批量更新 */
+export type UpdateManyInvoiceInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateInvoiceDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateInvoiceWhereInput>;
+};
+
 /** 批量更新 */
 export type UpdateManyMemberInput = {
   /** 更新的数据 */
@@ -1099,6 +1749,38 @@ export type UpdateManyMessageInput = {
   data?: InputMaybe<UpdateMessageDataInput>;
   /** 更新条件 */
   where?: InputMaybe<UpdateMessageWhereInput>;
+};
+
+/** 批量更新 */
+export type UpdateManyOrderInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateOrderDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateOrderWhereInput>;
+};
+
+/** 批量更新 */
+export type UpdateManyPaymentInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdatePaymentDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdatePaymentWhereInput>;
+};
+
+/** 批量更新 */
+export type UpdateManyPlanInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdatePlanDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdatePlanWhereInput>;
+};
+
+/** 批量更新 */
+export type UpdateManyRefundInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateRefundDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateRefundWhereInput>;
 };
 
 /** 批量更新 */
@@ -1141,6 +1823,14 @@ export type UpdateManyUserInput = {
   where?: InputMaybe<UpdateUserWhereInput>;
 };
 
+/** 批量更新 */
+export type UpdateManyWalletInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateWalletDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateWalletWhereInput>;
+};
+
 /** 更新data */
 export type UpdateMemberDataInput = {
   /** Team ID */
@@ -1181,6 +1871,104 @@ export type UpdateMessageInput = {
 export type UpdateMessageWhereInput = {
   /** ID */
   id?: InputMaybe<Scalars['Int']>;
+};
+
+/** 更新data */
+export type UpdateOrderDataInput = {
+  billingMethod: Scalars['String'];
+  billingScheme: Scalars['String'];
+  billingStatus: Scalars['String'];
+  endDate?: InputMaybe<Scalars['DateTime']>;
+  nextBillingDate?: InputMaybe<Scalars['DateTime']>;
+  planId: Scalars['Int'];
+  startDate?: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['Int'];
+};
+
+/** 更新单个 */
+export type UpdateOrderInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateOrderDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateOrderWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdateOrderWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 更新data */
+export type UpdatePaymentDataInput = {
+  amount: Scalars['Float'];
+  currency: Scalars['String'];
+  invoiceId: Scalars['Int'];
+  paymentDate?: InputMaybe<Scalars['DateTime']>;
+  paymentMethod: Scalars['String'];
+  paymentStatus: Scalars['String'];
+};
+
+/** 更新单个 */
+export type UpdatePaymentInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdatePaymentDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdatePaymentWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdatePaymentWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 更新data */
+export type UpdatePlanDataInput = {
+  description: Scalars['String'];
+  features?: InputMaybe<Scalars['String']>;
+  interval?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  price?: InputMaybe<Scalars['Float']>;
+  status: PlanStatus;
+  type: PlanType;
+};
+
+/** 更新单个 */
+export type UpdatePlanInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdatePlanDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdatePlanWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdatePlanWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 更新data */
+export type UpdateRefundDataInput = {
+  amount: Scalars['Int'];
+  currency: Scalars['String'];
+  paymentId: Scalars['Int'];
+  refundDate?: InputMaybe<Scalars['DateTime']>;
+  refundStatus: Scalars['String'];
+};
+
+/** 更新单个 */
+export type UpdateRefundInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateRefundDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateRefundWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdateRefundWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
 };
 
 /** 更新data */
@@ -1236,6 +2024,10 @@ export type UpdateTeamDataInput = {
   endpoint?: InputMaybe<Scalars['String']>;
   /** 该 Team Name */
   name: Scalars['String'];
+  /** 订阅时间类型 */
+  planInterval?: InputMaybe<PlanInterval>;
+  /** 付费类型 */
+  planType?: InputMaybe<PlanType>;
   providerType: ProviderType;
   slug?: InputMaybe<Scalars['String']>;
 };
@@ -1310,6 +2102,27 @@ export type UpdateUserWhereInput = {
   id?: InputMaybe<Scalars['Int']>;
 };
 
+/** 更新data */
+export type UpdateWalletDataInput = {
+  balance: Scalars['Float'];
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** 更新单个 */
+export type UpdateWalletInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateWalletDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateWalletWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdateWalletWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
 /** user */
 export type User = {
   __typename?: 'User';
@@ -1351,5 +2164,30 @@ export type UsersConnection = {
   __typename?: 'UsersConnection';
   hasNextPage: Scalars['Boolean'];
   items: Array<User>;
+  totalCount: Scalars['Int'];
+};
+
+export type Wallet = {
+  __typename?: 'Wallet';
+  balance: Scalars['Float'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['Int'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  userId: Scalars['Int'];
+};
+
+/** 筛选条件 */
+export type WalletWhereInput = {
+  /** ID */
+  id: Scalars['Int'];
+  /** 策略ID */
+  teamId: Scalars['Int'];
+};
+
+/** connection */
+export type WalletsConnection = {
+  __typename?: 'WalletsConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Wallet>;
   totalCount: Scalars['Int'];
 };

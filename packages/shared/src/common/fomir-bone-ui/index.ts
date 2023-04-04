@@ -2,6 +2,7 @@ import { FomirPlugin } from 'fomir'
 import { Form } from './Form'
 import { Input } from './fields/Input'
 import { NumberInput } from './fields/NumberInput'
+import { CounterInput } from './fields/CounterInput'
 import { PasswordInput } from './fields/PasswordInput'
 import { Textarea } from './fields/Textarea'
 import { RadioGroup } from './fields/RadioGroup'
@@ -22,6 +23,7 @@ export const FomirBoneUI: FomirPlugin = {
     Input,
     PasswordInput,
     NumberInput,
+    CounterInput,
     Checkbox,
     Switch,
     RadioGroup,

@@ -24,7 +24,7 @@
     "@own-chat/api-sdk": "*",
     "@own-chat/easy-modal": "*",
     "bone-ui": "^0.32.1",
-    "fomir": "^0.21.0",
+    "fomir": "^0.22.0",
     "i18next": "^22.4.13",
     "lodash": "^4.17.21",
     "nanoid": "^3.3.6",

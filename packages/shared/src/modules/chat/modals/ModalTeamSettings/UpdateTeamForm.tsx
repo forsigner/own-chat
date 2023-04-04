@@ -2,9 +2,9 @@ import { Box } from '@fower/react'
 import { Button } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { Field, Form } from 'fomir'
+import { ProviderType } from '@own-chat/api-sdk'
 import { useUpdateTeamForm } from '../../hooks/useUpdateTeamForm'
 import { Title } from './Title'
-import { ProviderType } from '@own-chat/api-sdk'
 
 export const UpdateTeamForm = () => {
   const form = useUpdateTeamForm()
