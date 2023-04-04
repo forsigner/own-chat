@@ -98,6 +98,7 @@ query team($id: Int!){
         }
         name
         providerType
+        slug
         updatedAt
         user{
             avatar
@@ -134,6 +135,7 @@ query activeTeam{
         }
         name
         providerType
+        slug
         updatedAt
         user{
             avatar
@@ -170,6 +172,7 @@ query myTeams{
         }
         name
         providerType
+        slug
         updatedAt
         user{
             avatar
@@ -434,6 +437,7 @@ mutation updateTeam($input: UpdateTeamInput!){
         }
         name
         providerType
+        slug
         updatedAt
         user{
             avatar
@@ -470,6 +474,7 @@ mutation addTeam($input: AddTeamInput!){
         }
         name
         providerType
+        slug
         updatedAt
         user{
             avatar

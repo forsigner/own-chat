@@ -30,7 +30,7 @@ export default function PageDownload() {
         <Box toCenterY columnGap-20>
           <Button
             as="a"
-            w-200
+            w-210
             colorScheme="gray900"
             leftIcon={<IconIOS fillWhite />}
             href="https://github.com/forsigner/own-chat/releases/download/own-chat-v0.0.8/Own.chat_0.1.0_x64.dmg"
@@ -39,7 +39,7 @@ export default function PageDownload() {
           </Button>
           <Button
             as="a"
-            w-200
+            w-210
             leftIcon={<IconWindows size={20} fillWhite />}
             href="https://github.com/forsigner/own-chat/releases/download/own-chat-v0.0.8/Own.chat_0.1.0_x64_en-US.msi"
           >
@@ -47,11 +47,11 @@ export default function PageDownload() {
           </Button>
         </Box>
         <Box as="a" toCenterY columnGap-20>
-          <Button w-200 colorScheme="gray900" leftIcon={<IconIOS fillWhite />} onClick={comingSoon}>
+          <Button w-210 colorScheme="gray900" leftIcon={<IconIOS fillWhite />} onClick={comingSoon}>
             Download for iOS
           </Button>
           <Button
-            w-200
+            w-210
             colorScheme="green500"
             leftIcon={<IconAndroid fillWhite />}
             onClick={comingSoon}

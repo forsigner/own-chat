@@ -135,6 +135,9 @@ input CreateTeamInput {
   """"""
   providerType: ProviderType!
 
+  """"""
+  slug: String
+
   """用户ID"""
   userId: Int
 }
@@ -915,6 +918,9 @@ type Team {
 
   """"""
   providerType: ProviderType
+
+  """"""
+  slug: String!
   updatedAt: DateTime
 
   """User"""
@@ -1161,6 +1167,9 @@ input UpdateTeamDataInput {
 
   """"""
   providerType: ProviderType!
+
+  """"""
+  slug: String
 }
 
 """更新单个"""

@@ -111,6 +111,7 @@ export type CreateTeamInput = {
   /** 该 Team Name */
   name: Scalars['String'];
   providerType: ProviderType;
+  slug?: InputMaybe<Scalars['String']>;
   /** 用户ID */
   userId?: InputMaybe<Scalars['Int']>;
 };
@@ -1019,6 +1020,7 @@ export type Team = {
   members: Array<Member>;
   name: Scalars['String'];
   providerType?: Maybe<ProviderType>;
+  slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** User */
   user: User;
@@ -1234,6 +1236,7 @@ export type UpdateTeamDataInput = {
   /** 该 Team Name */
   name: Scalars['String'];
   providerType: ProviderType;
+  slug?: InputMaybe<Scalars['String']>;
 };
 
 /** 更新单个 */

@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { ModalCloseButton, Modal, ModalOverlay, ModalContent } from 'bone-ui'
+import { ModalCloseButton, Modal, ModalOverlay, ModalContent, ModalHeader } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { Settings } from '../Settings/Settings'
 
@@ -11,11 +11,9 @@ export const ModalSettings = () => {
       <ModalOverlay />
       <ModalContent w-600--i>
         <ModalCloseButton />
+        <ModalHeader>Settings</ModalHeader>
         <Box px8 py2>
-          <Box fontBold textXL leadingLoose mb2>
-            Settings
-          </Box>
-
+          <Box fontBold textXL leadingLoose mb2></Box>
           <Settings />
         </Box>
       </ModalContent>
