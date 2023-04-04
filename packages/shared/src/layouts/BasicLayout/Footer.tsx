@@ -9,7 +9,7 @@ export const Footer = () => {
     // { text: t('docs'), to: 'https://boter.app/docs/intro', isExternal: true },
     // { text: 'Blog', to: 'blog' },
     { text: t('download'), to: 'download' },
-    { text: t('pricing'), to: 'pricing' },
+    // { text: t('pricing'), to: 'pricing' },
     {
       text: t('feedback'),
       to: 'https://github.com/forsigner/own-chat/issues/new',

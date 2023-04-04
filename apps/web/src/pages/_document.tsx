@@ -7,13 +7,21 @@ import Document, {
   DocumentInitialProps,
 } from 'next/document'
 import { getAtomIds, getCssString } from '@fower/react'
-import { getCookie } from 'cookies-next'
+import { setCookie, getCookie } from 'cookies-next'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx)
 
-    const theme = (getCookie('fower-mode', ctx) as string) || 'light'
+    const cookieTheme = getCookie('fower-mode', ctx) as string
+
+    console.log('cookieTheme:', cookieTheme)
+
+    if (!cookieTheme) {
+      setCookie('fower-mode', 'light', { req: ctx.req, res: ctx.res })
+    }
+
+    let theme: string = getCookie('fower-mode', ctx) as string
 
     ;(initialProps as any).theme = theme
 

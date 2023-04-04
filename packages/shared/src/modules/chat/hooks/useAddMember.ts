@@ -1,6 +1,6 @@
 import { apiService, Refetcher, RoleType } from '@own-chat/api-sdk'
-import { useSetting } from './useSetting'
 import { toast, usePopoverContext } from 'bone-ui'
+import { useSetting } from './useSetting'
 import { isApiError } from '../../../common'
 
 export function useAddMember() {

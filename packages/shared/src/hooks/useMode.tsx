@@ -7,14 +7,12 @@ interface Result {
 }
 
 export function useMode(): Result {
-  const [state, setState] = useState<string>(store.getMode())
+  const [state, setState] = useState<string>('')
 
   useEffect(() => {
     const mode = getCookie('fower-mode') as string
 
-    if (mode) {
-      setMode(mode)
-    }
+    setMode(mode || 'light')
   }, [])
 
   function setMode(mode: string) {
