@@ -117,12 +117,10 @@ export type CreatePaymentInput = {
 
 /** 创建 */
 export type CreatePlanInput = {
-  description: Scalars['String'];
-  features?: InputMaybe<Scalars['String']>;
   interval?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
   price?: InputMaybe<Scalars['Float']>;
   status: PlanStatus;
+  teamId: Scalars['Int'];
   type: PlanType;
 };
 
@@ -1050,13 +1048,11 @@ export type PaymentsConnection = {
 export type Plan = {
   __typename?: 'Plan';
   createdAt?: Maybe<Scalars['DateTime']>;
-  description: Scalars['String'];
-  features?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   interval?: Maybe<Scalars['String']>;
-  name: Scalars['String'];
   price?: Maybe<Scalars['Float']>;
   status: PlanStatus;
+  teamId: Scalars['Int'];
   type: PlanType;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -1069,8 +1065,8 @@ export enum PlanInterval {
 
 /** plan status */
 export enum PlanStatus {
-  Disabled = 'Disabled',
-  Enabled = 'Enabled'
+  Expired = 'Expired',
+  Normal = 'Normal'
 }
 
 /** 付费类型 */
@@ -1634,10 +1630,6 @@ export type Team = {
   /** Member */
   members: Array<Member>;
   name: Scalars['String'];
-  /** 订阅时间类型 */
-  planInterval?: Maybe<PlanInterval>;
-  /** 付费类型 */
-  planType: PlanType;
   providerType?: Maybe<ProviderType>;
   slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -1925,12 +1917,10 @@ export type UpdatePaymentWhereInput = {
 
 /** 更新data */
 export type UpdatePlanDataInput = {
-  description: Scalars['String'];
-  features?: InputMaybe<Scalars['String']>;
   interval?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
   price?: InputMaybe<Scalars['Float']>;
   status: PlanStatus;
+  teamId: Scalars['Int'];
   type: PlanType;
 };
 

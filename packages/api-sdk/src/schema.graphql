@@ -152,22 +152,16 @@ input CreatePaymentInput {
 """创建"""
 input CreatePlanInput {
   """"""
-  description: String!
-
-  """"""
-  features: String
-
-  """"""
   interval: String
-
-  """"""
-  name: String!
 
   """"""
   price: Float
 
   """"""
   status: PlanStatus!
+
+  """"""
+  teamId: Int!
 
   """"""
   type: PlanType!
@@ -844,25 +838,19 @@ type Plan {
   createdAt: DateTime
 
   """"""
-  description: String!
-
-  """"""
-  features: String
-
-  """"""
   id: Int!
 
   """"""
   interval: String
 
   """"""
-  name: String!
-
-  """"""
   price: Float
 
   """"""
   status: PlanStatus!
+
+  """"""
+  teamId: Int!
 
   """"""
   type: PlanType!
@@ -877,8 +865,8 @@ enum PlanInterval {
 
 """plan status"""
 enum PlanStatus {
-  Disabled
-  Enabled
+  Expired
+  Normal
 }
 
 """付费类型"""
@@ -1565,12 +1553,6 @@ type Team {
   """"""
   name: String!
 
-  """订阅时间类型"""
-  planInterval: PlanInterval
-
-  """付费类型"""
-  planType: PlanType!
-
   """"""
   providerType: ProviderType
 
@@ -1915,22 +1897,16 @@ input UpdatePaymentWhereInput {
 """更新data"""
 input UpdatePlanDataInput {
   """"""
-  description: String!
-
-  """"""
-  features: String
-
-  """"""
   interval: String
-
-  """"""
-  name: String!
 
   """"""
   price: Float
 
   """"""
   status: PlanStatus!
+
+  """"""
+  teamId: Int!
 
   """"""
   type: PlanType!
