@@ -1630,6 +1630,8 @@ export type Team = {
   /** Member */
   members: Array<Member>;
   name: Scalars['String'];
+  /** Plan */
+  plan: Plan;
   providerType?: Maybe<ProviderType>;
   slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;

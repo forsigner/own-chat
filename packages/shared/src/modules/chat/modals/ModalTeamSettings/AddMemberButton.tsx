@@ -1,13 +1,5 @@
 import { Box } from '@fower/react'
-import {
-  Button,
-  PlusOutline,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverHeading,
-  PopoverTrigger,
-} from 'bone-ui'
+import { Button, PlusOutline, Popover, PopoverBody, PopoverContent, PopoverTrigger } from 'bone-ui'
 import { useIsOwner } from '../../hooks/useIsOwner'
 import AddMemberContainer from './AddMemberContainer'
 

@@ -1553,6 +1553,9 @@ type Team {
   """"""
   name: String!
 
+  """Plan"""
+  plan: Plan!
+
   """"""
   providerType: ProviderType
 

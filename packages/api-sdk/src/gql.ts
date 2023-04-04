@@ -94,6 +94,16 @@ query team($id: Int!){
             userId
         }
         name
+        plan{
+            createdAt
+            id
+            interval
+            price
+            status
+            teamId
+            type
+            updatedAt
+        }
         providerType
         slug
         updatedAt
@@ -130,6 +140,16 @@ query activeTeam{
             userId
         }
         name
+        plan{
+            createdAt
+            id
+            interval
+            price
+            status
+            teamId
+            type
+            updatedAt
+        }
         providerType
         slug
         updatedAt
@@ -166,6 +186,16 @@ query myTeams{
             userId
         }
         name
+        plan{
+            createdAt
+            id
+            interval
+            price
+            status
+            teamId
+            type
+            updatedAt
+        }
         providerType
         slug
         updatedAt
@@ -424,6 +454,16 @@ mutation updateTeam($input: UpdateTeamInput!){
             userId
         }
         name
+        plan{
+            createdAt
+            id
+            interval
+            price
+            status
+            teamId
+            type
+            updatedAt
+        }
         providerType
         slug
         updatedAt
@@ -460,6 +500,16 @@ mutation addTeam($input: AddTeamInput!){
             userId
         }
         name
+        plan{
+            createdAt
+            id
+            interval
+            price
+            status
+            teamId
+            type
+            updatedAt
+        }
         providerType
         slug
         updatedAt
