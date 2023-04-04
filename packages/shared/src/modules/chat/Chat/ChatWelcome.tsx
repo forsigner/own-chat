@@ -1,5 +1,7 @@
 import { Box } from '@fower/react'
+import { EasyModal } from '@own-chat/easy-modal'
 import { Button, InformationCircleSolid, Tooltip } from 'bone-ui'
+import { ModalTeamSettings } from '../modals/ModalTeamSettings'
 
 const Guide = () => {
   return (
@@ -27,7 +29,14 @@ const Guide = () => {
             </Tooltip>
             <Box>:</Box>
           </Box>
-          <Button px2 size={28} variant="light">
+          <Button
+            px2
+            size={28}
+            variant="light"
+            onClick={() => {
+              EasyModal.show(ModalTeamSettings)
+            }}
+          >
             配置 Provider
           </Button>
         </Box>

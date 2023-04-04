@@ -54,7 +54,7 @@ export const CurrentTeam = ({ showSettingIcon = true, ...rest }: Props) => {
             variant="ghost"
             icon={<CogSolid square5 cursorPointer gray600--hover />}
             onClick={() => {
-              EasyModal.show(ModalTeamSettings, activeTeam)
+              EasyModal.show(ModalTeamSettings)
             }}
           />
         </Tooltip>
