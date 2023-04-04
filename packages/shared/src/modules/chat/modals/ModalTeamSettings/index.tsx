@@ -4,7 +4,7 @@ import { useModal } from '@own-chat/easy-modal'
 import { General } from './General'
 import { useState } from 'react'
 import { CurrentTeam } from '../../Sidebar/CurrentTeam'
-import { Billing } from './Billing'
+import { Plan } from './Plan'
 import { Members } from './Members'
 
 enum SettingType {
@@ -35,10 +35,10 @@ export const ModalTeamSettings = () => {
   return (
     <Modal {...register('bone-ui')}>
       <ModalOverlay />
-      <ModalContent minW-800--i h-80vh>
+      <ModalContent minW-960--i h-80vh>
         {/* <ModalCloseButton /> */}
         <ModalBody>
-          <Box toLeft columnGap-20>
+          <Box toLeft columnGap-40>
             <Box w-200 py4>
               <CurrentTeam showSettingIcon={false} mb4 />
               <Box spaceY2>
@@ -57,7 +57,7 @@ export const ModalTeamSettings = () => {
             <Box flex-1 py6>
               {type === SettingType.General && <General />}
               {type === SettingType.Members && <Members />}
-              {type === SettingType.Billing && <Billing />}
+              {type === SettingType.Billing && <Plan />}
             </Box>
           </Box>
         </ModalBody>

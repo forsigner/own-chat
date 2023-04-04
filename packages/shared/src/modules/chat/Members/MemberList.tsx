@@ -2,7 +2,6 @@ import { Box } from '@fower/react'
 import { Member } from '@own-chat/api-sdk'
 import {
   Avatar,
-  Button,
   Popover,
   PopoverBody,
   PopoverContent,
@@ -11,10 +10,8 @@ import {
   Tag,
 } from 'bone-ui'
 import { useMembers } from '../hooks/useMembers'
-import { useRemoveMember } from '../hooks/useRemoveMember'
 
-function MemberItem({ item, isOwner }: { item: Member; isOwner: boolean }) {
-  const { removeMember } = useRemoveMember()
+function MemberItem({ item }: { item: Member }) {
   return (
     <Popover>
       <PopoverTrigger>
@@ -25,14 +22,7 @@ function MemberItem({ item, isOwner }: { item: Member; isOwner: boolean }) {
       <PopoverContent minW-100>
         <PopoverTitle toCenterX>@{item.user.nickname}</PopoverTitle>
         <PopoverBody column toCenterX>
-          {isOwner && <Tag colorScheme="brand500">Owner</Tag>}
-          {!isOwner && (
-            <Box>
-              <Button size="sm" colorScheme="red500" onClick={() => removeMember(item.id)}>
-                移除该成员
-              </Button>
-            </Box>
-          )}
+          <Tag colorScheme="brand500">{item.roleType}</Tag>
         </PopoverBody>
       </PopoverContent>
     </Popover>
@@ -47,7 +37,7 @@ export function MemberList() {
   return (
     <Box toCenterY columnGap-8>
       {members.map((item, index) => (
-        <MemberItem key={item.id} isOwner={index === 0} item={item} />
+        <MemberItem key={item.id} item={item} />
       ))}
     </Box>
   )

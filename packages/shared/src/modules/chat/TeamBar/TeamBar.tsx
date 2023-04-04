@@ -1,9 +1,8 @@
 import { Box } from '@fower/react'
 import { EasyModal } from '@own-chat/easy-modal'
-import { Button, CogSolid, PlusOutline, Tooltip } from 'bone-ui'
+import { Button, PlusOutline, Tooltip } from 'bone-ui'
 import { Logo } from '../../../components'
 import { UserAvatarPopover } from '../../../components/UserAvatarPopover'
-import { ModalSettings } from '../modals/ModalSettings'
 import { TeamList } from './TeamList'
 import { ModalAddTeam } from '../modals/ModalAddTeam'
 
@@ -38,16 +37,6 @@ export const TeamBar = () => {
         </Box>
       </Box>
       <Box toCenter py4 column rowGap-8>
-        <Button
-          size="lg"
-          colorScheme="gray500"
-          variant="ghost"
-          icon={<CogSolid square5 cursorPointer gray500 gray600--hover />}
-          onClick={() => {
-            EasyModal.show(ModalSettings)
-          }}
-        />
-
         <UserAvatarPopover />
       </Box>
     </Box>

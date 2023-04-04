@@ -20,7 +20,6 @@ query tokens($orderBy: String, $skip: Int, $take: Int, $where: TokenWhereInput){
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -42,7 +41,6 @@ query searchUsers($q: String!){
         login
         nickname
         phone
-        planType
         username
     }
 }
@@ -65,7 +63,6 @@ query members($orderBy: String, $skip: Int, $take: Int, $where: MemberWhereInput
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -97,6 +94,7 @@ query team($id: Int!){
             userId
         }
         name
+        planType
         providerType
         slug
         updatedAt
@@ -112,7 +110,6 @@ query team($id: Int!){
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -134,6 +131,7 @@ query activeTeam{
             userId
         }
         name
+        planType
         providerType
         slug
         updatedAt
@@ -149,7 +147,6 @@ query activeTeam{
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -171,6 +168,7 @@ query myTeams{
             userId
         }
         name
+        planType
         providerType
         slug
         updatedAt
@@ -186,7 +184,6 @@ query myTeams{
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -266,7 +263,6 @@ mutation loginByGithub($code: String!){
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -291,7 +287,6 @@ mutation loginByGoogle($code: String!){
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -316,7 +311,6 @@ mutation loginByPersonalToken($token: String!){
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -344,7 +338,6 @@ mutation addToken($input: AddTokenInput!){
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -371,7 +364,6 @@ mutation updateUser($input: UpdateUserInput!){
         login
         nickname
         phone
-        planType
         username
     }
 }
@@ -394,7 +386,6 @@ mutation addMember($input: AddMemberInput!){
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -436,6 +427,7 @@ mutation updateTeam($input: UpdateTeamInput!){
             userId
         }
         name
+        planType
         providerType
         slug
         updatedAt
@@ -451,7 +443,6 @@ mutation updateTeam($input: UpdateTeamInput!){
             login
             nickname
             phone
-            planType
             username
         }
         userId
@@ -473,6 +464,7 @@ mutation addTeam($input: AddTeamInput!){
             userId
         }
         name
+        planType
         providerType
         slug
         updatedAt
@@ -488,7 +480,6 @@ mutation addTeam($input: AddTeamInput!){
             login
             nickname
             phone
-            planType
             username
         }
         userId

@@ -93,7 +93,7 @@ export default function AddMemberContainer() {
           }}
           disabled={!selectedUser}
         >
-          Add {selectedUser?.nickname} to this provider
+          Add {selectedUser?.nickname} to this team
         </Button>
       </div>
     </Box>

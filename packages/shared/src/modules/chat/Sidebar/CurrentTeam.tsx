@@ -39,7 +39,7 @@ export const CurrentTeam = ({ showSettingIcon = true, ...rest }: Props) => {
             3 members
           </Box>
           {isOwner && (
-            <Tag size={20} variant="light">
+            <Tag size={20} colorScheme="brand500" variant="light">
               owner
             </Tag>
           )}

@@ -496,10 +496,9 @@ type Mutation {
 
 """付费类型"""
 enum PlanType {
-  Advanced
-  Basic
+  Enterprise
   Free
-  God
+  Plus
 }
 
 """Provider 类型"""
@@ -916,6 +915,9 @@ type Team {
   """"""
   name: String!
 
+  """付费类型"""
+  planType: PlanType!
+
   """"""
   providerType: ProviderType
 
@@ -1287,9 +1289,6 @@ type User {
 
   """手机"""
   phone: String
-
-  """付费类型"""
-  planType: PlanType!
 
   """用户名"""
   username: String!

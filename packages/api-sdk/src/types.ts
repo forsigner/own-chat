@@ -661,10 +661,9 @@ export type MutationUpdateUserArgs = {
 
 /** 付费类型 */
 export enum PlanType {
-  Advanced = 'Advanced',
-  Basic = 'Basic',
+  Enterprise = 'Enterprise',
   Free = 'Free',
-  God = 'God'
+  Plus = 'Plus'
 }
 
 /** Provider 类型 */
@@ -1019,6 +1018,8 @@ export type Team = {
   /** Member */
   members: Array<Member>;
   name: Scalars['String'];
+  /** 付费类型 */
+  planType: PlanType;
   providerType?: Maybe<ProviderType>;
   slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -1333,8 +1334,6 @@ export type User = {
   nickname: Scalars['String'];
   /** 手机 */
   phone?: Maybe<Scalars['String']>;
-  /** 付费类型 */
-  planType: PlanType;
   /** 用户名 */
   username: Scalars['String'];
 };

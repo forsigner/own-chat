@@ -63,7 +63,7 @@ export const Table = ({ columns, data, rowKey }: Props) => {
               py2
               textLeft
               {...props}
-              contentEditable={false}
+              // contentEditable={false}
             />
           ),
         },

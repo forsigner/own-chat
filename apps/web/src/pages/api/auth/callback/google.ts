@@ -15,7 +15,6 @@ export default withIronSessionApiRoute(async (req, res) => {
     const payload: LoginSuccessPayload = data.loginByGoogle
 
     req.session.payload = payload
-    setCookie('planType', payload.user.planType, { req, res })
     await req.session.save()
 
     res.redirect(`${LOGIN_SUCCESS_REDIRECT_URL}?from=${THIRD_PARTY_LOGIN_TAG}`)
