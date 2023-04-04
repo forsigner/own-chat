@@ -4,10 +4,10 @@ import { Button } from '@bone-ui/button'
 import { Box } from '@fower/react'
 import { Hooks, Refetcher, User } from '@own-chat/api-sdk'
 import { useDebouncedCallback } from 'use-debounce'
-import { Avatar, CloseButton, Menu, MenuItem } from 'bone-ui'
-import { useAddMember } from '../hooks/useAddMember'
-import { useUser } from '../../../stores'
-import { useMembers } from '../hooks/useMembers'
+import { Avatar, CloseButton, Menu, MenuItem, usePopoverContext } from 'bone-ui'
+import { useAddMember } from '../../hooks/useAddMember'
+import { useUser } from '../../../../stores'
+import { useMembers } from '../../hooks/useMembers'
 
 export default function AddMemberContainer() {
   const { user } = useUser()

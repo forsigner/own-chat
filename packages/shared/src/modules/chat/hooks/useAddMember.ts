@@ -1,11 +1,10 @@
 import { apiService, Refetcher, RoleType } from '@own-chat/api-sdk'
 import { useSetting } from './useSetting'
-import { useModal } from '@own-chat/easy-modal'
-import { toast } from 'bone-ui'
+import { toast, usePopoverContext } from 'bone-ui'
 
 export function useAddMember() {
+  const { close } = usePopoverContext()
   const { setting } = useSetting()
-  const { hide } = useModal()
 
   async function addMember(userId: number) {
     await apiService.addMember({
@@ -19,7 +18,7 @@ export function useAddMember() {
       },
     })
     toast.success('添加成员成功')
-    hide()
+    close()
   }
 
   return { addMember }

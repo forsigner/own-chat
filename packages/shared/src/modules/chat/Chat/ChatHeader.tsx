@@ -3,7 +3,7 @@ import { EasyModal } from '@own-chat/easy-modal'
 import { Button, ChevronDownOutline } from 'bone-ui'
 import { NAV_HEIGHT } from '../../../common'
 import { MemberList } from '../Members/MemberList'
-import { AddMemberButton } from '../Members/AddMemberButton'
+import { AddMemberButton } from '../modals/ModalTeamSettings/AddMemberButton'
 import { ModalSessionList } from '../modals/ModalSessionList'
 import { ShareButton } from './ShareButton'
 import { useSessions } from '../hooks/useSessions'
@@ -37,8 +37,6 @@ export const ChatHeader = () => {
         />
       </Box>
       <Box toCenterY columnGap-12 pr2>
-        <MemberList />
-        <AddMemberButton />
         <ShareButton session={activeSession!} />
       </Box>
     </Box>

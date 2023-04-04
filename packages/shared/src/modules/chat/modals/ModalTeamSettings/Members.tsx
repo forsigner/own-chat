@@ -4,7 +4,7 @@ import { useMembers } from '../../hooks/useMembers'
 import { Avatar, Button } from 'bone-ui'
 import { RemoveMemberButton } from './RemoveMemberButton'
 import { RoleType } from '@own-chat/api-sdk'
-import { AddMemberButton } from '../../Members/AddMemberButton'
+import { AddMemberButton } from './AddMemberButton'
 
 export const Members = () => {
   const { loading, members } = useMembers()
