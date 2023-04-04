@@ -27,6 +27,7 @@ export const UpdateTeamForm = () => {
         component="Input"
         name="name"
         value={data?.name || ''}
+        componentProps={{ w: 300 }}
         validators={{ required: 'Name is required' }}
       />
 

@@ -1,26 +1,34 @@
-import React, { FC, useRef } from 'react'
-import { NodeProps } from 'fomir'
+import { FC, useRef } from 'react'
+import { NodeProps, useFormContext } from 'fomir'
 import { XCircleSolid } from '@bone-ui/icons'
 import { Input as BoneInput, InputElement, InputGroup } from '@bone-ui/input'
 import { FormField } from '../FormField'
 import { InputNode } from '../bone-ui-node'
 
 export const Input: FC<NodeProps<InputNode>> = (props) => {
-  const { value = '', disabled, componentProps } = props.node
+  const form = useFormContext()
+  const { value = '', focused, disabled, name, componentProps } = props.node
   const ref = useRef<HTMLInputElement>(null)
+  const { w = '100p' } = componentProps || {}
 
   return (
     <FormField node={props.node}>
-      <InputGroup w-100p>
+      <InputGroup w={w}>
         <BoneInput
           ref={ref}
           disabled={disabled}
           type={'text'}
           value={value || ''}
+          onFocus={() => {
+            form.setFieldState(name, { focused: true })
+          }}
+          onBlur={() => {
+            form.setFieldState(name, { focused: false })
+          }}
           onChange={props.handler.handleChange}
           {...componentProps}
         />
-        {!!value?.length && (
+        {!!value?.length && focused && (
           <InputElement>
             <XCircleSolid
               cursorPointer

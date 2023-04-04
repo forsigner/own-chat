@@ -15,8 +15,6 @@ class MyDocument extends Document {
 
     const cookieTheme = getCookie('fower-mode', ctx) as string
 
-    console.log('cookieTheme:', cookieTheme)
-
     if (!cookieTheme) {
       setCookie('fower-mode', 'light', { req: ctx.req, res: ctx.res })
     }
