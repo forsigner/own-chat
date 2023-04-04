@@ -38,6 +38,7 @@ export default function PageDownload() {
             Download for Mac
           </Button>
           <Button
+            as="a"
             w-200
             leftIcon={<IconWindows size={20} fillWhite />}
             href="https://github.com/forsigner/own-chat/releases/download/own-chat-v0.0.8/Own.chat_0.1.0_x64_en-US.msi"
