@@ -37,7 +37,7 @@ export function PlanList({ canUpgrade = false, onUpgrade }: Props) {
         'Use all type of provider',
         'Sync data for all devices',
       ],
-      isCurrentPlan: activeTeam?.planType === PlanType.Free,
+      isCurrentPlan: activeTeam?.plan?.type === PlanType.Free,
     },
 
     {
@@ -54,7 +54,7 @@ export function PlanList({ canUpgrade = false, onUpgrade }: Props) {
         'Sync data for all devices',
         'Token count',
       ],
-      isCurrentPlan: activeTeam?.planType === PlanType.Plus,
+      isCurrentPlan: activeTeam?.plan?.type === PlanType.Plus,
     },
 
     {
@@ -62,7 +62,7 @@ export function PlanList({ canUpgrade = false, onUpgrade }: Props) {
       title: 'Customized',
       desc: 'Advanced controls & support to your team',
       price: 'Contact',
-      isCurrentPlan: activeTeam?.planType === PlanType.Enterprise,
+      isCurrentPlan: activeTeam?.plan?.type === PlanType.Enterprise,
       features: [
         'Unlimited collaboration',
         'Export session data',
