@@ -96,7 +96,7 @@ export async function fetchChatStream(options: Options) {
 
 export async function fetchBalance(): Promise<any> {
   try {
-    return await fetch('/api/balance', {
+    return fetch('/api/balance', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ export async function fetchBalance(): Promise<any> {
 
 export async function fetchModels(): Promise<any> {
   try {
-    return await fetch('/api/models', {
+    return fetch('/api/models', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ export async function fetchModels(): Promise<any> {
 
 export async function fetchCompletions(params: any): Promise<any> {
   try {
-    return await fetch('/api/completions', {
+    return fetch('/api/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -148,12 +148,33 @@ export async function fetchCompletions(params: any): Promise<any> {
 
 export async function fetchChatCompletions(params: any): Promise<any> {
   try {
-    return await fetch('/api/chat-completions', {
+    return fetch('/api/chat-completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(params),
+    })
+  } catch (error) {
+    console.error('NetWork Error', error)
+    return {
+      code: 0,
+      message: error,
+    }
+  }
+}
+
+export async function updateStreamingStatus(key: string, ended: boolean) {
+  try {
+    return fetch('/api/update-streaming-status', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        key,
+        ended,
+      }),
     })
   } catch (error) {
     console.error('NetWork Error', error)

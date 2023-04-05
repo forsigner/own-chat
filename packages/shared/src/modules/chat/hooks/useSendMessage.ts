@@ -2,10 +2,10 @@ import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { Message, Mutator } from '@own-chat/api-sdk'
 import { useSetting } from './useSetting'
 import { useToken, useUser } from '../../../stores'
-import { fetchChatStream } from '../../../common/request'
+import { fetchChatStream, updateStreamingStatus } from '../../../common/request'
 import { useAddMessage } from './useAddMessage'
-import { isProd } from '../../../common'
 import { useTeams } from './useTeams'
+import { getStreamingKey } from '../../../common'
 
 export function useSendMessage() {
   const { token } = useToken()
@@ -51,6 +51,8 @@ export function useSendMessage() {
       // host = !isProd ? 'http://localhost:4000' : 'https://www.ownchat.me'
     }
 
+    const key = getStreamingKey(activeTeam!)
+
     await fetchChatStream({
       params: {
         temperature: 1,
@@ -63,16 +65,17 @@ export function useSendMessage() {
       baseURL: host,
       token,
       async onMessage(text, done) {
-        console.log('text:', text)
         if (!done) {
           updateMessageState(text)
           return
         }
 
+        await updateStreamingStatus(key, true)
         await addMessage(text, ChatCompletionResponseMessageRoleEnum.Assistant)
       },
-      onError(error) {
+      async onError(error) {
         console.log('error', error)
+        await updateStreamingStatus(key, true)
       },
       onController(controller) {
         console.log('controller', controller)
