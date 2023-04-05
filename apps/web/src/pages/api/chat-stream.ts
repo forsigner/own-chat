@@ -1,6 +1,7 @@
 import httpProxyMiddleware from 'next-http-proxy-middleware'
 import { withIronSessionApiRoute } from 'iron-session/next'
 import Cors from 'cors'
+import Redis from 'ioredis'
 import { sessionOptions } from '@common/session'
 import { graphqlClient } from '@common/query'
 import { ACTIVE_TEAM, Team, ProviderType } from '@own-chat/api-sdk'
@@ -8,6 +9,12 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 const cors = Cors({
   methods: ['POST', 'GET', 'HEAD'],
+})
+
+const redis = new Redis({
+  host: process.env.REDIS_HOST,
+  port: Number(process.env.REDIS_PASSWORD),
+  password: process.env.REDIS_PASSWORD,
 })
 
 function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: Function) {

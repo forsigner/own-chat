@@ -32,13 +32,11 @@ export const UpdateTeamForm = () => {
         componentProps={{ w: 300 }}
         validators={{ required: 'Name is required' }}
       />
-
       <Title text="Provider" subtitle="Choose a suitable provider" mb4 />
-
       <Field
         component="ProviderSelect"
         name="providerType"
-        value={activeTeam?.providerType}
+        value={activeTeam?.providerType || ''}
         options={[
           {
             label: (
@@ -99,12 +97,13 @@ export const UpdateTeamForm = () => {
           form.setFieldState('endpoint', { visible: value === ProviderType.SelfHosted })
         }}
         onValueChange={({ value }) => {
-          form.setFieldState('apiKey', { visible: value === ProviderType.ApiKey })
-          form.setFieldState('authorizationCode', { visible: value === ProviderType.SelfHosted })
-          form.setFieldState('endpoint', { visible: value === ProviderType.SelfHosted })
+          setTimeout(() => {
+            form.setFieldState('apiKey', { visible: value === ProviderType.ApiKey })
+            form.setFieldState('authorizationCode', { visible: value === ProviderType.SelfHosted })
+            form.setFieldState('endpoint', { visible: value === ProviderType.SelfHosted })
+          }, 10)
         }}
       />
-
       <Field
         label="OpenAI API Key"
         component="Input"
@@ -115,30 +114,28 @@ export const UpdateTeamForm = () => {
           placeholder: 'sk-...',
         }}
       />
-
       <Field
         label="Self-Hosted Server"
         component="Input"
         name="endpoint"
-        value={activeTeam?.endpoint || ''}
+        value={activeTeam?.endpoint}
         visible={false}
         componentProps={{
           placeholder: 'eg: https://own-chat-official-provider.vercel.app',
-          // autoComplete: 'new-password',
-          autoComplete: 'off',
+          autoComplete: 'new-password',
+          // autoComplete: 'off',
         }}
         validators={{
           required: 'Please input Self-Hosted Server',
         }}
       />
-
       <Field
         label="Authorization Code"
         component="PasswordInput"
         name="authorizationCode"
         componentProps={{
-          // autoComplete: 'new-password',
-          autoComplete: 'off',
+          autoComplete: 'new-password',
+          // autoComplete: 'off',
         }}
         value={activeTeam?.authorizationCode || ''}
         visible={false}

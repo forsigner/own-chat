@@ -32,7 +32,8 @@ export default function PageDownload() {
             as="a"
             w-210
             colorScheme="gray900"
-            leftIcon={<IconIOS fillWhite />}
+            gray900--dark
+            leftIcon={<IconIOS fillWhite fillGray800--dark />}
             href="https://github.com/forsigner/own-chat/releases/download/own-chat-v0.0.8/Own.chat_0.1.0_x64.dmg"
           >
             Download for Mac
@@ -47,7 +48,13 @@ export default function PageDownload() {
           </Button>
         </Box>
         <Box as="a" toCenterY columnGap-20>
-          <Button w-210 colorScheme="gray900" leftIcon={<IconIOS fillWhite />} onClick={comingSoon}>
+          <Button
+            w-210
+            colorScheme="gray900"
+            gray900--dark
+            leftIcon={<IconIOS fillWhite fillGray800--dark />}
+            onClick={comingSoon}
+          >
             Download for iOS
           </Button>
           <Button
