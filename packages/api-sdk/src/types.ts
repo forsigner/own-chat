@@ -45,15 +45,8 @@ export type AddSessionInput = {
 
 /** 添加 Team */
 export type AddTeamInput = {
-  accessToken?: InputMaybe<Scalars['String']>;
-  apiKey?: InputMaybe<Scalars['String']>;
-  /** self host auth code */
-  authorizationCode?: InputMaybe<Scalars['String']>;
-  /** self host server endpoint */
-  endpoint?: InputMaybe<Scalars['String']>;
   /** 该 Team Name */
   name: Scalars['String'];
-  providerType?: InputMaybe<ProviderType>;
   /** 用户ID */
   userId: Scalars['Int'];
 };
@@ -135,6 +128,19 @@ export type CreatePlanInput = {
 };
 
 /** 创建 */
+export type CreateProviderInput = {
+  accessToken?: InputMaybe<Scalars['String']>;
+  apiKey?: InputMaybe<Scalars['String']>;
+  /** self host auth code */
+  authorizationCode?: InputMaybe<Scalars['String']>;
+  /** self host server endpoint */
+  endpoint?: InputMaybe<Scalars['String']>;
+  /** teamId */
+  teamId: Scalars['Int'];
+  type: ProviderType;
+};
+
+/** 创建 */
 export type CreateRefundInput = {
   amount: Scalars['Int'];
   currency: Scalars['String'];
@@ -158,6 +164,7 @@ export type CreateSessionInput = {
 
 /** 创建 */
 export type CreateSettingInput = {
+  activeProviderId?: InputMaybe<Scalars['Int']>;
   activeSessionId?: InputMaybe<Scalars['Int']>;
   activeTeamId?: InputMaybe<Scalars['Int']>;
   /** 用户ID */
@@ -166,15 +173,11 @@ export type CreateSettingInput = {
 
 /** 创建 */
 export type CreateTeamInput = {
-  accessToken?: InputMaybe<Scalars['String']>;
-  apiKey: Scalars['String'];
-  authorizationCode: Scalars['String'];
   /** 该 Team Name */
   name: Scalars['String'];
-  providerType: ProviderType;
   slug?: InputMaybe<Scalars['String']>;
   /** 用户ID */
-  userId?: InputMaybe<Scalars['Int']>;
+  userId: Scalars['Int'];
 };
 
 /** 创建 */
@@ -234,6 +237,12 @@ export type DeletePaymentInput = {
 
 /** 删除成员 */
 export type DeletePlanInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 删除 */
+export type DeleteProviderInput = {
   /** ID */
   id: Scalars['Int'];
 };
@@ -440,6 +449,8 @@ export type Mutation = {
   /** 创建 */
   createPlan: Plan;
   /** 创建 */
+  createProvider: Provider;
+  /** 创建 */
   createRefund: Refund;
   /** 创建 */
   createSession: Session;
@@ -468,6 +479,8 @@ export type Mutation = {
   /** 批量删除 */
   deleteManyPlans: Scalars['Float'];
   /** 批量删除 */
+  deleteManyProviders: Scalars['Float'];
+  /** 批量删除 */
   deleteManyRefunds: Scalars['Float'];
   /** 批量删除 */
   deleteManySessions: Scalars['Float'];
@@ -491,6 +504,8 @@ export type Mutation = {
   deletePayment: Scalars['Boolean'];
   /** 删除单个 */
   deletePlan: Scalars['Boolean'];
+  /** 删除单个 */
+  deleteProvider: Scalars['Boolean'];
   /** 删除单个 */
   deleteRefund: Scalars['Boolean'];
   /** 删除单个 */
@@ -547,6 +562,8 @@ export type Mutation = {
   /** 批量更新 */
   updateManyPlans: Scalars['Boolean'];
   /** 批量更新 */
+  updateManyProviders: Scalars['Boolean'];
+  /** 批量更新 */
   updateManyRefunds: Scalars['Boolean'];
   /** 批量更新 */
   updateManySessions: Scalars['Boolean'];
@@ -570,6 +587,8 @@ export type Mutation = {
   updatePayment: Payment;
   /** 更新单个 */
   updatePlan: Plan;
+  /** 更新单个 */
+  updateProvider: Provider;
   /** 更新单个 */
   updateRefund: Refund;
   /** 更新单个 */
@@ -639,6 +658,11 @@ export type MutationCreatePaymentArgs = {
 
 export type MutationCreatePlanArgs = {
   input: CreatePlanInput;
+};
+
+
+export type MutationCreateProviderArgs = {
+  input: CreateProviderInput;
 };
 
 
@@ -712,6 +736,11 @@ export type MutationDeleteManyPlansArgs = {
 };
 
 
+export type MutationDeleteManyProvidersArgs = {
+  input: DeleteProviderInput;
+};
+
+
 export type MutationDeleteManyRefundsArgs = {
   input: DeleteRefundInput;
 };
@@ -769,6 +798,11 @@ export type MutationDeletePaymentArgs = {
 
 export type MutationDeletePlanArgs = {
   input: DeletePlanInput;
+};
+
+
+export type MutationDeleteProviderArgs = {
+  input: DeleteProviderInput;
 };
 
 
@@ -912,6 +946,11 @@ export type MutationUpdateManyPlansArgs = {
 };
 
 
+export type MutationUpdateManyProvidersArgs = {
+  input: UpdateManyProviderInput;
+};
+
+
 export type MutationUpdateManyRefundsArgs = {
   input: UpdateManyRefundInput;
 };
@@ -969,6 +1008,11 @@ export type MutationUpdatePaymentArgs = {
 
 export type MutationUpdatePlanArgs = {
   input: UpdatePlanInput;
+};
+
+
+export type MutationUpdateProviderArgs = {
+  input: UpdateProviderInput;
 };
 
 
@@ -1107,6 +1151,20 @@ export type PlansConnection = {
   totalCount: Scalars['Int'];
 };
 
+export type Provider = {
+  __typename?: 'Provider';
+  accessToken?: Maybe<Scalars['String']>;
+  apiKey?: Maybe<Scalars['String']>;
+  /** self host auth code */
+  authorizationCode?: Maybe<Scalars['String']>;
+  /** self host server endpoint */
+  endpoint?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  /** teamId */
+  teamId: Scalars['Int'];
+  type: ProviderType;
+};
+
 /** Provider 类型 */
 export enum ProviderType {
   AccessToken = 'AccessToken',
@@ -1114,6 +1172,20 @@ export enum ProviderType {
   Official = 'Official',
   SelfHosted = 'SelfHosted'
 }
+
+/** 筛选条件 */
+export type ProviderWhereInput = {
+  /** teamId */
+  teamId?: InputMaybe<Scalars['Int']>;
+};
+
+/** connection */
+export type ProvidersConnection = {
+  __typename?: 'ProvidersConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Provider>;
+  totalCount: Scalars['Int'];
+};
 
 export type Query = {
   __typename?: 'Query';
@@ -1164,6 +1236,12 @@ export type Query = {
   plans: Array<Plan>;
   /** 获取分页列表 */
   plansConnection: PlansConnection;
+  /** 获取单个 */
+  provider: Provider;
+  /** 获取列表 */
+  providers: Array<Provider>;
+  /** 获取分页列表 */
+  providersConnection: ProvidersConnection;
   /** 获取单个 */
   refund: Refund;
   /** 获取列表 */
@@ -1351,6 +1429,27 @@ export type QueryPlansConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PlanWhereInput>;
+};
+
+
+export type QueryProviderArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryProvidersArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ProviderWhereInput>;
+};
+
+
+export type QueryProvidersConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ProviderWhereInput>;
 };
 
 
@@ -1619,6 +1718,7 @@ export type SessionsConnection = {
 
 export type Setting = {
   __typename?: 'Setting';
+  activeProviderId?: Maybe<Scalars['Int']>;
   activeSessionId?: Maybe<Scalars['Int']>;
   activeTeamId?: Maybe<Scalars['Int']>;
   followUpMessageLength?: Maybe<Scalars['Float']>;
@@ -1646,20 +1746,15 @@ export type SettingsConnection = {
 
 export type Team = {
   __typename?: 'Team';
-  accessToken?: Maybe<Scalars['String']>;
-  apiKey?: Maybe<Scalars['String']>;
-  /** self host auth code */
-  authorizationCode?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  /** self host server endpoint */
-  endpoint?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   /** Member */
   members: Array<Member>;
   name: Scalars['String'];
   /** Plan */
   plan: Plan;
-  providerType?: Maybe<ProviderType>;
+  /** Provider */
+  providers: Array<Provider>;
   slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** User */
@@ -1801,6 +1896,14 @@ export type UpdateManyPlanInput = {
   data?: InputMaybe<UpdatePlanDataInput>;
   /** 更新条件 */
   where?: InputMaybe<UpdatePlanWhereInput>;
+};
+
+/** 批量更新 */
+export type UpdateManyProviderInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateProviderDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateProviderWhereInput>;
 };
 
 /** 批量更新 */
@@ -1975,6 +2078,30 @@ export type UpdatePlanWhereInput = {
 };
 
 /** 更新data */
+export type UpdateProviderDataInput = {
+  accessToken?: InputMaybe<Scalars['String']>;
+  apiKey?: InputMaybe<Scalars['String']>;
+  /** self host auth code */
+  authorizationCode?: InputMaybe<Scalars['String']>;
+  /** self host server endpoint */
+  endpoint?: InputMaybe<Scalars['String']>;
+};
+
+/** 更新单个 */
+export type UpdateProviderInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateProviderDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateProviderWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdateProviderWhereInput = {
+  /** ID */
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+/** 更新data */
 export type UpdateRefundDataInput = {
   amount: Scalars['Int'];
   currency: Scalars['String'];
@@ -2021,6 +2148,7 @@ export type UpdateSessionWhereInput = {
 
 /** 更新data */
 export type UpdateSettingDataInput = {
+  activeProviderId?: InputMaybe<Scalars['Int']>;
   activeSessionId?: InputMaybe<Scalars['Int']>;
   activeTeamId?: InputMaybe<Scalars['Int']>;
 };
@@ -2043,15 +2171,8 @@ export type UpdateSettingWhereInput = {
 
 /** 更新data */
 export type UpdateTeamDataInput = {
-  accessToken?: InputMaybe<Scalars['String']>;
-  apiKey?: InputMaybe<Scalars['String']>;
-  /** self host auth code */
-  authorizationCode?: InputMaybe<Scalars['String']>;
-  /** self host server endpoint */
-  endpoint?: InputMaybe<Scalars['String']>;
   /** 该 Team Name */
   name: Scalars['String'];
-  providerType: ProviderType;
   slug?: InputMaybe<Scalars['String']>;
 };
 

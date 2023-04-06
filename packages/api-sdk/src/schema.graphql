@@ -39,23 +39,8 @@ input AddSessionInput {
 
 """添加 Team"""
 input AddTeamInput {
-  """"""
-  accessToken: String
-
-  """"""
-  apiKey: String
-
-  """self host auth code"""
-  authorizationCode: String
-
-  """self host server endpoint"""
-  endpoint: String
-
   """该 Team Name"""
   name: String!
-
-  """"""
-  providerType: ProviderType
 
   """用户ID"""
   userId: Int!
@@ -189,6 +174,27 @@ input CreatePlanInput {
 }
 
 """创建"""
+input CreateProviderInput {
+  """"""
+  accessToken: String
+
+  """"""
+  apiKey: String
+
+  """self host auth code"""
+  authorizationCode: String
+
+  """self host server endpoint"""
+  endpoint: String
+
+  """teamId"""
+  teamId: Int!
+
+  """"""
+  type: ProviderType!
+}
+
+"""创建"""
 input CreateRefundInput {
   """"""
   amount: Int!
@@ -225,6 +231,9 @@ input CreateSessionInput {
 """创建"""
 input CreateSettingInput {
   """"""
+  activeProviderId: Int
+
+  """"""
   activeSessionId: Int
 
   """"""
@@ -236,26 +245,14 @@ input CreateSettingInput {
 
 """创建"""
 input CreateTeamInput {
-  """"""
-  accessToken: String
-
-  """"""
-  apiKey: String!
-
-  """"""
-  authorizationCode: String!
-
   """该 Team Name"""
   name: String!
-
-  """"""
-  providerType: ProviderType!
 
   """"""
   slug: String
 
   """用户ID"""
-  userId: Int
+  userId: Int!
 }
 
 """创建"""
@@ -325,6 +322,12 @@ input DeletePaymentInput {
 
 """删除成员"""
 input DeletePlanInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteProviderInput {
   """ID"""
   id: Int!
 }
@@ -565,6 +568,9 @@ type Mutation {
   createPlan(input: CreatePlanInput!): Plan!
 
   """创建"""
+  createProvider(input: CreateProviderInput!): Provider!
+
+  """创建"""
   createRefund(input: CreateRefundInput!): Refund!
 
   """创建"""
@@ -607,6 +613,9 @@ type Mutation {
   deleteManyPlans(input: DeletePlanInput!): Float!
 
   """批量删除"""
+  deleteManyProviders(input: DeleteProviderInput!): Float!
+
+  """批量删除"""
   deleteManyRefunds(input: DeleteRefundInput!): Float!
 
   """批量删除"""
@@ -641,6 +650,9 @@ type Mutation {
 
   """删除单个"""
   deletePlan(input: DeletePlanInput!): Boolean!
+
+  """删除单个"""
+  deleteProvider(input: DeleteProviderInput!): Boolean!
 
   """删除单个"""
   deleteRefund(input: DeleteRefundInput!): Boolean!
@@ -727,6 +739,9 @@ type Mutation {
   updateManyPlans(input: UpdateManyPlanInput!): Boolean!
 
   """批量更新"""
+  updateManyProviders(input: UpdateManyProviderInput!): Boolean!
+
+  """批量更新"""
   updateManyRefunds(input: UpdateManyRefundInput!): Boolean!
 
   """批量更新"""
@@ -761,6 +776,9 @@ type Mutation {
 
   """更新单个"""
   updatePlan(input: UpdatePlanInput!): Plan!
+
+  """更新单个"""
+  updateProvider(input: UpdateProviderInput!): Provider!
 
   """更新单个"""
   updateRefund(input: UpdateRefundInput!): Refund!
@@ -916,12 +934,49 @@ type PlansConnection {
   totalCount: Int!
 }
 
+""""""
+type Provider {
+  """"""
+  accessToken: String
+
+  """"""
+  apiKey: String
+
+  """self host auth code"""
+  authorizationCode: String
+
+  """self host server endpoint"""
+  endpoint: String
+
+  """"""
+  id: Int!
+
+  """teamId"""
+  teamId: Int!
+
+  """"""
+  type: ProviderType!
+}
+
 """Provider 类型"""
 enum ProviderType {
   AccessToken
   ApiKey
   Official
   SelfHosted
+}
+
+"""筛选条件"""
+input ProviderWhereInput {
+  """teamId"""
+  teamId: Int
+}
+
+"""connection"""
+type ProvidersConnection {
+  hasNextPage: Boolean!
+  items: [Provider!]!
+  totalCount: Int!
 }
 
 type Query {
@@ -1155,6 +1210,39 @@ type Query {
     """筛选条件"""
     where: PlanWhereInput
   ): PlansConnection!
+
+  """获取单个"""
+  provider(id: Int!): Provider!
+
+  """获取列表"""
+  providers(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: ProviderWhereInput
+  ): [Provider!]!
+
+  """获取分页列表"""
+  providersConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: ProviderWhereInput
+  ): ProvidersConnection!
 
   """获取单个"""
   refund(
@@ -1541,6 +1629,9 @@ type SessionsConnection {
 """"""
 type Setting {
   """"""
+  activeProviderId: Int
+
+  """"""
   activeSessionId: Int
 
   """"""
@@ -1580,18 +1671,7 @@ type SettingsConnection {
 
 """"""
 type Team {
-  """"""
-  accessToken: String
-
-  """"""
-  apiKey: String
-
-  """self host auth code"""
-  authorizationCode: String
   createdAt: DateTime
-
-  """self host server endpoint"""
-  endpoint: String
 
   """"""
   id: Int!
@@ -1605,8 +1685,8 @@ type Team {
   """Plan"""
   plan: Plan!
 
-  """"""
-  providerType: ProviderType
+  """Provider"""
+  providers: [Provider!]!
 
   """"""
   slug: String!
@@ -1781,6 +1861,15 @@ input UpdateManyPlanInput {
 
   """更新条件"""
   where: UpdatePlanWhereInput
+}
+
+"""批量更新"""
+input UpdateManyProviderInput {
+  """更新的数据"""
+  data: UpdateProviderDataInput
+
+  """更新条件"""
+  where: UpdateProviderWhereInput
 }
 
 """批量更新"""
@@ -1995,6 +2084,36 @@ input UpdatePlanWhereInput {
 }
 
 """更新data"""
+input UpdateProviderDataInput {
+  """"""
+  accessToken: String
+
+  """"""
+  apiKey: String
+
+  """self host auth code"""
+  authorizationCode: String
+
+  """self host server endpoint"""
+  endpoint: String
+}
+
+"""更新单个"""
+input UpdateProviderInput {
+  """更新的数据"""
+  data: UpdateProviderDataInput
+
+  """更新条件"""
+  where: UpdateProviderWhereInput
+}
+
+"""更新条件"""
+input UpdateProviderWhereInput {
+  """ID"""
+  id: Int
+}
+
+"""更新data"""
 input UpdateRefundDataInput {
   """"""
   amount: Int!
@@ -2052,6 +2171,9 @@ input UpdateSessionWhereInput {
 """更新data"""
 input UpdateSettingDataInput {
   """"""
+  activeProviderId: Int
+
+  """"""
   activeSessionId: Int
 
   """"""
@@ -2078,23 +2200,8 @@ input UpdateSettingWhereInput {
 
 """更新data"""
 input UpdateTeamDataInput {
-  """"""
-  accessToken: String
-
-  """"""
-  apiKey: String
-
-  """self host auth code"""
-  authorizationCode: String
-
-  """self host server endpoint"""
-  endpoint: String
-
   """该 Team Name"""
   name: String!
-
-  """"""
-  providerType: ProviderType!
 
   """"""
   slug: String

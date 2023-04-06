@@ -1,8 +1,8 @@
-import { Node, useForm } from 'fomir'
-import { toast } from 'bone-ui'
-import { useModal } from '@own-chat/easy-modal'
-import { apiService, Team, ProviderType, Refetcher } from '@own-chat/api-sdk'
 import { useSetting } from './useSetting'
+import { apiService, Team, ProviderType, Refetcher } from '@own-chat/api-sdk'
+import { useModal } from '@own-chat/easy-modal'
+import { toast } from 'bone-ui'
+import { Node, useForm } from 'fomir'
 
 interface Values {
   name: string
@@ -19,7 +19,7 @@ export function useUpdateTeamForm() {
 
   const form = useForm<Values>({
     async onSubmit(values) {
-      const toaster = toast.loading('Submitting...', { showLayer: true })
+      const toaster = toast.loading('Updating...', { showLayer: true })
 
       try {
         await apiService.updateTeam({
@@ -28,8 +28,7 @@ export function useUpdateTeamForm() {
         })
 
         await Refetcher.refetchMyTeams()
-        toaster.update('Submitted', { type: 'success' })
-        hide()
+        toaster.update('Updated', { type: 'success' })
       } catch (error) {
         // console.log('error:', error)
         toaster.dismiss()

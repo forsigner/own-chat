@@ -72,6 +72,7 @@ query members($orderBy: String, $skip: Int, $take: Int, $where: MemberWhereInput
 export const SETTING = gql`
 query setting($id: Int, $userId: Int){
     setting(id: $id, userId: $userId){
+        activeProviderId
         activeSessionId
         activeTeamId
         followUpMessageLength
@@ -97,11 +98,7 @@ query chatSettings{
 export const TEAM = gql`
 query team($id: Int!){
     team(id: $id){
-        accessToken
-        apiKey
-        authorizationCode
         createdAt
-        endpoint
         id
         members{
             id
@@ -120,7 +117,15 @@ query team($id: Int!){
             type
             updatedAt
         }
-        providerType
+        providers{
+            accessToken
+            apiKey
+            authorizationCode
+            endpoint
+            id
+            teamId
+            type
+        }
         slug
         updatedAt
         user{
@@ -144,11 +149,7 @@ query team($id: Int!){
 export const ACTIVE_TEAM = gql`
 query activeTeam{
     activeTeam{
-        accessToken
-        apiKey
-        authorizationCode
         createdAt
-        endpoint
         id
         members{
             id
@@ -167,7 +168,15 @@ query activeTeam{
             type
             updatedAt
         }
-        providerType
+        providers{
+            accessToken
+            apiKey
+            authorizationCode
+            endpoint
+            id
+            teamId
+            type
+        }
         slug
         updatedAt
         user{
@@ -191,11 +200,7 @@ query activeTeam{
 export const MY_TEAMS = gql`
 query myTeams{
     myTeams{
-        accessToken
-        apiKey
-        authorizationCode
         createdAt
-        endpoint
         id
         members{
             id
@@ -214,7 +219,15 @@ query myTeams{
             type
             updatedAt
         }
-        providerType
+        providers{
+            accessToken
+            apiKey
+            authorizationCode
+            endpoint
+            id
+            teamId
+            type
+        }
         slug
         updatedAt
         user{
@@ -450,6 +463,7 @@ mutation exitMember($input: ExitMemberInput!){
 export const UPDATE_SETTING = gql`
 mutation updateSetting($input: UpdateSettingInput!){
     updateSetting(input: $input){
+        activeProviderId
         activeSessionId
         activeTeamId
         followUpMessageLength
@@ -469,11 +483,7 @@ mutation updateChatSettings($input: UpdateChatSettingsInput!){
 export const UPDATE_TEAM = gql`
 mutation updateTeam($input: UpdateTeamInput!){
     updateTeam(input: $input){
-        accessToken
-        apiKey
-        authorizationCode
         createdAt
-        endpoint
         id
         members{
             id
@@ -492,7 +502,15 @@ mutation updateTeam($input: UpdateTeamInput!){
             type
             updatedAt
         }
-        providerType
+        providers{
+            accessToken
+            apiKey
+            authorizationCode
+            endpoint
+            id
+            teamId
+            type
+        }
         slug
         updatedAt
         user{
@@ -516,11 +534,7 @@ mutation updateTeam($input: UpdateTeamInput!){
 export const ADD_TEAM = gql`
 mutation addTeam($input: AddTeamInput!){
     addTeam(input: $input){
-        accessToken
-        apiKey
-        authorizationCode
         createdAt
-        endpoint
         id
         members{
             id
@@ -539,7 +553,15 @@ mutation addTeam($input: AddTeamInput!){
             type
             updatedAt
         }
-        providerType
+        providers{
+            accessToken
+            apiKey
+            authorizationCode
+            endpoint
+            id
+            teamId
+            type
+        }
         slug
         updatedAt
         user{
