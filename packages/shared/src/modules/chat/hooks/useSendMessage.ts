@@ -56,7 +56,7 @@ export function useSendMessage() {
 
     if (activeTeam?.providerType === ProviderType.AccessToken) {
       const api = new ChatGPTUnofficialProxyAPI({
-        apiReverseProxyUrl: 'http://localhost:4000/api/chat-by-access-token',
+        apiReverseProxyUrl: '/api/chat-by-access-token',
         accessToken: activeTeam.accessToken!,
         debug: false,
       })
