@@ -82,6 +82,7 @@ query setting($id: Int, $userId: Int){
 export const TEAM = gql`
 query team($id: Int!){
     team(id: $id){
+        accessToken
         apiKey
         authorizationCode
         createdAt
@@ -128,6 +129,7 @@ query team($id: Int!){
 export const ACTIVE_TEAM = gql`
 query activeTeam{
     activeTeam{
+        accessToken
         apiKey
         authorizationCode
         createdAt
@@ -174,6 +176,7 @@ query activeTeam{
 export const MY_TEAMS = gql`
 query myTeams{
     myTeams{
+        accessToken
         apiKey
         authorizationCode
         createdAt
@@ -442,6 +445,7 @@ mutation updateSetting($input: UpdateSettingInput!){
 export const UPDATE_TEAM = gql`
 mutation updateTeam($input: UpdateTeamInput!){
     updateTeam(input: $input){
+        accessToken
         apiKey
         authorizationCode
         createdAt
@@ -488,6 +492,7 @@ mutation updateTeam($input: UpdateTeamInput!){
 export const ADD_TEAM = gql`
 mutation addTeam($input: AddTeamInput!){
     addTeam(input: $input){
+        accessToken
         apiKey
         authorizationCode
         createdAt

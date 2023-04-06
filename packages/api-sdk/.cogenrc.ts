@@ -89,3 +89,4 @@ const config: CogenConfig = {
 }
 
 export default config
+

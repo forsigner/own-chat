@@ -45,6 +45,7 @@ export type AddSessionInput = {
 
 /** 添加 Team */
 export type AddTeamInput = {
+  accessToken?: InputMaybe<Scalars['String']>;
   apiKey?: InputMaybe<Scalars['String']>;
   /** self host auth code */
   authorizationCode?: InputMaybe<Scalars['String']>;
@@ -156,6 +157,7 @@ export type CreateSettingInput = {
 
 /** 创建 */
 export type CreateTeamInput = {
+  accessToken?: InputMaybe<Scalars['String']>;
   apiKey: Scalars['String'];
   authorizationCode: Scalars['String'];
   /** 该 Team Name */
@@ -1057,12 +1059,6 @@ export type Plan = {
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-/** Plan Interval */
-export enum PlanInterval {
-  Monthly = 'Monthly',
-  Yearly = 'Yearly'
-}
-
 /** plan status */
 export enum PlanStatus {
   Expired = 'Expired',
@@ -1092,6 +1088,7 @@ export type PlansConnection = {
 
 /** Provider 类型 */
 export enum ProviderType {
+  AccessToken = 'AccessToken',
   ApiKey = 'ApiKey',
   Official = 'Official',
   SelfHosted = 'SelfHosted'
@@ -1620,6 +1617,7 @@ export type SettingsConnection = {
 
 export type Team = {
   __typename?: 'Team';
+  accessToken?: Maybe<Scalars['String']>;
   apiKey?: Maybe<Scalars['String']>;
   /** self host auth code */
   authorizationCode?: Maybe<Scalars['String']>;
@@ -2009,6 +2007,7 @@ export type UpdateSettingWhereInput = {
 
 /** 更新data */
 export type UpdateTeamDataInput = {
+  accessToken?: InputMaybe<Scalars['String']>;
   apiKey?: InputMaybe<Scalars['String']>;
   /** self host auth code */
   authorizationCode?: InputMaybe<Scalars['String']>;
@@ -2016,10 +2015,6 @@ export type UpdateTeamDataInput = {
   endpoint?: InputMaybe<Scalars['String']>;
   /** 该 Team Name */
   name: Scalars['String'];
-  /** 订阅时间类型 */
-  planInterval?: InputMaybe<PlanInterval>;
-  /** 付费类型 */
-  planType?: InputMaybe<PlanType>;
   providerType: ProviderType;
   slug?: InputMaybe<Scalars['String']>;
 };

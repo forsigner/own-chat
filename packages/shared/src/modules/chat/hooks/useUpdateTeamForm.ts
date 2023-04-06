@@ -7,6 +7,7 @@ import { useSetting } from './useSetting'
 interface Values {
   name: string
   providerType: ProviderType
+  accessToken?: string
   apiKey?: string
   authorizationCode?: string
   endpoint?: string

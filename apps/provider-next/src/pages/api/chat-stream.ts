@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next'
 import { NextRequest } from 'next/server'
-import { createParser } from 'eventsource-parser'
+import { createParser, ParseEvent } from 'eventsource-parser'
 
 class ChatGPTError extends Error {
   statusCode?: number
@@ -44,6 +44,7 @@ async function createStream(req: NextRequest) {
 
   // api from url first
   const apiKey = urlApiKey || process.env.OPENAI_API_KEY
+
   const encoder = new TextEncoder()
   const decoder = new TextDecoder()
 
@@ -57,6 +58,8 @@ async function createStream(req: NextRequest) {
   })
 
   const { status, statusText } = result
+
+  // Handle error
   if (status !== 200) {
     const json = await result.json()
     let reason = ''
@@ -73,9 +76,10 @@ async function createStream(req: NextRequest) {
     throw error
   }
 
+  
   const stream = new ReadableStream({
     async start(controller) {
-      function onParse(event: any) {
+      function onParse(event: ParseEvent) {
         if (event.type === 'event') {
           const data = event.data
           if (data === '[DONE]') {
@@ -94,6 +98,7 @@ async function createStream(req: NextRequest) {
       }
 
       const parser = createParser(onParse)
+
       for await (const chunk of result.body as any) {
         parser.feed(decoder.decode(chunk))
       }

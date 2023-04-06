@@ -1,11 +1,12 @@
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
-import { Message, Mutator } from '@own-chat/api-sdk'
+import { Message, Mutator, ProviderType } from '@own-chat/api-sdk'
 import { useSetting } from './useSetting'
 import { useToken, useUser } from '../../../stores'
 import { fetchChatStream, updateStreamingStatus } from '../../../common/request'
 import { useAddMessage } from './useAddMessage'
 import { useTeams } from './useTeams'
 import { getStreamingKey } from '../../../common'
+import { ChatGPTUnofficialProxyAPI } from '../../../chatgpt-api'
 
 export function useSendMessage() {
   const { token } = useToken()
@@ -53,6 +54,28 @@ export function useSendMessage() {
 
     const key = getStreamingKey(activeTeam!)
 
+    if (activeTeam?.providerType === ProviderType.AccessToken) {
+      const api = new ChatGPTUnofficialProxyAPI({
+        apiReverseProxyUrl: 'http://localhost:4000/api/chat-by-access-token',
+        accessToken: activeTeam.accessToken!,
+        debug: false,
+      })
+
+      const res = await api.sendMessage(value, {
+        onProgress: ({ text }) => {
+          if (value === text) return
+          updateMessageState(text)
+          console.log('partialResponse.text:', text)
+        },
+      })
+
+      await updateStreamingStatus(key, true)
+
+      await addMessage(res.text, ChatCompletionResponseMessageRoleEnum.Assistant)
+
+      return
+    }
+
     await fetchChatStream({
       params: {
         temperature: 1,
@@ -69,6 +92,8 @@ export function useSendMessage() {
           updateMessageState(text)
           return
         }
+
+        console.log('done!!')
 
         await updateStreamingStatus(key, true)
         await addMessage(text, ChatCompletionResponseMessageRoleEnum.Assistant)

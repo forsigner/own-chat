@@ -1,10 +1,10 @@
-import { LoginSuccessPayload } from '@own-chat/api-sdk'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { THIRD_PARTY_LOGIN_TAG } from '../common'
 import { ChatLayout } from '../layouts'
 import { ModuleChat } from '../modules'
 import { useToken, useUser } from '../stores'
-import { THIRD_PARTY_LOGIN_TAG } from '../common'
+import { LoginSuccessPayload } from '@own-chat/api-sdk'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 interface Props {
   userId: number

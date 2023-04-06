@@ -12,6 +12,13 @@ export const UpdateTeamForm = () => {
   const { hide } = useModal()
   const { activeTeam } = useTeams()
 
+  function handleProviderChange(value: any) {
+    form.setFieldState('apiKey', { visible: value === ProviderType.ApiKey })
+    form.setFieldState('accessToken', { visible: value === ProviderType.AccessToken })
+    form.setFieldState('authorizationCode', { visible: value === ProviderType.SelfHosted })
+    form.setFieldState('endpoint', { visible: value === ProviderType.SelfHosted })
+  }
+
   return (
     <Form
       form={form}
@@ -61,6 +68,26 @@ export const UpdateTeamForm = () => {
           {
             label: (
               <Box toCenterY spaceX2>
+                <Box>Access Token</Box>
+                <Button
+                  as="a"
+                  px2
+                  size={28}
+                  variant="light"
+                  href="https://chat.openai.com/api/auth/session"
+                  target="_blank"
+                >
+                  去获取 Access Token
+                </Button>
+              </Box>
+            ),
+            value: ProviderType.AccessToken,
+            desc: '使用自己的 API Key, OwnChat 将提供服务器节点',
+            tips: '如果你有自己的 API Key, 不想折腾私有化部署，那你可以选择这种方案',
+          },
+          {
+            label: (
+              <Box toCenterY spaceX2>
                 <Box>Self-hosted</Box>
                 <Button
                   as="a"
@@ -92,16 +119,10 @@ export const UpdateTeamForm = () => {
           required: 'Type is required',
         }}
         onFieldInit={({ value }) => {
-          form.setFieldState('apiKey', { visible: value === ProviderType.ApiKey })
-          form.setFieldState('authorizationCode', { visible: value === ProviderType.SelfHosted })
-          form.setFieldState('endpoint', { visible: value === ProviderType.SelfHosted })
+          handleProviderChange(value)
         }}
         onValueChange={({ value }) => {
-          setTimeout(() => {
-            form.setFieldState('apiKey', { visible: value === ProviderType.ApiKey })
-            form.setFieldState('authorizationCode', { visible: value === ProviderType.SelfHosted })
-            form.setFieldState('endpoint', { visible: value === ProviderType.SelfHosted })
-          }, 10)
+          handleProviderChange(value)
         }}
       />
       <Field
@@ -138,6 +159,17 @@ export const UpdateTeamForm = () => {
           // autoComplete: 'off',
         }}
         value={activeTeam?.authorizationCode || ''}
+        visible={false}
+      />
+
+      <Field
+        label="Access Token"
+        component="Input"
+        name="accessToken"
+        componentProps={{
+          autoComplete: 'new-password',
+        }}
+        value={activeTeam?.accessToken || ''}
         visible={false}
       />
     </Form>

@@ -64,17 +64,16 @@ export async function fetchChatStream(options: Options) {
     }
 
     if (result.ok) {
-      const reader = result.body?.getReader()
+      const reader = result.body!.getReader()
       const decoder = new TextDecoder()
       onController && onController(controller)
       while (true) {
         // handle time out, will stop if no response in 10 secs
         const resTimeoutId = setTimeout(() => finish(), TIME_OUT_MS)
-        const content = await reader?.read()
+        const { done, value } = await reader.read()
         clearTimeout(resTimeoutId)
-        const text = decoder.decode(content?.value)
+        const text = decoder.decode(value)
         responseText += text
-        const done = !content || content.done
         onMessage(responseText, false)
         if (done) {
           break

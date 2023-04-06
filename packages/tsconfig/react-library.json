@@ -4,6 +4,8 @@
   "extends": "./base.json",
   "compilerOptions": {
     "lib": [
+      "DOM.Iterable",
+      "ESNext.AsyncIterable",
       "ES2015",
       "DOM"
     ],

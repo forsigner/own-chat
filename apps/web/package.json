@@ -18,6 +18,7 @@
     "@own-chat/shared": "*",
     "bone-ui": "^0.32.1",
     "case": "^1.6.3",
+    "chatgpt": "^5.2.2",
     "cookies-next": "^2.1.1",
     "cors": "^2.8.5",
     "date-fns": "^2.29.3",

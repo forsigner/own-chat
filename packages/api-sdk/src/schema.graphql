@@ -40,6 +40,9 @@ input AddSessionInput {
 """添加 Team"""
 input AddTeamInput {
   """"""
+  accessToken: String
+
+  """"""
   apiKey: String
 
   """self host auth code"""
@@ -215,6 +218,9 @@ input CreateSettingInput {
 
 """创建"""
 input CreateTeamInput {
+  """"""
+  accessToken: String
+
   """"""
   apiKey: String!
 
@@ -857,12 +863,6 @@ type Plan {
   updatedAt: DateTime
 }
 
-"""Plan Interval"""
-enum PlanInterval {
-  Monthly
-  Yearly
-}
-
 """plan status"""
 enum PlanStatus {
   Expired
@@ -891,6 +891,7 @@ type PlansConnection {
 
 """Provider 类型"""
 enum ProviderType {
+  AccessToken
   ApiKey
   Official
   SelfHosted
@@ -1535,6 +1536,9 @@ type SettingsConnection {
 """"""
 type Team {
   """"""
+  accessToken: String
+
+  """"""
   apiKey: String
 
   """self host auth code"""
@@ -2015,6 +2019,9 @@ input UpdateSettingWhereInput {
 """更新data"""
 input UpdateTeamDataInput {
   """"""
+  accessToken: String
+
+  """"""
   apiKey: String
 
   """self host auth code"""
@@ -2025,12 +2032,6 @@ input UpdateTeamDataInput {
 
   """该 Team Name"""
   name: String!
-
-  """订阅时间类型"""
-  planInterval: PlanInterval
-
-  """付费类型"""
-  planType: PlanType
 
   """"""
   providerType: ProviderType!
