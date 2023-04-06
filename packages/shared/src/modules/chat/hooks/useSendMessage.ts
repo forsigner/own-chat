@@ -24,7 +24,6 @@ export function useSendMessage() {
       role: ChatCompletionResponseMessageRoleEnum.Assistant,
       content: '',
       streaming: true,
-      createdAt: new Date().toString(),
     } as Message
 
     Mutator.mutateMessages((messages) => {

@@ -2,10 +2,8 @@ import { Box } from '@fower/react'
 import { TrashOutline } from '@bone-ui/icons'
 import { Button, PopoverBody, PopoverTitle } from 'bone-ui'
 import { Popover, PopoverContent, PopoverTrigger } from 'bone-ui'
-import { Input } from 'bone-ui'
 import { Session } from '@own-chat/api-sdk'
 import { useSetting } from '../hooks/useSetting'
-import { useState } from 'react'
 import { useRemoveSession } from '../hooks/useRemoveSession'
 
 interface Props {
@@ -13,7 +11,6 @@ interface Props {
 }
 
 export function RemoveSessionButton({ session }: Props) {
-  const [name, setName] = useState(session.name)
   const { setting } = useSetting()
   const { removeSession } = useRemoveSession()
   const selected = setting.activeSessionId === session.id
@@ -44,8 +41,8 @@ export function RemoveSessionButton({ session }: Props) {
               <Button
                 size="sm"
                 onClick={async () => {
-                  await removeSession(session.id)
                   close()
+                  await removeSession(session.id)
                 }}
               >
                 确定

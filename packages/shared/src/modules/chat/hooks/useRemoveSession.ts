@@ -1,4 +1,4 @@
-import { apiService, Refetcher, UpdateSessionInput } from '@own-chat/api-sdk'
+import { apiService, Refetcher } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
 import { useSetting } from './useSetting'
 
@@ -7,19 +7,23 @@ export function useRemoveSession() {
   const { setting } = useSetting()
 
   async function removeSession(id: number) {
-    await apiService.removeSession({ id })
-
-    await Refetcher.refetchSessions({
-      where: {
-        userId: user.id,
-        teamId: setting.activeTeamId,
-      },
+    await apiService.removeSession({
+      id,
+      teamId: setting.activeTeamId!,
     })
 
-    await Refetcher.refetchMessages({
-      where: {
-        sessionId: id,
-      },
+    const [newSetting] = await Promise.all([
+      Refetcher.refetchSetting({ id: setting.id }),
+      Refetcher.refetchSessions({
+        where: {
+          userId: user.id,
+          teamId: setting.activeTeamId,
+        },
+      }),
+    ])
+
+    Refetcher.refetchMessages({
+      where: { sessionId: newSetting.activeSessionId },
     })
   }
 

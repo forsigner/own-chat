@@ -1540,6 +1540,8 @@ export type RemoveMemberInput = {
 export type RemoveSessionInput = {
   /** ID */
   id: Scalars['Int'];
+  /** teamId */
+  teamId: Scalars['Int'];
 };
 
 /** 重置密码 */

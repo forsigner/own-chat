@@ -1443,6 +1443,9 @@ input RemoveMemberInput {
 input RemoveSessionInput {
   """ID"""
   id: Int!
+
+  """teamId"""
+  teamId: Int!
 }
 
 """重置密码"""

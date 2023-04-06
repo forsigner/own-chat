@@ -21,6 +21,7 @@ export const SessionItem = ({ session }: Props) => {
       pr2
       py2
       bgSlate100={selected}
+      bgSlate800--dark={selected}
       rounded
       toCenterY
       toBetween
@@ -41,7 +42,7 @@ export const SessionItem = ({ session }: Props) => {
     >
       <Box toCenterY columnGap-8>
         <ChatOutline gray500 size={20} />
-        <Box textBase>{session.name}</Box>
+        <Box textBase>{session.name || 'New chat'}</Box>
       </Box>
       <Box toCenterY>
         <EditSessionNameButton session={session} />

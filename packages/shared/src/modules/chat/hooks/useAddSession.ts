@@ -7,9 +7,9 @@ export function useAddSession() {
   const { setting } = useSetting()
 
   async function addSession() {
-    await apiService.addSession({
+    const session = await apiService.addSession({
       teamId: setting.activeTeamId!,
-      name: 'New chat',
+      name: '',
     })
 
     await Refetcher.refetchSessions({
@@ -18,6 +18,7 @@ export function useAddSession() {
         teamId: setting.activeTeamId,
       },
     })
+    return session
   }
 
   return { addSession }
