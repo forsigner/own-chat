@@ -76,7 +76,6 @@ async function createStream(req: NextRequest) {
     throw error
   }
 
-  
   const stream = new ReadableStream({
     async start(controller) {
       function onParse(event: ParseEvent) {
@@ -88,6 +87,8 @@ async function createStream(req: NextRequest) {
           }
           try {
             const json = JSON.parse(data)
+            console.log('======:', json)
+
             const text = json.choices[0].delta.content
             const queue = encoder.encode(text)
             controller.enqueue(queue)

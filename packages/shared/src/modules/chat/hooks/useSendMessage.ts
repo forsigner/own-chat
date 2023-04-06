@@ -1,4 +1,4 @@
-import { ChatCompletionResponseMessageRoleEnum } from 'openai'
+import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } from 'openai'
 import { Message, Mutator, ProviderType } from '@own-chat/api-sdk'
 import { useSetting } from './useSetting'
 import { useToken, useUser } from '../../../stores'
@@ -7,6 +7,7 @@ import { useAddMessage } from './useAddMessage'
 import { useTeams } from './useTeams'
 import { getStreamingKey } from '../../../common'
 import { ChatGPTUnofficialProxyAPI } from '../../../chatgpt-api'
+import { useMessages } from './useMessages'
 
 export function useSendMessage() {
   const { token } = useToken()
@@ -14,6 +15,7 @@ export function useSendMessage() {
   const { setting } = useSetting()
   const { addMessage } = useAddMessage()
   const { activeTeam } = useTeams()
+  const { messages = [] } = useMessages()
 
   function initAnswer() {
     const newMessage = {
@@ -37,15 +39,25 @@ export function useSendMessage() {
     })
   }
 
-  async function sendChatRequest(value: string) {
-    const messages = [
-      {
-        content: value,
-        role: ChatCompletionResponseMessageRoleEnum.User,
-      },
-    ]
+  function getRequestMessages(value: string) {
+    // build message context
+    const requestMessages = messages.map<ChatCompletionRequestMessage>((item) => ({
+      content: item.content,
+      role: item.role as any,
+      name: undefined,
+    }))
 
+    requestMessages.push({
+      content: value,
+      role: ChatCompletionResponseMessageRoleEnum.User,
+    })
+    return requestMessages
+  }
+
+  async function sendChatRequest(value: string) {
     let host: string = ''
+
+    const requestMessages = getRequestMessages(value)
 
     if (process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP') {
       host = 'https://www.ownchat.me'
@@ -61,17 +73,21 @@ export function useSendMessage() {
         debug: false,
       })
 
-      const res = await api.sendMessage(value, {
-        onProgress: ({ text }) => {
-          if (value === text) return
-          updateMessageState(text)
-          console.log('partialResponse.text:', text)
-        },
-      })
+      try {
+        const res = await api.sendMessage(value, {
+          onProgress: ({ text }) => {
+            if (value === text) return
+            updateMessageState(text)
+            // console.log('partialResponse.text:', text)
+          },
+        })
 
-      await updateStreamingStatus(key, true)
+        await updateStreamingStatus(key, true)
 
-      await addMessage(res.text, ChatCompletionResponseMessageRoleEnum.Assistant)
+        await addMessage(res.text, ChatCompletionResponseMessageRoleEnum.Assistant)
+      } catch (error) {
+        console.log('error--------:', error)
+      }
 
       return
     }
@@ -82,7 +98,7 @@ export function useSendMessage() {
         presence_penalty: 0,
         stream: true,
         model: 'gpt-3.5-turbo',
-        messages: messages,
+        messages: requestMessages,
         max_tokens: 2000,
       },
       baseURL: host,

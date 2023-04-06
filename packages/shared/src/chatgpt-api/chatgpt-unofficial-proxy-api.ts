@@ -36,7 +36,8 @@ export class ChatGPTUnofficialProxyAPI {
     const {
       accessToken,
       apiReverseProxyUrl = 'https://bypass.churchless.tech/api/conversation',
-      model = 'text-davinci-002-render-sha',
+      // model = 'text-davinci-002-render-sha',
+      model = 'gpt-3.5-turbo',
       debug = false,
       headers = {},
       fetch = globalFetch,
@@ -214,7 +215,8 @@ export class ChatGPTUnofficialProxyAPI {
                 }
               }
             } catch (err) {
-              reject(err)
+              console.log('err1:', err)
+              // reject(err)
             }
           },
           onError: (err) => {
