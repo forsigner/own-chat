@@ -1,6 +1,6 @@
 import { RefetchOptions, fetcher } from "stook-graphql";
-import { Team, ChatSettings, Member, Message, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QuerySettingArgs, QueryTeamArgs, QueryTokensArgs } from "./types";
-import { ACTIVE_TEAM, CHAT_SETTINGS, MEMBERS, MESSAGES, MY_TEAMS, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, SETTING, TEAM, TOKENS } from "./gql";
+import { Team, ChatSettings, Member, Message, Provider, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QueryProvidersArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QuerySettingArgs, QueryTeamArgs, QueryTokensArgs } from "./types";
+import { ACTIVE_TEAM, CHAT_SETTINGS, MEMBERS, MESSAGES, MY_TEAMS, PROVIDERS, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, SETTING, TEAM, TOKENS } from "./gql";
 
 class RefetcherService {
   async refetchActiveTeam(args: any = {} as any, opt: RefetchOptions = {}): Promise<Team> {
@@ -54,6 +54,18 @@ class RefetcherService {
   async refetchMyTeams(args: any = {} as any, opt: RefetchOptions = {}): Promise<Team[]> {
 
     const key = opt.key ? opt.key : MY_TEAMS
+    if (!fetcher.get(key)) {
+      return console.warn('fetcher找不到' + key) as any
+    }
+    if (Object.keys(args).length) opt.variables = args
+    if (!opt.showLoading) opt.showLoading = false
+    return await fetcher.get(key).refetch(opt)
+
+  }
+
+  async refetchProviders(args: QueryProvidersArgs = {} as QueryProvidersArgs, opt: RefetchOptions = {}): Promise<Provider[]> {
+
+    const key = opt.key ? opt.key : PROVIDERS
     if (!fetcher.get(key)) {
       return console.warn('fetcher找不到' + key) as any
     }

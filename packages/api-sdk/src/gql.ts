@@ -304,6 +304,19 @@ query messages($orderBy: String, $skip: Int, $take: Int, $where: MessageWhereInp
     }
 }
 `;
+export const PROVIDERS = gql`
+query providers($orderBy: String, $skip: Int, $take: Int, $where: ProviderWhereInput){
+    providers(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
+        accessToken
+        apiKey
+        authorizationCode
+        endpoint
+        id
+        teamId
+        type
+    }
+}
+`;
 export const LOGIN_BY_GITHUB = gql`
 mutation loginByGithub($code: String!){
     loginByGithub(code: $code){
@@ -628,6 +641,19 @@ mutation addMessage($input: AddMessageInput!){
         updatedAt
         userId
         views
+    }
+}
+`;
+export const UPDATE_PROVIDER = gql`
+mutation updateProvider($input: UpdateProviderInput!){
+    updateProvider(input: $input){
+        accessToken
+        apiKey
+        authorizationCode
+        endpoint
+        id
+        teamId
+        type
     }
 }
 `;

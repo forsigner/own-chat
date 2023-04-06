@@ -19,8 +19,6 @@ export function useSendMessage() {
   const { messages = [] } = useMessages()
   const { chatSettings } = useChatSettings()
 
-  console.log('messages:', messages)
-
   function initAnswer() {
     const newMessage = {
       userId: user.id,

@@ -1,6 +1,6 @@
 import { Options, query } from "stook-graphql";
-import { Member, Message, Session, Team, Token, LoginSuccessPayload, Setting, User, AddMemberInput, AddMessageInput, AddSessionInput, AddTeamInput, AddTokenInput, DeleteTokenInput, ExitMemberInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveMemberInput, RemoveSessionInput, UpdateChatSettingsInput, UpdateSessionInput, UpdateSettingInput, UpdateTeamInput, UpdateUserInput, QuerySessionBySlugArgs, QueryTeamArgs } from "./types";
-import { ADD_MEMBER, ADD_MESSAGE, ADD_SESSION, ADD_TEAM, ADD_TOKEN, DELETE_TOKEN, EXIT_MEMBER, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_MEMBER, REMOVE_SESSION, UPDATE_CHAT_SETTINGS, UPDATE_SESSION, UPDATE_SETTING, UPDATE_TEAM, UPDATE_USER, ACTIVE_TEAM, SESSION_BY_SLUG, TEAM } from "./gql";
+import { Member, Message, Session, Team, Token, LoginSuccessPayload, Provider, Setting, User, AddMemberInput, AddMessageInput, AddSessionInput, AddTeamInput, AddTokenInput, DeleteTokenInput, ExitMemberInput, MutationLoginByGithubArgs, MutationLoginByGoogleArgs, MutationLoginByPersonalTokenArgs, RemoveMemberInput, RemoveSessionInput, UpdateChatSettingsInput, UpdateProviderInput, UpdateSessionInput, UpdateSettingInput, UpdateTeamInput, UpdateUserInput, QuerySessionBySlugArgs, QueryTeamArgs } from "./types";
+import { ADD_MEMBER, ADD_MESSAGE, ADD_SESSION, ADD_TEAM, ADD_TOKEN, DELETE_TOKEN, EXIT_MEMBER, LOGIN_BY_GITHUB, LOGIN_BY_GOOGLE, LOGIN_BY_PERSONAL_TOKEN, REMOVE_MEMBER, REMOVE_SESSION, UPDATE_CHAT_SETTINGS, UPDATE_PROVIDER, UPDATE_SESSION, UPDATE_SETTING, UPDATE_TEAM, UPDATE_USER, ACTIVE_TEAM, SESSION_BY_SLUG, TEAM } from "./gql";
 
 class ApiService {
   async addMember(args: AddMemberInput = {} as AddMemberInput, opt: Options = {}) {
@@ -53,6 +53,10 @@ class ApiService {
 
   async updateChatSettings(args: UpdateChatSettingsInput = {} as UpdateChatSettingsInput, opt: Options = {}) {
     return await query<boolean>(UPDATE_CHAT_SETTINGS, { ...opt, variables: { input: args } })
+  }
+
+  async updateProvider(args: UpdateProviderInput = {} as UpdateProviderInput, opt: Options = {}) {
+    return await query<Provider>(UPDATE_PROVIDER, { ...opt, variables: { input: args } })
   }
 
   async updateSession(args: UpdateSessionInput = {} as UpdateSessionInput, opt: Options = {}) {

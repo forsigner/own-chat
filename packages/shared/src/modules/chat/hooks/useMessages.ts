@@ -2,7 +2,6 @@ import { useSetting } from './useSetting'
 import { Hooks, MESSAGES, Message } from '@own-chat/api-sdk'
 import { getState } from 'stook'
 
-export type StreamingMessage = Message & { streaming: boolean }
 export function useMessages() {
   const { setting } = useSetting()
 

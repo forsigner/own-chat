@@ -55,6 +55,9 @@ const gqlConfig: ConfigItem[] = [
 
   { name: 'messages', actions: ['useQuery', 'refetch', 'mutator'] },
   { name: 'addMessage', actions: ['query'] },
+
+  { name: 'providers', actions: ['useQuery', 'refetch', 'mutator'] },
+  { name: 'updateProvider', actions: ['query'] },
 ]
 
 const dirName = 'src'
