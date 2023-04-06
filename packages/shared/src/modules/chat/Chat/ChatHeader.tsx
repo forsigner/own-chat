@@ -1,10 +1,11 @@
+import { NAV_HEIGHT } from '../../../common'
+import { useSessions } from '../hooks/useSessions'
+import { ModalSessionList } from '../modals/ModalSessionList'
+import { ChatSettings } from './ChatSettings'
+import { ShareButton } from './ShareButton'
 import { Box } from '@fower/react'
 import { EasyModal } from '@own-chat/easy-modal'
 import { Button, ChevronDownOutline } from 'bone-ui'
-import { NAV_HEIGHT } from '../../../common'
-import { ModalSessionList } from '../modals/ModalSessionList'
-import { ShareButton } from './ShareButton'
-import { useSessions } from '../hooks/useSessions'
 
 export const ChatHeader = () => {
   const { activeSession } = useSessions()
@@ -35,7 +36,8 @@ export const ChatHeader = () => {
         />
       </Box>
       <Box toCenterY columnGap-12 pr2>
-        <ShareButton session={activeSession!} />
+        <ChatSettings session={activeSession!} />
+        {activeSession && <ShareButton session={activeSession!} />}
       </Box>
     </Box>
   )

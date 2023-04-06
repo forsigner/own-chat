@@ -74,8 +74,23 @@ query setting($id: Int, $userId: Int){
     setting(id: $id, userId: $userId){
         activeSessionId
         activeTeamId
+        followUpMessageLength
         id
+        maxToken
+        model
+        showTokenCount
         userId
+    }
+}
+`;
+export const CHAT_SETTINGS = gql`
+query chatSettings{
+    chatSettings{
+        followUpMessageLength
+        id
+        maxToken
+        model
+        showTokenCount
     }
 }
 `;
@@ -437,9 +452,18 @@ mutation updateSetting($input: UpdateSettingInput!){
     updateSetting(input: $input){
         activeSessionId
         activeTeamId
+        followUpMessageLength
         id
+        maxToken
+        model
+        showTokenCount
         userId
     }
+}
+`;
+export const UPDATE_CHAT_SETTINGS = gql`
+mutation updateChatSettings($input: UpdateChatSettingsInput!){
+    updateChatSettings(input: $input)
 }
 `;
 export const UPDATE_TEAM = gql`

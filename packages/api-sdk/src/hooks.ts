@@ -1,10 +1,14 @@
 import { Options, useQuery, useMutation } from "stook-graphql";
-import { Team, Member, Message, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QuerySettingArgs, QueryTeamArgs, QueryTokensArgs } from "./types";
-import { ACTIVE_TEAM, MEMBERS, MESSAGES, MY_TEAMS, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, SETTING, TEAM, TOKENS } from "./gql";
+import { Team, ChatSettings, Member, Message, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QuerySettingArgs, QueryTeamArgs, QueryTokensArgs } from "./types";
+import { ACTIVE_TEAM, CHAT_SETTINGS, MEMBERS, MESSAGES, MY_TEAMS, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, SETTING, TEAM, TOKENS } from "./gql";
 
 class HooksService {
   useActiveTeam(args?: any | (() => any), opt: Options = {}) {
     return useQuery<Team, any>(ACTIVE_TEAM, { ...opt, variables: args })
+  }
+
+  useChatSettings(args?: any | (() => any), opt: Options = {}) {
+    return useQuery<ChatSettings, any>(CHAT_SETTINGS, { ...opt, variables: args })
   }
 
   useMembers(args?: QueryMembersArgs | (() => QueryMembersArgs), opt: Options = {}) {

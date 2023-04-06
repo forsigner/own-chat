@@ -70,6 +70,24 @@ input AddTokenInput {
   type: String
 }
 
+""""""
+type ChatSettings {
+  """"""
+  followUpMessageLength: Float
+
+  """"""
+  id: Int!
+
+  """"""
+  maxToken: Int
+
+  """"""
+  model: String
+
+  """"""
+  showTokenCount: Boolean
+}
+
 """创建"""
 input CreateInvoiceInput {
   dueDate: DateTime
@@ -681,6 +699,9 @@ type Mutation {
   """重置密码"""
   resetPassword(input: ResetPasswordInput!): Boolean!
 
+  """"""
+  updateChatSettings(input: UpdateChatSettingsInput!): Boolean!
+
   """修改email"""
   updateEmail(input: UpdateEmailInput!): Boolean!
 
@@ -906,6 +927,9 @@ enum ProviderType {
 type Query {
   """"""
   activeTeam: Team!
+
+  """Chat GPT settings"""
+  chatSettings: ChatSettings!
 
   """check token"""
   checkPersonalToken(token: String!): User!
@@ -1523,7 +1547,19 @@ type Setting {
   activeTeamId: Int
 
   """"""
+  followUpMessageLength: Float
+
+  """"""
   id: Int!
+
+  """"""
+  maxToken: Int
+
+  """"""
+  model: String
+
+  """"""
+  showTokenCount: Boolean
 
   """用户ID"""
   userId: Int!
@@ -1634,6 +1670,21 @@ type TokensConnection {
   hasNextPage: Boolean!
   items: [Token!]!
   totalCount: Int!
+}
+
+""""""
+input UpdateChatSettingsInput {
+  """"""
+  followUpMessageLength: Float
+
+  """"""
+  maxToken: Int
+
+  """"""
+  model: String
+
+  """"""
+  showTokenCount: Boolean
 }
 
 """修改email"""

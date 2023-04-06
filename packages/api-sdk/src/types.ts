@@ -66,6 +66,15 @@ export type AddTokenInput = {
   type?: InputMaybe<Scalars['String']>;
 };
 
+export type ChatSettings = {
+  __typename?: 'ChatSettings';
+  followUpMessageLength?: Maybe<Scalars['Float']>;
+  id: Scalars['Int'];
+  maxToken?: Maybe<Scalars['Int']>;
+  model?: Maybe<Scalars['String']>;
+  showTokenCount?: Maybe<Scalars['Boolean']>;
+};
+
 /** 创建 */
 export type CreateInvoiceInput = {
   dueDate?: InputMaybe<Scalars['DateTime']>;
@@ -520,6 +529,7 @@ export type Mutation = {
   removeSession: Scalars['Boolean'];
   /** 重置密码 */
   resetPassword: Scalars['Boolean'];
+  updateChatSettings: Scalars['Boolean'];
   /** 修改email */
   updateEmail: Scalars['Boolean'];
   /** 更新单个 */
@@ -857,6 +867,11 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationUpdateChatSettingsArgs = {
+  input: UpdateChatSettingsInput;
+};
+
+
 export type MutationUpdateEmailArgs = {
   input: UpdateEmailInput;
 };
@@ -1103,6 +1118,8 @@ export enum ProviderType {
 export type Query = {
   __typename?: 'Query';
   activeTeam: Team;
+  /** Chat GPT settings */
+  chatSettings: ChatSettings;
   /** check token */
   checkPersonalToken: User;
   /** 检查 reset password URL token 是否过期 */
@@ -1604,7 +1621,11 @@ export type Setting = {
   __typename?: 'Setting';
   activeSessionId?: Maybe<Scalars['Int']>;
   activeTeamId?: Maybe<Scalars['Int']>;
+  followUpMessageLength?: Maybe<Scalars['Float']>;
   id: Scalars['Int'];
+  maxToken?: Maybe<Scalars['Int']>;
+  model?: Maybe<Scalars['String']>;
+  showTokenCount?: Maybe<Scalars['Boolean']>;
   /** 用户ID */
   userId: Scalars['Int'];
 };
@@ -1693,6 +1714,13 @@ export type TokensConnection = {
   hasNextPage: Scalars['Boolean'];
   items: Array<Token>;
   totalCount: Scalars['Int'];
+};
+
+export type UpdateChatSettingsInput = {
+  followUpMessageLength?: InputMaybe<Scalars['Float']>;
+  maxToken?: InputMaybe<Scalars['Int']>;
+  model?: InputMaybe<Scalars['String']>;
+  showTokenCount?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** 修改email */

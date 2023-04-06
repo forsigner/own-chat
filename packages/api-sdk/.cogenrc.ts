@@ -1,6 +1,6 @@
 import { CogenConfig } from '@cogen/cli'
-import { join } from 'path'
 import { StookGraphqlConfig, ConfigItem } from 'cogen-stook-graphql'
+import { join } from 'path'
 
 const { NODE_ENV } = process.env
 const isProd = NODE_ENV === 'production'
@@ -30,6 +30,9 @@ const gqlConfig: ConfigItem[] = [
 
   { name: 'setting', actions: ['useQuery', 'refetch', 'mutator'] },
   { name: 'updateSetting', actions: ['query'] },
+
+  { name: 'chatSettings', actions: ['useQuery', 'refetch', 'mutator'] },
+  { name: 'updateChatSettings', actions: ['query'] },
 
   { name: 'team', actions: ['query', 'useQuery', 'refetch'] },
   { name: 'activeTeam', actions: ['query', 'useQuery', 'refetch'] },
@@ -89,4 +92,3 @@ const config: CogenConfig = {
 }
 
 export default config
-

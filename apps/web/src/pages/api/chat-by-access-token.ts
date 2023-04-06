@@ -15,11 +15,11 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
   await runMiddleware(req, res, cors)
 
   return httpProxyMiddleware(req, res, {
-    target: 'https://bypass.churchless.tech',
+    target: 'https://chat.openai.com',
     pathRewrite: [
       {
         patternStr: '^/api/chat-by-access-token',
-        replaceStr: '/api/conversation',
+        replaceStr: '/backend-api/conversation',
       },
     ],
   })
