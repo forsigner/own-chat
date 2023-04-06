@@ -1,4 +1,4 @@
-import { apiService, Mutator, Refetcher, SETTING } from '@own-chat/api-sdk'
+import { apiService, Mutator, Refetcher } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
 import { useSetting } from './useSetting'
 
@@ -25,20 +25,24 @@ export function useUpdateActiveTeamId() {
       },
     })
 
-    if (sessions.length) {
-      const [session] = sessions
+    const [session] = sessions
 
-      Mutator.mutateSetting((setting) => {
-        setting.activeSessionId = session.id
-      })
+    Mutator.mutateSetting((setting) => {
+      setting.activeSessionId = session?.id || null
+    })
 
-      await apiService.updateSetting({
-        where: { id: setting.id },
-        data: { activeSessionId: session.id },
-      })
+    await apiService.updateSetting({
+      where: { id: setting.id },
+      data: { activeSessionId: session?.id || null },
+    })
 
+    if (session) {
       await Refetcher.refetchMessages({
         where: { sessionId: session.id },
+      })
+    } else {
+      Mutator.mutateMessages((messages) => {
+        messages.splice(0, messages.length)
       })
     }
   }

@@ -12,12 +12,20 @@ export function useAddSession() {
       name: '',
     })
 
-    await Refetcher.refetchSessions({
-      where: {
-        userId: user.id,
-        teamId: setting.activeTeamId,
-      },
+    await Promise.all([
+      Refetcher.refetchSessions({
+        where: {
+          userId: user.id,
+          teamId: setting.activeTeamId,
+        },
+      }),
+      Refetcher.refetchSetting({ id: setting.id }),
+    ])
+
+    Refetcher.refetchMessages({
+      where: { sessionId: session.id },
     })
+
     return session
   }
 

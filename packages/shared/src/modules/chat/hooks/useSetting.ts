@@ -1,5 +1,6 @@
-import { apiService, Hooks, Mutator, Refetcher, SETTING } from '@own-chat/api-sdk'
+import { apiService, Hooks, Mutator, Refetcher, Setting, SETTING } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
+import { getState } from 'stook'
 
 export function useSetting() {
   const { user } = useUser()
@@ -33,4 +34,8 @@ export async function updateActiveSessionId(settingId: number, activeSessionId: 
   })
 
   await Refetcher.refetchSetting({ id: settingId })
+}
+
+export function getSetting(): Setting {
+  return getState(SETTING)?.data
 }

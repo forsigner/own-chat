@@ -18,6 +18,13 @@ export function EditSessionNameButton({ session }: Props) {
   const { updateSession } = useUpdateSession()
   const selected = setting.activeSessionId === session.id
 
+  async function updateName() {
+    await updateSession({
+      where: { id: session.id },
+      data: { name },
+    })
+  }
+
   return (
     <Popover trigger="manual">
       <PopoverTrigger>
@@ -44,10 +51,11 @@ export function EditSessionNameButton({ session }: Props) {
               onClick={(e) => {
                 e.stopPropagation()
               }}
-              onKeyDown={(e) => {
+              onKeyDown={async (e) => {
                 e.stopPropagation()
                 if (e.key === 'Enter') {
                   close()
+                  await updateName()
                 }
               }}
               onChange={(e) => {
@@ -57,10 +65,7 @@ export function EditSessionNameButton({ session }: Props) {
             />
             <Button
               onClick={async () => {
-                await updateSession({
-                  where: { id: session.id },
-                  data: { name },
-                })
+                await updateName()
                 close()
               }}
             >

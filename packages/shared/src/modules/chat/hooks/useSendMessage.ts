@@ -8,6 +8,7 @@ import { useTeams } from './useTeams'
 import { getStreamingKey } from '../../../common'
 import { ChatGPTUnofficialProxyAPI } from '../../../chatgpt-api'
 import { useMessages } from './useMessages'
+import { useAddSession } from './useAddSession'
 
 export function useSendMessage() {
   const { token } = useToken()
@@ -126,7 +127,7 @@ export function useSendMessage() {
   async function sendMessage(value: string) {
     try {
       // Firstly, save user message to server
-      await addMessage(value)
+      await addMessage(value, ChatCompletionResponseMessageRoleEnum.User, true)
 
       // init an empty answer message
       initAnswer()

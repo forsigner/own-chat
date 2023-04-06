@@ -22,7 +22,7 @@ export const ChatHeader = () => {
     >
       <Box toCenterY>
         <Box textLG fontBold>
-          {activeSession?.name}
+          {activeSession?.name || 'New chat'}
         </Box>
         <Button
           display={['flex', 'none']}

@@ -1,4 +1,4 @@
-import { apiService, Refetcher } from '@own-chat/api-sdk'
+import { apiService, Mutator, Refetcher } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
 import { useSetting } from './useSetting'
 
@@ -22,9 +22,15 @@ export function useRemoveSession() {
       }),
     ])
 
-    Refetcher.refetchMessages({
-      where: { sessionId: newSetting.activeSessionId },
-    })
+    if (newSetting.activeSessionId) {
+      await Refetcher.refetchMessages({
+        where: { sessionId: newSetting.activeSessionId },
+      })
+    } else {
+      Mutator.mutateMessages((messages) => {
+        messages.splice(0, messages.length)
+      })
+    }
   }
 
   return { removeSession }
