@@ -1,4 +1,5 @@
 import { fetch as globalFetch } from './fetch'
+
 import { fetchSSE } from './fetch-sse'
 import * as types from './types'
 import pTimeout from 'p-timeout'
@@ -128,7 +129,7 @@ export class ChatGPTAPI {
 
     let { abortSignal } = opts
 
-    let abortController: AbortController = null
+    let abortController: AbortController = null as any
     if (timeoutMs && !abortSignal) {
       abortController = new AbortController()
       abortSignal = abortController.signal
@@ -156,7 +157,7 @@ export class ChatGPTAPI {
 
     const responseP = new Promise<types.ChatMessage>(async (resolve, reject) => {
       const url = `${this._apiBaseUrl}/chat/completions`
-      const headers = {
+      const headers: Record<string, string> = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this._apiKey}`,
       }
@@ -208,7 +209,7 @@ export class ChatGPTAPI {
                     result.role = delta.role
                   }
 
-                  result.detail = response
+                  result.detail = response as any
                   onProgress?.(result)
                 }
               } catch (err) {
@@ -231,7 +232,7 @@ export class ChatGPTAPI {
           if (!res.ok) {
             const reason = await res.text()
             const msg = `OpenAI error ${res.status || res.statusText}: ${reason}`
-            const error = new types.ChatGPTError(msg, { cause: res })
+            const error = new types.ChatGPTError(msg)
             error.statusCode = res.status
             error.statusText = res.statusText
             return reject(error)
@@ -248,8 +249,8 @@ export class ChatGPTAPI {
 
           if (response?.choices?.length) {
             const message = response.choices[0].message
-            result.text = message.content
-            if (message.role) {
+            result.text = message?.content || ''
+            if (message?.role) {
               result.role = message.role
             }
           } else {
@@ -315,7 +316,7 @@ export class ChatGPTAPI {
   }
 
   get apiOrg(): string {
-    return this._apiOrg
+    return this._apiOrg || ''
   }
 
   set apiOrg(apiOrg: string) {

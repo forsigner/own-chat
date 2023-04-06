@@ -155,7 +155,7 @@ input CreatePaymentInput {
 """创建"""
 input CreatePlanInput {
   """"""
-  interval: String
+  interval: PlanInterval
 
   """"""
   price: Float
@@ -847,7 +847,7 @@ type Plan {
   id: Int!
 
   """"""
-  interval: String
+  interval: PlanInterval
 
   """"""
   price: Float
@@ -861,6 +861,12 @@ type Plan {
   """"""
   type: PlanType!
   updatedAt: DateTime
+}
+
+"""Plan Interval"""
+enum PlanInterval {
+  Monthly
+  Yearly
 }
 
 """plan status"""
@@ -1904,7 +1910,7 @@ input UpdatePaymentWhereInput {
 """更新data"""
 input UpdatePlanDataInput {
   """"""
-  interval: String
+  interval: PlanInterval
 
   """"""
   price: Float

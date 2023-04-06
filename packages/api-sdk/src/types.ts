@@ -118,7 +118,7 @@ export type CreatePaymentInput = {
 
 /** 创建 */
 export type CreatePlanInput = {
-  interval?: InputMaybe<Scalars['String']>;
+  interval?: InputMaybe<PlanInterval>;
   price?: InputMaybe<Scalars['Float']>;
   status: PlanStatus;
   teamId: Scalars['Int'];
@@ -1051,13 +1051,19 @@ export type Plan = {
   __typename?: 'Plan';
   createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
-  interval?: Maybe<Scalars['String']>;
+  interval?: Maybe<PlanInterval>;
   price?: Maybe<Scalars['Float']>;
   status: PlanStatus;
   teamId: Scalars['Int'];
   type: PlanType;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
+
+/** Plan Interval */
+export enum PlanInterval {
+  Monthly = 'Monthly',
+  Yearly = 'Yearly'
+}
 
 /** plan status */
 export enum PlanStatus {
@@ -1917,7 +1923,7 @@ export type UpdatePaymentWhereInput = {
 
 /** 更新data */
 export type UpdatePlanDataInput = {
-  interval?: InputMaybe<Scalars['String']>;
+  interval?: InputMaybe<PlanInterval>;
   price?: InputMaybe<Scalars['Float']>;
   status: PlanStatus;
   teamId: Scalars['Int'];
