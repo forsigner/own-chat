@@ -1,5 +1,6 @@
-import { Hooks, Message } from '@own-chat/api-sdk'
 import { useSetting } from './useSetting'
+import { Hooks, MESSAGES, Message } from '@own-chat/api-sdk'
+import { getState } from 'stook'
 
 export type StreamingMessage = Message & { streaming: boolean }
 export function useMessages() {
@@ -18,4 +19,8 @@ export function useMessages() {
     ...rest,
     messages,
   }
+}
+
+export function getMessages(): Message[] {
+  return getState(MESSAGES)?.data || []
 }

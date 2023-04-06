@@ -1,14 +1,14 @@
-import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } from 'openai'
-import { Message, Mutator, ProviderType } from '@own-chat/api-sdk'
-import { useSetting } from './useSetting'
-import { useToken, useUser } from '../../../stores'
-import { fetchChatStream, updateStreamingStatus } from '../../../common/request'
-import { useAddMessage } from './useAddMessage'
-import { useTeams } from './useTeams'
-import { getStreamingKey } from '../../../common'
 import { ChatGPTUnofficialProxyAPI } from '../../../chatgpt-api'
+import { getStreamingKey } from '../../../common'
+import { fetchChatStream, updateStreamingStatus } from '../../../common/request'
+import { useToken, useUser } from '../../../stores'
+import { useAddMessage } from './useAddMessage'
+import { useChatSettings } from './useChatSettings'
 import { useMessages } from './useMessages'
-import { useAddSession } from './useAddSession'
+import { useSetting } from './useSetting'
+import { useTeams } from './useTeams'
+import { Message, Mutator, ProviderType } from '@own-chat/api-sdk'
+import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } from 'openai'
 
 export function useSendMessage() {
   const { token } = useToken()
@@ -17,6 +17,9 @@ export function useSendMessage() {
   const { addMessage } = useAddMessage()
   const { activeTeam } = useTeams()
   const { messages = [] } = useMessages()
+  const { chatSettings } = useChatSettings()
+
+  console.log('messages:', messages)
 
   function initAnswer() {
     const newMessage = {
@@ -39,7 +42,7 @@ export function useSendMessage() {
     })
   }
 
-  function getRequestMessages(value: string) {
+  function getRequestMessages(value: string, messages: Message[]) {
     // build message context
     const requestMessages = messages.map<ChatCompletionRequestMessage>((item) => ({
       content: item.content,
@@ -51,13 +54,32 @@ export function useSendMessage() {
       content: value,
       role: ChatCompletionResponseMessageRoleEnum.User,
     })
-    return requestMessages
+
+    const followUpMessageLength = chatSettings.followUpMessageLength!
+    const len = requestMessages.length
+
+    console.log(
+      'len:',
+      len,
+      'msg.len:',
+      messages.length,
+      'followUpMessageLength:',
+      followUpMessageLength,
+    )
+
+    if (requestMessages.length <= followUpMessageLength) {
+      return requestMessages
+    }
+
+    return requestMessages.slice(len - followUpMessageLength, len)
   }
 
   async function sendChatRequest(value: string) {
     let host: string = ''
 
-    const requestMessages = getRequestMessages(value)
+    const requestMessages = getRequestMessages(value, messages)
+
+    console.log('requestMessages:', requestMessages)
 
     if (process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP') {
       host = 'https://www.ownchat.me'
@@ -97,9 +119,9 @@ export function useSendMessage() {
         temperature: 1,
         presence_penalty: 0,
         stream: true,
-        model: 'gpt-3.5-turbo',
+        model: chatSettings.model!,
         messages: requestMessages,
-        max_tokens: 2000,
+        max_tokens: chatSettings.maxToken!,
       },
       baseURL: host,
       token,
