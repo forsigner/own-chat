@@ -6,8 +6,10 @@ import { Title } from './Title'
 import { UpdateProviderForm } from './UpdateProviderForm'
 import { useTeams } from '../../hooks/useTeams'
 import { useUpdateTeam } from '../../hooks/useUpdateTeam'
+import { useTranslation } from 'react-i18next'
 
 export const ProviderList = () => {
+  const { t } = useTranslation('common')
   const { loading, activeTeam } = useTeams()
   const { updateTeam } = useUpdateTeam()
   const [providerId, setProviderId] = useState<Number>(activeTeam.activeProviderId)
@@ -29,12 +31,12 @@ export const ProviderList = () => {
             href="https://platform.openai.com/account/api-keys"
             target="_blank"
           >
-            去获取 Openai API Key
+            {t('get-api-key')}
           </Button>
         </Box>
       ),
-      desc: '使用自己的 API Key, OwnChat 将提供服务器节点',
-      tips: '如果你有自己的 API Key, 不想折腾私有化部署，那你可以选择这种方案',
+      desc: t('provider-api-key-tips-1'),
+      tips: t('provider-api-key-tips-2'),
     },
     [ProviderType.SelfHosted]: {
       label: (
@@ -48,12 +50,12 @@ export const ProviderList = () => {
             href="https://github.com/forsigner/own-chat#one-click-to-deploy"
             target="_blank"
           >
-            去一键部署
+            {t('one-click-to-deploy')}
           </Button>
         </Box>
       ),
-      desc: '使用自己部署的 ChatGPT 服务, 无效暴露 key 给 OwnChat',
-      tips: '如果你是一个极客，有程序部署部署能力，那你可以选择这种方案',
+      desc: t('provider-self-hosted-tips-1'),
+      tips: t('provider-self-hosted-tips-2'),
     },
     [ProviderType.Official]: {
       label: 'OwnChat Official',
@@ -124,7 +126,7 @@ export const ProviderList = () => {
                   <Box textBase fontSemibold>
                     {info.label}
                   </Box>
-                  {checked && <Tag colorScheme="green500">使用中</Tag>}
+                  {checked && <Tag colorScheme="green500">{t('using')}</Tag>}
                 </Box>
                 <Box gray600>{info.desc}</Box>
                 <Box gray400 textXS>

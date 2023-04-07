@@ -16,10 +16,10 @@ interface I18nNamespaces {
 }
 
 declare module 'i18next' {
-  // interface CustomTypeOptions {
-  //   defaultNS: 'common'
-  //   resources: I18nNamespaces
-  // }
+  interface CustomTypeOptions {
+    defaultNS: 'common'
+    resources: I18nNamespaces
+  }
 }
 
 declare module '*.svg' {

@@ -6,6 +6,7 @@ import { NAV_HEIGHT } from '../../../common'
 import { useIsOwner } from '../hooks/useIsOwner'
 import { useTeams } from '../hooks/useTeams'
 import { ModalTeamSettings } from '../modals/ModalTeamSettings'
+import { useTranslation } from 'react-i18next'
 
 interface Props extends FowerHTMLProps<'div'> {
   showSettingIcon?: boolean
@@ -14,6 +15,7 @@ interface Props extends FowerHTMLProps<'div'> {
 export const CurrentTeam = ({ showSettingIcon = true, ...rest }: Props) => {
   const { activeTeam } = useTeams()
   const { isOwner, loading } = useIsOwner()
+  const { t } = useTranslation('common')
 
   if (loading) return null
 
@@ -47,7 +49,7 @@ export const CurrentTeam = ({ showSettingIcon = true, ...rest }: Props) => {
       </Box>
 
       {isOwner && showSettingIcon && (
-        <Tooltip content="Team settings">
+        <Tooltip content={t('team-settings')}>
           <Button
             size="md"
             colorScheme="gray500"

@@ -5,16 +5,30 @@ import { Session, SessionAccessType } from '@own-chat/api-sdk'
 import { HOST } from '../../../common'
 import { useUpdateSession } from '../hooks/useUpdateSession'
 import { useCopyToClipboard } from '../../../hooks'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   session: Session
 }
 
 export function ShareButton({ session }: Props) {
+  const { t } = useTranslation('common')
   const options = [
-    { label: SessionAccessType.Private, value: SessionAccessType.Private, desc: '仅仅自己可访问' },
-    { label: SessionAccessType.Member, value: SessionAccessType.Member, desc: '内部成员可以访问' },
-    { label: SessionAccessType.Public, value: SessionAccessType.Public, desc: '互联网所有人可见' },
+    {
+      label: SessionAccessType.Private,
+      value: SessionAccessType.Private,
+      desc: t('access-private-tips'),
+    },
+    {
+      label: SessionAccessType.Member,
+      value: SessionAccessType.Member,
+      desc: t('access-member-tips'),
+    },
+    {
+      label: SessionAccessType.Public,
+      value: SessionAccessType.Public,
+      desc: t('access-public-tips'),
+    },
   ]
 
   const { updateSession } = useUpdateSession()
@@ -25,14 +39,14 @@ export function ShareButton({ session }: Props) {
     <Popover placement="bottom-end">
       <PopoverTrigger>
         <Button size={28} colorScheme="gray400" variant="light">
-          Share
+          {t('share')}
         </Button>
       </PopoverTrigger>
       <PopoverContent onClick={(e) => e.stopPropagation()}>
         {({ close }) => (
           <Box column p4>
             <Box mb2 fontBold>
-              对话页面访问权限
+              {t('chat-page-visit-permission')}
             </Box>
             <RadioGroup
               options={options}
@@ -77,10 +91,10 @@ export function ShareButton({ session }: Props) {
                 onClick={() => {
                   close()
                   copy(link)
-                  toast.info('Copied to clipboard')
+                  toast.info(t('copied-tips'))
                 }}
               >
-                Copy link
+                {t('copy-link')}
               </Button>
             </Box>
           </Box>

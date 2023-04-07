@@ -5,8 +5,10 @@ import { Logo } from '../../../components'
 import { UserAvatarPopover } from '../../../components/UserAvatarPopover'
 import { TeamList } from './TeamList'
 import { ModalAddTeam } from '../modals/ModalAddTeam'
+import { useTranslation } from 'react-i18next'
 
 export const TeamBar = () => {
+  const { t } = useTranslation('common')
   return (
     <Box
       slate100
@@ -24,7 +26,7 @@ export const TeamBar = () => {
       <Box flex-1>
         <TeamList />
         <Box mt4 toCenter>
-          <Tooltip content="Create a new Team" placement="right-center">
+          <Tooltip content={t('create-team-tips')} placement="right-center">
             <Button
               colorScheme="gray500"
               variant="ghost"

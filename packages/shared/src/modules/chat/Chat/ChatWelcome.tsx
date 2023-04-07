@@ -2,26 +2,28 @@ import { Box } from '@fower/react'
 import { EasyModal } from '@own-chat/easy-modal'
 import { Button, InformationCircleSolid, Tooltip } from 'bone-ui'
 import { ModalTeamSettings } from '../modals/ModalTeamSettings'
+import { useTranslation } from 'react-i18next'
 
 const Guide = () => {
+  const { t } = useTranslation('common')
   return (
     <Box pt6>
       <Box text2XL fontBold pt4 mb4>
-        如何开始使用?
+        {t('get-started')}
       </Box>
 
       <Box leadingRelaxed py1>
         <Box textBase fontMedium toCenterY spaceX2 mb2>
-          创建团队，为团队设置 Provider, 然后就可以开始使用
+          {t('get-started-text-1')}
         </Box>
         <Box toCenterY gray600 textBase spaceX3>
           <Box toCenterY spaceX1>
-            <Box>您现在已经有团队了，马上为该团队配置 Provider </Box>
+            <Box>{t('get-started-text-2')}</Box>
             <Tooltip
               content={
                 <Box>
-                  <Box>Provider 可以是一个 openai API Key,</Box>
-                  <Box>或者是一个 Self-Hosted 的 ChatGPT 后端服务</Box>
+                  <Box>{t('get-started-text-3')}</Box>
+                  <Box>{t('get-started-text-4')}</Box>
                 </Box>
               }
             >
@@ -33,11 +35,12 @@ const Guide = () => {
             px2
             size={28}
             variant="light"
+            colorScheme="brand500"
             onClick={() => {
               EasyModal.show(ModalTeamSettings)
             }}
           >
-            配置 Provider
+            {t('configure-provider')}
           </Button>
         </Box>
       </Box>
@@ -91,7 +94,7 @@ const FAQ = () => {
         </Box>
       ),
     },
-    { name: '需要翻墙吗？', desc: '服务器部署在可调用OpenAI SDK的地区，所有客户端免翻墙' },
+    // { name: '需要翻墙吗？', desc: '服务器部署在可调用OpenAI SDK的地区，所有客户端免翻墙' },
   ]
 
   return (
@@ -130,7 +133,7 @@ export const ChatWelcome = () => {
         a ai assistant easily.
       </Box>
       <Guide />
-      <FAQ />
+      {/* <FAQ /> */}
     </Box>
   )
 }

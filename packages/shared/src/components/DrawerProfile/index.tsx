@@ -6,10 +6,13 @@ import { PersonalToken } from './PersonalToken'
 import { DeleteAccount } from './DeleteAccount'
 import { Theme } from './Theme'
 import { useUser } from '../../stores'
+import { Lang } from './Lang'
+import { useTranslation } from 'react-i18next'
 
 export const DrawerProfile = () => {
   const { register } = useModal()
   const { user } = useUser()
+  const { t } = useTranslation('common')
 
   if (!user) return null
 
@@ -19,10 +22,11 @@ export const DrawerProfile = () => {
       <DrawerContent w={['100%', 600]}>
         <Box p8>
           <Box text2XL fontBold mb6>
-            个人信息
+            {t('settings')}
           </Box>
           <BasicInfo />
           <PersonalToken />
+          <Lang />
           <Theme />
           <DeleteAccount />
         </Box>

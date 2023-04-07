@@ -5,6 +5,7 @@ const key = 'User'
 
 export function useUser() {
   const [user, setUser] = useLocalStorage<User>('User')
+
   return {
     user,
     setUser,

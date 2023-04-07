@@ -1,10 +1,10 @@
+import { Box } from '@fower/react'
 import { CHAT_WIDTH } from '../../../common'
 import { ChatList } from '../../../components/MessageList/MessageList'
 import { useMessages } from '../hooks/useMessages'
 import { useVisit } from '../hooks/useVisit'
 import { Anchor } from './Anchor'
 import { ChatWelcome } from './ChatWelcome'
-import { Box } from '@fower/react'
 
 export const ChatBody = () => {
   const { visit } = useVisit()

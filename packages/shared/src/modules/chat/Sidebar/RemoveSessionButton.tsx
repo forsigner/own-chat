@@ -1,16 +1,17 @@
 import { useRemoveSession } from '../hooks/useRemoveSession'
 import { useVisit } from '../hooks/useVisit'
 import { TrashOutline } from '@bone-ui/icons'
-import { Box } from '@fower/react'
 import { Session } from '@own-chat/api-sdk'
 import { Button, PopoverBody, PopoverTitle } from 'bone-ui'
 import { Popover, PopoverContent, PopoverTrigger } from 'bone-ui'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   session: Session
 }
 
 export function RemoveSessionButton({ session }: Props) {
+  const { t } = useTranslation('common')
   const { visit } = useVisit()
   const { removeSession } = useRemoveSession()
   const selected = visit.activeSessionId === session.id
@@ -33,10 +34,10 @@ export function RemoveSessionButton({ session }: Props) {
       <PopoverContent onClick={(e) => e.stopPropagation()}>
         {({ close }) => (
           <>
-            <PopoverTitle>确定删除该对话？</PopoverTitle>
+            <PopoverTitle>{t('delete-session-title')}</PopoverTitle>
             <PopoverBody spaceX3>
               <Button variant="light" size="sm" onClick={close} colorScheme="gray600">
-                取消
+                {t('cancel')}
               </Button>
               <Button
                 size="sm"
@@ -45,7 +46,7 @@ export function RemoveSessionButton({ session }: Props) {
                   await removeSession(session.id)
                 }}
               >
-                确定
+                {t('confirm')}
               </Button>
             </PopoverBody>
           </>

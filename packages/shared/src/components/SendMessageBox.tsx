@@ -4,6 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize'
 import { Button, PaperAirplaneSolid } from 'bone-ui'
 import { useState } from 'react'
 import { CHAT_WIDTH, KeyCode_Enter } from '../common'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   onSendMessage(value: string): Promise<any>
@@ -11,6 +12,7 @@ interface Props {
 
 export const SendMessageBox = ({ onSendMessage }: Props) => {
   const [value, setValue] = useState('')
+  const { t } = useTranslation()
 
   async function send() {
     if (!value) return
@@ -33,7 +35,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
       >
         <Box flex-1 minH={[56, 80]} toCenterY>
           <TextareaAutosize
-            placeholder="请输入..."
+            placeholder={t('send-message')}
             className={css(
               'm0 borderNone w-100p outlineNone px3 py3 flex placeholderGray400 bgWhite textBase gray300--dark bgTransparent',
             )}

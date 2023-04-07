@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { NAV_HEIGHT } from '../../../common'
 import { useSessions } from '../hooks/useSessions'
 import { ModalSessionList } from '../modals/ModalSessionList'
@@ -9,6 +10,7 @@ import { Button, ChevronDownOutline } from 'bone-ui'
 
 export const ChatHeader = () => {
   const { activeSession } = useSessions()
+  const { t } = useTranslation('common')
 
   return (
     <Box
@@ -23,7 +25,7 @@ export const ChatHeader = () => {
     >
       <Box toCenterY>
         <Box textLG fontBold>
-          {activeSession?.name || 'New chat'}
+          {activeSession?.name || t('new-chat')}
         </Box>
         <Button
           display={['flex', 'none']}

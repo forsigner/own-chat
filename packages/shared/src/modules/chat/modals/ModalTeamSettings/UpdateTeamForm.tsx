@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useTeams } from '../../hooks/useTeams'
 import { useUpdateTeamForm } from '../../hooks/useUpdateTeamForm'
 import { Title } from './Title'
@@ -7,6 +8,7 @@ import { Field, Form } from 'fomir'
 
 export const UpdateTeamForm = () => {
   const form = useUpdateTeamForm()
+  const { t } = useTranslation('common')
   const { activeTeam } = useTeams()
 
   return (
@@ -14,11 +16,11 @@ export const UpdateTeamForm = () => {
       form={form}
       suffix={
         <Box toLeft spaceX2>
-          <Button type="submit">Update</Button>
+          <Button type="submit">{t('update')}</Button>
         </Box>
       }
     >
-      <Title text="Team Name" subtitle="This is your team's visible name within OwnChat." mb4 />
+      <Title text={t('team-name')} subtitle={t('provider-subtitle')} mb4 />
       <Field
         component="Input"
         name="name"

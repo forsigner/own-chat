@@ -9,16 +9,19 @@ import {
 } from '@own-chat/shared'
 import { Box } from '@fower/react'
 import { Button, toast } from 'bone-ui'
+import { useTranslation } from 'react-i18next'
 
 export default function PageDownload() {
+  const { t } = useTranslation('common')
   function comingSoon() {
     toast.info('Coming soon...')
   }
+
   return (
     <Box column mb-80 maxW-960 mx-auto px5>
       <Box my-100>
         <Box textXL text3XL--md text4XL--lg gray400>
-          Download
+          {t('download')}
         </Box>
         <Box text2XL text5XL--md text6XL--lg fontBold>
           <Box fontNormal>Own Chat for</Box>

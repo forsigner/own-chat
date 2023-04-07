@@ -1,10 +1,12 @@
 import { useModal } from '@own-chat/easy-modal'
+import { useTranslation } from 'react-i18next'
 import { Button, PlusOutline } from 'bone-ui'
 import { useAddSession } from './hooks/useAddSession'
 
 export const AddSessionButton = () => {
   const { addSession } = useAddSession()
   const { hide } = useModal()
+  const { t } = useTranslation('common')
 
   return (
     <Button
@@ -20,7 +22,7 @@ export const AddSessionButton = () => {
         hide()
       }}
     >
-      新建聊天
+      {t('new-chat')}
     </Button>
   )
 }

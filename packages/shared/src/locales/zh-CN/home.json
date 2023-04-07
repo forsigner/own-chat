@@ -1,4 +1,9 @@
 {
   "login-with-github": "使用 GitHub 登录",
-  "login-with-google": "使用 Google 登录"
+  "login-with-google": "使用 Google 登录",
+  "slogan": {
+    "prefix": "Own a ChatGPT",
+    "postfix": "with collaboration"
+  },
+  "intro": "Own Chat 是一个帮助你创建自己的 ChatGPT工具，我们的使命是让每个人轻松拥有自己的 AI 助手。"
 }
