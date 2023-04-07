@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { Input, toast } from 'bone-ui'
+import { Button, Input, toast } from 'bone-ui'
 import { request } from '@boter/request'
 import { useLocalStorage } from 'stook-localstorage'
+import { Box } from '@fower/react'
 
 interface Props {
   onLoginSuccess(): void
@@ -30,16 +31,29 @@ export const Login = ({ onLoginSuccess }: Props) => {
   }
 
   return (
-    <Input
-      ring-0--focus
-      placeholder="Authorization code"
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      onKeyDown={async (e) => {
-        if (e.key === 'Enter') {
+    <Box p4>
+      <Box textXL mb3>
+        Please input your Authorization code
+      </Box>
+      <Input
+        placeholder="Authorization code"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onKeyDown={async (e) => {
+          if (e.key === 'Enter') {
+            await login()
+          }
+        }}
+      />
+      <Button
+        w-100p
+        mt4
+        onClick={async () => {
           await login()
-        }
-      }}
-    />
+        }}
+      >
+        Confirm
+      </Button>
+    </Box>
   )
 }
