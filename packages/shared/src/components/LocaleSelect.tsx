@@ -1,14 +1,12 @@
 import { Select } from 'bone-ui'
 import { TranslateOutline } from '@bone-ui/icons'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
 import { Box } from '@fower/react'
+import { useLang } from '../hooks/useLang'
 
 export const LocaleSelect = () => {
-  const router = useRouter()
   const { i18n } = useTranslation('common')
-  const [lang, setLang] = useState(i18n.language)
+  const { lang, setLang } = useLang()
 
   return (
     <Select
@@ -23,9 +21,9 @@ export const LocaleSelect = () => {
         )
       }}
       onChange={(v: string) => {
-        const { pathname, asPath, query } = router
-        router.push({ pathname, query }, asPath, { locale: v })
+        console.log('v--:', v)
         setLang(v)
+        i18n.changeLanguage(v)
       }}
       options={[
         { label: 'English', value: 'en' },

@@ -34,3 +34,6 @@ export const SIDEBAR_WIDTH = 260
 export const CHAT_WIDTH = 720
 
 export const THIRD_PARTY_LOGIN_TAG = 't'
+
+export const THEME_KEY = 'fower-mode'
+export const LANGUAGE_KEY = 'own-chat-language'

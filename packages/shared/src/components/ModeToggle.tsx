@@ -5,8 +5,6 @@ import { useMode } from '../hooks'
 export const ModeToggle = () => {
   const { mode, setMode } = useMode()
 
-  console.log('mode:', mode)
-
   function toggleMode() {
     if (mode === 'dark') {
       setMode('light')

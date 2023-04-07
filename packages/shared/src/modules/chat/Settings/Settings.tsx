@@ -17,7 +17,7 @@ export const Settings = () => {
   const form = useForm<Values>({
     layout: 'horizontal',
     watch: {
-      '*.value': values => {
+      '*.value': (values) => {
         console.log('values:', values)
         // TODO:
       },
@@ -107,7 +107,7 @@ export const Settings = () => {
               wrapper={false}
               options={[
                 { label: 'English', value: 'en' },
-                { label: '简体中文', value: 'zh_CN' },
+                { label: '简体中文', value: 'zh-CN' },
               ]}
               componentProps={{ width: 120 }}
             />

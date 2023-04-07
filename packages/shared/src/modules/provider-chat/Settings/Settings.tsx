@@ -232,7 +232,7 @@ export const Settings = () => {
               wrapper={false}
               options={[
                 { label: 'English', value: 'en' },
-                { label: '简体中文', value: 'zh_CN' },
+                { label: '简体中文', value: 'zh-CN' },
               ]}
               componentProps={{ width: 120 }}
             />
