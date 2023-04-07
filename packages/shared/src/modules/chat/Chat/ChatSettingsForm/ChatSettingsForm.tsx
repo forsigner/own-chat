@@ -27,7 +27,6 @@ export const ChatSettingsForm = ({ chatSettings }: Props) => {
     layout: 'horizontal',
     watch: {
       '*.value': (values: any) => {
-        console.log('values:', values)
         updateChatSettings(values)
       },
     },
@@ -76,7 +75,7 @@ export const ChatSettingsForm = ({ chatSettings }: Props) => {
             <Field
               component="CounterInput"
               name="followUpMessageLength"
-              value={chatSettings.followUpMessageLength || 8}
+              value={chatSettings.followUpMessageLength || 4}
               wrapper={false}
               componentProps={{
                 min: 1,

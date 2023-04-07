@@ -3,13 +3,10 @@ import { useLocalStorage, getLocalStorage } from 'stook-localstorage'
 const key = 'settings'
 
 interface Settings {
-  apiKey: string
-  lang: string
-  maxToken: string
+  maxToken: number
   model: string
   showTokenCount: string
-  theme: string
-  historyMsgLength: number
+  followUpMessageLength: number
   temperature: number
   top_p: number
   frequencyPenalty: number
@@ -18,13 +15,10 @@ interface Settings {
 
 export function useSettings() {
   const [settings, setSettings] = useLocalStorage<Settings>(key, {
-    apiKey: '',
-    lang: '',
-    maxToken: '',
+    maxToken: 2000,
     model: '',
     showTokenCount: '',
-    theme: '',
-    historyMsgLength: 3,
+    followUpMessageLength: 3,
     temperature: 1,
     top_p: 1,
     frequencyPenalty: 0,

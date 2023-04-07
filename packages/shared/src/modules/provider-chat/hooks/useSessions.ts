@@ -23,7 +23,7 @@ export const useSessions = () => {
       sessions.unshift({
         id: nanoid(),
         name: 'New Chat',
-        date: '2023/3/27 22:31:29',
+        date: new Date().toLocaleDateString(),
         count: 10,
         selected: true,
       })

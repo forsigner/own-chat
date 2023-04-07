@@ -20,9 +20,16 @@ export function useSendMessage() {
       role: ChatCompletionResponseMessageRoleEnum.User,
     }
 
-    const { maxToken, historyMsgLength, temperature, top_p, frequencyPenalty, presencePenalty } =
-      settings
-    const historyMsgQueue = new HistoryMsgQueue(historyMsgLength, messages, newMsg)
+    const {
+      maxToken,
+      followUpMessageLength,
+      temperature,
+      top_p,
+      frequencyPenalty,
+      presencePenalty,
+    } = settings
+
+    const historyMsgQueue = new HistoryMsgQueue(followUpMessageLength, messages, newMsg)
 
     try {
       await fetchChatStream({
