@@ -57,15 +57,6 @@ export function useSendMessage() {
     const followUpMessageLength = chatSettings.followUpMessageLength!
     const len = requestMessages.length
 
-    console.log(
-      'len:',
-      len,
-      'msg.len:',
-      messages.length,
-      'followUpMessageLength:',
-      followUpMessageLength,
-    )
-
     if (requestMessages.length <= followUpMessageLength) {
       return requestMessages
     }

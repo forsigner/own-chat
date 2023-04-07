@@ -40,9 +40,15 @@ export const config = {
 async function createStream(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const urlApiKey = searchParams.get('apiKey')
+  const urlAuthorizationCode = searchParams.get('authorizationCode')
 
   // api from url first
   const apiKey = urlApiKey || process.env.OPENAI_API_KEY
+  const authorizationCode = process.env.AUTHORIZATION_CODE
+
+  if (!urlApiKey && authorizationCode !== urlAuthorizationCode) {
+    throw 'Authorization Code for this provider is invalid'
+  }
 
   const encoder = new TextEncoder()
   const decoder = new TextDecoder()
@@ -89,7 +95,7 @@ async function createStream(req: NextRequest) {
           }
           try {
             const json = JSON.parse(data)
-            console.log('======:', json)
+            // console.log('======:', json)
 
             const text = json.choices[0].delta.content
             const queue = encoder.encode(text)
