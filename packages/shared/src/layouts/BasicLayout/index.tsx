@@ -6,13 +6,17 @@ import { Nav } from './Nav'
 import { LocaleSelect } from '../../components/LocaleSelect'
 import { Footer } from './Footer'
 
-export const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
+interface Props {
+  showNav?: boolean
+}
+
+export const BasicLayout: FC<PropsWithChildren<Props>> = ({ children, showNav = true }) => {
   return (
     <Box black bgWhite bgGray900--dark>
       <Box container mx-auto column>
         <Box className="nav" toBetween py3 px={[18, 0]}>
           <Logo to="/" />
-          <Nav />
+          <Box>{showNav && <Nav />}</Box>
           <Box toCenterY spaceX2>
             <LocaleSelect></LocaleSelect>
             <ModeToggle></ModeToggle>

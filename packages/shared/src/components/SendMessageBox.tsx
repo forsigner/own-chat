@@ -12,7 +12,7 @@ interface Props {
 
 export const SendMessageBox = ({ onSendMessage }: Props) => {
   const [value, setValue] = useState('')
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
 
   async function send() {
     if (!value) return
@@ -37,7 +37,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
           <TextareaAutosize
             placeholder={t('send-message')}
             className={css(
-              'm0 borderNone w-100p outlineNone px3 py3 flex placeholderGray400 bgWhite textBase gray300--dark bgTransparent',
+              'm0 borderNone w-100p outlineNone px3 py3 flex placeholderGray400 bgWhite textBase gray300--dark bgTransparent bgTransparent--dark',
             )}
             style={{ resize: 'none' }}
             value={value}

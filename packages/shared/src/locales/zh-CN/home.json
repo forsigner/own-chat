@@ -5,5 +5,6 @@
     "prefix": "Own a ChatGPT",
     "postfix": "with collaboration"
   },
-  "intro": "Own Chat 是一个帮助你创建自己的 ChatGPT工具，我们的使命是让每个人轻松拥有自己的 AI 助手。"
+  "intro": "Own Chat 是一个帮助你创建自己的 ChatGPT工具，我们的使命是让每个人轻松拥有自己的 AI 助手。",
+  "desktop-login-tips": "登录到 https://ownchat.me，在个人设置获取一个 token，使用 token 登录 App"
 }

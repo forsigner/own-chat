@@ -1,5 +1,6 @@
 import { ChatCompletionResponseMessage } from 'openai'
 import { TIME_OUT_MS } from './chatService'
+import { isDesktop, isProd } from './constants'
 
 export interface Result {
   code: string | number
@@ -164,8 +165,15 @@ export async function fetchChatCompletions(params: any): Promise<any> {
 }
 
 export async function updateStreamingStatus(key: string, ended: boolean) {
+  let prefix = ''
+  if (!isProd && isDesktop) {
+    prefix = 'http://localhost:4000'
+  }
+
+  const url = `${prefix}/api/update-streaming-status`
+
   try {
-    return fetch('/api/update-streaming-status', {
+    return fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

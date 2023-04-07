@@ -1,7 +1,7 @@
 import { Message, Mutator, ProviderType } from '@own-chat/api-sdk'
 import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } from 'openai'
 import { ChatGPTUnofficialProxyAPI } from '../../../chatgpt-api'
-import { getStreamingKey } from '../../../common'
+import { getStreamingKey, isProd } from '../../../common'
 import { fetchChatStream, updateStreamingStatus } from '../../../common/request'
 import { useToken, useUser } from '../../../stores'
 import { useAddMessage } from './useAddMessage'
@@ -80,8 +80,8 @@ export function useSendMessage() {
     console.log('requestMessages:', requestMessages)
 
     if (process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP') {
-      host = 'https://www.ownchat.me'
-      // host = !isProd ? 'http://localhost:4000' : 'https://www.ownchat.me'
+      // host = 'https://www.ownchat.me'
+      host = !isProd ? 'http://localhost:4000' : 'https://www.ownchat.me'
     }
 
     const key = getStreamingKey(activeProvider!)
