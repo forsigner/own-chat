@@ -164,7 +164,6 @@ export type CreateSessionInput = {
 
 /** 创建 */
 export type CreateSettingInput = {
-  activeProviderId?: InputMaybe<Scalars['Int']>;
   activeSessionId?: InputMaybe<Scalars['Int']>;
   activeTeamId?: InputMaybe<Scalars['Int']>;
   /** 用户ID */
@@ -1166,6 +1165,7 @@ export type Provider = {
   /** self host server endpoint */
   endpoint?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
+  isPlus: Scalars['Boolean'];
   /** teamId */
   teamId: Scalars['Int'];
   type: ProviderType;
@@ -1195,6 +1195,7 @@ export type ProvidersConnection = {
 
 export type Query = {
   __typename?: 'Query';
+  activeProvider: Provider;
   activeTeam: Team;
   /** Chat GPT settings */
   chatSettings: ChatSettings;
@@ -1726,7 +1727,6 @@ export type SessionsConnection = {
 
 export type Setting = {
   __typename?: 'Setting';
-  activeProviderId?: Maybe<Scalars['Int']>;
   activeSessionId?: Maybe<Scalars['Int']>;
   activeTeamId?: Maybe<Scalars['Int']>;
   followUpMessageLength?: Maybe<Scalars['Float']>;
@@ -1754,6 +1754,7 @@ export type SettingsConnection = {
 
 export type Team = {
   __typename?: 'Team';
+  activeProviderId: Scalars['Int'];
   createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
   /** Member */
@@ -2088,6 +2089,7 @@ export type UpdatePlanWhereInput = {
 /** 更新data */
 export type UpdateProviderDataInput = {
   accessToken?: InputMaybe<Scalars['String']>;
+  active?: InputMaybe<Scalars['Boolean']>;
   apiKey?: InputMaybe<Scalars['String']>;
   /** self host auth code */
   authorizationCode?: InputMaybe<Scalars['String']>;
@@ -2156,7 +2158,6 @@ export type UpdateSessionWhereInput = {
 
 /** 更新data */
 export type UpdateSettingDataInput = {
-  activeProviderId?: InputMaybe<Scalars['Int']>;
   activeSessionId?: InputMaybe<Scalars['Int']>;
   activeTeamId?: InputMaybe<Scalars['Int']>;
 };
@@ -2179,8 +2180,9 @@ export type UpdateSettingWhereInput = {
 
 /** 更新data */
 export type UpdateTeamDataInput = {
+  activeProviderId?: InputMaybe<Scalars['Int']>;
   /** 该 Team Name */
-  name: Scalars['String'];
+  name?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
 };
 
@@ -2255,7 +2257,6 @@ export type UpdateUserWhereInput = {
 };
 
 export type UpdateVisitInput = {
-  activeProviderId?: InputMaybe<Scalars['Int']>;
   activeSessionId?: InputMaybe<Scalars['Int']>;
   activeTeamId?: InputMaybe<Scalars['Int']>;
 };
@@ -2327,7 +2328,6 @@ export type UsersConnection = {
 
 export type Visit = {
   __typename?: 'Visit';
-  activeProviderId?: Maybe<Scalars['Int']>;
   activeSessionId?: Maybe<Scalars['Int']>;
   activeTeamId?: Maybe<Scalars['Int']>;
 };

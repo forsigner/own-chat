@@ -72,7 +72,6 @@ query members($orderBy: String, $skip: Int, $take: Int, $where: MemberWhereInput
 export const VISIT = gql`
 query visit{
     visit{
-        activeProviderId
         activeSessionId
         activeTeamId
     }
@@ -92,6 +91,7 @@ query chatSettings{
 export const TEAM = gql`
 query team($id: Int!){
     team(id: $id){
+        activeProviderId
         createdAt
         id
         members{
@@ -117,6 +117,7 @@ query team($id: Int!){
             authorizationCode
             endpoint
             id
+            isPlus
             teamId
             type
         }
@@ -143,6 +144,7 @@ query team($id: Int!){
 export const ACTIVE_TEAM = gql`
 query activeTeam{
     activeTeam{
+        activeProviderId
         createdAt
         id
         members{
@@ -168,6 +170,7 @@ query activeTeam{
             authorizationCode
             endpoint
             id
+            isPlus
             teamId
             type
         }
@@ -194,6 +197,7 @@ query activeTeam{
 export const MY_TEAMS = gql`
 query myTeams{
     myTeams{
+        activeProviderId
         createdAt
         id
         members{
@@ -219,6 +223,7 @@ query myTeams{
             authorizationCode
             endpoint
             id
+            isPlus
             teamId
             type
         }
@@ -306,6 +311,21 @@ query providers($orderBy: String, $skip: Int, $take: Int, $where: ProviderWhereI
         authorizationCode
         endpoint
         id
+        isPlus
+        teamId
+        type
+    }
+}
+`;
+export const ACTIVE_PROVIDER = gql`
+query activeProvider{
+    activeProvider{
+        accessToken
+        apiKey
+        authorizationCode
+        endpoint
+        id
+        isPlus
         teamId
         type
     }
@@ -480,6 +500,7 @@ mutation updateChatSettings($input: UpdateChatSettingsInput!){
 export const UPDATE_TEAM = gql`
 mutation updateTeam($input: UpdateTeamInput!){
     updateTeam(input: $input){
+        activeProviderId
         createdAt
         id
         members{
@@ -505,6 +526,7 @@ mutation updateTeam($input: UpdateTeamInput!){
             authorizationCode
             endpoint
             id
+            isPlus
             teamId
             type
         }
@@ -531,6 +553,7 @@ mutation updateTeam($input: UpdateTeamInput!){
 export const ADD_TEAM = gql`
 mutation addTeam($input: AddTeamInput!){
     addTeam(input: $input){
+        activeProviderId
         createdAt
         id
         members{
@@ -556,6 +579,7 @@ mutation addTeam($input: AddTeamInput!){
             authorizationCode
             endpoint
             id
+            isPlus
             teamId
             type
         }
@@ -636,6 +660,7 @@ mutation updateProvider($input: UpdateProviderInput!){
         authorizationCode
         endpoint
         id
+        isPlus
         teamId
         type
     }

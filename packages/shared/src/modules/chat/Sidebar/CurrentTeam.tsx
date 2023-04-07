@@ -36,7 +36,7 @@ export const CurrentTeam = ({ showSettingIcon = true, ...rest }: Props) => {
         </Box>
         <Box toCenterY spaceX2>
           <Box textXS gray400>
-            3 members
+            {activeTeam?.members.length} members
           </Box>
           {isOwner && (
             <Tag size={20} colorScheme="brand500" variant="light">

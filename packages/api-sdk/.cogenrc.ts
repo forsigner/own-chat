@@ -58,6 +58,7 @@ const gqlConfig: ConfigItem[] = [
 
   { name: 'providers', actions: ['useQuery', 'refetch', 'mutator'] },
   { name: 'updateProvider', actions: ['query'] },
+  { name: 'activeProvider', actions: ['query', 'useQuery', 'refetch'] },
 ]
 
 const dirName = 'src'

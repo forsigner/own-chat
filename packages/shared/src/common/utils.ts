@@ -3,7 +3,7 @@ import reactFastCompare from 'react-fast-compare'
 import { FieldNode, Node } from 'fomir'
 import { toast } from 'bone-ui'
 import { ONE_DAY, ONE_HOUR, ONE_MINUTE, ONE_SECOND } from './constants'
-import { ProviderType, Team } from '@own-chat/api-sdk'
+import { Provider, ProviderType, Team } from '@own-chat/api-sdk'
 
 export const isServer = typeof window === 'undefined'
 
@@ -114,17 +114,17 @@ export function formatFieldNodes(nodes: (FieldNode & { children?: FieldNode[] })
   })
 }
 
-export function getStreamingKey(team: Team) {
+export function getStreamingKey(provider: Provider) {
   let id: string = ''
-  if (team.providerType === ProviderType.ApiKey) {
-    id = team.apiKey!
+  if (provider.type === ProviderType.ApiKey) {
+    id = provider.apiKey!
   }
 
-  if (team.providerType === ProviderType.SelfHosted) {
-    id = team.endpoint!
+  if (provider.type === ProviderType.SelfHosted) {
+    id = provider.endpoint!
   }
 
-  if (team.providerType === ProviderType.Official) {
+  if (provider.type === ProviderType.Official) {
     // TODO:
   }
 

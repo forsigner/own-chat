@@ -36,7 +36,7 @@ export const ChatHeader = () => {
         />
       </Box>
       <Box toCenterY columnGap-12 pr2>
-        <ChatSettings session={activeSession!} />
+        <ChatSettings />
         {activeSession && <ShareButton session={activeSession!} />}
       </Box>
     </Box>

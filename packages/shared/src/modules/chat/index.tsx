@@ -6,7 +6,7 @@ import { useVisit } from './hooks/useVisit'
 import { Box } from '@fower/react'
 
 export function ModuleChat() {
-  const { loading } = useVisit()
+  const { loading, visit } = useVisit()
   const { loading: loadingChatSettings } = useChatSettings()
   if (loading || loadingChatSettings) return null
 

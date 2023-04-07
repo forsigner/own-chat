@@ -231,9 +231,6 @@ input CreateSessionInput {
 """创建"""
 input CreateSettingInput {
   """"""
-  activeProviderId: Int
-
-  """"""
   activeSessionId: Int
 
   """"""
@@ -954,6 +951,9 @@ type Provider {
   """"""
   id: Int!
 
+  """"""
+  isPlus: Boolean!
+
   """teamId"""
   teamId: Int!
 
@@ -983,6 +983,9 @@ type ProvidersConnection {
 }
 
 type Query {
+  """"""
+  activeProvider: Provider!
+
   """"""
   activeTeam: Team!
 
@@ -1635,9 +1638,6 @@ type SessionsConnection {
 """"""
 type Setting {
   """"""
-  activeProviderId: Int
-
-  """"""
   activeSessionId: Int
 
   """"""
@@ -1677,6 +1677,8 @@ type SettingsConnection {
 
 """"""
 type Team {
+  """"""
+  activeProviderId: Int!
   createdAt: DateTime
 
   """"""
@@ -2095,6 +2097,9 @@ input UpdateProviderDataInput {
   accessToken: String
 
   """"""
+  active: Boolean
+
+  """"""
   apiKey: String
 
   """self host auth code"""
@@ -2177,9 +2182,6 @@ input UpdateSessionWhereInput {
 """更新data"""
 input UpdateSettingDataInput {
   """"""
-  activeProviderId: Int
-
-  """"""
   activeSessionId: Int
 
   """"""
@@ -2206,8 +2208,11 @@ input UpdateSettingWhereInput {
 
 """更新data"""
 input UpdateTeamDataInput {
+  """"""
+  activeProviderId: Int
+
   """该 Team Name"""
-  name: String!
+  name: String
 
   """"""
   slug: String
@@ -2297,9 +2302,6 @@ input UpdateUserWhereInput {
 """"""
 input UpdateVisitInput {
   """"""
-  activeProviderId: Int
-
-  """"""
   activeSessionId: Int
 
   """"""
@@ -2387,9 +2389,6 @@ type UsersConnection {
 
 """"""
 type Visit {
-  """"""
-  activeProviderId: Int
-
   """"""
   activeSessionId: Int
 

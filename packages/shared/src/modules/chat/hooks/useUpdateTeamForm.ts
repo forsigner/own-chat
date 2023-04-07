@@ -5,11 +5,6 @@ import { useVisit } from './useVisit'
 
 interface Values {
   name: string
-  providerType: ProviderType
-  accessToken?: string
-  apiKey?: string
-  authorizationCode?: string
-  endpoint?: string
 }
 
 export function useUpdateTeamForm() {

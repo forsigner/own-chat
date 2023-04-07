@@ -15,7 +15,7 @@ export function useSendMessage() {
   const { user } = useUser()
   const { visit } = useVisit()
   const { addMessage } = useAddMessage()
-  const { activeTeam } = useTeams()
+  const { activeProvider } = useTeams()
   const { messages = [] } = useMessages()
   const { chatSettings } = useChatSettings()
 
@@ -84,12 +84,12 @@ export function useSendMessage() {
       // host = !isProd ? 'http://localhost:4000' : 'https://www.ownchat.me'
     }
 
-    const key = getStreamingKey(activeTeam!)
+    const key = getStreamingKey(activeProvider!)
 
-    if (activeTeam?.providerType === ProviderType.AccessToken) {
+    if (activeProvider?.type === ProviderType.AccessToken) {
       const api = new ChatGPTUnofficialProxyAPI({
         apiReverseProxyUrl: '/api/chat-by-access-token',
-        accessToken: activeTeam.accessToken!,
+        accessToken: activeProvider.accessToken!,
         debug: false,
       })
 

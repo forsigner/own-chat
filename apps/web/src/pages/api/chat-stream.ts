@@ -2,7 +2,7 @@ import httpProxyMiddleware from 'next-http-proxy-middleware'
 import { withIronSessionApiRoute } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
 import { graphqlClient } from '@common/query'
-import { ACTIVE_TEAM, Team, ProviderType } from '@own-chat/api-sdk'
+import { ProviderType, ACTIVE_PROVIDER, Provider } from '@own-chat/api-sdk'
 import { getStreamingKey, isProd, sleep } from '@own-chat/shared'
 import { cors, redis, runMiddleware } from '@common/utils'
 
@@ -29,18 +29,18 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
   const token = getToken()
 
   const data: any = await graphqlClient.query(
-    ACTIVE_TEAM,
+    ACTIVE_PROVIDER,
     {},
     { headers: { authorization: `bearer ${token}` } },
   )
 
-  const team: Team = data.activeTeam
+  const provider: Provider = data.activeProvider
 
-  let endpoint: string = team.endpoint || ''
+  let endpoint: string = provider.endpoint || ''
   let replaceStr = '/api/chat-stream'
 
   if (isProd) {
-    const key = getStreamingKey(team)
+    const key = getStreamingKey(provider)
 
     while (await redis.get(key)) {
       await sleep(100)
@@ -49,10 +49,10 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
     await redis.set(key, 1, 'EX', 60)
   }
 
-  if (team.providerType === ProviderType.ApiKey) {
+  if (provider.type === ProviderType.ApiKey) {
     // endpoint = 'http://localhost:4001'
     endpoint = 'https://own-chat-official-provider.vercel.app'
-    replaceStr = `${replaceStr}?apiKey=${team.apiKey}`
+    replaceStr = `${replaceStr}?apiKey=${provider.apiKey}`
   }
 
   return httpProxyMiddleware(req, res, {

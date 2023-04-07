@@ -35,7 +35,7 @@ export const ModalTeamSettings = () => {
   return (
     <Modal {...register('bone-ui')}>
       <ModalOverlay />
-      <ModalContent minW-960--i h-80vh>
+      <ModalContent minW-960--i minH-90vh maxH-90vh>
         <ModalCloseButton />
         <ModalBody>
           <Box toLeft columnGap-40>

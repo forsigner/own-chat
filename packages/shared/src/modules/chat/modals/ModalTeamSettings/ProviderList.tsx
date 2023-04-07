@@ -1,16 +1,20 @@
 import { Box } from '@fower/react'
 import { ProviderType } from '@own-chat/api-sdk'
-import { Button, Dot, Tag } from 'bone-ui'
+import { Button, CheckOutline, Tag } from 'bone-ui'
 import { useState } from 'react'
-import { useProviders } from '../../hooks/useProviders'
 import { Title } from './Title'
-import { useVisit } from '../../hooks/useVisit'
+import { UpdateProviderForm } from './UpdateProviderForm'
+import { useTeams } from '../../hooks/useTeams'
+import { useUpdateTeam } from '../../hooks/useUpdateTeam'
 
 export const ProviderList = () => {
-  const { visit } = useVisit()
-  const { loading, providers } = useProviders()
-  const [providerId, setProviderId] = useState<Number>(visit.activeProviderId!)
+  const { loading, activeTeam } = useTeams()
+  const { updateTeam } = useUpdateTeam()
+  const [providerId, setProviderId] = useState<Number>(activeTeam.activeProviderId)
+
   if (loading) return null
+
+  const { providers } = activeTeam
 
   const maps = {
     [ProviderType.ApiKey]: {
@@ -85,6 +89,8 @@ export const ProviderList = () => {
           const checked = item.id === providerId
           const info = maps[item.type]
 
+          if (item.type === ProviderType.Official) return null
+
           return (
             <Box
               key={item.id}
@@ -92,17 +98,26 @@ export const ProviderList = () => {
               py3
               toCenterY
               flex-1
-              cursorPointer
               W={['100p', '100p', 600]}
               border
               transitionAll
               borderColor={checked ? 'brand500' : 'gray200'}
               rounded-8
-              onClick={() => {
-                setProviderId(item.id)
-              }}
             >
-              <Dot bgBrand500={checked} bgGray300={!checked} square6 />
+              <Box
+                roundedFull
+                bgBrand500={checked}
+                bgGray300={!checked}
+                square6
+                toCenter
+                cursorPointer
+                onClick={async () => {
+                  setProviderId(item.id)
+                  await updateTeam({ activeProviderId: item.id })
+                }}
+              >
+                <CheckOutline white size={18} />
+              </Box>
 
               <Box ml-16 column rowGap-4 flex-1>
                 <Box toBetween toCenterY>
@@ -114,6 +129,9 @@ export const ProviderList = () => {
                 <Box gray600>{info.desc}</Box>
                 <Box gray400 textXS>
                   {info.tips}
+                </Box>
+                <Box mt3>
+                  <UpdateProviderForm provider={item} />
                 </Box>
               </Box>
             </Box>

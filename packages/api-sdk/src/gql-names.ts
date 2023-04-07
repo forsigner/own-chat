@@ -89,6 +89,7 @@ export enum Names {
   updateUser = "updateUser",
   updateVisit = "updateVisit",
   updateWallet = "updateWallet",
+  activeProvider = "activeProvider",
   activeTeam = "activeTeam",
   chatSettings = "chatSettings",
   checkPersonalToken = "checkPersonalToken",
