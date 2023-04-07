@@ -601,6 +601,7 @@ export type Mutation = {
   updateToken: Token;
   /** 更新单个 */
   updateUser: User;
+  updateVisit: Scalars['Boolean'];
   /** 更新单个 */
   updateWallet: Wallet;
 };
@@ -1046,6 +1047,11 @@ export type MutationUpdateUserArgs = {
 };
 
 
+export type MutationUpdateVisitArgs = {
+  input: UpdateVisitInput;
+};
+
+
 export type MutationUpdateWalletArgs = {
   input: UpdateWalletInput;
 };
@@ -1282,6 +1288,8 @@ export type Query = {
   users: Array<User>;
   /** 获取分页列表 */
   usersConnection: UsersConnection;
+  /** 访问状态持久话数据 */
+  visit: Visit;
   /** 获取单个 */
   wallet: Wallet;
   /** 获取列表 */
@@ -2246,6 +2254,12 @@ export type UpdateUserWhereInput = {
   id?: InputMaybe<Scalars['Int']>;
 };
 
+export type UpdateVisitInput = {
+  activeProviderId?: InputMaybe<Scalars['Int']>;
+  activeSessionId?: InputMaybe<Scalars['Int']>;
+  activeTeamId?: InputMaybe<Scalars['Int']>;
+};
+
 /** 更新data */
 export type UpdateWalletDataInput = {
   balance: Scalars['Float'];
@@ -2309,6 +2323,13 @@ export type UsersConnection = {
   hasNextPage: Scalars['Boolean'];
   items: Array<User>;
   totalCount: Scalars['Int'];
+};
+
+export type Visit = {
+  __typename?: 'Visit';
+  activeProviderId?: Maybe<Scalars['Int']>;
+  activeSessionId?: Maybe<Scalars['Int']>;
+  activeTeamId?: Maybe<Scalars['Int']>;
 };
 
 export type Wallet = {

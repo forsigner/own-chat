@@ -69,18 +69,12 @@ query members($orderBy: String, $skip: Int, $take: Int, $where: MemberWhereInput
     }
 }
 `;
-export const SETTING = gql`
-query setting($id: Int, $userId: Int){
-    setting(id: $id, userId: $userId){
+export const VISIT = gql`
+query visit{
+    visit{
         activeProviderId
         activeSessionId
         activeTeamId
-        followUpMessageLength
-        id
-        maxToken
-        model
-        showTokenCount
-        userId
     }
 }
 `;
@@ -473,19 +467,9 @@ mutation exitMember($input: ExitMemberInput!){
     exitMember(input: $input)
 }
 `;
-export const UPDATE_SETTING = gql`
-mutation updateSetting($input: UpdateSettingInput!){
-    updateSetting(input: $input){
-        activeProviderId
-        activeSessionId
-        activeTeamId
-        followUpMessageLength
-        id
-        maxToken
-        model
-        showTokenCount
-        userId
-    }
+export const UPDATE_VISIT = gql`
+mutation updateVisit($input: UpdateVisitInput!){
+    updateVisit(input: $input)
 }
 `;
 export const UPDATE_CHAT_SETTINGS = gql`

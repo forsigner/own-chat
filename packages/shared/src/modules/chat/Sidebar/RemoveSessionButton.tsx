@@ -1,19 +1,19 @@
-import { Box } from '@fower/react'
+import { useRemoveSession } from '../hooks/useRemoveSession'
+import { useVisit } from '../hooks/useVisit'
 import { TrashOutline } from '@bone-ui/icons'
+import { Box } from '@fower/react'
+import { Session } from '@own-chat/api-sdk'
 import { Button, PopoverBody, PopoverTitle } from 'bone-ui'
 import { Popover, PopoverContent, PopoverTrigger } from 'bone-ui'
-import { Session } from '@own-chat/api-sdk'
-import { useSetting } from '../hooks/useSetting'
-import { useRemoveSession } from '../hooks/useRemoveSession'
 
 interface Props {
   session: Session
 }
 
 export function RemoveSessionButton({ session }: Props) {
-  const { setting } = useSetting()
+  const { visit } = useVisit()
   const { removeSession } = useRemoveSession()
-  const selected = setting.activeSessionId === session.id
+  const selected = visit.activeSessionId === session.id
 
   return (
     <Popover trigger="manual">

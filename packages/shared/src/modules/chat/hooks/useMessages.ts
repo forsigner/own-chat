@@ -1,15 +1,15 @@
-import { useSetting } from './useSetting'
+import { useVisit } from './useVisit'
 import { Hooks, MESSAGES, Message } from '@own-chat/api-sdk'
 import { getState } from 'stook'
 
 export function useMessages() {
-  const { setting } = useSetting()
+  const { visit } = useVisit()
 
   const { data: messages = [], ...rest } = Hooks.useMessages(() => {
-    if (!setting.activeSessionId) throw new Error('')
+    if (!visit.activeSessionId) throw new Error('')
     return {
       where: {
-        sessionId: setting.activeSessionId,
+        sessionId: visit.activeSessionId,
       },
     }
   })

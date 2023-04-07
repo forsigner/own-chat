@@ -1,14 +1,14 @@
-import { apiService, Refetcher } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
-import { useSetting } from './useSetting'
+import { useVisit } from './useVisit'
+import { apiService, Refetcher } from '@own-chat/api-sdk'
 
 export function useAddSession() {
   const { user } = useUser()
-  const { setting } = useSetting()
+  const { visit } = useVisit()
 
   async function addSession() {
     const session = await apiService.addSession({
-      teamId: setting.activeTeamId!,
+      teamId: visit.activeTeamId!,
       name: '',
     })
 
@@ -16,10 +16,10 @@ export function useAddSession() {
       Refetcher.refetchSessions({
         where: {
           userId: user.id,
-          teamId: setting.activeTeamId,
+          teamId: visit.activeTeamId,
         },
       }),
-      Refetcher.refetchSetting({ id: setting.id }),
+      Refetcher.refetchVisit(),
     ])
 
     Refetcher.refetchMessages({

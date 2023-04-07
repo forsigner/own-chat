@@ -1,14 +1,14 @@
-import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { apiService, Refetcher } from '@own-chat/api-sdk'
-import { getSetting, useSetting } from './useSetting'
+import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { useUser } from '../../../stores'
 import { useAddSession } from './useAddSession'
 import { useSessions } from './useSessions'
 import { useUpdateSession } from './useUpdateSession'
+import { getVisit, useVisit } from './useVisit'
 
 export function useAddMessage() {
   const { user } = useUser()
-  const { setting } = useSetting()
+  const { visit } = useVisit()
   const { addSession } = useAddSession()
   const { activeSession } = useSessions()
   const { updateSession } = useUpdateSession()
@@ -19,9 +19,9 @@ export function useAddMessage() {
     shouldCheckAddSession = false,
   ) {
     if (shouldCheckAddSession) {
-      if (!setting.activeSessionId) {
+      if (!visit.activeSessionId) {
         await addSession()
-        await Refetcher.refetchSetting({ id: setting.id })
+        await Refetcher.refetchVisit()
       }
     }
 
@@ -32,7 +32,7 @@ export function useAddMessage() {
       })
     }
 
-    const sessionId = getSetting().activeSessionId!
+    const sessionId = getVisit().activeSessionId!
 
     await apiService.addMessage({
       userId: user.id,

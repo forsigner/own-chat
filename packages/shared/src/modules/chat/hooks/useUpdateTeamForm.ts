@@ -1,8 +1,7 @@
-import { useSetting } from './useSetting'
 import { apiService, Team, ProviderType, Refetcher } from '@own-chat/api-sdk'
-import { useModal } from '@own-chat/easy-modal'
 import { toast } from 'bone-ui'
-import { Node, useForm } from 'fomir'
+import { useForm } from 'fomir'
+import { useVisit } from './useVisit'
 
 interface Values {
   name: string
@@ -14,8 +13,7 @@ interface Values {
 }
 
 export function useUpdateTeamForm() {
-  const { setting } = useSetting()
-  const { hide } = useModal()
+  const { visit } = useVisit()
 
   const form = useForm<Values>({
     async onSubmit(values) {
@@ -23,7 +21,7 @@ export function useUpdateTeamForm() {
 
       try {
         await apiService.updateTeam({
-          where: { id: setting.activeTeamId },
+          where: { id: visit.activeTeamId },
           data: values,
         })
 

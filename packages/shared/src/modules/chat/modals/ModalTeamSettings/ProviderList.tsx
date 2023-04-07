@@ -3,13 +3,13 @@ import { ProviderType } from '@own-chat/api-sdk'
 import { Button, Dot, Tag } from 'bone-ui'
 import { useState } from 'react'
 import { useProviders } from '../../hooks/useProviders'
-import { useSetting } from '../../hooks/useSetting'
 import { Title } from './Title'
+import { useVisit } from '../../hooks/useVisit'
 
 export const ProviderList = () => {
-  const { setting } = useSetting()
+  const { visit } = useVisit()
   const { loading, providers } = useProviders()
-  const [providerId, setProviderId] = useState<Number>(setting.activeProviderId!)
+  const [providerId, setProviderId] = useState<Number>(visit.activeProviderId!)
   if (loading) return null
 
   const maps = {

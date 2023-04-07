@@ -798,6 +798,9 @@ type Mutation {
   """更新单个"""
   updateUser(input: UpdateUserInput!): User!
 
+  """"""
+  updateVisit(input: UpdateVisitInput!): Boolean!
+
   """更新单个"""
   updateWallet(input: UpdateWalletInput!): Wallet!
 }
@@ -1464,6 +1467,9 @@ type Query {
     """筛选条件"""
     where: UserWhereInput
   ): UsersConnection!
+
+  """访问状态持久话数据"""
+  visit: Visit!
 
   """获取单个"""
   wallet(
@@ -2288,6 +2294,18 @@ input UpdateUserWhereInput {
   id: Int
 }
 
+""""""
+input UpdateVisitInput {
+  """"""
+  activeProviderId: Int
+
+  """"""
+  activeSessionId: Int
+
+  """"""
+  activeTeamId: Int
+}
+
 """更新data"""
 input UpdateWalletDataInput {
   """"""
@@ -2365,6 +2383,18 @@ type UsersConnection {
   hasNextPage: Boolean!
   items: [User!]!
   totalCount: Int!
+}
+
+""""""
+type Visit {
+  """"""
+  activeProviderId: Int
+
+  """"""
+  activeSessionId: Int
+
+  """"""
+  activeTeamId: Int
 }
 
 """"""

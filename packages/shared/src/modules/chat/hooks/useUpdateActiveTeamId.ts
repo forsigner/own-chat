@@ -1,22 +1,21 @@
 import { apiService, Mutator, Refetcher } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
-import { useSetting } from './useSetting'
+import { useVisit } from './useVisit'
 
 export function useUpdateActiveTeamId() {
-  const { setting } = useSetting()
+  const { visit } = useVisit()
   const { user } = useUser()
 
   async function updateActiveTeamId(activeTeamId: number) {
-    Mutator.mutateSetting((setting) => {
-      setting.activeTeamId = activeTeamId
+    Mutator.mutateVisit((visit) => {
+      visit.activeTeamId = activeTeamId
     })
 
-    await apiService.updateSetting({
-      where: { id: setting.id },
-      data: { activeTeamId },
+    await apiService.updateVisit({
+      activeTeamId,
     })
 
-    await Refetcher.refetchSetting({ id: setting.id })
+    await Refetcher.refetchVisit()
 
     const sessions = await Refetcher.refetchSessions({
       where: {
@@ -27,13 +26,12 @@ export function useUpdateActiveTeamId() {
 
     const [session] = sessions
 
-    Mutator.mutateSetting((setting) => {
-      setting.activeSessionId = session?.id || null
+    Mutator.mutateVisit((visit) => {
+      visit.activeSessionId = session?.id || null
     })
 
-    await apiService.updateSetting({
-      where: { id: setting.id },
-      data: { activeSessionId: session?.id || null },
+    await apiService.updateVisit({
+      activeSessionId: session?.id || null,
     })
 
     if (session) {

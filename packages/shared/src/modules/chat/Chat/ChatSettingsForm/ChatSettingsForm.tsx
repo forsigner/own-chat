@@ -1,9 +1,8 @@
-import { useSetting } from '../../hooks/useSetting'
-import { useUpdateChatSettings } from '../../hooks/useUpdateChatSettings'
-import { SettingItem } from './SettingItem'
 import { Box } from '@fower/react'
 import { ChatSettings } from '@own-chat/api-sdk'
 import { Field, Form, useForm } from 'fomir'
+import { useUpdateChatSettings } from '../../hooks/useUpdateChatSettings'
+import { SettingItem } from './SettingItem'
 import 'rc-slider/assets/index.css'
 
 interface Values {

@@ -1,19 +1,19 @@
-import { Box } from '@fower/react'
-import { ChatList } from '../../../components/MessageList/MessageList'
-import { Anchor } from './Anchor'
 import { CHAT_WIDTH } from '../../../common'
+import { ChatList } from '../../../components/MessageList/MessageList'
 import { useMessages } from '../hooks/useMessages'
+import { useVisit } from '../hooks/useVisit'
+import { Anchor } from './Anchor'
 import { ChatWelcome } from './ChatWelcome'
-import { useSetting } from '../hooks/useSetting'
+import { Box } from '@fower/react'
 
 export const ChatBody = () => {
-  const { setting } = useSetting()
+  const { visit } = useVisit()
   const { messages = [], loading } = useMessages()
 
   return (
     <Box flex-1 column overflowAuto px4 pt5 pb0>
       <Box maxW={CHAT_WIDTH} mx-auto w={['100p']}>
-        {setting.activeSessionId && (
+        {visit.activeSessionId && (
           <Box>
             {!loading && (
               <>
@@ -23,7 +23,7 @@ export const ChatBody = () => {
             )}
           </Box>
         )}
-        {!setting.activeSessionId && (
+        {!visit.activeSessionId && (
           <Box>
             <ChatWelcome />
           </Box>

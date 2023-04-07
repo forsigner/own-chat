@@ -1,12 +1,12 @@
+import { useVisit } from './useVisit'
 import { Hooks } from '@own-chat/api-sdk'
-import { useSetting } from './useSetting'
 
 export function useMembers() {
-  const { setting } = useSetting()
+  const { visit } = useVisit()
   const { data: members = [], ...rest } = Hooks.useMembers(() => {
-    if (!setting.activeTeamId) throw new Error()
+    if (!visit.activeTeamId) throw new Error()
     return {
-      where: { teamId: setting.activeTeamId },
+      where: { teamId: visit.activeTeamId },
     }
   })
 

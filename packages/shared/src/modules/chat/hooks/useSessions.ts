@@ -1,23 +1,23 @@
-import { useMemo } from 'react'
-import { Hooks } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
-import { useSetting } from './useSetting'
+import { useVisit } from './useVisit'
+import { Hooks } from '@own-chat/api-sdk'
+import { useMemo } from 'react'
 
 export function useSessions() {
   const { user } = useUser()
-  const { setting } = useSetting()
+  const { visit } = useVisit()
 
   const { data: sessions, ...rest } = Hooks.useSessions({
     where: {
       userId: user.id,
-      teamId: setting.activeTeamId,
+      teamId: visit.activeTeamId,
     },
   })
 
   const activeSession = useMemo(() => {
-    if (!sessions || !setting?.activeSessionId) return
-    return sessions?.find((item) => item.id === setting.activeSessionId)
-  }, [sessions, setting])
+    if (!sessions || !visit?.activeSessionId) return
+    return sessions?.find((item) => item.id === visit.activeSessionId)
+  }, [sessions, visit])
 
   return {
     ...rest,

@@ -1,6 +1,6 @@
 import { Options, useQuery, useMutation } from "stook-graphql";
-import { Team, ChatSettings, Member, Message, Provider, User, Session, Setting, Token, QueryMembersArgs, QueryMessagesArgs, QueryProvidersArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QuerySettingArgs, QueryTeamArgs, QueryTokensArgs } from "./types";
-import { ACTIVE_TEAM, CHAT_SETTINGS, MEMBERS, MESSAGES, MY_TEAMS, PROVIDERS, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, SETTING, TEAM, TOKENS } from "./gql";
+import { Team, ChatSettings, Member, Message, Provider, User, Session, Token, Visit, QueryMembersArgs, QueryMessagesArgs, QueryProvidersArgs, QuerySearchUsersArgs, QuerySessionBySlugArgs, QuerySessionsArgs, QueryTeamArgs, QueryTokensArgs } from "./types";
+import { ACTIVE_TEAM, CHAT_SETTINGS, MEMBERS, MESSAGES, MY_TEAMS, PROVIDERS, SEARCH_USERS, SESSION_BY_SLUG, SESSIONS, TEAM, TOKENS, VISIT } from "./gql";
 
 class HooksService {
   useActiveTeam(args?: any | (() => any), opt: Options = {}) {
@@ -39,16 +39,16 @@ class HooksService {
     return useQuery<Session[], QuerySessionsArgs>(SESSIONS, { ...opt, variables: args })
   }
 
-  useSetting(args?: QuerySettingArgs | (() => QuerySettingArgs), opt: Options = {}) {
-    return useQuery<Setting, QuerySettingArgs>(SETTING, { ...opt, variables: args })
-  }
-
   useTeam(args?: QueryTeamArgs | (() => QueryTeamArgs), opt: Options = {}) {
     return useQuery<Team, QueryTeamArgs>(TEAM, { ...opt, variables: args })
   }
 
   useTokens(args?: QueryTokensArgs | (() => QueryTokensArgs), opt: Options = {}) {
     return useQuery<Token[], QueryTokensArgs>(TOKENS, { ...opt, variables: args })
+  }
+
+  useVisit(args?: any | (() => any), opt: Options = {}) {
+    return useQuery<Visit, any>(VISIT, { ...opt, variables: args })
   }
 }
 

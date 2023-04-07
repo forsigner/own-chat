@@ -4,9 +4,9 @@ import { Button } from 'bone-ui'
 import { Popover, PopoverContent, PopoverTrigger } from 'bone-ui'
 import { Input } from 'bone-ui'
 import { Session } from '@own-chat/api-sdk'
-import { useSetting } from '../hooks/useSetting'
 import { useUpdateSession } from '../hooks/useUpdateSession'
 import { useState } from 'react'
+import { useVisit } from '../hooks/useVisit'
 
 interface Props {
   session: Session
@@ -14,9 +14,9 @@ interface Props {
 
 export function EditSessionNameButton({ session }: Props) {
   const [name, setName] = useState(session.name)
-  const { setting } = useSetting()
+  const { visit } = useVisit()
   const { updateSession } = useUpdateSession()
-  const selected = setting.activeSessionId === session.id
+  const selected = visit.activeSessionId === session.id
 
   async function updateName() {
     await updateSession({

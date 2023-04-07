@@ -1,15 +1,15 @@
 import { Hooks } from '@own-chat/api-sdk'
 import { useMemo } from 'react'
-import { useSetting } from './useSetting'
+import { useVisit } from './useVisit'
 
 export function useTeams() {
-  const { setting, loading } = useSetting()
+  const { visit, loading } = useVisit()
   const { data: teams = [], ...rest } = Hooks.useMyTeams()
 
   const activeTeam = useMemo(() => {
-    if (!teams || !setting?.activeTeamId) return
-    return teams?.find((item) => item.id === setting.activeTeamId)!
-  }, [teams, setting])
+    if (!teams || !visit?.activeTeamId) return
+    return teams?.find((item) => item.id === visit.activeTeamId)!
+  }, [teams, visit])
 
   return {
     ...rest,

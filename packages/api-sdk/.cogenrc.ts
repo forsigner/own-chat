@@ -28,8 +28,8 @@ const gqlConfig: ConfigItem[] = [
   { name: 'removeMember', actions: ['query'] },
   { name: 'exitMember', actions: ['query'] },
 
-  { name: 'setting', actions: ['useQuery', 'refetch', 'mutator'] },
-  { name: 'updateSetting', actions: ['query'] },
+  { name: 'visit', actions: ['useQuery', 'refetch', 'mutator'] },
+  { name: 'updateVisit', actions: ['query'] },
 
   { name: 'chatSettings', actions: ['useQuery', 'refetch', 'mutator'] },
   { name: 'updateChatSettings', actions: ['query'] },

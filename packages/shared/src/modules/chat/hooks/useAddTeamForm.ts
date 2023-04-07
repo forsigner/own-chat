@@ -1,9 +1,9 @@
-import { Node, useForm } from 'fomir'
-import { toast } from 'bone-ui'
-import { useModal } from '@own-chat/easy-modal'
-import { apiService, Team, ProviderType, Refetcher } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
-import { useSetting } from './useSetting'
+import { useVisit } from './useVisit'
+import { apiService, Team, ProviderType, Refetcher } from '@own-chat/api-sdk'
+import { useModal } from '@own-chat/easy-modal'
+import { toast } from 'bone-ui'
+import { Node, useForm } from 'fomir'
 
 interface Values {
   name: string
@@ -16,7 +16,7 @@ interface Values {
 export function useAddTeamForm() {
   const { hide, data } = useModal<Team>()
   const { user } = useUser()
-  const { refetch } = useSetting()
+  const { refetch } = useVisit()
   const isEdit = !!data
 
   const nodes: Node[] = [

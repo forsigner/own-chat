@@ -1,3 +1,5 @@
+import { Message, Mutator, ProviderType } from '@own-chat/api-sdk'
+import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } from 'openai'
 import { ChatGPTUnofficialProxyAPI } from '../../../chatgpt-api'
 import { getStreamingKey } from '../../../common'
 import { fetchChatStream, updateStreamingStatus } from '../../../common/request'
@@ -5,15 +7,13 @@ import { useToken, useUser } from '../../../stores'
 import { useAddMessage } from './useAddMessage'
 import { useChatSettings } from './useChatSettings'
 import { useMessages } from './useMessages'
-import { useSetting } from './useSetting'
 import { useTeams } from './useTeams'
-import { Message, Mutator, ProviderType } from '@own-chat/api-sdk'
-import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } from 'openai'
+import { useVisit } from './useVisit'
 
 export function useSendMessage() {
   const { token } = useToken()
   const { user } = useUser()
-  const { setting } = useSetting()
+  const { visit } = useVisit()
   const { addMessage } = useAddMessage()
   const { activeTeam } = useTeams()
   const { messages = [] } = useMessages()
@@ -22,7 +22,7 @@ export function useSendMessage() {
   function initAnswer() {
     const newMessage = {
       userId: user.id,
-      sessionId: setting.activeSessionId!,
+      sessionId: visit.activeSessionId!,
       role: ChatCompletionResponseMessageRoleEnum.Assistant,
       content: '',
       streaming: true,

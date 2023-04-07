@@ -1,22 +1,22 @@
+import { isApiError } from '../../../common'
+import { useVisit } from './useVisit'
 import { apiService, Refetcher, RoleType } from '@own-chat/api-sdk'
 import { toast, usePopoverContext } from 'bone-ui'
-import { useSetting } from './useSetting'
-import { isApiError } from '../../../common'
 
 export function useAddMember() {
   const { close } = usePopoverContext()
-  const { setting } = useSetting()
+  const { visit } = useVisit()
 
   async function addMember(userId: number) {
     try {
       await apiService.addMember({
-        teamId: setting.activeTeamId!,
+        teamId: visit.activeTeamId!,
         roleType: RoleType.Member,
         userId,
       })
       await Refetcher.refetchMembers({
         where: {
-          teamId: setting.activeTeamId!,
+          teamId: visit.activeTeamId!,
         },
       })
       toast.success('添加成员成功')

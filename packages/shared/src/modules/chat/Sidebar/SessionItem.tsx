@@ -2,7 +2,7 @@ import { Box } from '@fower/react'
 import { Refetcher, Session } from '@own-chat/api-sdk'
 import { useModal } from '@own-chat/easy-modal'
 import { Button, ChatOutline, TrashOutline } from 'bone-ui'
-import { updateActiveSessionId, useSetting } from '../hooks/useSetting'
+import { updateVisit, useVisit } from '../hooks/useVisit'
 import { EditSessionNameButton } from './EditSessionNameButton'
 import { RemoveSessionButton } from './RemoveSessionButton'
 
@@ -11,9 +11,9 @@ interface Props {
 }
 
 export const SessionItem = ({ session }: Props) => {
-  const { setting } = useSetting()
+  const { visit } = useVisit()
   const { hide } = useModal()
-  const selected = setting.activeSessionId === session.id
+  const selected = visit.activeSessionId === session.id
 
   return (
     <Box
@@ -31,7 +31,7 @@ export const SessionItem = ({ session }: Props) => {
       transitionCommon
       onClick={async () => {
         await Promise.all([
-          updateActiveSessionId(setting.id, session.id),
+          updateVisit({ activeSessionId: session.id }),
           await Refetcher.refetchMessages({
             where: { sessionId: session.id },
           }),

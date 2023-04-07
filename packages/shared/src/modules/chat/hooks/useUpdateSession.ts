@@ -1,10 +1,10 @@
 import { apiService, Mutator, Refetcher, UpdateSessionInput } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
-import { useSetting } from './useSetting'
+import { useVisit } from './useVisit'
 
 export function useUpdateSession() {
   const { user } = useUser()
-  const { setting } = useSetting()
+  const { visit } = useVisit()
 
   async function updateSession(input: UpdateSessionInput) {
     Mutator.mutateSessions((sessions) => {
@@ -15,7 +15,7 @@ export function useUpdateSession() {
     await Refetcher.refetchSessions({
       where: {
         userId: user.id,
-        teamId: setting.activeTeamId,
+        teamId: visit.activeTeamId,
       },
     })
   }
