@@ -1,6 +1,6 @@
 import { request } from '@boter/request'
-import { mutateToken, mutateUser } from '../stores'
 import { useRouter } from 'next/router'
+import { mutateToken, mutateUser } from '../stores'
 
 export function useLogout() {
   const { push } = useRouter()
