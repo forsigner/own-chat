@@ -43,13 +43,11 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
             value={value}
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={(e) => {
-              const keyCode = e.nativeEvent.keyCode
-              if (keyCode === KeyCode_Enter && e.nativeEvent.ctrlKey) {
-                setValue(value + '\n')
+              if (e.key === 'Enter' && e.shiftKey) {
                 return
               }
 
-              if (keyCode === KeyCode_Enter) {
+              if (e.key === 'Enter') {
                 send()
                 e.preventDefault()
                 return

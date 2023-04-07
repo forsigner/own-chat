@@ -35,17 +35,11 @@
       "@utils/*": [
         "./src/utils/*"
       ],
-      "@services/*": [
-        "./src/services/*"
-      ],
       "@common/*": [
         "./src/common/*"
       ],
       "@components/*": [
         "./src/components/*"
-      ],
-      "@editor/*": [
-        "./src/editor/*"
       ]
     }
   },

@@ -35,7 +35,7 @@ export const useSessions = () => {
       setSessions((state) => {
         const index = state.findIndex((item) => item.id === id)
         state.splice(index, 1)
-        state[0].selected = true
+        if (state[0]) state[0].selected = true
       })
     },
     [setSessions],

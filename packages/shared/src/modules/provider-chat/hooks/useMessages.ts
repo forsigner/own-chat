@@ -44,7 +44,7 @@ export const useMessages = () => {
   }
 
   const msg = useMemo(
-    () => messages.filter((item) => item.sessionId === currentSession.id),
+    () => messages.filter((item) => item.sessionId === currentSession?.id),
     [currentSession, messages],
   )
 

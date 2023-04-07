@@ -8,7 +8,16 @@ import { SessionList } from './SessionList'
 
 export const Sidebar = () => {
   return (
-    <Box column w-300 py6 h-100p borderRight borderRightGray100 display={['none', 'flex']}>
+    <Box
+      column
+      w-300
+      py6
+      h-100p
+      borderRight
+      borderRightGray100
+      borderRightGray800--dark
+      display={['none', 'flex']}
+    >
       <Box px5>
         <Logo />
       </Box>

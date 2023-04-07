@@ -9,6 +9,7 @@ import { useChatSettings } from './useChatSettings'
 import { useMessages } from './useMessages'
 import { useTeams } from './useTeams'
 import { useVisit } from './useVisit'
+import { emitter } from '../../../common/emitter'
 
 export function useSendMessage() {
   const { token } = useToken()
@@ -77,8 +78,6 @@ export function useSendMessage() {
 
     const requestMessages = getRequestMessages(value, messages)
 
-    console.log('requestMessages:', requestMessages)
-
     if (process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP') {
       // host = 'https://www.ownchat.me'
       host = !isProd ? 'http://localhost:4000' : 'https://www.ownchat.me'
@@ -126,6 +125,8 @@ export function useSendMessage() {
       async onMessage(text, done) {
         if (!done) {
           updateMessageState(text)
+
+          emitter.emit('SCROLL_ANCHOR', '')
           return
         }
 
@@ -151,6 +152,8 @@ export function useSendMessage() {
 
       // init an empty answer message
       initAnswer()
+
+      emitter.emit('SCROLL_ANCHOR', '')
 
       await sendChatRequest(value)
     } catch (error) {
