@@ -1,6 +1,7 @@
 import { ChatCompletionResponseMessage } from 'openai'
 import { TIME_OUT_MS } from './chatService'
 import { isDesktop, isProd } from './constants'
+import { getLocalStorage } from 'stook-localstorage'
 
 export interface Result {
   code: string | number
@@ -43,17 +44,21 @@ export async function fetchChatStream(options: Options) {
   const { params, onMessage, onError, onController, baseURL = '', token = '' } = options
   const controller = new AbortController()
   const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS)
+  const authorizationCode = getLocalStorage('authorizationCode')
 
   try {
-    const result = await fetch(`${baseURL}/api/chat-stream`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `bearer ${token}`,
+    const result = await fetch(
+      `${baseURL}/api/chat-stream?authorizationCode=${authorizationCode}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `bearer ${token}`,
+        },
+        body: JSON.stringify(params),
+        signal: controller.signal,
       },
-      body: JSON.stringify(params),
-      signal: controller.signal,
-    })
+    )
 
     clearTimeout(reqTimeoutId)
 

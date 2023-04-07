@@ -53,18 +53,6 @@ export const Settings = () => {
       <Form form={form}>
         <Title>ChatGPT</Title>
         <Box>
-          <SettingItem name="API Key" desc="You openai API key">
-            <Field
-              component="Input"
-              value=""
-              name="apiKey"
-              wrapper={false}
-              componentProps={{
-                placeholder: 'sk-......',
-              }}
-            />
-          </SettingItem>
-
           <SettingItem name="Model" desc="选择一个 Openai 的模型">
             <Field
               component="Select"
@@ -216,8 +204,6 @@ export const Settings = () => {
               componentProps={{ width: 120 }}
             />
           </SettingItem>
-
-          <SettingItem name="主题色">红色</SettingItem>
         </Box>
 
         <Divider my4 />
