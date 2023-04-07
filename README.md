@@ -7,6 +7,13 @@
 Own Chat is tool to help you create your own chatGPT, Our mission is to make everyone to own
 a ai assistant easily.
 
+## Features
+
+- Team management, Collaboration for one OpenAI API key
+- Share your ChatGPT conversations with one-click
+- One-click to deploy a provider
+- Elegant UI, Responsive design, dark mode
+
 ## One-Click to deploy
 
 One-Click to deploy and get a OwnChat provider server.
@@ -18,3 +25,20 @@ One-Click to deploy and get a OwnChat provider server.
 3. Set `OPENAI_API_KEY` and `AUTHORIZATION_CODE`
 
 4. Get a personal ChatGPT server like https://own-chat-official-provider.vercel.app
+
+## Develop
+
+After clone the repo, in the root dir:
+
+```bash
+yarn install # Install the dependencies
+
+yarn build # First time, you need to build
+```
+
+Run the web app:
+
+```bash
+cd apps/web
+yarn dev
+```

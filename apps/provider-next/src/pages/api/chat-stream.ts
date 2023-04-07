@@ -47,7 +47,10 @@ async function createStream(req: NextRequest) {
   const encoder = new TextEncoder()
   const decoder = new TextDecoder()
 
-  const result = await fetch('https://api.openai.com/v1/chat/completions', {
+  const endpoint = 'https://api.openai.com/v1/chat/completions'
+  // const endpoint = 'https://chatgpt-api.shn.hk/v1/'
+
+  const result = await fetch('', {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${apiKey}`,
