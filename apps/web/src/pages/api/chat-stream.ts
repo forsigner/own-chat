@@ -50,6 +50,8 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
   }
 
   if (provider.type === ProviderType.ApiKey) {
+    console.log('provider=:', provider)
+
     // endpoint = 'http://localhost:4001'
     endpoint = 'https://own-chat-official-provider.vercel.app'
     replaceStr = `${replaceStr}?apiKey=${provider.apiKey}`
