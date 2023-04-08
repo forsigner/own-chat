@@ -5,8 +5,8 @@ export const sessionOptions: IronSessionOptions = {
   password: process.env.SECRET_COOKIE_PASSWORD as string,
   cookieName: 'own-chat-session',
   cookieOptions: {
-    // secure: process.env.NODE_ENV === 'production',
-    secure: false,
+    secure: process.env.NODE_ENV === 'production',
+    // secure: false,
   },
 }
 

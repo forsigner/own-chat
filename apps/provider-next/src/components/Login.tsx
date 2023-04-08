@@ -32,9 +32,13 @@ export const Login = ({ onLoginSuccess }: Props) => {
 
   return (
     <Box p4>
-      <Box textXL mb3>
-        Please input your Authorization code
+      <Box mb3>
+        <Box textXL mb3>
+          Authorization code
+        </Box>
+        <Box gray600>Please input your Authorization code</Box>
       </Box>
+
       <Input
         placeholder="Authorization code"
         value={value}
