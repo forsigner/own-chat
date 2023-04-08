@@ -3,7 +3,6 @@ import { Divider } from 'bone-ui'
 import { Field, Form, useForm } from 'fomir'
 import { SettingItem } from './SettingItem'
 import { Title } from './Title'
-import 'rc-slider/assets/index.css'
 import { useSettings } from '../hooks'
 import { Lang } from '../../../components/DrawerProfile/Lang'
 import { Theme } from '../../../components/DrawerProfile/Theme'
@@ -23,8 +22,7 @@ interface Values {
 
 export const Settings = () => {
   const { settings, setSettings } = useSettings()
-
-  console.log('settings:', settings)
+  // console.log('settings:', settings)
 
   const form = useForm<Values>({
     layout: 'horizontal',

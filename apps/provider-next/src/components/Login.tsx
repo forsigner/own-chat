@@ -3,13 +3,12 @@ import { Button, Input, toast } from 'bone-ui'
 import { request } from '@boter/request'
 import { useLocalStorage } from 'stook-localstorage'
 import { Box } from '@fower/react'
+import { useRouter } from 'next/router'
 
-interface Props {
-  onLoginSuccess(): void
-}
-export const Login = ({ onLoginSuccess }: Props) => {
+export const Login = () => {
   const [value, setValue] = useState('')
   const [, setCode] = useLocalStorage('authorizationCode')
+  const { push } = useRouter()
 
   async function login() {
     try {
@@ -20,8 +19,8 @@ export const Login = ({ onLoginSuccess }: Props) => {
         },
       })
 
-      onLoginSuccess?.()
       setCode(value)
+      push('/')
 
       toast.success('Login success')
     } catch (error) {

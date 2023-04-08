@@ -8,9 +8,10 @@ export function useLogout() {
     if (process.env.NEXT_PUBLIC_PLATFORM === 'WEB') {
       await request('/api/logout')
       location.href = '/'
-    } else {
-      push('/')
     }
+
+
+    push('/')
 
     mutateUser(null)
     mutateToken(null)

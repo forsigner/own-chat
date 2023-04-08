@@ -1,12 +1,18 @@
 import { Box } from '@fower/react'
+import { request } from '@boter/request'
 import { Modal, ModalOverlay, ModalContent, Button, ModalCloseButton } from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { Settings } from './Settings/Settings'
-import { useLogout } from '../../hooks/useLogout'
+import { useRouter } from 'next/router'
 
 export const ModalSettings = () => {
   const { register, hide } = useModal()
-  const { logout } = useLogout()
+  const { push } = useRouter()
+
+  async function logout() {
+    await request('/api/logout')
+    push('/login')
+  }
 
   return (
     <Modal {...register('bone-ui')}>
@@ -23,8 +29,8 @@ export const ModalSettings = () => {
             <Button
               w-200
               colorScheme="red500"
-              onClick={() => {
-                logout()
+              onClick={async () => {
+                await logout()
                 hide()
               }}
             >

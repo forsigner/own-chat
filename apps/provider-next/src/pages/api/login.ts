@@ -25,6 +25,8 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
   // get user from database then:
   req.session.authorizationCode = payload
 
+  console.log('-req.session:', req.session)
+
   await req.session.save()
 
   res.json(payload)
