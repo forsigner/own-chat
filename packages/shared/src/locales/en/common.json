@@ -57,5 +57,22 @@
   "get-started-text-4": "Or a Self-Hosted ChatGPT server",
   "configure-provider": "Configure provider",
   "faq": "FAQ",
-  "blog": "Blog"
+  "blog": "Blog",
+  "about-own-chat": "About OwnChat",
+  "own-chat-intro": "ChatGPT is gradually becoming a powerful tool for improving productivity, and using this AI tool effectively can greatly enhance our work efficiency. In order to allow more people (possibly non-programmers) to use ChatGPT better and more conveniently, I have developed OwnChat as a tool.",
+  "core-feature": "Core futures of OwnChat",
+  "feature-1-title": "Team collaboration",
+  "feature-1-desc": "For a single API key, it can allow multiple team members to use it safely.",
+  "feature-2-title": "Supports multiple platforms",
+  "feature-2-desc": "Supports multiple platforms including Web, Desktop, and Mobile.",
+  "feature-3-title": "No VPN required",
+  "feature-3-desc": "Our servers are deployed in regions where OpenAI API is accessible, thus all clients can use our service without the need for a VPN.",
+  "feature-4-title": "one-click sharing of chat records",
+  "feature-4-desc": "one-click sharing of your chat records",
+  "feature-5-title": "Elegant interface design",
+  "feature-5-desc": "More elegant interface design and interaction.",
+  "about-maker": "About the maker",
+  "about-maker-1": "G'day, I'm Forsigner. 👋",
+  "about-maker-2": "I become a full-time independent developer since this year(2023), I started OwnChat as a passion project. There's no massive team, no investors looking for growth at any cost, just me, running a sustainable business.",
+  "open-source-project-title": "Some my open source projects"
 }

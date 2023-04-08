@@ -57,5 +57,22 @@
   "get-started-text-4": "或者是一个 Self-Hosted 的 ChatGPT 后端服务",
   "configure-provider": "配置 provider",
   "faq": "常见问题",
-  "blog": "博客"
+  "blog": "Blog",
+  "about-own-chat": "关于 OwnChat",
+  "own-chat-intro": "ChatGPT 逐渐成为一个极大提高生产力的工具，用好这个相关的 AI 工具，能极大提高我们的工作效率。为了让更多人(可能是非程序员)更好更方便地使用 ChatGPT，我开发了 OwnChat 这个工具。",
+  "core-feature": "OwnChat 的核心功能",
+  "feature-1-title": "团队协作",
+  "feature-1-desc": "针对单个 API key，可以让团队安全地多人使用",
+  "feature-2-title": "支持多端",
+  "feature-2-desc": "可以浏览器、桌面App、手机App中使用",
+  "feature-3-title": "不需要VPN，不需要翻墙",
+  "feature-3-desc": "服务器部署在可调用OpenAI API的地区，所有客户端免翻墙",
+  "feature-4-title": "一键分享对话",
+  "feature-4-desc": "一键分享您的ChatGPT聊天记录",
+  "feature-5-title": "优雅地界面设计",
+  "feature-5-desc": "更加优雅地界面设计和交互",
+  "about-maker": "关于作者",
+  "about-maker-1": "大家好，我是子弋。",
+  "about-maker-2": "我从2023年开始成为一个全职独立开发者，OwnChat 是我全职后开始的第一个项目。我没有庞大的团队，也不追求做大做强，只希望它能为一小部分人提供价值，并成为一个可持续发展的业务。",
+  "open-source-project-title": "我的一些开源项目"
 }
