@@ -32,6 +32,8 @@ export async function fetchSSE(
 
   const parser = createParser((event) => {
     if (event.type === 'event') {
+      console.log('======event.data:', event.data)
+
       if (event.data.startsWith('{') || event.data === '[DONE]') {
         onMessage(event.data)
       } else {

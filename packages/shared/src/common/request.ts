@@ -1,7 +1,28 @@
-import { ChatCompletionResponseMessage } from 'openai'
+import {
+  ChatCompletionResponseMessage,
+  ChatCompletionResponseMessageRoleEnum,
+  CreateChatCompletionResponse,
+} from 'openai'
 import { TIME_OUT_MS } from './chatService'
 import { isDesktop, isProd } from './constants'
 import { getLocalStorage } from 'stook-localstorage'
+
+export interface CreateChatCompletionDeltaResponse {
+  id: string
+  object: 'chat.completion.chunk'
+  created: number
+  model: string
+  choices: [
+    {
+      delta: {
+        role: ChatCompletionResponseMessageRoleEnum
+        content?: string
+      }
+      index: number
+      finish_reason: string | null
+    },
+  ]
+}
 
 export interface Result {
   code: string | number
@@ -9,7 +30,7 @@ export interface Result {
   data?: any
 }
 
-interface ChatParams {
+export interface ChatParams {
   model: string
   messages: ChatCompletionResponseMessage[]
   // https://platform.openai.com/docs/api-reference/chat/create#chat/create-stream
@@ -40,25 +61,37 @@ interface Options {
   token?: string
 }
 
+export interface ChatMessage {
+  id: string
+  text: string
+  role: ChatCompletionResponseMessageRoleEnum
+  name?: string
+  delta?: string
+  detail?: CreateChatCompletionResponse
+}
+
 export async function fetchChatStream(options: Options) {
   const { params, onMessage, onError, onController, baseURL = '', token = '' } = options
   const controller = new AbortController()
   const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS)
+
   const authorizationCode = getLocalStorage('authorizationCode')
 
+  let urlParams = ''
+
+  // for provider
+  if (authorizationCode) urlParams = `?authorizationCode=${authorizationCode}`
+
   try {
-    const result = await fetch(
-      `${baseURL}/api/chat-stream?authorizationCode=${authorizationCode}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `bearer ${token}`,
-        },
-        body: JSON.stringify(params),
-        signal: controller.signal,
+    const result = await fetch(`${baseURL}/api/chat-stream${urlParams}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `bearer ${token}`,
       },
-    )
+      body: JSON.stringify(params),
+      signal: controller.signal,
+    })
 
     clearTimeout(reqTimeoutId)
 

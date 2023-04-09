@@ -1,8 +1,8 @@
 import { Message, Mutator, ProviderType } from '@own-chat/api-sdk'
 import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } from 'openai'
-import { ChatGPTUnofficialProxyAPI } from '../../../chatgpt-api'
-import { getStreamingKey, isProd } from '../../../common'
-import { fetchChatStream, updateStreamingStatus } from '../../../common/request'
+import { ChatGPTUnofficialProxyAPI, ChatGPTAPI } from '../../../chatgpt-api'
+import { getStreamingKey } from '../../../common'
+import { updateStreamingStatus } from '../../../common/request'
 import { useToken, useUser } from '../../../stores'
 import { useAddMessage } from './useAddMessage'
 import { useChatSettings } from './useChatSettings'
@@ -10,6 +10,11 @@ import { useMessages } from './useMessages'
 import { useTeams } from './useTeams'
 import { useVisit } from './useVisit'
 import { emitter } from '../../../common/emitter'
+import { getOpenaiProxy } from '../utils'
+import { useGetChatParams } from './useGetChatParams'
+import { useRef } from 'react'
+import { useChatStatus } from './useChatStatus'
+import { useAbortController } from './useAbortController'
 
 export function useSendMessage() {
   const { token } = useToken()
@@ -19,6 +24,9 @@ export function useSendMessage() {
   const { activeProvider } = useTeams()
   const { messages = [] } = useMessages()
   const { chatSettings } = useChatSettings()
+  const { getChatParams } = useGetChatParams()
+  const { setStatus } = useChatStatus()
+  const { getAbortController } = useAbortController()
 
   function initAnswer() {
     const newMessage = {
@@ -65,14 +73,8 @@ export function useSendMessage() {
   }
 
   async function sendChatRequest(value: string) {
-    let host: string = ''
-
+    const host: string = getOpenaiProxy()
     const requestMessages = getRequestMessages(value, messages)
-
-    if (process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP') {
-      // host = 'https://www.ownchat.me'
-      host = !isProd ? 'http://localhost:4000' : 'https://www.ownchat.me'
-    }
 
     const key = getStreamingKey(activeProvider!)
 
@@ -87,7 +89,9 @@ export function useSendMessage() {
         const res = await api.sendMessage(value, {
           onProgress: ({ text }) => {
             if (value === text) return
+            setStatus('streaming')
             updateMessageState(text)
+            emitter.emit('SCROLL_ANCHOR', '')
             // console.log('partialResponse.text:', text)
           },
         })
@@ -102,41 +106,40 @@ export function useSendMessage() {
       return
     }
 
-    await fetchChatStream({
-      params: {
-        temperature: 1,
-        presence_penalty: 0,
-        stream: true,
-        model: chatSettings.model!,
+    const api = new ChatGPTAPI({})
+
+    try {
+      const url = `/api/chat-stream`
+      const result = await api.sendMessage({
+        url,
+        abortController: getAbortController(),
         messages: requestMessages,
-        max_tokens: chatSettings.maxToken!,
-      },
-      baseURL: host,
-      token,
-      async onMessage(text, done) {
-        if (!done) {
+        stream: true,
+        completionParams: getChatParams(requestMessages),
+        onMessage(text) {
+          setStatus('streaming')
           updateMessageState(text)
-
           emitter.emit('SCROLL_ANCHOR', '')
-          return
-        }
+        },
+      })
 
-        console.log('done!!')
+      await updateStreamingStatus(key, true)
+      await addMessage(result, ChatCompletionResponseMessageRoleEnum.Assistant)
 
-        await updateStreamingStatus(key, true)
-        await addMessage(text, ChatCompletionResponseMessageRoleEnum.Assistant)
-      },
-      async onError(error) {
-        console.log('error', error)
-        await updateStreamingStatus(key, true)
-      },
-      onController(controller) {
-        console.log('controller', controller)
-      },
-    })
+      setStatus('finished')
+    } catch (error) {
+      console.log('send message error:', error)
+      if (typeof error === 'string') {
+        await addMessage(error, ChatCompletionResponseMessageRoleEnum.Assistant)
+      }
+      setStatus('finished')
+      await updateStreamingStatus(key, true)
+    }
   }
 
   async function sendMessage(value: string) {
+    setStatus('fetching')
+
     try {
       // Firstly, save user message to server
       await addMessage(value, ChatCompletionResponseMessageRoleEnum.User, true)
@@ -149,6 +152,7 @@ export function useSendMessage() {
       await sendChatRequest(value)
     } catch (error) {
       console.log('error:', error)
+      setStatus('finished')
     }
   }
 

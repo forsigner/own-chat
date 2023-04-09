@@ -652,6 +652,22 @@ mutation addMessage($input: AddMessageInput!){
     }
 }
 `;
+export const UPDATE_MESSAGE = gql`
+mutation updateMessage($input: UpdateMessageInput!){
+    updateMessage(input: $input){
+        content
+        createdAt
+        id
+        private
+        role
+        sessionId
+        streaming
+        updatedAt
+        userId
+        views
+    }
+}
+`;
 export const UPDATE_PROVIDER = gql`
 mutation updateProvider($input: UpdateProviderInput!){
     updateProvider(input: $input){

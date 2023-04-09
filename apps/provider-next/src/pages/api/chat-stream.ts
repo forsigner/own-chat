@@ -93,12 +93,13 @@ async function createStream(req: NextRequest) {
             controller.close()
             return
           }
+
           try {
             const json = JSON.parse(data)
-            // console.log('======:', json)
-
             const text = json.choices[0].delta.content
+            console.log('text:', text)
             const queue = encoder.encode(text)
+
             controller.enqueue(queue)
           } catch (e) {
             controller.error(e)

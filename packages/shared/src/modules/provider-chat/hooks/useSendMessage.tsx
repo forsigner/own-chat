@@ -1,9 +1,10 @@
-import { fetchChatStream, fetchModels } from '../../../common/request'
+import { getLocalStorage } from 'stook-localstorage'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { useMessages } from './useMessages'
 import { useSettings } from './useSettings'
 import { HistoryMsgQueue } from '../../../common/historyMsgQueue'
 import { emitter } from '../../../common/emitter'
+import { ChatGPTAPI } from '../../../chatgpt-api/chatgpt-api'
 
 export function useSendMessage() {
   const { initNewMessage, updateMessage, messages = [] } = useMessages()
@@ -20,43 +21,40 @@ export function useSendMessage() {
       role: ChatCompletionResponseMessageRoleEnum.User,
     }
 
-    const {
-      maxToken,
-      followUpMessageLength,
-      temperature,
-      top_p,
-      frequencyPenalty,
-      presencePenalty,
-    } = settings
+    const { maxToken, followUpMessageLength, temperature, top_p, presencePenalty } = settings
 
     const historyMsgQueue = new HistoryMsgQueue(followUpMessageLength, messages, newMsg)
 
+    const api = new ChatGPTAPI({})
+
+    const authorizationCode = getLocalStorage('authorizationCode')
+    let urlParams = ''
+
+    // for provider
+    if (authorizationCode) urlParams = `?authorizationCode=${authorizationCode}`
+
     try {
-      await fetchChatStream({
-        params: {
+      const url = `/api/chat-stream${urlParams}`
+      const result = await api.sendMessage({
+        url,
+        messages: historyMsgQueue.getHistoryMsgQueue(),
+        stream: true,
+        completionParams: {
           temperature: temperature,
           presence_penalty: presencePenalty,
-          stream: true,
-          top_p: top_p,
+          top_p,
           model: 'gpt-3.5-turbo',
           max_tokens: Number(maxToken || '2000'),
-          messages: historyMsgQueue.getHistoryMsgQueue(),
         },
-        onMessage(text, done) {
-          if (!done) {
-            updateMessage(text)
-            emitter.emit('SCROLL_ANCHOR', '')
-          }
-        },
-        onError(error) {
-          console.log('error', error)
-        },
-        onController(controller) {
-          console.log('controller', controller)
+        onMessage(text) {
+          updateMessage(text)
+          emitter.emit('SCROLL_ANCHOR', '')
         },
       })
+
+      console.log('r-------:', result)
     } catch (error) {
-      console.log('error:', error)
+      console.log('send message error:', error)
     }
   }
 

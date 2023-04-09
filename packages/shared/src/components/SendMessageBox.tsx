@@ -3,8 +3,9 @@ import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Button, PaperAirplaneSolid } from 'bone-ui'
 import { useState } from 'react'
-import { CHAT_WIDTH, KeyCode_Enter } from '../common'
+import { CHAT_WIDTH } from '../common'
 import { useTranslation } from 'react-i18next'
+import { useChatStatus } from '../modules/chat/hooks/useChatStatus'
 
 interface Props {
   onSendMessage(value: string): Promise<any>
@@ -13,6 +14,7 @@ interface Props {
 export const SendMessageBox = ({ onSendMessage }: Props) => {
   const [value, setValue] = useState('')
   const { t } = useTranslation('common')
+  const { isStreaming, isNormal, isFinished, isFetching } = useChatStatus()
 
   async function send() {
     if (!value) return
@@ -20,8 +22,10 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
     await onSendMessage?.(value)
   }
 
+  const disabled = isStreaming || isFetching
+
   return (
-    <Box shadow2XL toCenterY toCenterX py4 px4>
+    <Box toCenterY toCenterX py4 px4>
       <Box
         toCenterY
         flex-1
@@ -39,7 +43,8 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
             className={css(
               'm0 borderNone w-100p outlineNone px3 py3 flex placeholderGray400 bgWhite textBase gray300--dark bgTransparent bgTransparent--dark',
             )}
-            style={{ resize: 'none' }}
+            disabled={disabled}
+            style={{ resize: 'none', cursor: disabled ? 'not-allowed' : 'text' }}
             value={value}
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={(e) => {

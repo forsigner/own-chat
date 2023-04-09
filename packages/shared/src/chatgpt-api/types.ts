@@ -1,9 +1,11 @@
+import { ChatCompletionRequestMessage } from 'openai'
+
 export type Role = 'user' | 'assistant' | 'system'
 
 export type FetchFn = typeof fetch
 
 export type ChatGPTAPIOptions = {
-  apiKey: string
+  apiKey?: string
 
   /** @defaultValue `'https://api.openai.com'` **/
   apiBaseUrl?: string
@@ -24,12 +26,13 @@ export type ChatGPTAPIOptions = {
   maxResponseTokens?: number
 
   getMessageById?: GetMessageByIdFunction
-  upsertMessage?: UpsertMessageFunction
 
   fetch?: FetchFn
 }
 
 export type SendMessageOptions = {
+  url?: string
+  messages: ChatCompletionRequestMessage[]
   /** The name of a user in a multi-user chat. */
   name?: string
   parentMessageId?: string
@@ -39,6 +42,7 @@ export type SendMessageOptions = {
   systemMessage?: string
   timeoutMs?: number
   onProgress?: (partialResponse: ChatMessage) => void
+  onMessage?: (text: string) => void
   abortSignal?: AbortSignal
   completionParams?: Partial<Omit<openai.CreateChatCompletionRequest, 'messages' | 'n' | 'stream'>>
 }
@@ -79,9 +83,6 @@ export class ChatGPTError extends Error {
 
 /** Returns a chat message from a store by it's ID (or null if not found). */
 export type GetMessageByIdFunction = (id: string) => Promise<ChatMessage>
-
-/** Upserts a chat message to a store. */
-export type UpsertMessageFunction = (message: ChatMessage) => Promise<void>
 
 export interface CreateChatCompletionStreamResponse
   extends openai.CreateChatCompletionDeltaResponse {

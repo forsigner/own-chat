@@ -61,6 +61,10 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
     replaceStr = `${replaceStr}?authorizationCode=${provider.authorizationCode}`
   }
 
+  console.log('provider:', provider)
+
+  console.log('replaceStr:', replaceStr)
+
   return httpProxyMiddleware(req, res, {
     target: endpoint,
     pathRewrite: [
