@@ -2,7 +2,7 @@ import { useRemoveSession } from '../hooks/useRemoveSession'
 import { useVisit } from '../hooks/useVisit'
 import { TrashOutline } from '@bone-ui/icons'
 import { Session } from '@own-chat/api-sdk'
-import { Button, PopoverBody, PopoverTitle } from 'bone-ui'
+import { Button, PopoverBody, PopoverHeader } from 'bone-ui'
 import { Popover, PopoverContent, PopoverTrigger } from 'bone-ui'
 import { useTranslation } from 'react-i18next'
 
@@ -34,7 +34,7 @@ export function RemoveSessionButton({ session }: Props) {
       <PopoverContent onClick={(e) => e.stopPropagation()}>
         {({ close }) => (
           <>
-            <PopoverTitle>{t('delete-session-title')}</PopoverTitle>
+            <PopoverHeader>{t('delete-session-title')}</PopoverHeader>
             <PopoverBody spaceX3>
               <Button variant="light" size="sm" onClick={close} colorScheme="gray600">
                 {t('cancel')}

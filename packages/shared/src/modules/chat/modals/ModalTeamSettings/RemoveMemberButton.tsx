@@ -1,13 +1,13 @@
 import { Member } from '@own-chat/api-sdk'
+import { Button } from 'bone-ui'
+
 import {
-  Avatar,
-  Button,
   Popover,
   PopoverBody,
   PopoverContent,
-  PopoverTitle,
+  PopoverHeader,
   PopoverTrigger,
-} from 'bone-ui'
+} from '@bone-ui/popover'
 import { useRemoveMember } from '../../hooks/useRemoveMember'
 
 interface Props {
@@ -26,7 +26,7 @@ export function RemoveMemberButton({ item }: Props) {
       <PopoverContent minW-100>
         {({ close }) => (
           <>
-            <PopoverTitle>确定删除该成员？</PopoverTitle>
+            <PopoverHeader>确定删除该成员？</PopoverHeader>
             <PopoverBody spaceX3>
               <Button variant="light" size="sm" onClick={close} colorScheme="gray600">
                 取消

@@ -1,4 +1,5 @@
 import { Box } from '@fower/react'
+import { FloatingDelayGroup } from '@floating-ui/react'
 import { useTranslation } from 'react-i18next'
 import { EasyModal } from '@own-chat/easy-modal'
 import { Button, PlusOutline } from 'bone-ui'
@@ -27,19 +28,21 @@ export const TeamBar = () => {
       <Box flex-1>
         <TeamList />
         <Box mt4 toCenter>
-          <Tooltip placement="right">
-            <TooltipTrigger>
-              <Button
-                colorScheme="gray500"
-                variant="ghost"
-                icon={<PlusOutline />}
-                onClick={() => {
-                  EasyModal.show(ModalAddTeam)
-                }}
-              />
-            </TooltipTrigger>
-            <TooltipContent>{t('create-team-tips')}</TooltipContent>
-          </Tooltip>
+          <FloatingDelayGroup delay={200}>
+            <Tooltip placement="right">
+              <TooltipTrigger>
+                <Button
+                  colorScheme="gray500"
+                  variant="ghost"
+                  icon={<PlusOutline />}
+                  onClick={() => {
+                    EasyModal.show(ModalAddTeam)
+                  }}
+                />
+              </TooltipTrigger>
+              <TooltipContent>{t('create-team-tips')}</TooltipContent>
+            </Tooltip>
+          </FloatingDelayGroup>
         </Box>
       </Box>
       <Box toCenter py4 column rowGap-8>

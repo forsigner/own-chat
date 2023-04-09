@@ -24,7 +24,7 @@
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.32",
     "@types/react-dom": "^18.0.11",
-    "bone-ui": "^0.32.1",
+    "bone-ui": "^0.33.0",
     "case": "^1.6.3",
     "cookies-next": "^2.1.1",
     "date-fns": "^2.29.3",
