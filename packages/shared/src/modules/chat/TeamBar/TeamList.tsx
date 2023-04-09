@@ -1,5 +1,6 @@
 import { Box } from '@fower/react'
-import { Avatar, Spinner, Tooltip } from 'bone-ui'
+import { Avatar, Spinner } from 'bone-ui'
+import { Tooltip, TooltipTrigger, TooltipContent } from '@bone-ui/tooltip'
 import { useTeams } from '../hooks/useTeams'
 import { useUpdateActiveTeamId } from '../hooks/useUpdateActiveTeamId'
 
@@ -34,15 +35,18 @@ export const TeamList = () => {
               <Box h-32 w-3 bgBrand500 />
             </Box>
 
-            <Tooltip placement="right-start" content={item.name}>
-              <Avatar
-                size={selected ? 42 : 36}
-                name={item.name}
-                rounded2XL
-                shadow2XL--hover
-                // scale-110--hover={!selected}
-                transitionCommon
-              />
+            <Tooltip placement="right">
+              <TooltipTrigger>
+                <Avatar
+                  size={selected ? 42 : 36}
+                  name={item.name}
+                  rounded2XL
+                  shadow2XL--hover
+                  // scale-110--hover={!selected}
+                  transitionCommon
+                />
+              </TooltipTrigger>
+              <TooltipContent>{item.name}</TooltipContent>
             </Tooltip>
             <Box></Box>
           </Box>

@@ -1,5 +1,6 @@
 import { Box } from '@fower/react'
-import { InformationCircleSolid, Tooltip } from 'bone-ui'
+import { InformationCircleSolid } from 'bone-ui'
+import { Tooltip, TooltipTrigger, TooltipContent } from '@bone-ui/tooltip'
 import { PropsWithChildren } from 'react'
 
 interface Props {
@@ -12,11 +13,12 @@ export const SettingItem = ({ children, name, desc }: PropsWithChildren<Props>) 
     <Box toCenterY toBetween py2>
       <Box mr-40 flex-1 toCenterY spaceX2>
         <Box textSM>{name}</Box>
-        {desc && (
-          <Tooltip content={desc}>
+        <Tooltip>
+          <TooltipTrigger>
             <InformationCircleSolid size={20} gray500 />
-          </Tooltip>
-        )}
+          </TooltipTrigger>
+          <TooltipContent>{desc}</TooltipContent>
+        </Tooltip>
       </Box>
       <Box flex-1 toRight>
         {children}

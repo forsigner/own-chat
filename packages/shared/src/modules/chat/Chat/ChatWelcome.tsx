@@ -1,8 +1,9 @@
 import { Box } from '@fower/react'
-import { EasyModal } from '@own-chat/easy-modal'
-import { Button, InformationCircleSolid, Tooltip } from 'bone-ui'
-import { ModalTeamSettings } from '../modals/ModalTeamSettings'
 import { useTranslation } from 'react-i18next'
+import { EasyModal } from '@own-chat/easy-modal'
+import { Button, InformationCircleSolid } from 'bone-ui'
+import { Tooltip, TooltipTrigger, TooltipContent } from '@bone-ui/tooltip'
+import { ModalTeamSettings } from '../modals/ModalTeamSettings'
 
 const Guide = () => {
   const { t } = useTranslation('common')
@@ -19,15 +20,16 @@ const Guide = () => {
         <Box toCenterY gray600 textBase spaceX3>
           <Box toCenterY spaceX1>
             <Box>{t('get-started-text-2')}</Box>
-            <Tooltip
-              content={
+            <Tooltip>
+              <TooltipTrigger>
+                <InformationCircleSolid size={20} cursorPointer />
+              </TooltipTrigger>
+              <TooltipContent>
                 <Box>
                   <Box>{t('get-started-text-3')}</Box>
                   <Box>{t('get-started-text-4')}</Box>
                 </Box>
-              }
-            >
-              <InformationCircleSolid size={20} cursorPointer />
+              </TooltipContent>
             </Tooltip>
             <Box>:</Box>
           </Box>

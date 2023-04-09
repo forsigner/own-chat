@@ -3,7 +3,7 @@ import { Box } from '@fower/react'
 import { FowerHTMLProps } from '@fower/core'
 import { useFormContext, Node } from 'fomir'
 import { InformationCircleSolid } from '@bone-ui/icons'
-import { Tooltip } from '@bone-ui/tooltip'
+import { Tooltip, TooltipTrigger, TooltipContent } from '@bone-ui/tooltip'
 
 export interface FormFieldProps extends FowerHTMLProps<'div'> {
   showLabel?: boolean
@@ -48,11 +48,13 @@ export const FormField: FC<FormFieldProps> = forwardRef(function FormFieldComp(
               {label}
             </Box>
           )}
-          {description && (
-            <Tooltip content={description}>
+
+          <Tooltip>
+            <TooltipTrigger>
               <InformationCircleSolid gray600 cursorPointer size={20} />
-            </Tooltip>
-          )}
+            </TooltipTrigger>
+            <TooltipContent>{description}</TooltipContent>
+          </Tooltip>
         </Box>
       )}
       <Box className="bone-form-field-control" column flex-1 relative>

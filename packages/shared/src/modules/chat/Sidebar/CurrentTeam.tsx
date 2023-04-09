@@ -1,7 +1,8 @@
 import { Box } from '@fower/react'
+import { Tooltip, TooltipTrigger, TooltipContent } from '@bone-ui/tooltip'
 import { FowerHTMLProps } from '@fower/core'
 import { EasyModal } from '@own-chat/easy-modal'
-import { Button, CogSolid, Tag, Tooltip } from 'bone-ui'
+import { Button, CogSolid, Tag } from 'bone-ui'
 import { NAV_HEIGHT } from '../../../common'
 import { useIsOwner } from '../hooks/useIsOwner'
 import { useTeams } from '../hooks/useTeams'
@@ -49,16 +50,19 @@ export const CurrentTeam = ({ showSettingIcon = true, ...rest }: Props) => {
       </Box>
 
       {isOwner && showSettingIcon && (
-        <Tooltip content={t('team-settings')}>
-          <Button
-            size="md"
-            colorScheme="gray500"
-            variant="ghost"
-            icon={<CogSolid square5 cursorPointer gray600--hover />}
-            onClick={() => {
-              EasyModal.show(ModalTeamSettings)
-            }}
-          />
+        <Tooltip>
+          <TooltipTrigger>
+            <Button
+              size="md"
+              colorScheme="gray500"
+              variant="ghost"
+              icon={<CogSolid square5 cursorPointer gray600--hover />}
+              onClick={() => {
+                EasyModal.show(ModalTeamSettings)
+              }}
+            />
+          </TooltipTrigger>
+          <TooltipContent>{t('team-settings')}</TooltipContent>
         </Tooltip>
       )}
     </Box>
