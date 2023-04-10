@@ -201,6 +201,15 @@ input CreateProviderInput {
 }
 
 """创建"""
+input CreateProxyInput {
+  """"""
+  host: String
+
+  """"""
+  valid: Boolean
+}
+
+"""创建"""
 input CreateRefundInput {
   """"""
   amount: Int!
@@ -334,6 +343,12 @@ input DeletePlanInput {
 
 """删除"""
 input DeleteProviderInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteProxyInput {
   """ID"""
   id: Int!
 }
@@ -585,6 +600,9 @@ type Mutation {
   createProvider(input: CreateProviderInput!): Provider!
 
   """创建"""
+  createProxy(input: CreateProxyInput!): Proxy!
+
+  """创建"""
   createRefund(input: CreateRefundInput!): Refund!
 
   """创建"""
@@ -630,6 +648,9 @@ type Mutation {
   deleteManyProviders(input: DeleteProviderInput!): Float!
 
   """批量删除"""
+  deleteManyProxys(input: DeleteProxyInput!): Float!
+
+  """批量删除"""
   deleteManyRefunds(input: DeleteRefundInput!): Float!
 
   """批量删除"""
@@ -667,6 +688,9 @@ type Mutation {
 
   """删除单个"""
   deleteProvider(input: DeleteProviderInput!): Boolean!
+
+  """删除单个"""
+  deleteProxy(input: DeleteProxyInput!): Boolean!
 
   """删除单个"""
   deleteRefund(input: DeleteRefundInput!): Boolean!
@@ -759,6 +783,9 @@ type Mutation {
   updateManyProviders(input: UpdateManyProviderInput!): Boolean!
 
   """批量更新"""
+  updateManyProxys(input: UpdateManyProxyInput!): Boolean!
+
+  """批量更新"""
   updateManyRefunds(input: UpdateManyRefundInput!): Boolean!
 
   """批量更新"""
@@ -796,6 +823,9 @@ type Mutation {
 
   """更新单个"""
   updateProvider(input: UpdateProviderInput!): Provider!
+
+  """更新单个"""
+  updateProxy(input: UpdateProxyInput!): Proxy!
 
   """更新单个"""
   updateRefund(input: UpdateRefundInput!): Refund!
@@ -974,6 +1004,9 @@ type Provider {
   """"""
   isPlus: Boolean!
 
+  """proxy Host"""
+  proxyHost: String
+
   """teamId"""
   teamId: Int!
 
@@ -999,6 +1032,31 @@ input ProviderWhereInput {
 type ProvidersConnection {
   hasNextPage: Boolean!
   items: [Provider!]!
+  totalCount: Int!
+}
+
+""""""
+type Proxy {
+  """"""
+  host: String
+
+  """"""
+  id: Int!
+
+  """"""
+  valid: Boolean
+}
+
+"""筛选条件"""
+input ProxyWhereInput {
+  """"""
+  id: Int!
+}
+
+"""connection"""
+type ProxysConnection {
+  hasNextPage: Boolean!
+  items: [Proxy!]!
   totalCount: Int!
 }
 
@@ -1269,6 +1327,39 @@ type Query {
     """筛选条件"""
     where: ProviderWhereInput
   ): ProvidersConnection!
+
+  """获取单个"""
+  proxy(id: Int!): Proxy!
+
+  """获取列表"""
+  proxys(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: ProxyWhereInput
+  ): [Proxy!]!
+
+  """获取分页列表"""
+  proxysConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: ProxyWhereInput
+  ): ProxysConnection!
 
   """获取单个"""
   refund(
@@ -1910,6 +2001,15 @@ input UpdateManyProviderInput {
 }
 
 """批量更新"""
+input UpdateManyProxyInput {
+  """更新的数据"""
+  data: UpdateProxyDataInput
+
+  """更新条件"""
+  where: UpdateProxyWhereInput
+}
+
+"""批量更新"""
 input UpdateManyRefundInput {
   """更新的数据"""
   data: UpdateRefundDataInput
@@ -2149,6 +2249,33 @@ input UpdateProviderInput {
 
 """更新条件"""
 input UpdateProviderWhereInput {
+  """ID"""
+  id: Int
+}
+
+"""更新data"""
+input UpdateProxyDataInput {
+  """"""
+  host: String
+
+  """"""
+  id: Int!
+
+  """"""
+  valid: Boolean
+}
+
+"""更新单个"""
+input UpdateProxyInput {
+  """更新的数据"""
+  data: UpdateProxyDataInput
+
+  """更新条件"""
+  where: UpdateProxyWhereInput
+}
+
+"""更新条件"""
+input UpdateProxyWhereInput {
   """ID"""
   id: Int
 }

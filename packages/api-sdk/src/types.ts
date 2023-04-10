@@ -144,6 +144,12 @@ export type CreateProviderInput = {
 };
 
 /** 创建 */
+export type CreateProxyInput = {
+  host?: InputMaybe<Scalars['String']>;
+  valid?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** 创建 */
 export type CreateRefundInput = {
   amount: Scalars['Int'];
   currency: Scalars['String'];
@@ -247,6 +253,12 @@ export type DeletePlanInput = {
 
 /** 删除 */
 export type DeleteProviderInput = {
+  /** ID */
+  id: Scalars['Int'];
+};
+
+/** 删除 */
+export type DeleteProxyInput = {
   /** ID */
   id: Scalars['Int'];
 };
@@ -456,6 +468,8 @@ export type Mutation = {
   /** 创建 */
   createProvider: Provider;
   /** 创建 */
+  createProxy: Proxy;
+  /** 创建 */
   createRefund: Refund;
   /** 创建 */
   createSession: Session;
@@ -486,6 +500,8 @@ export type Mutation = {
   /** 批量删除 */
   deleteManyProviders: Scalars['Float'];
   /** 批量删除 */
+  deleteManyProxys: Scalars['Float'];
+  /** 批量删除 */
   deleteManyRefunds: Scalars['Float'];
   /** 批量删除 */
   deleteManySessions: Scalars['Float'];
@@ -511,6 +527,8 @@ export type Mutation = {
   deletePlan: Scalars['Boolean'];
   /** 删除单个 */
   deleteProvider: Scalars['Boolean'];
+  /** 删除单个 */
+  deleteProxy: Scalars['Boolean'];
   /** 删除单个 */
   deleteRefund: Scalars['Boolean'];
   /** 删除单个 */
@@ -571,6 +589,8 @@ export type Mutation = {
   /** 批量更新 */
   updateManyProviders: Scalars['Boolean'];
   /** 批量更新 */
+  updateManyProxys: Scalars['Boolean'];
+  /** 批量更新 */
   updateManyRefunds: Scalars['Boolean'];
   /** 批量更新 */
   updateManySessions: Scalars['Boolean'];
@@ -596,6 +616,8 @@ export type Mutation = {
   updatePlan: Plan;
   /** 更新单个 */
   updateProvider: Provider;
+  /** 更新单个 */
+  updateProxy: Proxy;
   /** 更新单个 */
   updateRefund: Refund;
   /** 更新单个 */
@@ -674,6 +696,11 @@ export type MutationCreateProviderArgs = {
 };
 
 
+export type MutationCreateProxyArgs = {
+  input: CreateProxyInput;
+};
+
+
 export type MutationCreateRefundArgs = {
   input: CreateRefundInput;
 };
@@ -749,6 +776,11 @@ export type MutationDeleteManyProvidersArgs = {
 };
 
 
+export type MutationDeleteManyProxysArgs = {
+  input: DeleteProxyInput;
+};
+
+
 export type MutationDeleteManyRefundsArgs = {
   input: DeleteRefundInput;
 };
@@ -811,6 +843,11 @@ export type MutationDeletePlanArgs = {
 
 export type MutationDeleteProviderArgs = {
   input: DeleteProviderInput;
+};
+
+
+export type MutationDeleteProxyArgs = {
+  input: DeleteProxyInput;
 };
 
 
@@ -964,6 +1001,11 @@ export type MutationUpdateManyProvidersArgs = {
 };
 
 
+export type MutationUpdateManyProxysArgs = {
+  input: UpdateManyProxyInput;
+};
+
+
 export type MutationUpdateManyRefundsArgs = {
   input: UpdateManyRefundInput;
 };
@@ -1026,6 +1068,11 @@ export type MutationUpdatePlanArgs = {
 
 export type MutationUpdateProviderArgs = {
   input: UpdateProviderInput;
+};
+
+
+export type MutationUpdateProxyArgs = {
+  input: UpdateProxyInput;
 };
 
 
@@ -1179,6 +1226,8 @@ export type Provider = {
   endpoint?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   isPlus: Scalars['Boolean'];
+  /** proxy Host */
+  proxyHost?: Maybe<Scalars['String']>;
   /** teamId */
   teamId: Scalars['Int'];
   type: ProviderType;
@@ -1203,6 +1252,26 @@ export type ProvidersConnection = {
   __typename?: 'ProvidersConnection';
   hasNextPage: Scalars['Boolean'];
   items: Array<Provider>;
+  totalCount: Scalars['Int'];
+};
+
+export type Proxy = {
+  __typename?: 'Proxy';
+  host?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  valid?: Maybe<Scalars['Boolean']>;
+};
+
+/** 筛选条件 */
+export type ProxyWhereInput = {
+  id: Scalars['Int'];
+};
+
+/** connection */
+export type ProxysConnection = {
+  __typename?: 'ProxysConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Proxy>;
   totalCount: Scalars['Int'];
 };
 
@@ -1262,6 +1331,12 @@ export type Query = {
   providers: Array<Provider>;
   /** 获取分页列表 */
   providersConnection: ProvidersConnection;
+  /** 获取单个 */
+  proxy: Proxy;
+  /** 获取列表 */
+  proxys: Array<Proxy>;
+  /** 获取分页列表 */
+  proxysConnection: ProxysConnection;
   /** 获取单个 */
   refund: Refund;
   /** 获取列表 */
@@ -1472,6 +1547,27 @@ export type QueryProvidersConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ProviderWhereInput>;
+};
+
+
+export type QueryProxyArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryProxysArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ProxyWhereInput>;
+};
+
+
+export type QueryProxysConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ProxyWhereInput>;
 };
 
 
@@ -1937,6 +2033,14 @@ export type UpdateManyProviderInput = {
 };
 
 /** 批量更新 */
+export type UpdateManyProxyInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateProxyDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateProxyWhereInput>;
+};
+
+/** 批量更新 */
 export type UpdateManyRefundInput = {
   /** 更新的数据 */
   data?: InputMaybe<UpdateRefundDataInput>;
@@ -2128,6 +2232,27 @@ export type UpdateProviderInput = {
 
 /** 更新条件 */
 export type UpdateProviderWhereInput = {
+  /** ID */
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+/** 更新data */
+export type UpdateProxyDataInput = {
+  host?: InputMaybe<Scalars['String']>;
+  id: Scalars['Int'];
+  valid?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** 更新单个 */
+export type UpdateProxyInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateProxyDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateProxyWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdateProxyWhereInput = {
   /** ID */
   id?: InputMaybe<Scalars['Int']>;
 };

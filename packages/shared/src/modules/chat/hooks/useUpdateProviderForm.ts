@@ -10,6 +10,7 @@ import { toast } from 'bone-ui'
 import { Node, useForm } from 'fomir'
 import { useVisit } from './useVisit'
 import { useTeams } from './useTeams'
+import { useUpdateProvider } from './useUpdateProvider'
 
 interface Values {
   name: string
@@ -23,6 +24,7 @@ interface Values {
 export function useUpdateProviderForm(provider: Provider) {
   const { visit } = useVisit()
   const { activeProvider } = useTeams()
+  const { updateProvider } = useUpdateProvider()
 
   let nodes: Node[] = []
 
@@ -89,14 +91,7 @@ export function useUpdateProviderForm(provider: Provider) {
   }
 
   const debouncedUpdate = useDebouncedCallback(async (data: UpdateProviderDataInput) => {
-    const toaster = toast.loading('Saving...')
-    try {
-      await apiService.updateProvider({
-        where: { id: provider.id },
-        data,
-      })
-      toaster.update('Saved', { type: 'success' })
-    } catch (error) {}
+    updateProvider(provider.id, data)
   }, 400)
 
   const form = useForm<Values>({

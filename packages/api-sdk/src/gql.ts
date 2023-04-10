@@ -118,6 +118,7 @@ query team($id: Int!){
             endpoint
             id
             isPlus
+            proxyHost
             teamId
             type
         }
@@ -171,6 +172,7 @@ query activeTeam{
             endpoint
             id
             isPlus
+            proxyHost
             teamId
             type
         }
@@ -224,6 +226,7 @@ query myTeams{
             endpoint
             id
             isPlus
+            proxyHost
             teamId
             type
         }
@@ -316,6 +319,7 @@ query providers($orderBy: String, $skip: Int, $take: Int, $where: ProviderWhereI
         endpoint
         id
         isPlus
+        proxyHost
         teamId
         type
     }
@@ -330,6 +334,7 @@ query activeProvider{
         endpoint
         id
         isPlus
+        proxyHost
         teamId
         type
     }
@@ -531,6 +536,7 @@ mutation updateTeam($input: UpdateTeamInput!){
             endpoint
             id
             isPlus
+            proxyHost
             teamId
             type
         }
@@ -584,6 +590,7 @@ mutation addTeam($input: AddTeamInput!){
             endpoint
             id
             isPlus
+            proxyHost
             teamId
             type
         }
@@ -690,6 +697,7 @@ mutation updateProvider($input: UpdateProviderInput!){
         endpoint
         id
         isPlus
+        proxyHost
         teamId
         type
     }

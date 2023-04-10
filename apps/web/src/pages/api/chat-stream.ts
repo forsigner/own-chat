@@ -49,10 +49,11 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
     await redis.set(key, 1, 'EX', 60)
   }
 
-
   if (provider.type === ProviderType.ApiKey) {
     // endpoint = 'http://localhost:4001'
-    endpoint = 'https://own-chat-official-provider.vercel.app'
+    // endpoint = 'https://own-chat-official-provider.vercel.app'
+    // endpoint = 'https://styli.js.org'
+    endpoint = provider.proxyHost || 'https://styli.js.org'
     replaceStr = `${replaceStr}?apiKey=${provider.apiKey}`
   }
 
@@ -60,6 +61,7 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
     replaceStr = `${replaceStr}?authorizationCode=${provider.authorizationCode}`
   }
 
+  // console.log('endpoint:', endpoint)
 
   return httpProxyMiddleware(req, res, {
     target: endpoint,
