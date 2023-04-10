@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { CHAT_WIDTH } from '../../../common'
-import { ChatList } from '../../../components/MessageList/MessageList'
+import { MessageList } from '../../../components/MessageList/MessageList'
 import { useMessages } from '../hooks/useMessages'
 import { useVisit } from '../hooks/useVisit'
 import { Anchor } from './Anchor'
@@ -17,7 +17,7 @@ export const ChatBody = () => {
           <Box>
             {!loading && (
               <>
-                {!!messages.length && <ChatList messages={messages} />}
+                {!!messages.length && <MessageList messages={messages} />}
                 {!messages.length && <ChatWelcome />}
               </>
             )}

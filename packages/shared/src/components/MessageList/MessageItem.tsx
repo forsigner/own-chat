@@ -42,7 +42,7 @@ const MessageItem = ({ message }: Props) => {
         <Box mb2 toCenterY toBetween h-30>
           <Box toCenterY columnGap-8>
             <Box>
-              {!isUser && <Box fontMedium>AI</Box>}
+              {!isUser && <Box fontMedium>Assistant</Box>}
               {isUser && <Box fontMedium>User</Box>}
             </Box>
             <Box textXS gray400 selfBottom>

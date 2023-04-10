@@ -6,7 +6,7 @@ interface Props {
   messages: Message[]
 }
 
-export const ChatList = ({ messages }: Props) => {
+export const MessageList = ({ messages }: Props) => {
   return (
     <Box column rowGap-10>
       {messages.map((item, index) => (

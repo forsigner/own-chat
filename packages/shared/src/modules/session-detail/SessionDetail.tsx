@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { Session } from '@own-chat/api-sdk'
-import { ChatList } from '../../components/MessageList/MessageList'
+import { MessageList } from '../../components/MessageList/MessageList'
 import { Logo } from '../../components'
 import { ApiError } from '../../common'
 
@@ -22,7 +22,7 @@ export function SessionDetail({ session, error }: Props) {
         </Box>
       )}
 
-      {session && <ChatList messages={session?.messages || []} />}
+      {session && <MessageList messages={session?.messages || []} />}
     </Box>
   )
 }
