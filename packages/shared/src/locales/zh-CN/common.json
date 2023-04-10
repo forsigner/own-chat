@@ -56,6 +56,8 @@
   "get-started-text-3": "Provider 可以是一个 OpenAI API Key,",
   "get-started-text-4": "或者是一个 Self-Hosted 的 ChatGPT 后端服务",
   "configure-provider": "配置 provider",
+  "start-to-use": "马上去使用",
+  "configure-api-key": "配置 API Key",
   "faq": "常见问题",
   "blog": "Blog",
   "about-own-chat": "关于 OwnChat",

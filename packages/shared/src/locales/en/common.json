@@ -56,6 +56,8 @@
   "get-started-text-3": "Provider can be a OpenAI API Key,",
   "get-started-text-4": "Or a Self-Hosted ChatGPT server",
   "configure-provider": "Configure provider",
+  "start-to-use": "Try it now",
+  "configure-api-key": "Configure API Key",
   "faq": "FAQ",
   "blog": "Blog",
   "about-own-chat": "About OwnChat",

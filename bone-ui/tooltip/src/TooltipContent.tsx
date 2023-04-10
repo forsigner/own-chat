@@ -75,6 +75,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
             aria-labelledby={state.labelId}
             aria-describedby={state.descriptionId}
             {...state.getFloatingProps()}
+            {...rest}
           >
             <FloatingArrow ref={state.arrowRef} context={state.context} />
 

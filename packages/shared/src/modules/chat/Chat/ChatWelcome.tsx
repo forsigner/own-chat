@@ -1,7 +1,7 @@
 import { Box } from '@fower/react'
 import { useTranslation } from 'react-i18next'
 import { EasyModal } from '@own-chat/easy-modal'
-import { Button, InformationCircleSolid } from 'bone-ui'
+import { Button, InformationCircleSolid, KeyOutline, QrcodeOutline } from 'bone-ui'
 import { Tooltip, TooltipTrigger, TooltipContent } from '@bone-ui/tooltip'
 import { ModalTeamSettings } from '../modals/ModalTeamSettings'
 
@@ -120,9 +120,54 @@ const FAQ = () => {
   )
 }
 
+function ConfigKey() {
+  const { t } = useTranslation('common')
+
+  return (
+    <Box mt6>
+      <Box text2XL fontBold mb3>
+        {t('start-to-use')}
+      </Box>
+      <Button
+        leftIcon={<KeyOutline size={20} />}
+        colorScheme="black"
+        roundedFull
+        onClick={() => {
+          EasyModal.show(ModalTeamSettings)
+        }}
+      >
+        {t('configure-api-key')}
+      </Button>
+    </Box>
+  )
+}
+
+function Wechat() {
+  const { t, i18n } = useTranslation('common')
+
+  if (i18n.language === 'en') return null
+
+  return (
+    <Box mt8>
+      <Box textBase fontBold mb3 toCenterY gray400 columnGap-12>
+        <Box>遇到问题？加入微信交流群</Box>
+
+        <Tooltip>
+          <TooltipTrigger cursorPointer>
+            <QrcodeOutline cursorPointer black />
+          </TooltipTrigger>
+          <TooltipContent maxW="max-content">
+            <Box as="img" src="/images/wx.jpg" maxW-420 />
+          </TooltipContent>
+        </Tooltip>
+      </Box>
+    </Box>
+  )
+}
+
 export const ChatWelcome = () => {
   return (
-    <Box pt10>
+    <Box pt10 column>
       <Box text4XL fontBold mb4>
         Welcome to
         <Box as="span" brand500>
@@ -135,6 +180,8 @@ export const ChatWelcome = () => {
         a ai assistant easily.
       </Box>
       <Guide />
+      <ConfigKey />
+      <Wechat />
       {/* <FAQ /> */}
     </Box>
   )
