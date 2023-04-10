@@ -49,12 +49,14 @@ export const FormField: FC<FormFieldProps> = forwardRef(function FormFieldComp(
             </Box>
           )}
 
-          <Tooltip>
-            <TooltipTrigger>
-              <InformationCircleSolid gray600 cursorPointer size={20} />
-            </TooltipTrigger>
-            <TooltipContent>{description}</TooltipContent>
-          </Tooltip>
+          {description && (
+            <Tooltip>
+              <TooltipTrigger>
+                <InformationCircleSolid gray600 cursorPointer size={20} />
+              </TooltipTrigger>
+              <TooltipContent>{description}</TooltipContent>
+            </Tooltip>
+          )}
         </Box>
       )}
       <Box className="bone-form-field-control" column flex-1 relative>

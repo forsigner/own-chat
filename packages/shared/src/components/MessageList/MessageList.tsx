@@ -8,7 +8,7 @@ interface Props {
 
 export const ChatList = ({ messages }: Props) => {
   return (
-    <Box column>
+    <Box column rowGap-10>
       {messages.map((item, index) => (
         <MessageItem key={index} message={item} />
       ))}

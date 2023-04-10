@@ -15,7 +15,7 @@ export function useSessions() {
   })
 
   const activeSession = useMemo(() => {
-    if (!sessions || !visit?.activeSessionId) return
+    if (!sessions?.length || !visit?.activeSessionId) return
     return sessions?.find((item) => item.id === visit.activeSessionId)
   }, [sessions, visit])
 
