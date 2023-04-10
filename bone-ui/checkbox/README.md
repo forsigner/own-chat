@@ -1,2 +1,0 @@
-# @bone-ui/checkbox
-

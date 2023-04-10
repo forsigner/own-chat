@@ -1,5 +1,0 @@
-export * from './Tooltip'
-export * from './TooltipTrigger'
-export * from './TooltipContent'
-export * from './context'
-export * from './types'
