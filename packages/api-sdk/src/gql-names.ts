@@ -56,6 +56,7 @@ export enum Names {
   modifyPassword = "modifyPassword",
   registerByEmail = "registerByEmail",
   removeMember = "removeMember",
+  removeMessagePair = "removeMessagePair",
   removeSession = "removeSession",
   resetPassword = "resetPassword",
   updateChatSettings = "updateChatSettings",

@@ -31,6 +31,7 @@ export type AddMessageInput = {
   sessionId: Scalars['Int'];
   /** 用户ID */
   userId?: InputMaybe<Scalars['Int']>;
+  userMessageId?: InputMaybe<Scalars['Int']>;
 };
 
 /** 添加 Session */
@@ -94,6 +95,7 @@ export type CreateMessageInput = {
   sessionId: Scalars['Int'];
   /** 用户ID */
   userId?: InputMaybe<Scalars['Int']>;
+  userMessageId?: InputMaybe<Scalars['Int']>;
 };
 
 /** 创建 */
@@ -389,6 +391,7 @@ export type Message = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** 用户ID */
   userId: Scalars['Int'];
+  userMessageId?: Maybe<Scalars['Int']>;
   /** 阅读次数 */
   views: Scalars['Int'];
 };
@@ -539,6 +542,8 @@ export type Mutation = {
   registerByEmail: Scalars['Boolean'];
   /** 删除成员，只有管理员以上才能操作 */
   removeMember: Scalars['Boolean'];
+  /** 删除一组对话 */
+  removeMessagePair: Scalars['Boolean'];
   /** 删除Session */
   removeSession: Scalars['Boolean'];
   /** 重置密码 */
@@ -888,6 +893,11 @@ export type MutationRegisterByEmailArgs = {
 
 export type MutationRemoveMemberArgs = {
   input: RemoveMemberInput;
+};
+
+
+export type MutationRemoveMessagePairArgs = {
+  input: RemoveMessagePairInput;
 };
 
 
@@ -1662,6 +1672,12 @@ export type RemoveMemberInput = {
 };
 
 /** 删除 */
+export type RemoveMessagePairInput = {
+  /** ID */
+  messageId: Scalars['Int'];
+};
+
+/** 删除 */
 export type RemoveSessionInput = {
   /** ID */
   id: Scalars['Int'];
@@ -1995,7 +2011,7 @@ export type UpdateMemberWhereInput = {
 
 /** 更新data */
 export type UpdateMessageDataInput = {
-  /** 该 Message Name */
+  /** 该 Message 内容 */
   content: Scalars['String'];
 };
 

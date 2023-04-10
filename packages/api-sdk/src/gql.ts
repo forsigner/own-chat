@@ -277,6 +277,7 @@ query sessionBySlug($slug: String!){
             streaming
             updatedAt
             userId
+            userMessageId
             views
         }
         name
@@ -299,6 +300,7 @@ query messages($orderBy: String, $skip: Int, $take: Int, $where: MessageWhereInp
         streaming
         updatedAt
         userId
+        userMessageId
         views
     }
 }
@@ -648,6 +650,7 @@ mutation addMessage($input: AddMessageInput!){
         streaming
         updatedAt
         userId
+        userMessageId
         views
     }
 }
@@ -664,8 +667,14 @@ mutation updateMessage($input: UpdateMessageInput!){
         streaming
         updatedAt
         userId
+        userMessageId
         views
     }
+}
+`;
+export const REMOVE_MESSAGE_PAIR = gql`
+mutation removeMessagePair($input: RemoveMessagePairInput!){
+    removeMessagePair(input: $input)
 }
 `;
 export const UPDATE_PROVIDER = gql`

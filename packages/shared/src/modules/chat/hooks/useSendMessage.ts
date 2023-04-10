@@ -34,6 +34,7 @@ export function useSendMessage() {
       role: ChatCompletionResponseMessageRoleEnum.Assistant,
       content: '',
       streaming: true,
+      createdAt: new Date().toString(),
     } as Message
 
     Mutator.mutateMessages((messages) => {
@@ -108,8 +109,8 @@ export function useSendMessage() {
     const api = new ChatGPTAPI({})
 
     try {
-      const url = `/api/chat-stream`
-      const result = await api.sendMessage({
+      const url = `${host}/api/chat-stream`
+      const text = await api.sendMessage({
         url,
         abortController: getAbortController(),
         messages: requestMessages,
@@ -123,7 +124,7 @@ export function useSendMessage() {
       })
 
       await updateStreamingStatus(key, true)
-      await addMessage(result, ChatCompletionResponseMessageRoleEnum.Assistant)
+      await addMessage(text, ChatCompletionResponseMessageRoleEnum.Assistant)
 
       setStatus('finished')
     } catch (error) {

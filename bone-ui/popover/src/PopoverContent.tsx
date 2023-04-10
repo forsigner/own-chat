@@ -30,39 +30,39 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
       widthProps.w = triggerWidth + '!important'
     }
 
-    return (
-      <FloatingPortal>
-        {state.isOpen && (
-          <FloatingFocusManager context={state.context} modal={state.modal}>
-            <Box
-              ref={ref}
-              black
-              shadow
-              shadow--dark="0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4)"
-              rounded
-              outlineNone
-              white--dark
-              bgWhite
-              bgGray800--dark
-              zIndex={10000}
-              style={{
-                position: state.strategy,
-                top: state.y ?? 0,
-                left: state.x ?? 0,
-                ...rest.style,
-              }}
-              aria-labelledby={state.labelId}
-              aria-describedby={state.descriptionId}
-              {...state.getFloatingProps(rest as any)}
-              {...widthProps}
-            >
-              {typeof children === 'function'
-                ? (children as any)(state.getRenderProps())
-                : children}
-            </Box>
-          </FloatingFocusManager>
-        )}
-      </FloatingPortal>
+    const content = (
+      <FloatingFocusManager context={state.context} modal={state.modal}>
+        <Box
+          ref={ref}
+          black
+          shadow
+          shadow--dark="0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4)"
+          rounded
+          outlineNone
+          white--dark
+          bgWhite
+          bgGray800--dark
+          zIndex={10000}
+          style={{
+            position: state.strategy,
+            top: state.y ?? 0,
+            left: state.x ?? 0,
+            ...rest.style,
+          }}
+          aria-labelledby={state.labelId}
+          aria-describedby={state.descriptionId}
+          {...state.getFloatingProps(rest as any)}
+          {...widthProps}
+        >
+          {typeof children === 'function' ? (children as any)(state.getRenderProps()) : children}
+        </Box>
+      </FloatingFocusManager>
     )
+
+    if (state.portal) {
+      return <FloatingPortal>{state.isOpen && content}</FloatingPortal>
+    }
+
+    return <>{state.isOpen && content}</>
   },
 )

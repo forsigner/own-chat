@@ -23,6 +23,9 @@ input AddMessageInput {
 
   """用户ID"""
   userId: Int
+
+  """"""
+  userMessageId: Int
 }
 
 """添加 Session"""
@@ -113,6 +116,9 @@ input CreateMessageInput {
 
   """用户ID"""
   userId: Int
+
+  """"""
+  userMessageId: Int
 }
 
 """创建"""
@@ -495,6 +501,9 @@ type Message {
   """用户ID"""
   userId: Int!
 
+  """"""
+  userMessageId: Int
+
   """阅读次数"""
   views: Int!
 }
@@ -701,6 +710,9 @@ type Mutation {
 
   """删除成员，只有管理员以上才能操作"""
   removeMember(input: RemoveMemberInput!): Boolean!
+
+  """删除一组对话"""
+  removeMessagePair(input: RemoveMessagePairInput!): Boolean!
 
   """删除Session"""
   removeSession(input: RemoveSessionInput!): Boolean!
@@ -1561,6 +1573,12 @@ input RemoveMemberInput {
 }
 
 """删除"""
+input RemoveMessagePairInput {
+  """ID"""
+  messageId: Int!
+}
+
+"""删除"""
 input RemoveSessionInput {
   """ID"""
   id: Int!
@@ -1969,7 +1987,7 @@ input UpdateMemberWhereInput {
 
 """更新data"""
 input UpdateMessageDataInput {
-  """该 Message Name"""
+  """该 Message 内容"""
   content: String!
 }
 

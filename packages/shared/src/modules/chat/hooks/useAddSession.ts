@@ -1,6 +1,6 @@
+import { apiService, Refetcher } from '@own-chat/api-sdk'
 import { useUser } from '../../../stores'
 import { useVisit } from './useVisit'
-import { apiService, Refetcher } from '@own-chat/api-sdk'
 
 export function useAddSession() {
   const { user } = useUser()

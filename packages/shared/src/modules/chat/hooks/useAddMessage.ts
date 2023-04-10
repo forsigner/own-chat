@@ -5,6 +5,7 @@ import { useAddSession } from './useAddSession'
 import { useSessions } from './useSessions'
 import { useUpdateSession } from './useUpdateSession'
 import { getVisit, useVisit } from './useVisit'
+import { getMessages } from './useMessages'
 
 export function useAddMessage() {
   const { user } = useUser()
@@ -34,8 +35,14 @@ export function useAddMessage() {
 
     const sessionId = getVisit().activeSessionId!
 
+    const messages = getMessages()
+
     await apiService.addMessage({
       userId: user.id,
+      userMessageId:
+        role === ChatCompletionResponseMessageRoleEnum.Assistant
+          ? messages[messages.length - 2].id
+          : null,
       sessionId,
       role: role,
       content: value,

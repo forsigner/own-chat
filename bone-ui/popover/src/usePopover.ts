@@ -25,6 +25,8 @@ export interface PopoverOptions {
 
   placement?: Placement
 
+  portal?: boolean
+
   modal?: boolean
 
   isOpen?: boolean
@@ -55,6 +57,7 @@ export function usePopover({
   initialOpened = false,
   placement = 'bottom',
   modal = true,
+  portal = true,
   isOpen: controlledOpen,
   onOpenChange: setControlledOpen,
   onClose,
@@ -119,6 +122,7 @@ export function usePopover({
       ...interactions,
       ...data,
       modal,
+      portal,
 
       labelId,
       setLabelId,
@@ -134,6 +138,7 @@ export function usePopover({
       setOpen,
       interactions,
       data,
+      portal,
       modal,
       labelId,
       descriptionId,
