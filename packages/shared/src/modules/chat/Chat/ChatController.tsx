@@ -3,13 +3,18 @@ import { Box } from '@fower/react'
 import { useRegenerateResponse } from '../hooks/useRegenerateResponse'
 import { useChatStatus } from '../hooks/useChatStatus'
 import { emitter } from '../../../common/emitter'
+import { useMessages } from '../hooks/useMessages'
 
 export const ChatController = () => {
   const { regenerateResponse } = useRegenerateResponse()
+  const { messages } = useMessages()
   const { isStreaming, isNormal, isFinished, isFetching } = useChatStatus()
   let leftIcon = <RefreshOutline size={20} />
   if (isStreaming) leftIcon = <StopSolid size={20} />
   if (isFetching) leftIcon = <Spinner gray500 square5 />
+
+  if (!messages.length) return null
+
   return (
     <Box toCenter>
       <Button

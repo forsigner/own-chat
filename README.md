@@ -42,3 +42,7 @@ Run the web app:
 cd apps/web
 yarn dev
 ```
+
+## ⚖️ License
+
+AGPL 3.0

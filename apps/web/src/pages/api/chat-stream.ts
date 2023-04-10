@@ -49,7 +49,6 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
     await redis.set(key, 1, 'EX', 60)
   }
 
-  console.log('provider:', provider)
 
   if (provider.type === ProviderType.ApiKey) {
     // endpoint = 'http://localhost:4001'
@@ -61,9 +60,6 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
     replaceStr = `${replaceStr}?authorizationCode=${provider.authorizationCode}`
   }
 
-  console.log('provider:', provider)
-
-  console.log('replaceStr:', replaceStr)
 
   return httpProxyMiddleware(req, res, {
     target: endpoint,

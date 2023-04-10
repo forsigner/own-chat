@@ -17,7 +17,6 @@ import { useChatStatus } from './useChatStatus'
 import { useAbortController } from './useAbortController'
 
 export function useSendMessage() {
-  const { token } = useToken()
   const { user } = useUser()
   const { visit } = useVisit()
   const { addMessage } = useAddMessage()

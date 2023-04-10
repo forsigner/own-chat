@@ -1,8 +1,8 @@
 import { getLocalStorage } from 'stook-localstorage'
-import { TIME_OUT_MS } from '../common/chatService'
 import * as types from './types'
 
 const CHATGPT_MODEL = 'gpt-3.5-turbo'
+export const TIME_OUT_MS = 60 * 1000
 
 export class ChatGPTAPI {
   protected _apiKey: string
