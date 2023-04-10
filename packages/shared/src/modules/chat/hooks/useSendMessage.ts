@@ -3,7 +3,7 @@ import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } f
 import { ChatGPTUnofficialProxyAPI, ChatGPTAPI } from '../../../chatgpt-api'
 import { getStreamingKey } from '../../../common'
 import { updateStreamingStatus } from '../../../common/request'
-import { useToken, useUser } from '../../../stores'
+import { useUser } from '../../../stores'
 import { useAddMessage } from './useAddMessage'
 import { useChatSettings } from './useChatSettings'
 import { useMessages } from './useMessages'
@@ -12,15 +12,16 @@ import { useVisit } from './useVisit'
 import { emitter } from '../../../common/emitter'
 import { getOpenaiProxy } from '../utils'
 import { useGetChatParams } from './useGetChatParams'
-import { useRef } from 'react'
 import { useChatStatus } from './useChatStatus'
 import { useAbortController } from './useAbortController'
+import { EasyModal } from '@own-chat/easy-modal'
+import { ModalTeamSettings } from '../modals/ModalTeamSettings'
 
 export function useSendMessage() {
   const { user } = useUser()
   const { visit } = useVisit()
   const { addMessage } = useAddMessage()
-  const { activeProvider } = useTeams()
+  const { activeProvider, isProviderValid } = useTeams()
   const { messages = [] } = useMessages()
   const { chatSettings } = useChatSettings()
   const { getChatParams } = useGetChatParams()
@@ -138,6 +139,10 @@ export function useSendMessage() {
   }
 
   async function sendMessage(value: string) {
+    if (!isProviderValid) {
+      EasyModal.show(ModalTeamSettings, { tips: true })
+      return
+    }
     setStatus('fetching')
 
     try {

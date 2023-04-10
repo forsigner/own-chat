@@ -1,4 +1,4 @@
-import { Hooks, Provider, Team } from '@own-chat/api-sdk'
+import { Hooks, Provider, ProviderType, Team } from '@own-chat/api-sdk'
 import { useMemo } from 'react'
 import { useVisit } from './useVisit'
 
@@ -16,11 +16,24 @@ export function useTeams() {
     return activeTeam.providers?.find((item) => item.id === activeTeam.activeProviderId)!
   }, [activeTeam])
 
+  const isProviderValid = useMemo(() => {
+    if (!activeProvider) return false
+    if (activeProvider.type === ProviderType.ApiKey) {
+      return !!activeProvider.apiKey
+    }
+
+    if (activeProvider.type === ProviderType.SelfHosted) {
+      return !!(activeProvider.authorizationCode && activeProvider.endpoint)
+    }
+    return false
+  }, [activeProvider])
+
   return {
     ...rest,
     teams,
     activeTeam,
     activeProvider,
+    isProviderValid,
     loading: loading || rest.loading,
   }
 }

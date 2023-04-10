@@ -23,6 +23,7 @@
   "add-member-success": "Add Member successfully",
   "add-member-limit": "Currently, We just support add 1 member",
   "team-name": "Team Name",
+  "provider-tips": "Please configure your OpenAI API key to enable the chat features",
   "provider-api-key-tips-1": "Use your own API Key, OwnChat will provide server proxy",
   "provider-api-key-tips-2": "If you have your own API Key, you can choose this solution",
   "provider-self-hosted-tips-1": "Use the ChatGPT service deployed by yourself, without exposing the key to OwnChat",

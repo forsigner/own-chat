@@ -1,5 +1,13 @@
 import { Box } from '@fower/react'
-import { Modal, ModalOverlay, ModalContent, ModalBody, MenuItem, ModalCloseButton } from 'bone-ui'
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  MenuItem,
+  ModalCloseButton,
+  Alert,
+} from 'bone-ui'
 import { useModal } from '@own-chat/easy-modal'
 import { General } from './General'
 import { useState } from 'react'
