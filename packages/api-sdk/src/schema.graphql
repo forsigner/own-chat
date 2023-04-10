@@ -224,6 +224,9 @@ input CreateSessionInput {
   """该 Session Name"""
   name: String!
 
+  """设置"""
+  settings: JSON
+
   """"""
   slug: String
 
@@ -426,6 +429,11 @@ type InvoicesConnection {
   items: [Invoice!]!
   totalCount: Int!
 }
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
 
 """邮箱登录"""
 input LoginByEmailInput {
@@ -1619,6 +1627,9 @@ type Session {
   """"""
   name: String!
 
+  """设置"""
+  settings: JSON
+
   """"""
   slug: String!
 
@@ -2180,6 +2191,9 @@ input UpdateSessionDataInput {
 
   """该 Session Name"""
   name: String
+
+  """设置"""
+  settings: JSON
 }
 
 """更新单个"""

@@ -11,6 +11,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   DateTime: any;
+  JSON: any;
 };
 
 /** 添加成员 */
@@ -157,6 +158,8 @@ export type CreateSessionInput = {
   accessType?: InputMaybe<Scalars['String']>;
   /** 该 Session Name */
   name: Scalars['String'];
+  /** 设置 */
+  settings?: InputMaybe<Scalars['JSON']>;
   slug?: InputMaybe<Scalars['String']>;
   /** Team Id */
   teamId?: InputMaybe<Scalars['Int']>;
@@ -1710,6 +1713,8 @@ export type Session = {
   /** Message */
   messages: Array<Message>;
   name: Scalars['String'];
+  /** 设置 */
+  settings?: Maybe<Scalars['JSON']>;
   slug: Scalars['String'];
   /** teamId */
   teamId: Scalars['Int'];
@@ -2156,6 +2161,8 @@ export type UpdateSessionDataInput = {
   accessType?: InputMaybe<SessionAccessType>;
   /** 该 Session Name */
   name?: InputMaybe<Scalars['String']>;
+  /** 设置 */
+  settings?: InputMaybe<Scalars['JSON']>;
 };
 
 /** 更新单个 */

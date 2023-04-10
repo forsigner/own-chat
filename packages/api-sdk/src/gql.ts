@@ -254,6 +254,7 @@ query sessions($orderBy: String, $skip: Int, $take: Int, $where: SessionWhereInp
         createdAt
         id
         name
+        settings
         slug
         teamId
         updatedAt
@@ -281,6 +282,7 @@ query sessionBySlug($slug: String!){
             views
         }
         name
+        settings
         slug
         teamId
         updatedAt
@@ -612,6 +614,7 @@ mutation addSession($input: AddSessionInput!){
         createdAt
         id
         name
+        settings
         slug
         teamId
         updatedAt
@@ -626,6 +629,7 @@ mutation updateSession($input: UpdateSessionInput!){
         createdAt
         id
         name
+        settings
         slug
         teamId
         updatedAt
