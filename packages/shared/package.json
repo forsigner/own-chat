@@ -19,12 +19,12 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
-    "@bone-ui/iconify": "^0.33.1",
-    "@bone-ui/icons": "^0.33.1",
+    "@bone-ui/iconify": "^0.33.2",
+    "@bone-ui/icons": "^0.33.2",
     "@fower/react": "^1.76.0",
     "@own-chat/api-sdk": "*",
     "@own-chat/easy-modal": "*",
-    "bone-ui": "^0.33.1",
+    "bone-ui": "^0.33.2",
     "fomir": "^0.22.0",
     "i18next": "^22.4.13",
     "lodash": "^4.17.21",
