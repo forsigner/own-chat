@@ -13,7 +13,7 @@
     "@own-chat/api-sdk": "*",
     "@own-chat/shared": "*",
     "@fower/react": "^1.76.0",
-    "bone-ui": "^0.33.0",
+    "bone-ui": "^0.33.1",
     "crypto-browserify": "^3.12.0",
     "i18next": "^22.4.13",
     "react": "^18.2.0",

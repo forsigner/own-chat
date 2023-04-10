@@ -1,5 +1,5 @@
 import { withIronSessionSsr } from 'iron-session/next'
-import { Modal, ModalOverlay, ModalContent } from 'bone-ui'
+import { Modal, ModalOverlay, ModalContent } from '@bone-ui/modal'
 import { useState } from 'react'
 import { sessionOptions } from '@common/session'
 import { ChatLayout, ProviderChat } from '@own-chat/shared'

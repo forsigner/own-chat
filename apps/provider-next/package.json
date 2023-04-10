@@ -16,7 +16,7 @@
     "@own-chat/api-sdk": "*",
     "@own-chat/easy-modal": "*",
     "@own-chat/shared": "*",
-    "bone-ui": "^0.33.0",
+    "bone-ui": "^0.33.1",
     "case": "^1.6.3",
     "cookies-next": "^2.1.1",
     "date-fns": "^2.29.3",

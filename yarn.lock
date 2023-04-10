@@ -1284,316 +1284,327 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bone-ui/alert@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/alert/-/alert-0.33.0.tgz#fc5c5795e214ff484b5a67fd592ca1bde0f86a1b"
-  integrity sha512-T3jTo8tAg4nFJKR0O7FxA6mDgF3OCJslPg5GNPO94bjUvUPxc1/XIJCkHizh5DPgH+1Gqv5ImTRFf0haFEQncA==
+"@bone-ui/alert@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/alert/-/alert-0.33.1.tgz#b2ea398eba0c8c9d6627fab5f8c75f6c7505bbc0"
+  integrity sha512-yjQXEO6v0nRAYW0g/fIoKbTCKaSogxR5FRrFzl4crE+SVBFUeGb/3Z0ZSEAdIuH8pKhupbeX1hkrOY4IO4QANg==
   dependencies:
-    "@bone-ui/iconify" "^0.33.0"
-    "@bone-ui/icons" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/iconify" "^0.33.1"
+    "@bone-ui/icons" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/avatar@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/avatar/-/avatar-0.33.0.tgz#6e0d6819257955ca3bdaa83a6732e7fd8c6ce06b"
-  integrity sha512-/bA9G9j7y9tEqMms+mrCVRAa5/TSor4qExajAatIcGdsLCoGlgLLKxQLxWocbogeUcHU63WfVHkUtF3OAYsmhw==
+"@bone-ui/avatar@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/avatar/-/avatar-0.33.1.tgz#77f2b4bd9a967f7b742ab14fd56eccd02670a4bb"
+  integrity sha512-+5sdbqdXrpJEqCYYc4xWzjGnCnAbCKGijKHG6VGQEdZ+tmNI90RGaYWuB3iCiwP2q9xz1QDUC9Hgrb1CWT5bjA==
   dependencies:
-    "@bone-ui/hooks" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/hooks" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/back-top@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/back-top/-/back-top-0.33.0.tgz#cd037af79c92e21a072049ef350214a7e438d1e2"
-  integrity sha512-16NNa04pAHMfJ0ZuJH7YkoudqqucMDaAAzWJmfx8f1c2J/tAbO5fyE/epKCrLzYiqd+4yls8gt60ic+0JW3a5g==
+"@bone-ui/back-top@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/back-top/-/back-top-0.33.1.tgz#5280d04ee0636d856d9050c39c0a9818f95c74e0"
+  integrity sha512-dgQ/h7eeSJJcWB0ygRChvryFHMlJdOXLiU0cKmBMyCt8vbK/oFb9EUxrsGWj+eimhsl21rOqq0g9xktEieUNQg==
   dependencies:
-    "@bone-ui/icons" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/icons" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/badge@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/badge/-/badge-0.33.0.tgz#2425838b135d3acf7b0ddc1ddd3bf2c2a529cd40"
-  integrity sha512-eK1gFk2BB4rQtGOHyQ1ZHNjH3C7Ot+KuZ6ATYGIyDYJFTrKFKyVrpunG/VgMnDU6A+gQKHzs2NT8LNumm90Wag==
+"@bone-ui/badge@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/badge/-/badge-0.33.1.tgz#cef7a4d7dae1154c45f017ecc47b88a9dade0916"
+  integrity sha512-y7Pp5CLqfDNEzUjXapU5VYkrZ0hMOGUgm4VIIBaO07M98bYt0qGMUOT7GHpXq4TcJULK4xrXKrhjO2jJm+hxWA==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/breadcrumb@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/breadcrumb/-/breadcrumb-0.33.0.tgz#6ae111de271dc11278dfc800a714abe25515f534"
-  integrity sha512-2B+urnFJxp1DUauAnZFitAIBay9K/8J3btZU3GIdM/dE0K7wPZsw6cl0GMlcEAeJmxFhtZRxRUKyrOUsrU0Oxg==
+"@bone-ui/breadcrumb@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/breadcrumb/-/breadcrumb-0.33.1.tgz#eb4b4c2fc797eb3e2ddc46e45d62c273c2d312f2"
+  integrity sha512-sTly/o6zlPKnldayQT1I6Q2GeNuubJsPKxHj4w9xdnhpu+UkLGiABxzjkN8fiDA3GHGtMMjwTdimI1FhwPVcUQ==
   dependencies:
-    "@bone-ui/icons" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/icons" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/button@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/button/-/button-0.33.0.tgz#8d0efb6cf7d4f4d75dffb2a13fa57aece565d9a0"
-  integrity sha512-CQh+PrZTQEyOlCpFLl/HA8Uh+5Nx6mOy3cQUET2O3+znPx3E9xlQo+Pfv+Ebqw57lWL5tvk7t38MacMQKz1gTg==
+"@bone-ui/button@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/button/-/button-0.33.1.tgz#337e6865654e410bc8bdd5525d12651c40563a15"
+  integrity sha512-Ed9/lfS8Kol4l+gP0Nku+/G/aQIKrS5JcASgpSvKhYjTsiJTTDGit28jjRkHfN1HjDYM5J77YQVxyENVxhKmyw==
   dependencies:
-    "@bone-ui/spinner" "^0.33.0"
+    "@bone-ui/spinner" "^0.33.1"
 
-"@bone-ui/card@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/card/-/card-0.33.0.tgz#4ed345e6ca5be152e31d38489f383420fc0bc410"
-  integrity sha512-5Avcxbkr3x9RGV1YGsSxlfo1LJu9O8OiMA0BwKdrA8kcpzodqz/P411q3Q/LUz/YuV/E+SA4ORcbpsHYUspuCg==
+"@bone-ui/card@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/card/-/card-0.33.1.tgz#8fc70e3966b1cca914c24a15361cd68f7f1e55d3"
+  integrity sha512-HnyDznM0sdc5np3QHbPo6I5/evfI+1D8OJo7WIwffEXyb44x+Cxdn9oWjg4Pvs/EX1+fT941lLaaOz08bd1O9Q==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/checkbox@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/checkbox/-/checkbox-0.33.0.tgz#0e24cf96ed4fbf4023b072459a42b32dc55002b2"
-  integrity sha512-qq0BOkDDiBgl/xPtc2dZl3UCM5sSztTe8bMTPm674CvDEgK0/0j39BpJAQpIuk74/9HMczxwBFrkidO3qpyhqQ==
+"@bone-ui/checkbox@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/checkbox/-/checkbox-0.33.1.tgz#bd54f887c9db2de02e96a7a72367ebdfa5173aa2"
+  integrity sha512-baPcWSjW2ghC4FNtYQfZAbKs60g3bA0qeXh2iwO9fWgBuIQYpAke3e2IIpBiLXokAwgUTKHDWJdD6WrhcWSqlQ==
   dependencies:
-    "@bone-ui/icons" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/icons" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/circular-progress@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/circular-progress/-/circular-progress-0.33.0.tgz#c3475130fe0f639f3ecdfcadc564945189b54a22"
-  integrity sha512-w+/yrqxyhhn16ROV3XZH3muCw4ufuz7YxUjkvniogeH3KoUYI4OdFVriJtU+QLfL4CVyfWr59gl/E2GOz0ZCvQ==
+"@bone-ui/circular-progress@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/circular-progress/-/circular-progress-0.33.1.tgz#81077eb9b5a324c4ba6bbc58e01d34326825897e"
+  integrity sha512-oD9TErl1M1tNH7wsC1ZvgOGUIE4ismOBgWpzbBaHWePw1txX5NXjhCa80HoJ0PUiZW0naUCKEOMBspLA1WnLuQ==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/close-button@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/close-button/-/close-button-0.33.0.tgz#89562257298a31df77a5e6629e65b6f1c3ba0071"
-  integrity sha512-w50LtcKN9qGN4y73UUTtow3+H+2j06YI+34x8KrbLFfy6qf/2XuhwEy2VwJ1mDYIjkYAVZeAWDWKtL2Y6hKLfA==
+"@bone-ui/close-button@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/close-button/-/close-button-0.33.1.tgz#ce0002487081a7d367e65c712b8a1d68f0f4dd6a"
+  integrity sha512-psvrVpNPPWLEKBL5KUmvkVytMlpp69yk0eSITByID46j2nr/LWQU2M4ixIhLhY7+2qhIQ6Ri0acvq497nq+riA==
   dependencies:
-    "@bone-ui/icons" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/icons" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/divider@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/divider/-/divider-0.33.0.tgz#6a64bcd637f6d2a3586284bc605adf14db104943"
-  integrity sha512-kNb1ZjGXT2cdJFJ5p/P4zG5fE9OQ0hGMrUXTAdkX+iB7icF7/yejlbASoLf9T47qUSb0FJ8B9TfA71Vq7GzI+g==
+"@bone-ui/divider@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/divider/-/divider-0.33.1.tgz#a15d5e5014bc065e3febfef45ae89bb96ad49701"
+  integrity sha512-bnoadg9lHD6DXMzEFp6vMBHYO0wFILLcyheFYyeWjNZbOZTmeglXzJ4k30WMUo7Qsf7wX80am8aJxCVsx8isVw==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/dot@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/dot/-/dot-0.33.0.tgz#2e719b15fe8be71e606f3fa41b368f560d4172f8"
-  integrity sha512-XjX/F8pQOOPPHA71yksn+moPgGnPD5notvKzz0zpq7ZdmzjNs32GR04ac1Ezh33h8LImvWEXrIDxppyD2LmCfA==
+"@bone-ui/dot@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/dot/-/dot-0.33.1.tgz#0c96fd22504bf79020f47ee1ca16a0ae5771de67"
+  integrity sha512-4TqW0wo1+PsZX4EFgQzrvluJGRikc/inN+GqNWKiVfDxDnE3IeZB9SgFHIGCV4PifOvt/AWhsiV41JBkcWk6Qw==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/drawer@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/drawer/-/drawer-0.33.0.tgz#e771fd3ddf7ba97e37a2d20375969fde12479c5f"
-  integrity sha512-PzWKmGSO6ziXc/z155Pn6uKbCjqufshC85uhrsQxyAVfuBgu8ZuIIAmS34qpOyS5Z6xHz1OLM3MSmStza2FN7A==
+"@bone-ui/drawer@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/drawer/-/drawer-0.33.1.tgz#30b3c650588d16fe15b3a1da47ee1eae28e7e1bf"
+  integrity sha512-1GhAV3fwS3Q8c95d2L4XG0wYpw2P9ak4vTccLrSOJ72rSdbBp1mZ3HBjBuLof3W9srSJXvAqxPopRVDLxbJh4g==
   dependencies:
-    "@bone-ui/close-button" "^0.33.0"
-    "@bone-ui/motion-configs" "^0.33.0"
-    "@bone-ui/portal" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/close-button" "^0.33.1"
+    "@bone-ui/motion-configs" "^0.33.1"
+    "@bone-ui/portal" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
     react-remove-scroll "^2.4.3"
 
-"@bone-ui/dropdown-menu@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/dropdown-menu/-/dropdown-menu-0.33.0.tgz#559514154df16448c5eeeb3ac956cca4e5d99fa7"
-  integrity sha512-SnRtJw+Gv0rf0u6jFIJvJ82Nks1pTx6fb+/XEHuaqGBuoT6W7AvH8O4qVbV1jTwZHAUrHZlmd6lyMdx/vuPEUw==
+"@bone-ui/dropdown-menu@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/dropdown-menu/-/dropdown-menu-0.33.1.tgz#c03d44970072126d0e3162e3c86dfde6d3f28bf0"
+  integrity sha512-Wz1QyJ0zKzYVOCX7sz9EzmcMsJ69kuvwZ009w/mGwGQHmAlbf8uCdLX97UD+rJyz6BK/agKe2fPfvW0nwoYvsg==
   dependencies:
-    "@bone-ui/button" "^0.33.0"
-    "@bone-ui/divider" "^0.33.0"
-    "@bone-ui/menu" "^0.33.0"
-    "@bone-ui/popover" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/button" "^0.33.1"
+    "@bone-ui/divider" "^0.33.1"
+    "@bone-ui/menu" "^0.33.1"
+    "@bone-ui/popover" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/form-field@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/form-field/-/form-field-0.33.0.tgz#89df6ae9fbcf245fbb300258d9ac76c3fc109048"
-  integrity sha512-yS02/tbfP0xPK7DLHLrIMumRAWI5jTAguPeIF5cihcyZNKz1sIcN2kDiQab54o5wn/UHlN+RvCDxcbLzvFNzGw==
+"@bone-ui/form-field@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/form-field/-/form-field-0.33.1.tgz#d8fb11bf5dfb7fc3f675d4c2ae6cb96736b7c78e"
+  integrity sha512-nxjUAUSGMsBeIkS62ixV7mQvK6/BL/UkcOTzONIIboHmmizpLYWMC/uir6FTByWiCJuMpVcycCTy4QP7/JJs0A==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/hooks@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/hooks/-/hooks-0.33.0.tgz#59947a71d6e9d28265cce6b4c3d390bfd9180653"
-  integrity sha512-C3Oi7xuEJT+f8vs5DYYYZE5XrQpZrTO37RheYQ7kXBPdOtvygQo7oD0UvUPT73IeNOZarga4Oy8fpq//IxSlRg==
+"@bone-ui/hooks@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/hooks/-/hooks-0.33.1.tgz#4ee8e2e72f2c8024cf126c54200494163108fa70"
+  integrity sha512-lugDvGU/FIhThKTzMcMIORpt1ACVf5LCk/VQEJhnVlicaWJtKjI2UwN9lVoOojdOU2OrtvyDDBfR7PqszL6syQ==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/iconify@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/iconify/-/iconify-0.33.0.tgz#9f85af61fa98ae30960eb3c6a8760733b80cf162"
-  integrity sha512-rSMnuLu69r6WXh44NQkg7fVVXewulwvyv+dPRkulNXd6ZaZnFy786PTm9O4nYgGik/XLEuuP8GxZVxFXfN1rjQ==
+"@bone-ui/iconify@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/iconify/-/iconify-0.33.1.tgz#d2bc22bfe97a5b24dab2ce8a25aaaf43cb5c276f"
+  integrity sha512-N0/+5uITh5kGIDEyyS/ZDfV/RAe3i4kWOJEgUBL5bwvbZudjUnw/vjXKnphO5sUa60OPl+BTODoWWEjrLlnjyg==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/icons@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/icons/-/icons-0.33.0.tgz#0c05ed9c3bfc6472aa5af3f3d3d575af9c353ef2"
-  integrity sha512-nr2neAbLCqzMAdWrO9sFHZrnVHmHo8xTodpwqlExkUSabTPj6+aSTKbo/0uWC5XzQCdI5wOMK98U6EHvrIKKBw==
+"@bone-ui/icons@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/icons/-/icons-0.33.1.tgz#20739a66777fd0d97c1a934c0f60ea99571b97d8"
+  integrity sha512-UrAF07hNbbuCD8Ok5dcQoKBLP6k++HaPPGw59l3e99/rnGezH7x2YzduANYUF3OFhVmP7u5XZHzbTnGRX/XrrQ==
   dependencies:
-    "@bone-ui/iconify" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/iconify" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/input@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/input/-/input-0.33.0.tgz#2639f4d124cd709ab80512d0c5cd312d28939599"
-  integrity sha512-Mka4vELIbDMkcyUqI6MmzDTMfG9gMvEWYdR6b5n2XYWwyqdY8np36pfDJwqZMyQr8mDgUH8/fhaFzjXHEoPRpA==
+"@bone-ui/input@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/input/-/input-0.33.1.tgz#87f3514faf46027773d11f8a33fee700ddadbd14"
+  integrity sha512-YJLQ7npusIFX5BhgbTDRcjmCCpy1PxtJhzJKjiX3NdM6e+ksSwiTc0lxoh2Rx2xMbdPIV9pm3h5RdP+YSrk6yw==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/menu@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/menu/-/menu-0.33.0.tgz#2ab59690580c149fea92562465c6cb33fd723b58"
-  integrity sha512-mEcwtqsqCmQBw+CEHG41A0GGGjlUyBRLoaBqGWfdg4hw5ACdeBjlKrzD7M5OEV+S22kI7vgFD1jbNIQFrEpnTg==
+"@bone-ui/menu@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/menu/-/menu-0.33.1.tgz#30890286b0de6626ef4dc2b926d38c0f1d6a5387"
+  integrity sha512-JLj3X4Wr0Db/EbCvuxyA2GLi/OfzKyeiX6/WyJYM2l7pZM7v1z0E8Hn5jxtAXuK+NmkC52EY8DIdS1rUHvWYxQ==
   dependencies:
-    "@bone-ui/icons" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/icons" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/motion-configs@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/motion-configs/-/motion-configs-0.33.0.tgz#16799eed5bee5c7b40d856aae9e137cd07f86547"
-  integrity sha512-jUGeNpx9Xmlf6/p4S+rU9XtBmb7fBTcCK+GxNPR1s8cY98SVjkKCSHQByncjrwt3F52ZokzkKTL5Mb0dwUGVtA==
+"@bone-ui/modal@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/modal/-/modal-0.33.1.tgz#ff2f66de90e26547660c0a5c3a232da9f1d742d3"
+  integrity sha512-CvdgVZv9KKRBXSEg1G/AeAEmTSDSSc44g+IuT61fwUzTu6p4Ry8F8QMKO4DzllWYzo5ABhcmW9t2RwVou1T/7Q==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/close-button" "^0.33.1"
+    "@bone-ui/motion-configs" "^0.33.1"
+    "@bone-ui/portal" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
+    react-remove-scroll "^2.5.5"
 
-"@bone-ui/number-input@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/number-input/-/number-input-0.33.0.tgz#5f8878e2cf03598f01e82952867e4fd291e5ea01"
-  integrity sha512-Vdo/YW5Sa1Xwe88h4oK6rhtdpVBKD7oMj901qFPnchQcvbs1La+qqvyFKsUHwQ4uURdLlZuN3ouqCwslbVQpag==
+"@bone-ui/motion-configs@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/motion-configs/-/motion-configs-0.33.1.tgz#2bc0e4c8b102487b4b9fd5426b15b8ca8eed3555"
+  integrity sha512-wBTczypdlhcaJ/mcRpVTpa5VQphA/etmem4arxjDrUpjIA18cwPP2LLvdKwpvIARolg95g7wp8Ui+R4DRA/oIA==
   dependencies:
-    "@bone-ui/input" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
+
+"@bone-ui/number-input@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/number-input/-/number-input-0.33.1.tgz#c964f541a929a13d0f9277507811f7ff51b7474d"
+  integrity sha512-XDJPs0A6SBqfWmfmr8MKfsgWGQ4s4e41aSD9MPQrqpob8m8rbALSu1r+Y+3MJ70tNwZdqc0SHSgbf+EfdlN6Ag==
+  dependencies:
+    "@bone-ui/input" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
     rc-input-number "^7.4.2"
     react-multi-ref "^1.0.0"
 
-"@bone-ui/pin-code@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/pin-code/-/pin-code-0.33.0.tgz#b630149645618393c10de70eed803322aa46c08c"
-  integrity sha512-YlxT+tp2HP7mAKobOuXMZPhCAi5k3jE2KvOZoAdA2IWBvZmp9lj8J9sbcNJSu0/gCVwXy6v5cbq3dZN9AG45tg==
+"@bone-ui/pin-code@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/pin-code/-/pin-code-0.33.1.tgz#ab518a37ebc7faf9a64e6dd01e38e9946078fedc"
+  integrity sha512-GHjom/TjKCkgXaAhDRKIdk2KEvaAYU8SiFQo1AZiyStb28m4WnCc7wVU6JZqBtD2zVywENXPMlpj/bNHf5ujUA==
   dependencies:
-    "@bone-ui/input" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/input" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
     react-multi-ref "^1.0.0"
 
-"@bone-ui/popover@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/popover/-/popover-0.33.0.tgz#72206be04661cdc319e5cf1cf5fe87b8ae50e04d"
-  integrity sha512-KM1eKdVyYl1e//gbFDm3RpAH6WdYvTLtcVy8n01SSmmG0hL2+wQYlNLtclqTegl9xI2h+6D1Fcbn44UrreXxiA==
+"@bone-ui/popover@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/popover/-/popover-0.33.1.tgz#e20759dd7214c53b69c2973bce122bd5b24757d5"
+  integrity sha512-aU77zwXSX1SCBcTHetxEdNQ3pgxIBqqZvJfHnqAi2wsmamghLn7wcgzdrEgxoP80SfWaxa5OuFggarP+wJsJ5g==
   dependencies:
-    "@bone-ui/close-button" "^0.33.0"
-    "@bone-ui/hooks" "^0.33.0"
-    "@bone-ui/portal" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/close-button" "^0.33.1"
+    "@bone-ui/hooks" "^0.33.1"
+    "@bone-ui/portal" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
     "@floating-ui/react" "^0.22.3"
 
-"@bone-ui/portal@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/portal/-/portal-0.33.0.tgz#f6def029f25a7e7986677264f63c9124a226a4d6"
-  integrity sha512-hPgu2IAoGNpycgpO2tErkOV/ta5+YAMQwyIU4SE1b+nxSivb133dIrwnzZkd2Ny2pvxgKLk3bR+TlQbaG2OcUg==
+"@bone-ui/portal@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/portal/-/portal-0.33.1.tgz#99c7315835f273c2a4be4894f3ad2ada94fa19d0"
+  integrity sha512-qXTHy3s9UD7ykwtehb8NR2QTW6+atpK6O5TcdPpCNlrP/Nbkh+JdfebqJnMUEd1GitavQYzKISxXH6q0xCzbJg==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/progress-bar@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/progress-bar/-/progress-bar-0.33.0.tgz#a44cec6dd37a7a686e9ec8991f8dec899d475d7c"
-  integrity sha512-0bXpePmcgaDul/JrGbBqo2SoSgNP8h4I9Ztf9SbHGjkLthGVu662K211r/WznEqqMsbOgSoaDIhiox2JP/Zu5Q==
+"@bone-ui/progress-bar@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/progress-bar/-/progress-bar-0.33.1.tgz#0c97b75aa109b1b39b1348e8e77653055bae0327"
+  integrity sha512-WCCxwGB1ZDWy1IA/o6dw84PiMXEQjdCKFK3oTzww/K311E03XceU111b1mspP0yLLGGtkpv0A0d37n//VPoz8w==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/radio@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/radio/-/radio-0.33.0.tgz#490918a02ec3269ccd6267bb629813b34c342251"
-  integrity sha512-7rRpGAbxIVYpF2DA8fNyVFyXAdy4BGynxQNyY5AkH3UJHsc1FZmAEjDrXnrQwPT4wr/YVi6elJ5509kJmJ+sgw==
+"@bone-ui/radio@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/radio/-/radio-0.33.1.tgz#c1357a9e49d7f227154243f6f2163e00287116ce"
+  integrity sha512-mBoV78x7cvWNW7qltMEwVXFc3VMlSPcFg7w3QqznNpwk6nFClamDWk8H4x5S3zUMj9tZI+FlYlRgHb3D4vMnWw==
   dependencies:
-    "@bone-ui/hooks" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/hooks" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/rating@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/rating/-/rating-0.33.0.tgz#8de620c337fcf7d84524a1db580de4cd80eca91d"
-  integrity sha512-kaxPN0kqHHZkjlEI6/gAZ/UNAaApyVbthx6600SmVTDMPlmpXHYTLrvU4IEPH3ZMYtdDaJFEbeFFvM2XrN5opA==
+"@bone-ui/rating@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/rating/-/rating-0.33.1.tgz#858bf94fbf8f24b65c4f7085e81e2a193e4bbcba"
+  integrity sha512-LJNd6kXC8EvX0CN4wB/rV38EwYY8h8g4TQzMHxAmqj0x3aFI1GsYnsAbPVFLo2TaeLuCmiQwjQAFJ5rutIftmQ==
   dependencies:
-    "@bone-ui/icons" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/icons" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/select@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/select/-/select-0.33.0.tgz#1f32e398ea44d3a37d2cd867d95a907525128014"
-  integrity sha512-5DJw4RdRuW+eICv7CMQ5g7uiO2o0K/x0fVJgbhtKOeBElvKJevM4NDmsxyLEInkRAWMUn9gJJmHGNy7PaeYzsQ==
+"@bone-ui/select@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/select/-/select-0.33.1.tgz#e6fb03104a8d4ff4e026b38147dcdf4977ccfe78"
+  integrity sha512-8zUdxLGqaEVMhPE+j988smMVdUhppZlVEyFa6MixDXE5R5q0WsIQVxOHeA1Li6olMIXomPzCeIwmydxhSjiF5Q==
   dependencies:
-    "@bone-ui/icons" "^0.33.0"
-    "@bone-ui/menu" "^0.33.0"
-    "@bone-ui/popover" "^0.33.0"
-    "@bone-ui/radio" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/icons" "^0.33.1"
+    "@bone-ui/menu" "^0.33.1"
+    "@bone-ui/popover" "^0.33.1"
+    "@bone-ui/radio" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/skeleton@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/skeleton/-/skeleton-0.33.0.tgz#d2d22fd3d7bc2ae3f8ba7f534a19360308d2f7a6"
-  integrity sha512-Jl7qhFiQvwx8hUrzt3ThEdkAsvtmqJ3yRymBlhQ9la+wOZSnMgJbMFptPo3oHNBYntArtAA7Z+37y9v6rqKOnw==
+"@bone-ui/skeleton@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/skeleton/-/skeleton-0.33.1.tgz#180a38595b66a41ea7a96e32374b85f62bc802e0"
+  integrity sha512-1EI061LEBcllqAk4nS/ci/ldR+Uv+rBfpeeBk6ZXCfyxwDRwWcb3SY3ywBE9dAMgfvG0O2lF/U5mM+xawVaf5w==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/spinner@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/spinner/-/spinner-0.33.0.tgz#bbdd64b9a1c0ad3468689788e355030f4f0e22d8"
-  integrity sha512-Dgje4ZesFvZ5Hfd/SXnl4AjPnQuMqUjuXYxhie1X/l8YhwJJPAmv452p9oImOgRvaUDCl70TrKqLHXlbAzZJhQ==
+"@bone-ui/spinner@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/spinner/-/spinner-0.33.1.tgz#2ff37e6f5a7623f900f2555f1649976a7922b929"
+  integrity sha512-Uhf6ZT5I2fFwh6En52aZQHhLBKNVg/qXegFLNTjrouHL4z9aDR2FVrtKLqQyosW6e7IcRK/uneb5Hfjt2ZNqUw==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/switch@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/switch/-/switch-0.33.0.tgz#e87c0037c10e6dfedfaed167dedfff2076b37e8b"
-  integrity sha512-vfC7W2VwAs0+HLY1YrHd1t2/ooPfnpgxL9JKDB/hXg9cX0L/49weERvQtO4luz7/eVOF0UTl+Gujj0rbIVb69g==
+"@bone-ui/switch@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/switch/-/switch-0.33.1.tgz#9010d0d0936b4a7f9a7040609bc50617cd85c317"
+  integrity sha512-LQPOv42umRDTWWvFSiCYzpTZ4GMJ3zwQuTGLT4tD7H6wzqiN3WAd+E6R1A0CY9eWi9DEzfFshPS/gDBTCuo/Uw==
   dependencies:
-    "@bone-ui/checkbox" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/checkbox" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/table@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/table/-/table-0.33.0.tgz#3ea52c1cee53573da8a96a1c46e266a4bb439956"
-  integrity sha512-855jw36lTtr4idElgiefwAbt/orU4hze8Ji9JZ2o0uxqVbs3uTQ4bs0NNPzB+UTzqCfzhRYGhOQYQuYzsm9KFQ==
+"@bone-ui/table@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/table/-/table-0.33.1.tgz#674481f02b9f46133aed3ad5db0b20ebf70b0b94"
+  integrity sha512-g0Tl2JN0T7biSUY/dGKIUrqf60dgF6tH7prr5AgIRIbRLSa+JjV/88S9k+fqlGFutFuIY+0FGgLvDJOSRGpTZA==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/tabs@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/tabs/-/tabs-0.33.0.tgz#f40283392799ea0e4ba9dacef38ed77e66c27143"
-  integrity sha512-AQUHT5FnyNcjnHEfTxL/1H8/Ng2/0DegdpZOZtTjVXbOjDbdoQvRWLdbfvC+C+9itZaU78RvAicUDWztJUSMmA==
+"@bone-ui/tabs@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/tabs/-/tabs-0.33.1.tgz#7b654fd52d570df4d27512fa10dfb8a5314d9397"
+  integrity sha512-mZLOLhlunhxtdByBQ1xsXxXPu+WprX93vmiP+AzFRYTuwBzkZaLoF3oZG6044BIiZPEvcC3L4t2O8/mBBeES9g==
   dependencies:
-    "@bone-ui/radio" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/radio" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/tag@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/tag/-/tag-0.33.0.tgz#abc134d8a5caa1c0c4009a00ae1b7251ab00189d"
-  integrity sha512-kJrSBUUk6Y3vLHw2nLD3otMbbPgQi1u3r0Mg22xGD7M3yYsaSoUr0lAkx7DDFRa62Dodd1qoz/1wJt5bib4BKw==
+"@bone-ui/tag@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/tag/-/tag-0.33.1.tgz#df2a74fffc8c2e87bde372f6541d0a2c7ca9e034"
+  integrity sha512-E3WXRxRQy5VsHfOex/DM85pd5G16vwNCj3R1UDQlTFA/f3AdUI5gNfOsUJKSytuHsqYzcJJzvoyet6hixAptxQ==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/textarea@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/textarea/-/textarea-0.33.0.tgz#f99883193d6529d82b9410f7b534eea61ced6db2"
-  integrity sha512-WmDGd+UgcIlDh/WrJBIsJ0/j9dATtUdKlmeFUvhL7wC33elt02VW3rDJz98zebRui9BoIoasoBAmMd3rpmT+5w==
+"@bone-ui/textarea@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/textarea/-/textarea-0.33.1.tgz#08c95d544354b4fb97313993c35468723919b3b5"
+  integrity sha512-phqTfspoIFjoC7aAGDUxthDTV6sZfEzsa+ohPGBMw3zK6fI+mNiE4bS4wC4dJ0jH4HaCxpAikPnaZbTEYMveqA==
   dependencies:
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/toast@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/toast/-/toast-0.33.0.tgz#aa634acd5f6dd3e88a1544b2c14f362473217429"
-  integrity sha512-UfGYC5z1ZgszNMrVE6/H6RVWeyCvoWe/HspaUqinq3ws2+/je9v1H5FRxpJrNKOLhVRQfY5g0Zey98XVdkl/Ug==
+"@bone-ui/toast@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/toast/-/toast-0.33.1.tgz#ea16053a8bc6dd44e66199a5884fe9b6c97dffac"
+  integrity sha512-pNj15PIfytcF1OwgQw++o2b0blGSAR05atLDARievw64atNVm8hSO1uYsyGAoAWNpMe46lqglAx3pvIj1U/t8g==
   dependencies:
-    "@bone-ui/icons" "^0.33.0"
-    "@bone-ui/spinner" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/icons" "^0.33.1"
+    "@bone-ui/spinner" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
-"@bone-ui/tooltip@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/tooltip/-/tooltip-0.33.0.tgz#e13fbb005e4ed1243bea2ff692b44fac2316692c"
-  integrity sha512-PyryGhpiRdiRse/EeOoMTz+d9oxBMDTz1fTLdF+jZB9LA+HCt4umFA6oyHOrNVagEOIpiuQADaZQxkTqZLvINg==
+"@bone-ui/tooltip@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/tooltip/-/tooltip-0.33.1.tgz#42b3fb7626a11f2ccdd019d3b661b85406738ede"
+  integrity sha512-oIo3wwm7DUbg9k1Su7rkIgYvl2CfIfo1Mp/hRGSsoN7CV0m08zeEl08AqGPkSu+XslGraFjKUepjYrn4uMrHaQ==
   dependencies:
-    "@bone-ui/close-button" "^0.33.0"
-    "@bone-ui/hooks" "^0.33.0"
-    "@bone-ui/portal" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/close-button" "^0.33.1"
+    "@bone-ui/hooks" "^0.33.1"
+    "@bone-ui/portal" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
     "@floating-ui/react" "^0.22.3"
 
-"@bone-ui/utils@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@bone-ui/utils/-/utils-0.33.0.tgz#067b9c483e203fcc3bf5a3be38e375b62b6b395e"
-  integrity sha512-MHuBPUUSqibFjxD6rvTZScv/G1YmEC9g0YKNcZqPYl3zsyYt6WiGxTLx8s0nzuAp+p52MdWcr2mhYxkBSm++YQ==
+"@bone-ui/utils@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@bone-ui/utils/-/utils-0.33.1.tgz#70f53cfb141dbf4ad419c7293b21bd06f569251c"
+  integrity sha512-ALRvrT879DovwNDQUHN4i3yOW7F5JtnyuPiudj6LOxfdkt3PVMwu39cv09TjqPmmDTeyXeyvHA2oTnakftKPoA==
 
 "@boter/graphql-client@^0.8.0":
   version "0.8.0"
@@ -5434,51 +5445,51 @@ body-parser@1.20.1:
     type-is "~1.6.18"
     unpipe "1.0.0"
 
-bone-ui@^0.33.0:
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/bone-ui/-/bone-ui-0.33.0.tgz#5b915eac12d8e9aa5fe1a7e7d6b170916ceeed89"
-  integrity sha512-SZZ+kPT4Wfqa3OOFbx1Z3ldA0Ezk6ksO4wGtRkmtljbT5PeABTnXj/AlmczhwPaACiWudQ9r39u2DNqAFcCBoA==
+bone-ui@^0.33.1:
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/bone-ui/-/bone-ui-0.33.1.tgz#6ed0e5ac9a752f190d4e0176b61c89963964c79f"
+  integrity sha512-btRGAVnS7+ox8t4/qCdSCUtESfaaq20eRrKtABI6caagSMb8Y9a3Fj9AWWr772jd/0Zb+O55sA2xl7DB3GX1sw==
   dependencies:
-    "@bone-ui/alert" "^0.33.0"
-    "@bone-ui/avatar" "^0.33.0"
-    "@bone-ui/back-top" "^0.33.0"
-    "@bone-ui/badge" "^0.33.0"
-    "@bone-ui/breadcrumb" "^0.33.0"
-    "@bone-ui/button" "^0.33.0"
-    "@bone-ui/card" "^0.33.0"
-    "@bone-ui/checkbox" "^0.33.0"
-    "@bone-ui/circular-progress" "^0.33.0"
-    "@bone-ui/close-button" "^0.33.0"
-    "@bone-ui/divider" "^0.33.0"
-    "@bone-ui/dot" "^0.33.0"
-    "@bone-ui/drawer" "^0.33.0"
-    "@bone-ui/dropdown-menu" "^0.33.0"
-    "@bone-ui/form-field" "^0.33.0"
-    "@bone-ui/hooks" "^0.33.0"
-    "@bone-ui/iconify" "^0.33.0"
-    "@bone-ui/icons" "^0.33.0"
-    "@bone-ui/input" "^0.33.0"
-    "@bone-ui/menu" "^0.33.0"
-    "@bone-ui/modal" "^0.33.0"
-    "@bone-ui/motion-configs" "^0.33.0"
-    "@bone-ui/number-input" "^0.33.0"
-    "@bone-ui/pin-code" "^0.33.0"
-    "@bone-ui/popover" "^0.33.0"
-    "@bone-ui/portal" "^0.33.0"
-    "@bone-ui/progress-bar" "^0.33.0"
-    "@bone-ui/radio" "^0.33.0"
-    "@bone-ui/rating" "^0.33.0"
-    "@bone-ui/select" "^0.33.0"
-    "@bone-ui/skeleton" "^0.33.0"
-    "@bone-ui/spinner" "^0.33.0"
-    "@bone-ui/switch" "^0.33.0"
-    "@bone-ui/table" "^0.33.0"
-    "@bone-ui/tabs" "^0.33.0"
-    "@bone-ui/tag" "^0.33.0"
-    "@bone-ui/textarea" "^0.33.0"
-    "@bone-ui/toast" "^0.33.0"
-    "@bone-ui/tooltip" "^0.33.0"
-    "@bone-ui/utils" "^0.33.0"
+    "@bone-ui/alert" "^0.33.1"
+    "@bone-ui/avatar" "^0.33.1"
+    "@bone-ui/back-top" "^0.33.1"
+    "@bone-ui/badge" "^0.33.1"
+    "@bone-ui/breadcrumb" "^0.33.1"
+    "@bone-ui/button" "^0.33.1"
+    "@bone-ui/card" "^0.33.1"
+    "@bone-ui/checkbox" "^0.33.1"
+    "@bone-ui/circular-progress" "^0.33.1"
+    "@bone-ui/close-button" "^0.33.1"
+    "@bone-ui/divider" "^0.33.1"
+    "@bone-ui/dot" "^0.33.1"
+    "@bone-ui/drawer" "^0.33.1"
+    "@bone-ui/dropdown-menu" "^0.33.1"
+    "@bone-ui/form-field" "^0.33.1"
+    "@bone-ui/hooks" "^0.33.1"
+    "@bone-ui/iconify" "^0.33.1"
+    "@bone-ui/icons" "^0.33.1"
+    "@bone-ui/input" "^0.33.1"
+    "@bone-ui/menu" "^0.33.1"
+    "@bone-ui/modal" "^0.33.1"
+    "@bone-ui/motion-configs" "^0.33.1"
+    "@bone-ui/number-input" "^0.33.1"
+    "@bone-ui/pin-code" "^0.33.1"
+    "@bone-ui/popover" "^0.33.1"
+    "@bone-ui/portal" "^0.33.1"
+    "@bone-ui/progress-bar" "^0.33.1"
+    "@bone-ui/radio" "^0.33.1"
+    "@bone-ui/rating" "^0.33.1"
+    "@bone-ui/select" "^0.33.1"
+    "@bone-ui/skeleton" "^0.33.1"
+    "@bone-ui/spinner" "^0.33.1"
+    "@bone-ui/switch" "^0.33.1"
+    "@bone-ui/table" "^0.33.1"
+    "@bone-ui/tabs" "^0.33.1"
+    "@bone-ui/tag" "^0.33.1"
+    "@bone-ui/textarea" "^0.33.1"
+    "@bone-ui/toast" "^0.33.1"
+    "@bone-ui/tooltip" "^0.33.1"
+    "@bone-ui/utils" "^0.33.1"
 
 bonjour-service@^1.0.11:
   version "1.1.1"
