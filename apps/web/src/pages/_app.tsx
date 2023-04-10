@@ -6,6 +6,7 @@ import { LANGUAGE_KEY, init } from '@own-chat/shared'
 import { useTranslation, withTranslation } from 'react-i18next'
 import { getCookie } from 'cookies-next'
 import '../styles/globals.css'
+import '../styles/markdown.scss'
 
 interface Props extends AppProps {
   Component: AppProps['Component'] & { Layout: any }
