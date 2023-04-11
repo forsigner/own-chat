@@ -5,6 +5,8 @@ import { ModeToggle } from '../../components/ModeToggle'
 import { Nav } from './Nav'
 import { LocaleSelect } from '../../components/LocaleSelect'
 import { Footer } from './Footer'
+import { Button } from 'bone-ui'
+import { StyledLink } from '../../components/StyledLink'
 
 interface Props {
   showNav?: boolean
@@ -18,6 +20,11 @@ export const BasicLayout: FC<PropsWithChildren<Props>> = ({ children, showNav = 
           <Logo to="/" />
           <Box>{showNav && <Nav />}</Box>
           <Box toCenterY spaceX2>
+            <StyledLink href="/roadmap" gray600 brand500--hover transitionCommon>
+              <Button roundedFull variant="light">
+                Roadmap & Bind in public
+              </Button>
+            </StyledLink>
             <LocaleSelect></LocaleSelect>
             <ModeToggle></ModeToggle>
           </Box>

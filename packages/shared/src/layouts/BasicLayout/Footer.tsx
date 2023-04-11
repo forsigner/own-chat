@@ -10,12 +10,17 @@ export const Footer = () => {
     // { text: 'Blog', to: 'blog' },
     { text: t('download'), to: 'download' },
     // { text: t('pricing'), to: 'pricing' },
+    { text: t('about'), to: 'about' },
     {
       text: t('feedback'),
       to: 'https://github.com/forsigner/own-chat/issues/new',
       isExternal: true,
     },
-    { text: t('about'), to: 'about' },
+    {
+      text: t('github'),
+      to: 'https://github.com/forsigner/own-chat',
+      isExternal: true,
+    },
     // { text: 'Contact', to: 'contact' },
     // { text: 'Feedback', to: 'https://github.com/forsigner/boter/issues', isExternal: true },
   ]

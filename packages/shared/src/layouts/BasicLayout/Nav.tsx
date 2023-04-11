@@ -16,12 +16,17 @@ export const Nav = () => {
     { text: t('home'), to: '/' },
     // { text: t('pricing'), to: 'pricing' },
     { text: t('download'), to: 'download' },
+    { text: t('about'), to: 'about' },
     {
       text: t('feedback'),
       to: 'https://github.com/forsigner/own-chat/issues',
       isExternal: true,
     },
-    { text: t('about'), to: 'about' },
+    {
+      text: t('github'),
+      to: 'https://github.com/forsigner/own-chat',
+      isExternal: true,
+    },
     // { text: 'Contact', to: 'contact' },
     // { text: 'Feedback', to: 'https://github.com/forsigner/boter/issues', isExternal: true },
   ]
